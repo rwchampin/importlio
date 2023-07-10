@@ -1,15 +1,15 @@
 export default function Page() {
   const date = new Date().toDateString();
-  const company = &apos;importify&apos;;
+  const company = "Importlio";
   return (
     <div>
       <h1>Privacy Policy</h1>
       <p>
-        Effective Date: {Date}
+        Effective Date: {date}
         Thank you for using {company} services. This Privacy Policy explains how
         we collect, use, disclose, and protect your personal information when
         you use our website, mobile application, or any other services we
-        provide (collectively referred to as the "Services"). We are committed
+        provide (collectively referred to as the &quot;Services&quot;). We are committed
         to safeguarding your privacy and ensuring the security of your personal
         information. By accessing or using our Services, you agree to the terms
         of this Privacy Policy. 1. Information We Collect 1.1 Personal
@@ -77,5 +77,3 @@ export default function Page() {
     </div>
   );
 }
-//       </h3>
-//     </>
