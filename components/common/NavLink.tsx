@@ -7,8 +7,10 @@ interface Props {
 	isBanner?: boolean; // used to determine if the link is a banner which is used in the footer
 	href?: string;
 	children: React.ReactNode;
+	onClick?: () => void;
 	[rest: string]: any;
 }
+
 
 export default function NavLink({
 	isSelected,
@@ -16,6 +18,8 @@ export default function NavLink({
 	isBanner,
 	href,
 	children,
+	onClick,
+
 	...rest
 }: Props) {
 	const className = cn(
@@ -33,14 +37,14 @@ export default function NavLink({
 
 	if (!href) {
 		return (
-			<span className={className} role='button' onClick={rest.onClick}>
+			<span className={className} role='button' onClick={onClick}>
 				{children}
 			</span>
 		);
 	}
 
 	return (
-		<Link className={className} href={href}>
+		<Link className={className} href={href} onClick={onClick}>
 			{children}
 		</Link>
 	);

@@ -25,7 +25,7 @@ export default function Navbar() {
       });
   };
 
-  const isSelected = (path: string) => (pathname === path ? true : false);
+  const isSelected = (path: string | undefined) => (pathname === path ? true : false);
 
   const authLinks = [
     {
@@ -48,8 +48,15 @@ export default function Navbar() {
       href: "/auth/register",
     },
   ];
+  interface LinkProps {
+    className?: string;
+    href?: string;
 
-  const links = [
+    onClick?: () => void;
+    [rest: string]: any;
+
+  }
+  const links:LinkProps = [
     {
       name: "About",
       href: "/about",
@@ -91,7 +98,7 @@ export default function Navbar() {
                     </NavLink>
                   </div>
                   <div className="flex">
-                    {links.map((link) => {
+                    {links.map((link:LinkProps) => {
                       return (
                         <NavLink
                           key={link.name}
@@ -157,7 +164,7 @@ export default function Navbar() {
                       </NavLink>
                     );
                   })
-                : guestLinks.map((link) => {
+                : guestLinks.map((link:LinkProps) => {
                     return (
                       <NavLink
                         key={link.name}
