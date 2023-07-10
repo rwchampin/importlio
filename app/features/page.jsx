@@ -12,7 +12,7 @@ export default function Page() {
 
             <h2>Effortless One-Click Product Import</h2>
 
-            <p>Streamline your product sourcing process with Importlio's extensive network of over 30 top-tier dropshipping suppliers, including AliExpress, Alibaba, Amazon, Etsy, Dhgate, Lazada, Shopee, Banggood, Taobao, 1688, Gearbest, Walmart, and more. Seamlessly import products from multiple platforms, expanding your catalog and boosting your sales potential.</p>
+            <p>Streamline your product sourcing process with Importlio&apos;s extensive network of over 30 top-tier dropshipping suppliers, including AliExpress, Alibaba, Amazon, Etsy, Dhgate, Lazada, Shopee, Banggood, Taobao, 1688, Gearbest, Walmart, and more. Seamlessly import products from multiple platforms, expanding your catalog and boosting your sales potential.</p>
 
             <h2>Simplified Pricing Strategies</h2>
 
@@ -20,11 +20,11 @@ export default function Page() {
 
             <h2>Customize Imported Products to Perfection</h2>
 
-            <p>Take full control over your product listings with Importlio's chrome extension. Effortlessly modify crucial elements such as titles, descriptions, images, variants, and pricing to align seamlessly with your brand identity and cater to your target audience's preferences.</p>
+            <p>Take full control over your product listings with Importlio&apos;s chrome extension. Effortlessly modify crucial elements such as titles, descriptions, images, variants, and pricing to align seamlessly with your brand identity and cater to your target audience&apos;s preferences.</p>
 
             <h2>Automated Order Fulfillment</h2>
 
-            <p>Supercharge your order processing with the Importlio Chrome Extension. Experience the ease of automatically populating the customer's address on the checkout page, streamlining the fulfillment process and saving valuable time for other important tasks.</p>
+            <p>Supercharge your order processing with the Importlio Chrome Extension. Experience the ease of automatically populating the customer&apos;s address on the checkout page, streamlining the fulfillment process and saving valuable time for other important tasks.</p>
 
             <h2>Seamless Supplier Switching</h2>
 
@@ -32,11 +32,11 @@ export default function Page() {
 
             <h2>Effortless Collection Management</h2>
 
-            <p>Effortlessly organize your products into collections with Importlio's auto-assign feature, fully compatible with leading platforms such as Shopify, WooCommerce, and Jumpseller. Enhance your store's structure and navigation, providing a seamless shopping experience for your customers.</p>
+            <p>Effortlessly organize your products into collections with Importlio&apos;s auto-assign feature, fully compatible with leading platforms such as Shopify, WooCommerce, and Jumpseller. Enhance your store&apos;s structure and navigation, providing a seamless shopping experience for your customers.</p>
 
             <h2>Optimize Variants for Better Sales</h2>
 
-            <p>Unleash the power of Importlio's variant management capabilities. Split variants into separate products, allowing you to showcase the full range of options and increasing your chances of converting visitors into paying customers.</p>
+            <p>Unleash the power of Importlio&apos;s variant management capabilities. Split variants into separate products, allowing you to showcase the full range of options and increasing your chances of converting visitors into paying customers.</p>
 
             <h2>Connect and Manage Existing Products with Ease</h2>
 
@@ -44,11 +44,11 @@ export default function Page() {
 
             <h2>Seamless Shopify-to-Shopify Importing</h2>
 
-            <p>Looking to expand your dropshipping business by importing products from other Shopify stores? Install Importlio's dedicated extension for Firefox and seamlessly add products from other Shopify stores with just a single click.</p>
+            <p>Looking to expand your dropshipping business by importing products from other Shopify stores? Install Importlio&apos;s dedicated extension for Firefox and seamlessly add products from other Shopify stores with just a single click.</p>
 
             <h2>Unlock Automation with Editorify</h2>
 
-            <p>Boost your productivity with Importlio's Editorify app. Generate reviewer names, country flags, and random dates automatically, saving you time and effort while enhancing the authenticity and credibility of your store.</p>
+            <p>Boost your productivity with Importlio&apos;s Editorify app. Generate reviewer names, country flags, and random dates automatically, saving you time and effort while enhancing the authenticity and credibility of your store.</p>
 
             <h2>Showcase Happy Customers on a Dedicated Page</h2>
 

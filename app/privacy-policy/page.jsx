@@ -1,6 +1,6 @@
 export default function Page() {
   const date = new Date().toDateString();
-  const company = 'importify';
+  const company = &apos;importify&apos;;
   return (
     <div>
       <h1>Privacy Policy</h1>
@@ -58,7 +58,7 @@ export default function Page() {
         Access, Correction, and Deletion: You have the right to access, correct,
         or delete your personal information. If you would like to exercise any
         of these rights, please contact us using the information provided at the
-        end of this Privacy Policy. 6. Children's Privacy Our Services are not
+        end of this Privacy Policy. 6. Children&apos;s Privacy Our Services are not
         directed to individuals under the age of [13/16/18], and we do not
         knowingly collect personal information from children. If you are a
         parent or guardian and believe that your child has provided us with
