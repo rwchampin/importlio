@@ -1,0 +1,1 @@
+export {default as NavAvatar} from './NavAvatar';
