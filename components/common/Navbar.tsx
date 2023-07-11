@@ -164,6 +164,8 @@ export default function Navbar() {
                       </NavLink>
                     );
                   })
+                  
+
                 : guestLinks.map((link:LinkProps) => {
                     return (
                       <NavLink
