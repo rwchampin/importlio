@@ -1,5 +1,5 @@
 import { Hero } from "../common";
-import { EmailRegister } from "../forms";
+import { EmailForm } from "../forms";
 
 export default function BlogList({ posts }) {
 
@@ -10,7 +10,7 @@ export default function BlogList({ posts }) {
         title="Ecommerce Dropshipping Tutorials"
         subtitle="Learn about the latest in Ecommerce & Dropshipping"
         eyebrow="Amazon & Shopify"
-        cta={<EmailRegister />}
+        cta={<EmailForm />}
         />
         <section className="bg-white dark:bg-gray-900">
     <div className="container px-6 py-10 mx-auto">

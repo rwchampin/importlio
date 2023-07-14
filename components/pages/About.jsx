@@ -1,5 +1,5 @@
 import { Hero } from "../common";
-import { EmailRegister } from "../forms";
+import { EmailForm } from "../forms";
 
 export default function About() {
   return (
@@ -9,7 +9,7 @@ export default function About() {
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         eyebrow="About Us"
         content="The ultimate solution for efficiently importing and managing your products on Amazon. With our powerful toolset and user-friendly interface, you can streamline your product listing process, maximize your sales potential, and save valuable time."
-        cta={<EmailRegister />}
+        cta={<EmailForm />}
       />
 
       <p>

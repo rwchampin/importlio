@@ -8,6 +8,7 @@ import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { NavLink, Logo, SocialIcons } from "@/components/common";
 import { NavAvatar } from "@/components/auth";
+import dynamic from "next/dynamic";
 
 export default function Navbar() {
   const pathname = usePathname();
@@ -74,6 +75,7 @@ export default function Navbar() {
       href: "/ecommerce-tutorials",
     },
   ];
+  
   return (
     <Disclosure as="nav" className="shadow-lg">
       {({ open }) => (
@@ -112,7 +114,7 @@ export default function Navbar() {
                     })}
                   </div>
                 </div>
-                {/* <div className="bg-green-400 hidden sm:ml-6 sm:block">
+                 <div className="bg-green-400 hidden sm:ml-6 sm:block">
                   <div className="flex h-full items-center justify-center space-x-4">
                     {isAuthenticated
                       ? authLinks.map((link) => {
@@ -142,7 +144,7 @@ export default function Navbar() {
                           );
                         })}
                   </div>
-                </div> */}
+                </div>  
 				<SocialIcons />
               </div>
             </div>
@@ -164,7 +166,7 @@ export default function Navbar() {
                       </NavLink>
                     );
                   })
-                  
+
 
                 : guestLinks.map((link:LinkProps) => {
                     return (

@@ -1,4 +1,4 @@
-import { EmailRegister } from '@/components/forms';
+import { EmailForm } from '@/components/forms';
 
 
 export default function ComingSoon() {
@@ -16,7 +16,7 @@ export default function ComingSoon() {
 
            
 
-            <EmailRegister />
+            <EmailForm />
 
             <div className="mt-10 text-center text-xl max-w-2xl font-apercu-bold font-bold text-black">Pre-register today for a chance to be one of the first 1000 customers to get a free membership</div>
             <p className="max-w-xl mt-5 text-sm">

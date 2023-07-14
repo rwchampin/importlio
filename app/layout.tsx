@@ -1,12 +1,12 @@
 import "@/assets/styles/awwwards.css";
-
+import "@/assets/styles/cursor.css";
 import "@/assets/styles/globals.css";
 import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Provider from "@/redux/provider";
-import { Navbar } from "@/components/common";
+import { Navbar,Cursor, Footer } from "@/components/common";
 import { Setup, GA } from "@/components/utils";
 
 const montserrat = Montserrat({
@@ -79,7 +79,11 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  // const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
+  const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
+    ssr: false,
+  });
+
+  // const DynamicCrumbs = dynamic(() => import("@/components/common/Crumbs"), {
   //   ssr: false,
   // });
 
@@ -87,17 +91,23 @@ export default function RootLayout({
     ssr: false,
   });
 
+  const DynamicCursor = dynamic(() => import("@/components/common/Cursor"), {
+    ssr: false,
+  });
+
   return (
     <html lang="en">
       <GA />
       <body className={`${montserrat.className} bg-white`}>
+      <Cursor radius={20} />
         <Provider>
           <Setup />
           <Navbar />
           <main className="px-3 md:px-5 text-center">
 		  {children}
 		  </main>
-          <DynamicFooter />
+          <Footer />
+         
         </Provider>
       </body>
     </html>

@@ -5,6 +5,7 @@
 
 :root {
   --font-1: apercu, sans-serif;
+  --font-2: monterrat, sans-serif;
   --color-primary: #222;
   --color-primary-rgb: 34, 34, 34;
   --color-link: #222;
@@ -166,6 +167,33 @@ label, ::placeholder {
   font-weight: 900;
 }
 
+h1 {
+  @apply text-5xl font-black font-monterrat text-black;
+}
+
+h2 {
+  @apply text-4xl font-black font-monterrat text-black;
+}
+
+h3 {
+  @apply text-3xl font-black font-apercu-bold text-black;
+}
+
+h4 {
+  @apply text-2xl font-black font-apercu-bold text-black;
+}
+
+h5 {
+  @apply text-xl font-black font-apercu-bold text-black;
+}
+
+h6 {
+  @apply text-lg font-black font-apercu-bold text-black;
+}
+form {
+  width: 100%;
+  @apply max-w-3xl;
+}
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -178,9 +206,12 @@ input[type="url"] {
   font-family: 'apercu';
   color: var(--input-color);
   filter: brightness(90%);
-  height: var(--sf-height)
+  height: var(--sf-height);
+  width: 100%;
 }
-
+input:focus::placeholder {
+  color: #e9e9e9 !important;
+}
 form path{
   stroke: var(--color-primary);
 }
@@ -188,3 +219,44 @@ form path{
 .hero {
   min-height: calc(100vh - 4rem)
 }
+
+
+input:focus {
+  background: #323232 !important;
+  color: white !important;
+}
+
+path.focus {
+  stroke: white !important;
+}
+
+
+.RETICOOL {
+  position:fixed;
+  z-index: 9999;
+  height: 40px;
+  width: 40px;
+}
+
+.RETICOOL__circle {
+  border: 3px solid red;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+ 
+
+.error-message {
+  color: red;
+}
+ .error {
+  border: 3px solid red !important;
+  background-color: #fe6262 !important;
+  @apply text-white;
+ }
+
+ .success {
+  border: 3px solid green !important;
+  background-color: hsl(155 46.7% 10.9%) !important;
+  color: rgb(76, 195, 138) !important;
+ }

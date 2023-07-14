@@ -10,6 +10,11 @@ module.exports = {
 			colors: {
 				'bg-white': '#f8f8f8',
 				'bg-black': '#222222',
+				'bg-input': '#d2d2d2',
+				'bg-input-focus': '#323232',
+				'bg-input-dropdown': '#222222',
+				'bg-button': '#222222',
+				'bg-button-hover': '#323232',
 				'text-white': '#f8f8f8',
 				'text-black': '#222222',
 			},

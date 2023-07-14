@@ -9,3 +9,6 @@ export { default as Logo } from './Logo';
 export { default as Dropdown } from './Dropdown';
 export { default as SocialIcons } from './SocialIcons';
 export { default as Hero } from './Hero';
+export { default as Crumbs } from './Crumbs';
+export { default as ParticleSpinner } from './ParticleSpinner';
+export { default as Cursor } from './Cursor';
