@@ -1,13 +1,13 @@
 import "@/assets/styles/awwwards.css";
 
 import "@/assets/styles/globals.css";
-
+import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Provider from "@/redux/provider";
-import { Footer, Navbar } from "@/components/common";
-import { Setup } from "@/components/utils";
+import { Navbar } from "@/components/common";
+import { Setup, GA } from "@/components/utils";
 
 const montserrat = Montserrat({
   weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
@@ -79,8 +79,17 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
+  //   ssr: false,
+  // });
+
+  const DynamicFooter = dynamic(() => import("@/components/common/Footer"), {
+    ssr: false,
+  });
+
   return (
     <html lang="en">
+      <GA />
       <body className={`${montserrat.className} bg-white`}>
         <Provider>
           <Setup />
@@ -88,7 +97,7 @@ export default function RootLayout({
           <main className="px-3 md:px-5 text-center">
 		  {children}
 		  </main>
-          <Footer />
+          <DynamicFooter />
         </Provider>
       </body>
     </html>
