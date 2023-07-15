@@ -2,26 +2,25 @@
 "use client"
 import { Menu, Transition } from '@headlessui/react'
 import { Fragment, useEffect, useRef, useState } from 'react'
-import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 export default function NavAvatar() {
   const { data: user, isLoading, isFetching } = useRetrieveUserQuery();
-  debugger
+
   return (
     <div className="">
       <Menu as="div" className="relative inline-block text-left">
         <div>
           <Menu.Button className="inline-flex w-full justify-center round">
-          <Image
+          {/* <Image
            className="object-cover rounded-full shadow-xl" 
             //  src={user.picture}
             // placeholder="blur" 
+            src=""
             width={46}
             height={46}
-            src={''}
             alt="Importlio Amazon Dropshipping Product Importer App"
-          />
+          /> */}
           </Menu.Button>
         </div>
         <Transition

@@ -17,7 +17,7 @@ export default function Navbar() {
   const [logout] = useLogoutMutation();
 
   const { isAuthenticated } = useAppSelector((state) => state.auth);
-  debugger;
+
   const handleLogout = () => {
     logout(undefined)
       .unwrap()

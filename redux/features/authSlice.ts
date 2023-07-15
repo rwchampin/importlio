@@ -6,6 +6,15 @@ interface AuthState {
 	user: User | null; // Add user property
   }
 
+interface User {
+	id: number;
+	email: string;
+}
+
+interface PayloadAction<T> {
+	payload: T;
+}
+
 const initialState = {
 	isAuthenticated: false,
 	isLoading: true,
@@ -16,6 +25,7 @@ const authSlice = createSlice({
 	initialState,
 	reducers: {
 		setAuth: (state, action: PayloadAction<User>) => {
+			debugger
 			state.isAuthenticated = true;
 			state.user = action.payload; // Update user property
 		  },
