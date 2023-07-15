@@ -5,40 +5,35 @@ import { useEffect, useState } from 'react';
 export default function RecentBlogPosts() {
     const [posts, setPosts] = useState([]);
 
-    const { data, error, isLoading } = useGetBlogPostsQuery();
+    // const { data, error, isLoading } = useGetBlogPostsQuery();
 
     useEffect(() => {
-        if (data) {
-            setPosts(data)
-        }
-    }
-        , [data])
+       const res = fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`).then(res => res.json()).then(data => {
+        debugger
+              setPosts(data)
+         }
+         )
 
+    }, [])
 
-    if (isLoading) {
-        return <div>Loading...</div>;
-    }
-
-    if (error) {
-        return <div>Error: {error}</div>;
-    }
+ 
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">
             <div className="flex flex-col items-center justify-center w-full h-full">
                 <h1 className="text-3xl font-bold text-center">Recent Blog Posts</h1>
                 <div className="flex flex-col md:flex-row items-center justify-center w-full h-full">
-                    {posts.map((post, idc) => {
+                     {posts.map((post, idx) => {
                         debugger
                         return (
-                            <div key={idc} className="flex flex-col items-center justify-center w-full h-full">
+                            <div key={idx} className="flex flex-col items-center justify-center w-full h-full">
                                 <h1 className="text-2xl font-bold text-center">{post.title}</h1>
-                                <img src={post.image} alt="" />
+                                 {/* <img src={post.image} alt="" />  */}
                                 <p className="text-center">{post.content}</p>
                             </div>
                         )
-                    }
-                    )}
+                    } 
+                    )} 
                 </div>
             </div>
         </div>
