@@ -422,7 +422,7 @@ class MouseFollower {
      * @param {string} [style=""] Additional SVG styles.
      */
     setIcon(name, style = '') {
-        this.text.innerHTML = `<svg class='${this.options.iconSvgClassName} ${this.options.iconSvgNamePrefix}${name}'`
+        this.text.innerHTML = `<svg className='${this.options.iconSvgClassName} ${this.options.iconSvgNamePrefix}${name}'`
             + ` style='${style}'><use xlink:href='${this.options.iconSvgSrc}#${name}'></use></svg>`;
         this.addState(this.options.iconState);
         this.setSkewing(this.options.skewingIcon);
@@ -577,7 +577,7 @@ class MouseFollower {
         this.container.removeEventListener('mouseover', this.event.mouseover);
         this.container.removeEventListener('mouseout', this.event.mouseout);
         if (this.el) {
-            this.container.removeChild(this.el);
+            // this.container.removeChild(this.el);
             this.el = null;
             this.mediaImg = null;
             this.mediaVideo = null;
@@ -593,12 +593,10 @@ export default function Cursor() {
         const cursor = new MouseFollower({
             skewing: 0.5,
         })
-        return () => {
-            cursor.destroy()
-        }
+        // return () => {
+        //     cursor.destroy()
+        // }
     }, [])
 
-    return (
-        <div />
-            )
+    return  null;
 }

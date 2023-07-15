@@ -13,8 +13,9 @@ export default function Page() {
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await fetch('http://localhost:8000/api/posts/');
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/posts/`);
             const data = await response.json();
+            debugger
             setPosts(data);
             setLoading(false);
           } catch (error) {

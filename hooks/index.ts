@@ -5,3 +5,4 @@ export { default as useResetPassword } from './use-reset-password';
 export { default as useSocialAuth } from './use-social-auth';
 export { default as useVerify } from './use-verify';
 export { default as useEventEmitter } from './use-event-emitter';
+export { default as useInView } from './use-in-view';

@@ -1,25 +1,25 @@
+import dynamic from "next/dynamic"
 export default function ImageCta({ title, description, image, cta}) {
-
+    const DynamicVideo = dynamic(() => import("@/components/common/VideoPlayer"));
     return (
-        <section className="bg-gray-100 dark:bg-gray-800 lg:py-12 lg:flex lg:justify-center">
-    <div
-        className="overflow-hidden bg-white dark:bg-gray-900 lg:mx-8 lg:flex lg:max-w-6xl lg:w-full lg:shadow-md lg:rounded-xl">
+        <section className="w-full lg:py-12 lg:flex lg:justify-center hover:shadow-lg">
+    <div className="overflow-hidden bg-white dark:bg-gray-400 lg:flex lg:w-full lg:shadow-md lg:rounded-xl">
         <div className="lg:w-1/2">
-            <div className="h-64 bg-cover lg:h-full" style="background-image:url('https://images.unsplash.com/photo-1517245386807-bb43f82c33c4?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1470&q=80')"></div>
+            <div className="h-64 object-fill lg:h-full">
+                <DynamicVideo src={'https://importlio-bucket.nyc3.digitaloceanspaces.com/static/assets/dash-video.mp4'} />
+            </div>
         </div>
 
         <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
-            <h2 className="text-2xl font-semibold text-gray-800 dark:text-white md:text-3xl">
+            <h2 className="text-2xl font-semibold text-gray-800 dark:text-black md:text-3xl">
                 {title}
             </h2>
 
-            <p className="mt-4 text-gray-500 dark:text-gray-300">
+            <p className="mt-4 text-black dark:text-black mb-5">
                 {description}
             </p>
 
-            <div className="inline-flex w-full mt-6 sm:w-auto">
                 {cta}
-            </div>
         </div>
     </div>
 </section>

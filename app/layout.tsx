@@ -91,15 +91,15 @@ export default function RootLayout({
     ssr: false,
   });
 
-  const DynamicCursor = dynamic(() => import("@/components/common/Cursor"), {
-    ssr: false,
-  });
+  // const DynamicCursor = dynamic(() => import("@/components/common/Cursor"), {
+  //   ssr: false,
+  // });
 
   return (
     <html lang="en">
       <GA />
       <body className={`${montserrat.className} bg-white`}>
-      <Cursor radius={20} />
+      <Cursor  />
         <Provider>
           <Setup />
           <Navbar />

@@ -4,8 +4,8 @@ import { SocialButtons, Logo } from '@/components/common';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Login',
-	description: 'Full Auth login page',
+	title: 'Importlio | Login',
+	description: 'Importlio login page',
 };
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
 					Don&apos;t have an account?{' '}
 					<Link
 						href='/auth/register'
-						className='font-semibold leading-6 text-indigo-600 hover:text-indigo-500'
+						className='font-semibold leading-6 text-black'
 					>
 						Register here
 					</Link>

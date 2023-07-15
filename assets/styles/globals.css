@@ -48,7 +48,7 @@
 *,
 *:before,
 *:after {
-  box-sizing: border-box;
+  box-sizing: border-box !important;
   outline:  none !important;
   border: none !important;
   margin: 0;
@@ -152,43 +152,43 @@ label, ::placeholder {
   font-family: var(--font-apercu-light);
 } 
 
-.font-monterrat {
+.font-montserrat {
   font-family: var(--font-monterrat);
   font-weight: 500;
 }
 
-.font-monterrat-bold {
+.font-montserrat-bold {
   font-family: var(--font-monterrat);
   font-weight: 700;
 }
 
-.font-monterrat-black {
+.font-montserrat-black {
   font-family: var(--font-monterrat);
   font-weight: 900;
 }
 
 h1 {
-  @apply text-5xl font-black font-monterrat text-black;
+  @apply font-black font-montserrat-black text-black;
 }
 
 h2 {
-  @apply text-4xl font-black font-monterrat text-black;
+  @apply  font-black font-montserrat-black text-black;
 }
 
 h3 {
-  @apply text-3xl font-black font-apercu-bold text-black;
+  @apply font-black font-apercu-bold text-black;
 }
 
 h4 {
-  @apply text-2xl font-black font-apercu-bold text-black;
+  @apply font-black font-apercu-bold text-black;
 }
 
 h5 {
-  @apply text-xl font-black font-apercu-bold text-black;
+  @apply font-black font-apercu-bold text-black;
 }
 
 h6 {
-  @apply text-lg font-black font-apercu-bold text-black;
+  @apply font-black font-apercu-bold text-black;
 }
 form {
   width: 100%;
@@ -259,4 +259,8 @@ path.focus {
   border: 3px solid green !important;
   background-color: hsl(155 46.7% 10.9%) !important;
   color: rgb(76, 195, 138) !important;
+ }
+
+ .outline-2 {
+  border: 2px solid var(--color-primary) !important;
  }
