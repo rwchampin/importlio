@@ -25,7 +25,7 @@ export default function EmailForm() {
 	  setIsLoading(true);
 	  const submission=JSON.stringify({email});
 	  debugger
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/registrants/create/`, {
+    const res = await fetch(`https://api.importlio.com/api/registrants/create/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
