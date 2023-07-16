@@ -24,7 +24,7 @@ export default function RecentBlogPosts() {
                 <div className="prose flex flex-col gap-5 md:flex-row items-center justify-center w-full h-full">
                      {posts.map((post, idx) => {
                         return (
-                            <div key={idx} className="flex flex-col p-5 items-center justify-center flex-1 rounded-lg bg-gray-300">
+                            <div key={idx} className="prose flex flex-col p-5 items-center justify-center flex-1 rounded-lg bg-gray-300">
                                 <h1>{post.title}</h1>
                                 <small className='font-bold'>{post.published_at}</small>
                                 <small>{post.readtime} min read</small>

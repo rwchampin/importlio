@@ -116,7 +116,7 @@ export default function Navbar() {
                   </div>
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  <div className="flex h-full items-center justify-center space-x-4">
+                  {/* <div className="flex h-full items-center justify-center space-x-4">
                     {isAuthenticated
                       ? authLinks.map((link) => {
                           return (
@@ -151,7 +151,7 @@ export default function Navbar() {
                             </NavLink>
                           );
                         })}
-                  </div>
+                  </div> */}
                 </div>
                 <SocialIcons />
                 <NavAvatar />

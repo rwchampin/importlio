@@ -55,17 +55,11 @@ export default function Features() {
     ]
     return (
         <section className="bg-white dark:bg-gray-200 rounded-lg">
-            <div className="container prose lg:prose-xl px-6 py-10 mx-auto">
+            <div className="prose-2xl  px-6 py-10 mx-auto">
                 <h2>Shopify Product Importer App Features</h2>
 
-                <div className="mt-2">
-                    <span className="inline-block w-40 h-1 bg-gray-500 rounded-full"></span>
-                    <span className="inline-block w-3 h-1 ml-1 bg-gray-500 rounded-full"></span>
-                    <span className="inline-block w-1 h-1 ml-1 bg-gray-500 rounded-full"></span>
-                </div>
-
                 <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
-                    <div className="grid w-full grid-cols-1 gap-8 lg:w-full xl:gap-16 md:grid-cols-2">
+                    <div className="grid w-full grid-cols-1 gap-8 lg:w-full xl:gap-16 md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature, index) => {
                             return (
                                 <div key={index} className="space-y-3">
