@@ -6,7 +6,7 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Provider from "@/redux/provider";
-import { Navbar,Cursor, Footer } from "@/components/common";
+import { Navbar, Cursor, Footer } from "@/components/common";
 import { Setup, GA } from "@/components/utils";
 
 const montserrat = Montserrat({
@@ -45,7 +45,7 @@ const meta = {
   cardImage: "/logo.png",
   robots: "follow, index",
   favicon: "/favicon-96x96.ico",
-  url: "https://importlio.com",
+  url: "https://www.importlio.com",
   type: "website",
 };
 
@@ -71,7 +71,7 @@ export const metadata = {
     title: meta.title,
     description: meta.description,
     cardImage: meta.cardImage,
-  } 
+  },
 };
 
 export default function RootLayout({
@@ -79,36 +79,27 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
-  const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
-    ssr: false,
-  });
-
-  // const DynamicCrumbs = dynamic(() => import("@/components/common/Crumbs"), {
-  //   ssr: false,
-  // });
-
-  const DynamicFooter = dynamic(() => import("@/components/common/Footer"), {
-    ssr: false,
-  });
-
-  // const DynamicCursor = dynamic(() => import("@/components/common/Cursor"), {
-  //   ssr: false,
-  // });
+  const DynamicScrollbar: any = dynamic(
+    () => import("@/components/utils/Scrollbar"),
+    { ssr: false }
+  );
 
   return (
-    <html lang="en">
+    <html lang="en" className="h-full">
       <GA />
-      <body className={`${montserrat.className} bg-white`}>
-      <Cursor  />
-        <Provider>
-          <Setup />
-          <Navbar />
-          <main className="px-3 md:px-5 text-center">
-		  {children}
-		  </main>
+      <body className="flex flex-col h-full">
+        <div className="flex flex-col min-h-screen">
+          {/* <Cursor /> */}
+          <Provider>
+            <Setup />
+            <Navbar />
+            <main className="flex-grow flex flex-col gap-5 bg-gray-100 py-8 px-6">
+              {children}
+              <DynamicScrollbar />
+            </main>
+          </Provider>
           <Footer />
-         
-        </Provider>
+        </div>
       </body>
     </html>
   );

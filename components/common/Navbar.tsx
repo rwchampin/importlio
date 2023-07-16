@@ -77,7 +77,7 @@ export default function Navbar() {
   ];
 
   return (
-    <Disclosure as="nav" className="shadow-lg">
+    <Disclosure as="nav">
       {({ open }) => (
         <>
           <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -115,7 +115,7 @@ export default function Navbar() {
                     </div>
                   </div>
                 </div>
-                {/* <div className="hidden sm:ml-6 sm:block">
+                <div className="hidden sm:ml-6 sm:block">
                   <div className="flex h-full items-center justify-center space-x-4">
                     {isAuthenticated
                       ? authLinks.map((link) => {
@@ -126,7 +126,11 @@ export default function Navbar() {
                               href={link.href}
                               onClick={link.onClick}
                               isMobile={false}
-                              className={`${link.name === 'ogin' ? 'bg-black text-white rounded-lg' : 'bg-white text-blue-500'} hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
+                              className={`${
+                                link.name === "ogin"
+                                  ? "bg-black text-white rounded-lg"
+                                  : "bg-white text-blue-500"
+                              } hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
                             >
                               {link.name}
                             </NavLink>
@@ -148,7 +152,7 @@ export default function Navbar() {
                           );
                         })}
                   </div>
-                </div> */}
+                </div>
                 <SocialIcons />
                 <NavAvatar />
               </div>

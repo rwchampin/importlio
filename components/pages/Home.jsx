@@ -7,10 +7,11 @@ export default function Home() {
     const DynamicVideo = dynamic(() => import("@/components/heros/Video"));
     const DynamicSpacer = dynamic(() => import("@/components/utils/Spacer"));
     const DynamicRecentPosts = dynamic(() => import("@/components/heros/RecentBlogPosts"));
-
+    const DynamicIphone = dynamic(() => import("@/components/heros/Iphone"));
     return (
         <>
             <DynamicSoon />
+            <DynamicIphone />
             <DynamicVideo src={'https://importlio-bucket.nyc3.digitaloceanspaces.com/static/assets/shopify-importer-app-video.mp4'} />
             <DynamicSpacer size={1} />
             <DynamicFeatures />

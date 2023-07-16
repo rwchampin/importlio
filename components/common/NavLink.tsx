@@ -27,6 +27,26 @@ export default function NavLink({
 	border,
 	...rest
 }: Props) {
+	useEffect(() => {
+		gsap.fromTo(
+			'nav a',
+			{
+				opacity: 0,
+				y: -20,
+				scale:.5,
+			},	
+			{
+				opacity: 1,
+				y: 0,
+				scale:1,
+				stagger: 0.1,
+				duration: 0.3,
+				ease: 'power3.inOut',
+
+			}
+		);
+	}, []);
+	
 	const className = cn(
 		rest.className,
 		'text-black px-3 py-2 font-medium rounded-md',
@@ -50,26 +70,8 @@ export default function NavLink({
 		);
 	}
 
-	useEffect(() => {
-		gsap.fromTo(
-			'nav a',
-			{
-				opacity: 0,
-				y: -20,
-				scale:.5,
-			},	
-			{
-				opacity: 1,
-				y: 0,
-				scale:1,
-				stagger: 0.1,
-				duration: 0.3,
-				ease: 'power3.inOut',
-
-			}
-		);
-	}, []);
 	
+
 	return (
 		<Link className={className} href={href} onClick={onClick}>
 			{children}

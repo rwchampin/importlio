@@ -12,3 +12,4 @@ export { default as Hero } from './Hero';
 export { default as Crumbs } from './Crumbs';
 export { default as Cursor } from './Cursor';
 export { default as VideoPlayer } from './VideoPlayer';
+export { default as Popover } from './Popover';

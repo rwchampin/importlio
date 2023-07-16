@@ -138,7 +138,7 @@ const ParticleText = ({ desktop, mobile, colors }) => {
       })
     );
     return particles.current.length;
-  }, [particles, canvas, title]);
+  }, [particles, canvas, title, colors]);
 
   const clear = useCallback(() => {
     const c = canvas.current;

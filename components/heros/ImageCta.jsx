@@ -2,7 +2,7 @@ import dynamic from "next/dynamic"
 export default function ImageCta({ title, description, image, cta}) {
     const DynamicVideo = dynamic(() => import("@/components/common/VideoPlayer"));
     return (
-        <section className="w-full lg:py-12 lg:flex lg:justify-center hover:shadow-lg">
+        <section className="w-full lg:py-12 lg:flex lg:justify-center">
     <div className="overflow-hidden bg-white dark:bg-gray-400 lg:flex lg:w-full lg:shadow-md lg:rounded-xl">
         <div className="lg:w-1/2">
             <div className="h-64 object-fill lg:h-full">

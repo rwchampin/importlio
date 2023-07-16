@@ -53,8 +53,11 @@
   border: none !important;
   margin: 0;
   padding: 0;
+  
 }
-
+::-webkit-scrollbar {
+  display: none;
+}
 *:focus {
   outline:  none !important;
   border: none !important;
@@ -78,6 +81,20 @@ html, body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
+  height: auto;
+  min-height: 100vh;
+  width: 100%;
+}
+
+body {
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+}
+
+main {
+  flex: auto;
+  display: flex;
 }
 footer {
   color: var(--color-primary);
@@ -266,3 +283,9 @@ path.focus {
  .outline-2 {
   border: 2px solid var(--color-primary) !important;
  }
+
+.scroll-track {
+  top: 50%;
+  transform: translate(0, -50%);
+  right: 5px;
+}

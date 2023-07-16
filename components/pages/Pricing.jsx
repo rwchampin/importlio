@@ -1,4 +1,6 @@
+import dynamic from "next/dynamic";
 export default function Page() {
+    const DynamicPrices = dynamic(() => import("@/components/heros/Prices"));
     const faqs = [
         {
             q: 'What sites can I import products from?',
@@ -28,6 +30,7 @@ export default function Page() {
     return (
 
         <section>
+            <DynamicPrices />
             <div classNameName="container max-w-full mx-auto py-24 px-6">
                 <h2>Why Choose Importlio for Your Importing Needs?</h2>
                 <h1 classNameName="text-5xl font-montserrat font-black">

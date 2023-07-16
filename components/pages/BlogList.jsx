@@ -1,6 +1,6 @@
 import { Hero } from "../common";
 import { EmailForm } from "../forms";
-
+import Image from 'next/image';
 export default function BlogList({ posts }) {
 
     return (
@@ -30,13 +30,16 @@ export default function BlogList({ posts }) {
                 return (
             <div key={post.id}>
                 <div className="relative">
-                    <img 
+                    <Image 
+                    fill
                     className="object-cover object-center w-full h-64 rounded-lg lg:h-80" 
                     src={post.image} alt=""
                     />
 
                     <div className="absolute bottom-0 flex p-3 bg-white dark:bg-gray-900 ">
-                        <img 
+                        <Image 
+                            height={64}
+                            width={64}
                             className="object-cover object-center w-10 h-10 rounded-full" 
                             src={post.author.avatar} 
                             alt=""

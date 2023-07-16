@@ -8,6 +8,5 @@ interface Props {
 }
 
 export default function CustomProvider({ children }: Props) {
-	console.log('store', store.getState())
 	return <Provider store={store}>{children}</Provider>;
 }

@@ -4,7 +4,6 @@ interface User {
 	first_name: string;
 	last_name: string;
 	email: string;
-	avatar: string;
 }
 
 interface SocialAuthArgs {
@@ -20,9 +19,6 @@ interface CreateUserResponse {
 
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
-		getPosts: builder.query({
-			query: () => '/posts/',
-		}),
 		retrieveUser: builder.query<User, void>({
 			query: () => '/users/me/',
 		}),

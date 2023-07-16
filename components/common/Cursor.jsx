@@ -87,7 +87,7 @@ class MouseFollower {
             speed: 0.55,
             ease: 'expo.out',
             overwrite: true,
-            skewing: .05,
+            skewing: .905,
             skewingText: 2,
             skewingIcon: 2,
             skewingMedia: 2,
