@@ -1,18 +1,18 @@
 import Link from 'next/link';
 import { RegisterForm } from '@/components/forms';
-import { SocialButtons, Logo } from '@/components/common';
+import { SocialButtons, LogoBlack } from '@/components/common';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Full Auth | Register',
-	description: 'Full Auth register page',
+	title: 'Amazon Dropshipping Product Importer App | Register',
+	description: 'Amazon Dropshipping Product Importer App register page',
 };
 
 export default function Page() {
 	return (
 		<div className='flex min-h-full flex-1 flex-col justify-center items-center px-6 py-12 lg:px-8'>
 			<div className='sm:mx-auto sm:w-full sm:max-w-sm flex flex-col items-center justify-center'>
-				<Logo />
+				<LogoBlack />
 				<h2 className='mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900'>
 					Sign up for your account
 				</h2>

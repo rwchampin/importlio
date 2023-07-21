@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Ipad(props) {
+export default function Ipad(props) {
   const { nodes, materials } = useGLTF("/models/ipad.glb");
   return (
     <group {...props} dispose={null}>

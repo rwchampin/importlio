@@ -25,7 +25,7 @@ export default function usePreRegister() {
 			.unwrap()
 			.then(() => {
 				toast.success('Thanks for registering!');
-				setLoading(false);
+
 			})
 			.catch(() => {
 				toast.error('Failed to register account');

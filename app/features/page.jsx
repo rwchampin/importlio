@@ -1,5 +1,5 @@
 
-import { Hero } from "../common";
+import { Hero } from "@/components/common";
 import { EmailForm } from "@/components/forms";
 export default function Page() {
 

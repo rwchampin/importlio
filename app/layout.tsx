@@ -38,9 +38,9 @@ const meta = {
   title: "Amazon Dropshipping Bulk Product Import App for Shopify",
   description:
     "Bulk import Amazon Dropshipping Products into Shopify E-Commerce Stores. Source and Sell Profitable Dropshipping Products from Amazon",
-  cardImage: "/logo.png",
+  // cardImage: "../assets/img/PNG/logo-greyhdpi.png",
   robots: "follow, index",
-  favicon: "/favicon.ico",
+  favicon: "../public/favicon.ico",
   url: "https://www.importlio.com",
   type: "website",
 };
@@ -48,26 +48,26 @@ const meta = {
 export const metadata = {
   title: meta.title,
   description: meta.description,
-  cardImage: meta.cardImage,
-  robots: meta.robots,
+  // cardImage: meta.cardImage,
+  // robots: meta.robots,
   favicon: meta.favicon,
   url: meta.url,
   type: meta.type,
-  openGraph: {
-    url: meta.url,
-    title: meta.title,
-    description: meta.description,
-    cardImage: meta.cardImage,
-    type: meta.type,
-    site_name: meta.title,
-  },
-  twitter: {
-    card: "summary_large_image",
-    site: "@vercel",
-    title: meta.title,
-    description: meta.description,
-    cardImage: meta.cardImage,
-  },
+  // openGraph: {
+  //   url: meta.url,
+  //   title: meta.title,
+  //   description: meta.description,
+  //   // cardImage: meta.cardImage,
+  //   type: meta.type,
+  //   site_name: meta.title,
+  // },
+  // twitter: {
+  //   card: "summary_large_image",
+  //   site: "@vercel",
+  //   title: meta.title,
+  //   description: meta.description,
+  //   // cardImage: meta.cardImage,
+  // },
 };
 const DynamicScroller: any = dynamic(
   () => import("@/components/utils/Scroller"),

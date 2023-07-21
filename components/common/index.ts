@@ -1,12 +1,14 @@
+"use client"
 export { default as Footer } from '@/components/common/Footer';
 export { default as Navbar } from './Navbar';
 export { default as List } from './List';
 export { default as NavLink } from './NavLink';
 export { default as SocialButton } from './SocialButton';
+export { default as SocialButtons } from './SocialButtons';
+
 export { default as SkeletonNav } from '@/components/common/skeletons/SkeletonNav';
 export { default as Spinner } from './Spinner';
-export { default as LogoBlack } from '@/components/common/logo/LogoBlack';
-export { default as LogoColored } from '@/components/common/logo/LogoColored';
+export {LogoColored, LogoBlack } from '@/components/common/logo';
 export { default as Dropdown } from './Dropdown';
 export { default as SocialIcons } from './SocialIcons';
 export { default as Hero } from './Hero';

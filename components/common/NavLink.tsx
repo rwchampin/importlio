@@ -54,7 +54,7 @@ export default function NavLink({
 			'underline font-apercu font-bold': isSelected,
 			'text-black font-apercu font-bold':
 				!isSelected && !isBanner,
-			'block text-base': isMobile,
+			'block text-heading-1 font-montserrat font-black': isMobile,
 			'text-sm': !isMobile,
 			'text-gray-300': isBanner,
 			'bg-black text-white rounded-lg px-4 py-2 outline-2 outline-black no-underline focus:text-white focus:bg-black active:bg-black active:text-white active:no-underline': solid,

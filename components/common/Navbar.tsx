@@ -65,7 +65,6 @@ export default function Navbar() {
     href?: string;
     isHovered?: boolean;
     handleHover?: (path: string | undefined) => void;
-    onClick?: () => void;
     [rest: string]: any;
   }
   const links: LinkProps = [
@@ -87,7 +86,7 @@ export default function Navbar() {
     },
   ];
 
-  const subMenu = [
+  const subMenu:LinkProps = [
     {
       name: "Shopify",
       href: "",
@@ -177,7 +176,7 @@ export default function Navbar() {
                           <NavLink
                             key={link.name}
                             isSelected={isSelected(link.href)}
-                            onMouseEnter={() => handleHover(link)}
+                            onMouseEnter={() => handleHover(link.href)}
                             onMouseLeave={() => handleHover("")}
                             href={link.href}
                             className="not-logo flex items-center justify-center font-apercu"
@@ -199,7 +198,7 @@ export default function Navbar() {
                               key={link.name}
                               isSelected={isSelected(link.href)}
                               href={link.href}
-                              onClick={link.onClick}
+                              // onClick={link.onClick}
                               isMobile={false}
                               className={`${
                                 link.name === "login"
@@ -217,7 +216,7 @@ export default function Navbar() {
                               key={link.name}
                               isSelected={isSelected(link.href)}
                               href={link.href}
-                              onClick={link.onClick}
+                              // onClick={link.onClick}
                               isMobile={false}
                               solid={link.name === "Login"}
                               border={link.name === "Register"}
@@ -241,7 +240,7 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2">
+            <div className="space-y-1 px-2 pb-3 pt-2 fixed h-full w-full bg-offwhite flex flex-col">
               {isAuthenticated
                 ? authLinks.map((link) => {
                     return (
@@ -249,7 +248,7 @@ export default function Navbar() {
                         key={link.name}
                         isSelected={isSelected(link.href)}
                         href={link.href}
-                        onClick={link.onClick}
+                        // onClick={link.onClick}
                         isMobile={true}
                       >
                         {link.name}
@@ -262,7 +261,7 @@ export default function Navbar() {
                         key={link.name}
                         isSelected={isSelected(link.href)}
                         href={link.href}
-                        onClick={link.onClick}
+                        // onClick={link.onClick}
                         isMobile={true}
                       >
                         {link.name}

@@ -1,4 +1,4 @@
-# Full Auth
+# Amazon Dropshipping Product Importer App
 
 To run the development server:
 

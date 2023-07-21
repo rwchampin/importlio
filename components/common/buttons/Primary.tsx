@@ -10,11 +10,11 @@ interface Props {
     isMobile?: boolean;
 }
 
-const Spinner = dynamic(() => import('@/components/common/Spinner'), {
+const Spinner:any = dynamic(() => import('@/components/common/Spinner'), {
     ssr: false
 });
 export default function Primary({ children, buttonType="button", className, isLoading, isMobile }:Props) {
-    let classes = "bg-offgray text-offwhite font-apercu font-bold uppercase hover:shadow-2xl hover:drop-shadow-2xl hover:cursor-pointer h-[46px] px-6 py-2 max-w-lg text-sm w-full"
+    let classes:string = "bg-offgray text-offwhite font-apercu font-bold uppercase hover:shadow-2xl hover:drop-shadow-2xl hover:cursor-pointer h-[46px] px-6 py-2 max-w-lg text-sm w-full"
 
     classes += className ? ` ${className}` : '';
     

@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { Hero } from "../common";
-import { EmailForm } from "../forms";
+import { Hero } from "@/components/common";
+import { EmailForm } from "@/components/forms";
 import Image from 'next/image';
 
 export default function Page() {

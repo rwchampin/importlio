@@ -2,7 +2,7 @@
 import React, { useRef } from "react";
 import { useGLTF } from "@react-three/drei";
 
-export function Macbook(props) {
+export default function Macbook(props) {
   const { nodes, materials } = useGLTF("/models/macbook.glb");
   return (
     <group {...props} dispose={null}>

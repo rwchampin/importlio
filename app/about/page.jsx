@@ -1,3 +1,4 @@
+"use client"
 import { Hero } from "@/components/common";
 import { EmailForm } from "@/components/forms";
 
