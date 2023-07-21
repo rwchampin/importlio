@@ -54,22 +54,22 @@ export default function Features() {
         },
     ]
     return (
-        <section className="bg-white dark:bg-gray-200 rounded-lg">
-            <div className="prose-2xl  px-6 py-10 mx-auto">
-                <h2>Shopify Product Importer App Features</h2>
+        <section className="bg-white dark:bg-gray-200 rounded-lg relative z-10">
+            <div className="px-6 py-10 mx-auto prose-xl">
+                <h2 className="font-montserrat font-black text-heading-3">Shopify Product Importer App Features</h2>
 
                 <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
                     <div className="grid w-full grid-cols-1 gap-8 lg:w-full xl:gap-16 md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature, index) => {
                             return (
                                 <div key={index} className="space-y-3">
-                                    <span className="inline-block p-3 text-blue-500 bg-blue-100 rounded-xl dark:text-white dark:bg-blue-500">
+                                    <span className="inline-block p-3 text-gray bg-blue-100 rounded-xl dark:text-gray-400 dark:bg-black">
                                         <svg xmlns="http://www.w3.org/2000/svg" className="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
                                         </svg>
                                     </span>
 
-                                    <h4>{feature.title}</h4>
+                                    <h4 className="font-montserrat text-heading-4">{feature.title}</h4>
 
                                     <p className="text-black dark:text-black">
                                         {feature.description}

@@ -1,5 +1,6 @@
 "use client"
-import { useEffect, useState } from 'react';
+
+import { useEffect, useState, Suspense } from 'react';
 
 export default function RecentBlogPosts() {
     const [posts, setPosts] = useState([]);
@@ -8,14 +9,15 @@ export default function RecentBlogPosts() {
 
     useEffect(() => {
        const res = fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`).then(res => res.json()).then(data => {
-        debugger
+            if(data && data.length > 0) {
               setPosts(data)
+            }
          }
          )
 
     }, [])
 
-    if(posts.lenth === 0) return null;
+    if(posts.length === 0) return null;
 
     return (
         <div className="flex flex-col items-center justify-center w-full h-full">

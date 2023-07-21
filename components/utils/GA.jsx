@@ -1,21 +1,25 @@
-import Script from 'next/script'
+"use client";
+import Script from "next/script";
 
-export default function GA(){
-    return(
-        <>
-            <Script 
-                strategy="afterInteractive"
-                src="https://www.googletagmanager.com/gtag/js?id=G-V8X4P8V5SZ"
-                />
-                <Script id="google-analytics" strategy='afterInteractive'>
-                    {`
-                      window.dataLayer = window.dataLayer || [];
-                      function gtag(){dataLayer.push(arguments);}
-                      gtag('js', new Date());
-                    
-                      gtag('config', 'G-V8X4P8V5SZ');
-                `}
-                </Script>
-        </>
-    )
-}
+const GA = ({ GA_TRACKING_ID }) => {
+  return (
+    <>
+      <Script
+        id="google-analytics-tag"
+        src={`https://www.googletagmanager.com/gtag/js?id=${GA_TRACKING_ID}`}
+        strategy="afterInteractive"
+      />
+      <Script id="google-analytics" strategy="afterInteractive">
+        {`
+        window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+
+          gtag('config', ${GA_TRACKING_ID});
+        `}
+      </Script>
+    </>
+  );
+};
+
+export default GA;

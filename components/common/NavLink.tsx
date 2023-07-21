@@ -39,8 +39,8 @@ export default function NavLink({
 				opacity: 1,
 				y: 0,
 				scale:1,
-				stagger: 0.1,
-				duration: 0.3,
+				stagger: 0.05,
+				duration: 0.15,
 				ease: 'power3.inOut',
 
 			}
@@ -49,16 +49,16 @@ export default function NavLink({
 	
 	const className = cn(
 		rest.className,
-		'text-black px-3 py-2 font-medium rounded-md',
+		'text-offgray py-2 font-medium no-underline hover:pointer-cursor',
 		{
-			'underline font-apercu-bold text-black': isSelected,
-			'text-black font-apercu-bold text-black':
+			'underline font-apercu font-bold': isSelected,
+			'text-black font-apercu font-bold':
 				!isSelected && !isBanner,
 			'block text-base': isMobile,
 			'text-sm': !isMobile,
 			'text-gray-300': isBanner,
 			'bg-black text-white rounded-lg px-4 py-2 outline-2 outline-black no-underline focus:text-white focus:bg-black active:bg-black active:text-white active:no-underline': solid,
-			'bg-white text-black outline-2 outline-black rounded-lg  px-4 py-2 no-underline': border,
+			'bg-transparent text-black outline-2 outline-black rounded-lg  px-4 py-2 no-underline': border,
 		}
 	);
 
@@ -73,7 +73,7 @@ export default function NavLink({
 	
 
 	return (
-		<Link className={className} href={href} onClick={onClick}>
+		<Link data-attr="cursor" className={className} href={href} onClick={onClick}>
 			{children}
 		</Link>
 	);

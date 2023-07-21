@@ -1,15 +1,20 @@
-import { Logo } from "@/components/common";
-import { SocialIcons } from "@/components/common";
+import dynamic from "next/dynamic";
+
+const ColorSwitch:any = dynamic(() => import("@/components/common/ColorSwitch"));
+const SocialIcons:any = dynamic(() => import("@/components/common/SocialIcons"));
+const LogoBlack:any = dynamic(() => import("@/components/common/logo/LogoBlack"));
+
 export default function Footer() {
   return (
-    <footer className="bg-white dark:bg-secondary text-black">
+    <>
+      <footer className="bg-offwhite dark:bg-offgray text-black">
       <div className="container p-6 mx-auto">
         <div className="lg:flex">
           <div className="w-full -mx-6 lg:w-2/5">
             <div className="px-6">
-              <a href="#">
-                <Logo size="40" />
-              </a>
+
+                <LogoBlack size="40" />
+
 
               <p className="max-w-sm mt-2 dark:text-white">
                 The world&apos;s first Amazon Dropshipping Bulk Product Importer & management plugin.
@@ -61,7 +66,6 @@ export default function Footer() {
                 <a
                   href="#"
                   className="block mt-2 text-sm text-black dark:text-black hover:underline"
-
                 >
                   Music
                 </a>
@@ -131,5 +135,6 @@ export default function Footer() {
         </div>
       </div>
     </footer>
+    </>
   );
 }

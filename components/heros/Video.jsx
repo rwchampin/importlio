@@ -1,7 +1,7 @@
 import { VideoPlayer } from '@/components/common';
-export default function Video({ src}) {
-
+export default function Video({ src, play}) {
+    
     return (
-        <VideoPlayer src={src} rounded />
+        <VideoPlayer src={src} play={play} className="inverse" />
     );
 }

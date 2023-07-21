@@ -6,3 +6,5 @@ export {default as RecentBlogPosts } from './RecentBlogPosts';
 export {default as Prices } from './Prices';
 export {default as Iphone } from './Iphone';
 export {default as ParticleText } from './ParticleText';
+export {default as Spheres } from './Spheres';
+  

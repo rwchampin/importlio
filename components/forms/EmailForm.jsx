@@ -1,11 +1,17 @@
 'use client';
-import { useState } from 'react';
-import { Form } from '@/components/forms';
-import { toast } from 'react-toastify';
+import dynamic from 'next/dynamic';
+import { usePreregister } from '@/hooks';
 
+const DynamicModal = dynamic(() => import("@/components/common/Modal"));
+const Primary = dynamic(() => import("@/components/common/buttons/Primary"));
+const Form = dynamic(() => import("@/components/forms/Form"));
 export default function EmailForm() {
-  const [isLoading, setIsLoading] = useState(false);
-  const [email, setEmail] = useState('');
+	const { 
+		email,
+		isLoading,
+		onChange,
+		onSubmit
+	 } = usePreregister();
 
 	const config = [
 		{
@@ -15,51 +21,29 @@ export default function EmailForm() {
 			type: 'email',
 			value: email,
 			required: true,
+			placeholder: 'Email address',
 		
 		},
 		 
 	];
 
-  const onSubmit = async (e) => {
-    e.preventDefault();
-	  setIsLoading(true);
-	  const submission=JSON.stringify({email});
-	  debugger
-    const res = await fetch(`https://api.importlio.com/api/registrants/create/`, {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-		},
-	  credentials: 'include',
-      body: submission,
-    });
-	  const data=await res.json();
-	  setIsLoading(false);
-	  
-	  if(res.status===201) {
-		  toast.success('Email submitted successfully');
-
-		  setEmail('');
-	  } else {
-		  toast.error('Something went wrong');
-	  }
-
-
-    
-    
-  };
-
-	const onChange=(e) => {
-		setEmail(e.target.value);
-	};
-
-	return (
+   
+	const emailForm = (
 		<Form
 			config={config}
 			isLoading={isLoading}
 			btnText='Pre-register'
 			onChange={onChange}
 			onSubmit={onSubmit}
+			postFormText="Register today for a free trial of the world$apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
 		/>
+	);
+
+	return (
+<DynamicModal
+	trigger={<Primary>Preregister</Primary>}
+	modalBody={emailForm}
+/>	
+
 	);
 }

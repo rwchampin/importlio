@@ -6,7 +6,9 @@ import { AiOutlineDashboard } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { RiFileList2Line } from "react-icons/ri";
 import { BsCart4 } from "react-icons/bs";
+import { FaBook } from "react-icons/fa";
 import { Popover } from "@/components/common";
+import { BiSolidCog } from "react-icons/bi";
 export default function Sidebar() {
   const size = 25;
   const sidebarLinks = [
@@ -16,10 +18,22 @@ export default function Sidebar() {
       icon: <AiOutlineDashboard size={size} />,
     },
     {
+      name: "Posts",
+      href: "/dash/posts",
+      icon: <FaBook size={size} />,
+      protected: true,
+    },
+    {
       name: "Import",
       href: "/dash/import",
       icon: <TbPackageImport size={size} />,
     },
+    {
+      name: "Import",
+      href: "/dash/import",
+      icon: <TbPackageImport size={size} />,
+    },
+
     {
       name: "Products",
       href: "/dash/products",
@@ -34,6 +48,11 @@ export default function Sidebar() {
       name: "Lists",
       href: "/dash/lists",
       icon: <RiFileList2Line size={size} />,
+    },
+    {
+      name: "Settings",
+      href: "/dash/settings",
+      icon: <BiSolidCog size={size} />,
     },
   ];
   return (

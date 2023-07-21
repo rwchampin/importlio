@@ -81,11 +81,16 @@ class MouseFollower {
             mediaState: '-media',
             stateDetection: {
                 '-pointer': 'a,button',
+                '-text': 'input,textarea,select',
+                // '-icon': 'a,button',
+                '-media': 'img,video',
+                '-stick': 'a,button,.btn',
+                '-inverse': '.inverse'
             },
             visible: true,
             visibleOnState: false,
             speed: 0.55,
-            ease: 'expo.out',
+            ease: 'elastic.out',
             overwrite: true,
             skewing: .905,
             skewingText: 2,
@@ -167,12 +172,29 @@ class MouseFollower {
             scaleX: this.gsap.quickSetter(this.el, 'scaleX'),
             scaleY: this.gsap.quickSetter(this.el, 'scaleY'),
             wc: this.gsap.quickSetter(this.el, 'willChange'),
+            width: this.gsap.quickSetter(this.el, 'width'),
+            height: this.gsap.quickSetter(this.el, 'height'),
+            borderRadius: this.gsap.quickSetter(this.el, "border-radius"),
             inner: {
                 rotation: this.gsap.quickSetter(this.inner, 'rotation', 'deg'),
             },
         };
     }
+    /**
+     * Morph mouse into hovered element.
+     
+     */
+     morph(e) {alert()
+        const target = e.target;
+        const rect = target.getBoundingClientRect();
+        this.setter.wc("height");
+        this.setter.height(rect.height)
+        this.setter.wc('width')
+        this.setter.width(rect.width)
+        this.setter.wc('border-radius')
+        this.setter.width(target.style.borderRadius)
 
+      }
     /**
      * Create and attach events.
      */
@@ -202,11 +224,13 @@ class MouseFollower {
 
                 if (this.options.dataAttr) {
                     const params = this.getFromDataset(target);
+
                     if (params.state) this.addState(params.state);
                     if (params.text) this.setText(params.text);
                     if (params.icon) this.setIcon(params.icon);
                     if (params.img) this.setImg(params.img);
                     if (params.video) this.setVideo(params.video);
+                    if(params.morph) this.setMorph(target)
                     if (typeof (params.show) !== 'undefined') this.show();
                     if (typeof (params.stick) !== 'undefined') this.setStick(params.stick || target);
                 }
@@ -229,6 +253,7 @@ class MouseFollower {
                     if (params.video) this.removeVideo();
                     if (typeof (params.show) !== 'undefined') this.hide();
                     if (typeof (params.stick) !== 'undefined') this.removeStick();
+                    if ( typeof (params.morph) !== 'undefined') this.removeMorph();
                 }
             }
         };
@@ -297,6 +322,8 @@ class MouseFollower {
             this.render(true);
         }, this.options.showTimeout);
     }
+
+
 
     /**
      * Hide cursor.
@@ -386,6 +413,7 @@ class MouseFollower {
         this.stick = {
             y: rect.top + (rect.height / 2),
             x: rect.left + (rect.width / 2),
+            border: "2px solid black",
         };
     }
 

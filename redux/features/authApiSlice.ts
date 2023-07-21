@@ -90,6 +90,16 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: { uid, token, new_password, re_new_password },
 			}),
 		}),
+		preregister: builder.mutation({
+			query: ({ email }) => {
+
+				return {
+				url: '/registrants/',
+				method: 'POST',
+				body: { "email": email },
+			}
+		},
+		}),
 	}),
 });
 
@@ -103,4 +113,5 @@ export const {
 	useActivationMutation,
 	useResetPasswordMutation,
 	useResetPasswordConfirmMutation,
+	usePreregisterMutation
 } = authApiSlice;

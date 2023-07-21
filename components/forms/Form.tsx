@@ -1,26 +1,31 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { Input } from '@/components/forms';
-import { Spinner } from '@/components/common';
+import dynamic from 'next/dynamic';
 
+const DynamicSpinner:any = dynamic(() => import('@/components/common/Spinner'));
+const Primary:any = dynamic(() => import('@/components/common/buttons/Primary'));
 interface Config {
 	labelText: string;
 	labelId: string;
 	type: string;
 	value: string;
+	placeholder?: string;
 	link?: {
 		linkText: string;
 		linkUrl: string;
 	};
 	required?: boolean;
-}
+}	
 
 interface Props {
 	config: Config[];
 	isLoading: boolean;
 	btnText: string;
+	postFormText?: string;
 	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 	onSubmit: (event: FormEvent<HTMLFormElement>) => void;
 }
+
 
 export default function Form({
 	config,
@@ -28,10 +33,32 @@ export default function Form({
 	btnText,
 	onChange,
 	onSubmit,
+	postFormText,
+
 }: Props) {
+
+	const getPlaceholder = (type:string) => {
+		switch(type) {
+			case 'email':
+				return 'john@gmail.com';
+				break;
+			case 'password':
+				return '********';
+				break;
+			default:
+				return '';
+				break;
+		}
+	}
+	
+
+
 	return (
-		<form className='space-y-6' onSubmit={onSubmit}>
+		<form autoComplete='on' autoCorrect='on' method="POST" className={`flex flex-col space-y-6`} onSubmit={onSubmit}>
+			{/* <input name="sub-input-info" value="" /> */}
 			{config.map(input => (
+
+				
 				<Input
 					key={input.labelId}
 					labelId={input.labelId}
@@ -40,20 +67,24 @@ export default function Form({
 					value={input.value}
 					link={input.link}
 					required={input.required}
+					placeholder={getPlaceholder(input.type)}
 				>
 					{input.labelText}
 				</Input>
 			))}
 
-			<div>
+
+
 				<button
-					type='submit'
-					className='flex w-full justify-center rounded-md bg-black px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600'
-					disabled={isLoading}
-				>
-					{isLoading ? <Spinner sm /> : `${btnText}`}
+				 type="submit" 
+				 disabled={isLoading}
+				 >
+					{isLoading ? <DynamicSpinner /> : btnText}
 				</button>
-			</div>
+
+
+				<div className="text-xs mt-2">{postFormText}</div>
+
 		</form>
 	);
 }

@@ -1,4 +1,4 @@
-import "@/assets/styles/awwwards.css";
+// import "@/assets/styles/awwwards.css";
 import "@/assets/styles/cursor.css";
 import "@/assets/styles/globals.css";
 import dynamic from "next/dynamic";
@@ -6,45 +6,41 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Provider from "@/redux/provider";
-import { Navbar, Cursor, Footer } from "@/components/common";
-import { Setup, GA } from "@/components/utils";
+import { Setup } from "@/components/utils";
 
 const montserrat = Montserrat({
-  weight: ["100", "200", "300", "400", "500", "600", "700", "800", "900"],
+  weight:  "900",
   subsets: ["latin"],
-  display: "swap",
   variable: "--font-montserrat",
   preload: true,
 });
 
 const apercu = localFont({
-  src: "../assets/fonts/apercu-regular-pro.woff2",
+  src: [{
+    path: "../assets/fonts/apercu-bold-pro.woff2",
+    weight: '500',
+    style: 'normal'
+  },{
+    path: "../assets/fonts/apercu-medium-pro.woff2",
+    weight: '600',
+    style: 'normal'
+  },{
+    path: "../assets/fonts/apercu-bold-pro.woff2",
+    weight: '800',
+    style: 'normal'
+  }],
   variable: "--font-apercu",
   display: "swap",
   preload: true,
 });
-
-const apercuMedium = localFont({
-  src: "../assets/fonts/apercu-medium-pro.woff2",
-  variable: "--font-apercu-medium",
-  preload: true,
-  display: "swap",
-});
-
-const apercuBold = localFont({
-  src: "../assets/fonts/apercu-bold-pro.woff2",
-  variable: "--font-apercu-bold",
-  preload: true,
-  display: "swap",
-});
-
+ 
 const meta = {
   title: "Amazon Dropshipping Bulk Product Import App for Shopify",
   description:
     "Bulk import Amazon Dropshipping Products into Shopify E-Commerce Stores. Source and Sell Profitable Dropshipping Products from Amazon",
   cardImage: "/logo.png",
   robots: "follow, index",
-  favicon: "/favicon-96x96.ico",
+  favicon: "/favicon.ico",
   url: "https://www.importlio.com",
   type: "website",
 };
@@ -73,33 +69,65 @@ export const metadata = {
     cardImage: meta.cardImage,
   },
 };
+const DynamicScroller: any = dynamic(
+  () => import("@/components/utils/Scroller"),
+  { ssr: false }
+);
 
+const DynamicFooter:any = dynamic(() => import("@/components/common/Footer"), {
+  ssr: false,
+  });
+
+  const DynamicNavbar:any = dynamic(() => import("@/components/common/Navbar"), { 
+    ssr: false,
+  });
+
+  const DynamicCursor:any = dynamic(() => import("@/components/common/Cursor"), {
+    ssr: false,
+  });
+
+  const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
+    ssr: false,
+  });
 export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const DynamicScrollbar: any = dynamic(
-    () => import("@/components/utils/Scrollbar"),
-    { ssr: false }
-  );
 
+ 
   return (
-    <html lang="en" className="h-full">
-      <GA />
-      <body className="flex flex-col h-full">
-        <div className="flex flex-col min-h-screen">
-          {/* <Cursor /> */}
-          <Provider>
-            <Setup />
-            <Navbar />
-            <main className="flex-grow flex flex-col gap-5 bg-gray-100 py-8 px-6">
+    <html
+      lang="en"
+      className={`h-full ${apercu.variable} ${montserrat.variable}`}
+    >
+      
+      <body>
+      <Provider>
+      <Setup />
+     
+
+             <div className="fade flex flex-col min-h-screen">
+         
+         
+             <DynamicNavbar /> 
+            <DynamicScroller>
+            
+            <main className="flex-grow flex flex-col gap-5">
+             
+             
               {children}
-              <DynamicScrollbar />
+              
             </main>
-          </Provider>
-          <Footer />
+              <DynamicFooter /> 
+            </DynamicScroller>
+         
+          
+         
         </div>
+        {/* <DynamicCursor size={10} /> */}
+        </Provider>
+      
       </body>
     </html>
   );

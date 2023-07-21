@@ -2,15 +2,21 @@
 import { RiMenu5Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { RxCross2 } from "react-icons/rx";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { logout as setLogout } from "@/redux/features/authSlice";
-import { NavLink, Logo, SocialIcons } from "@/components/common";
-import { NavAvatar } from "@/components/auth";
+import { NavLink, CustomSuspense } from "@/components/common";
+import { LogoBlack } from "@/components/common/logo";
 import dynamic from "next/dynamic";
+import { useEffect, useState } from "react";
 
+const ActiveNavLink:any = dynamic(() => import("@/components/common/ActiveNavLink"));
+const DynamicSocialIcons:any = dynamic(() => import("@/components/common/SocialIcons"));
+// gsap.registerPlugin(ScrollTrigger)
 export default function Navbar() {
+  // const navRef = useRef(null);
+  const [hoveredLink, setHoveredLink] = useState<string | undefined>("");
   const pathname = usePathname();
   const dispatch = useAppDispatch();
 
@@ -24,6 +30,10 @@ export default function Navbar() {
       .then(() => {
         dispatch(setLogout());
       });
+  };
+
+  const handleHover = (path: string | undefined) => {
+    setHoveredLink(path);
   };
 
   const isSelected = (path: string | undefined) =>
@@ -53,7 +63,8 @@ export default function Navbar() {
   interface LinkProps {
     className?: string;
     href?: string;
-
+    isHovered?: boolean;
+    handleHover?: (path: string | undefined) => void;
     onClick?: () => void;
     [rest: string]: any;
   }
@@ -76,47 +87,111 @@ export default function Navbar() {
     },
   ];
 
+  const subMenu = [
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+    {
+      name: "Shopify",
+      href: "",
+    },
+  ];
+
+  // useEffect(() => {
+
+  //   ScrollTrigger.create({
+  //     trigger: 'nav',
+  //     pin: true,
+  //     pinSpacing: false,
+  //     start: "top top",
+  //     end: 9999999999
+  //   })
+
+  // }, [])
+
+
+  // const DynamicLogo = dynamic(() => import("@/components/common/logo/LogoBlack"));
   return (
-    <Disclosure as="nav">
+    <CustomSuspense>
+    <Disclosure as="nav" className="fixed top-0 w-full">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="ccc mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between w-full">
               <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
                 <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                   <span className="sr-only">Open main menu</span>
                   {open ? (
-                    <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
+                    <RxCross2 className="block h-6 w-6" aria-hidden="true" />
                   ) : (
                     <RiMenu5Fill className="block h-6 w-6" aria-hidden="true" />
                   )}
                 </Disclosure.Button>
               </div>
               <div className="w-full flex flex-1 items-center justify-center md:justify-center sm:items-center sm:justify-center gap-5">
-                <div className="flex justify-between items-center w-full">
-                  <div className="flex flex-shrink-0 items-center">
-                    <NavLink href="/" isBanner>
-                      <Logo size="40" />
-                    </NavLink>
+                <div className="flex gap-5 justify-between items-center w-full">
+                  {/* <div className="flex flex-shrink-0 items-center"> */}
 
-                    <div className="hidden md:flex">
+                    <LogoBlack />
+                    <div className="hidden md:flex relative gap-5 mr-auto">
+                          
                       {links.map((link: LinkProps) => {
                         return (
                           <NavLink
                             key={link.name}
                             isSelected={isSelected(link.href)}
+                            onMouseEnter={() => handleHover(link)}
+                            onMouseLeave={() => handleHover("")}
                             href={link.href}
-                            className="flex items-center justify-center"
+                            className="not-logo flex items-center justify-center font-apercu"
                           >
                             {link.name}
                           </NavLink>
                         );
                       })}
+                      <ActiveNavLink  />
                     </div>
-                  </div>
+                  {/* </div> */}
                 </div>
                 <div className="hidden sm:ml-6 sm:block">
-                  {/* <div className="flex h-full items-center justify-center space-x-4">
+                  <div className="flex h-full items-center justify-center space-x-4">
                     {isAuthenticated
                       ? authLinks.map((link) => {
                           return (
@@ -127,9 +202,9 @@ export default function Navbar() {
                               onClick={link.onClick}
                               isMobile={false}
                               className={`${
-                                link.name === "ogin"
+                                link.name === "login"
                                   ? "bg-black text-white rounded-lg"
-                                  : "bg-white text-blue-500"
+                                  : "text-blue-500"
                               } hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
                             >
                               {link.name}
@@ -151,12 +226,18 @@ export default function Navbar() {
                             </NavLink>
                           );
                         })}
-                  </div> */}
+                  </div>
+                  
                 </div>
-                <SocialIcons />
-                <NavAvatar />
+               
+                {/* <NavAvatar /> */}
               </div>
             </div>
+            {/* <SubNav
+              subMenu={subMenu}
+              hoveredLink={hoveredLink}
+              handleHover={handleHover}
+            /> */}
           </div>
 
           <Disclosure.Panel className="sm:hidden">
@@ -193,5 +274,6 @@ export default function Navbar() {
         </>
       )}
     </Disclosure>
+    </CustomSuspense>
   );
 }
