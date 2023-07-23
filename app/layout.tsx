@@ -110,24 +110,24 @@ export default function RootLayout({
       <Setup />
      
 
-             <div className="fade flex flex-col min-h-screen">
+
          
          
              <DynamicNavbar /> 
             <DynamicScroller> 
             
-            <main className="flex-grow flex flex-col gap-5">
+
              
              
               {children}
               
-            </main>
+
              <DynamicFooter /> 
             </DynamicScroller> 
          
           
          
-        </div>
+
         <DynamicCursor size={10} />
         </Provider>
       

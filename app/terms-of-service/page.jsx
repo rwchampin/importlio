@@ -1,5 +1,6 @@
 "use client";
-// import { Hero } from "@/components/common";
+import { BasicPage } from "@/components/pages";
+
 export default function Page() {
   const text = `1. Introduction
   <section className="text-left">
@@ -52,11 +53,12 @@ export default function Page() {
   const formattedText = htmlText.replace(/'/g, "&rsquo;");
 
   return
-  <section>
-    {/* <Hero 
+   <BasicPage
+        theme="dark"
       title="Terms of Service"
-      subtitle="Last updated: 2021-09-01"
-    /> */}
+      subtitle="Learn more about how we serve you"
+      shadowText="Importing Products"
+    >
      <div dangerouslySetInnerHTML={{ __html: formattedText }} />
-  </section>;
+  </BasicPage>;
 }

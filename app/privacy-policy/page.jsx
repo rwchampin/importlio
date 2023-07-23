@@ -1,9 +1,13 @@
+import { BasicPage } from "@/components/pages";
+
 export default function Page() {
   const date = new Date().toDateString();
   const company = "Importlio";
   return (
-    <div>
-      <h1>Privacy Policy</h1>
+     <BasicPage
+        theme="dark"
+        title="Privacy Policy"
+      >
       <p>
         Effective Date: {date}
         Thank you for using {company} services. This Privacy Policy explains how
@@ -74,6 +78,6 @@ export default function Page() {
         Privacy Policy and agree to the collection, use, and disclosure of your
         personal information as described herein.
       </p>
-    </div>
+    </BasicPage>
   );
 }

@@ -1,5 +1,6 @@
 import dynamic from "next/dynamic";
-import { Hero } from "@/components/common";
+
+import { BasicPage } from "@/components/pages";
 
 export default function Page() {
     const DynamicPrices = dynamic(() => import("@/components/heros/Prices"));
@@ -31,12 +32,14 @@ export default function Page() {
     ];
     return (
 
-        <section>
-            <Hero
+         <BasicPage
+        theme="dark"
+
                 title="Pricing"
                 subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
                 eyebrow="Learn More"
-            />
+                shadowText="Dropshipping Subscription"
+            >
             <DynamicPrices />
             <div className="container max-w-full mx-auto py-24 px-6">
                 <h2>Why Choose Importlio for Your Importing Needs?</h2>
@@ -83,6 +86,6 @@ export default function Page() {
                     </div>
                 </section>
             </div>
-        </section>
+        </BasicPage>
     )
 }

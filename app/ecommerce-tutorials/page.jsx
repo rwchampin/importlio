@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react';
 import { Hero } from "@/components/common";
 import { EmailForm } from "@/components/forms";
 import Image from 'next/image';
+import { BasicPage } from "@/components/pages";
 
 export default function Page() {
     const [posts, setPosts] = useState([]);
@@ -34,15 +35,14 @@ export default function Page() {
       }
 
     return (
-      <>
-
-        <Hero 
+      <BasicPage
+        theme="dark"
         title="Ecommerce Dropshipping Tutorials"
         subtitle="Learn about the latest in Ecommerce & Dropshipping"
         eyebrow="Amazon & Shopify"
         cta={<EmailForm />}
-        />
-        <section className="bg-white dark:bg-gray-300 rounded-lg">
+        >
+
     <div className="container px-6 py-10 mx-auto">
         <div className="text-center">
             <h1 
@@ -98,8 +98,8 @@ export default function Page() {
             
         </div>
     </div>
-</section>
-        </>
+
+        </BasicPage>
     )
 }
 

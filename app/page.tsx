@@ -56,9 +56,9 @@ import { OrbitControls, RoundedBox, Points } from "@react-three/drei";
 export default function Page() {
 
   return (
-    <div className="home">
+
          <BasicPage
-        homepage
+         theme="light"
         headline="The Best AI Powered"
         title="Amazon Dropshipping Product Importer"
         subtitle="Bulk Import Amazon Products to Shopify in seconds!"
@@ -97,7 +97,7 @@ export default function Page() {
         <Spacer size={1} />
        
        
-          <RecentBlogPosts />
+          {/* <RecentBlogPosts /> */}
           {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
             <Canvas>
               <OrbitControls />
@@ -112,6 +112,6 @@ export default function Page() {
             </Canvas>
           </div> */}
       </BasicPage>
-    </div>
+
   );
 }

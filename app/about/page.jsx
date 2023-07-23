@@ -1,17 +1,17 @@
 "use client"
 import { Hero } from "@/components/common";
 import { EmailForm } from "@/components/forms";
-
+import { BasicPage } from "@/components/pages"
 export default function Page() {
   return (
-    <>
-      <Hero
+    <BasicPage
+      theme="dark"
         title="About Us"
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         headline="Learn More"
         shadowText="THE COMPANY"
         cta={<EmailForm />}
-      />
+      >
     <div className="prose-xl md:prose-2xl ">
       
 
@@ -68,6 +68,6 @@ export default function Page() {
         Please note that this text can be used as plain text content for your &quot;About&quot; page. Make sure to incorporate relevant keywords and phrases naturally throughout the text to optimize for search engines.
       </p>
     </div>
-    </>
+    </BasicPage>
   );
 }

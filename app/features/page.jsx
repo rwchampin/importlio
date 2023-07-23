@@ -1,18 +1,20 @@
 
 import { Hero } from "@/components/common";
 import { EmailForm } from "@/components/forms";
+import { BasicPage } from "@/components/pages";
+
 export default function Page() {
 
 
 
     return (
-        <>
-            <Hero
+        <BasicPage
+        theme="dark"
                 title="Features"
                 subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
 				eyebrow="Learn More"
 				shadowText="What We Offer"
-            />
+            >
             <h1>Transform Your eCommerce Business Into a Powerhouse with Importlio</h1>
 
             <p>Importlio empowers entrepreneurs like you to automate and optimize your dropshipping business, ensuring success and efficiency every step of the way.</p>
@@ -71,6 +73,6 @@ export default function Page() {
 
             <p><a href="https://www.importlio.com/signup">Start Your Free Trial Now</a></p>
 
-        </>
+        </BasicPage>
 	)
 }

@@ -8,24 +8,24 @@ export default function FeatureHero() {
     useEffect(() => {
 
         const fg = gsap.utils.selector(".feature-grid")
-        const feeatures = fg(".feature")
+        const features = fg(".feature")
 
-        features.map(feat => {
+         
 
       
-       gsap.from(feat, {
+       gsap.from(".feature", {
         opacity:0,
         y: 50,
-        duration: .2,
+        stagger: .4,
         ease: "expo.out",
          scrollTrigger:{
-            trigger:feat,
+            trigger:parent.current,
             scrub: true,
             markers: true,
-            start: .8,
-            end:.2
+            start: "top center",
+            end: "bottom center"
         }
-    })
+    
       })
     }, [])
     const features = [
@@ -85,7 +85,7 @@ export default function FeatureHero() {
     return (
         <section ref={parent} className="bg-white dark:bg-gray-200 rounded-lg relative z-10">
             <div className="px-6 py-10 mx-auto prose-xl">
-                <h2 className="font-montserrat font-black text-heading-3">Shopify Product Importer App Features</h2>
+                <h2 className="feature font-montserrat font-black text-heading-3">Shopify Product Importer App Features</h2>
 
                 <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
                     <div className="feature-grid grid w-full grid-cols-1 gap-8 lg:w-full xl:gap-16 md:grid-cols-2 lg:grid-cols-3">

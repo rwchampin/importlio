@@ -55,21 +55,21 @@ module.exports = {
         "3xl": "1.875rem",
         "4xl": "2.25rem",
         "5xl": "2.5rem",
-        "heading-1": "clamp(38px, -6.5915492958px + 9.7183098592vw, 140px)",
+        "heading-1": "clamp(38px, -6.5915492958px + 9.7183098592vw, 100px)",
         "heading-2": "clamp(32px, -3.3707865169px + 7.1265822785vw, 100px)",
         "heading-3": "clamp(24px, -1.8987341772px + 5.0632911392vw, 60px)",
         "heading-4": "clamp(20px, -1.2658227848px + 4.253164557px, 50px)",
         "heading-5": "clamp(16px, -0.6329113924px + 3.164556962px, 40px)",
         "heading-6": "clamp(14px, -0.3164556962px + 2.5316455696px, 30px)",
 
-        "subtitle-1": "clamp(18px, -1.8987341772px + 5.0632911392vw, 28px)",
+        "subtitle-1": "clamp(18px, -1.8987341772px + 5.0632911392vw, 50px)",
         "subtitle-2": "clamp(20px, -1.2658227848px + 4.253164557px, 50px)",
         "subtitle-3": "clamp(16px, -0.6329113924px + 3.164556962px, 40px)",
         "subtitle-4": "clamp(14px, -0.3164556962px + 2.5316455696px, 30px)",
         "subtitle-5": "clamp(13px, -0.3164556962px + 2.5316455696px, 29px)",
         "subtitle-6": "clamp(12px, -0.3164556962px + 2.5316455696px, 28px)",
 
-        "headline": "clamp(10px, -0.3164556962px + 2.5316455696px, 29px)",
+        "headline": "clamp(12px, -0.3164556962px + 2.5316455696px, 29px)",
 
 
         "jumbo-xs": "10vw",

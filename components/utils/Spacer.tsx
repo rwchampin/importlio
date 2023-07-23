@@ -4,13 +4,13 @@ interface Props {
     color?: string
 }
 export default function Spacer({ size=1, showLine=false, color }:Props) {
-    const classes = `
-    h-[${size}] 
-    `
 
     return (
-        <hr 
-            className={classes}
+        <div
+            style={{
+                height: `${size/2}rem`
+            }} 
+            className={'not-prose'}
         />
     );
 }

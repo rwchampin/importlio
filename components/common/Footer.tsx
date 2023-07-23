@@ -1,4 +1,5 @@
 import dynamic from "next/dynamic";
+import { Spacer } from '@/components/utils'
 
 const ColorSwitch:any = dynamic(() => import("@/components/common/ColorSwitch"));
 const SocialIcons:any = dynamic(() => import("@/components/common/SocialIcons"));
@@ -19,14 +20,15 @@ export default function Footer() {
               <p className="max-w-sm mt-2 text-xs dark:text-white">
                 The world&apos;s first Amazon Dropshipping Bulk Product Importer & management plugin.
               </p>
-
+              <Spacer size={2} />
               <SocialIcons />
+              <Spacer size={4} />
             </div>
           </div>
-
-          <div className="mt-6 lg:mt-0 lg:flex-1">
-            <div className="grid grid-cols-1 gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4">
-              <div>
+          
+          <div className="mt-0 lg:flex-1">
+            <div className="flex flex-col md:flex-row gap-6 justify-center">
+              <div className="text-center md:text-left flex-1">
                 <h3 className="text-black uppercase dark:text-black font-bold">
                   About
                 </h3>
@@ -52,7 +54,7 @@ export default function Footer() {
                 </a>
               </div>
 
-              <div>
+              <div className="text-center md:text-left flex-1">
                 <h3 className="text-black font-bold uppercase dark:text-black">
                   Blog
                 </h3>
@@ -78,7 +80,7 @@ export default function Footer() {
                 </a>
               </div>
 
-              <div>
+              <div className="text-center md:text-left flex-1">
 			  <h3 className="text-black font-bold uppercase dark:text-black">
 
                   Products
@@ -106,7 +108,7 @@ export default function Footer() {
                 </a>
               </div>
 
-              <div>
+              <div className="text-center md:text-left flex-1">
 			  <h3 className="text-black font-bold uppercase dark:text-black">
 
                   Contact

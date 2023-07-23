@@ -7,7 +7,7 @@ const Primary = dynamic(() => import("@/components/common/buttons/Primary"));
 const DynamicLogoBlack = dynamic(() => import("@/components/common/logo/LogoBlack"));
 const Close = dynamic(() => import("@/components/common/Close"));
 
-export default function Modal({ModalBody}) {
+export default function Modal({ModalBody, theme}) {
   let [isOpen, setIsOpen] = useState(false)
  
  
@@ -54,7 +54,7 @@ export default function Modal({ModalBody}) {
         </Dialog>
       </Transition>
 
-      <Primary onClick={() => setIsOpen(true)}>Preregister</Primary>
+      <Primary theme={theme} onClick={() => setIsOpen(true)}>Preregister</Primary>
 
 
     </>
