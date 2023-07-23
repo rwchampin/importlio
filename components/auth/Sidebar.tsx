@@ -14,44 +14,44 @@ export default function Sidebar() {
   const sidebarLinks = [
     {
       name: "Dashboard",
-      href: "/dash",
+      href: "/dashboard",
       icon: <AiOutlineDashboard size={size} />,
     },
     {
       name: "Posts",
-      href: "/dash/posts",
+      href: "/dashboard/posts",
       icon: <FaBook size={size} />,
       protected: true,
     },
     {
       name: "Import",
-      href: "/dash/import",
+      href: "/dashboard/import",
       icon: <TbPackageImport size={size} />,
     },
     {
       name: "Import",
-      href: "/dash/import",
+      href: "/dashboard/import",
       icon: <TbPackageImport size={size} />,
     },
 
     {
       name: "Products",
-      href: "/dash/products",
+      href: "/dashboard/products",
       icon: <BsCart4 size={size} />,
     },
     {
       name: "Profile",
-      href: "/dash/profile",
+      href: "/dashboard/profile",
       icon: <CgProfile size={size} />,
     },
     {
       name: "Lists",
-      href: "/dash/lists",
+      href: "/dashboard/lists",
       icon: <RiFileList2Line size={size} />,
     },
     {
       name: "Settings",
-      href: "/dash/settings",
+      href: "/dashboard/settings",
       icon: <BiSolidCog size={size} />,
     },
   ];

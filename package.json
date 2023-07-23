@@ -29,6 +29,7 @@
 		"framer-motion": "^10.12.21",
 		"gsap": "./assets/js/gsap.tgz",
 		"leva": "^0.9.35",
+		"medium-editor": "^5.23.3",
 		"next": "^13.4.11",
 		"nextjs-color-mode": "^1.0.5",
 		"papaparse": "^5.4.1",

@@ -1,7 +1,7 @@
 "use client"
 import { useEffect, useState } from 'react';
-import { Hero } from "@/components/common";
-import { EmailForm } from "@/components/forms";
+import { Hero,Modal } from "@/components/common";
+
 import Image from 'next/image';
 import { BasicPage } from "@/components/pages";
 
@@ -10,20 +10,25 @@ export default function Page() {
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    useEffect(() => {
+    useEffect(async () => {
         const fetchPosts = async () => {
           try {
             const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`);
             const data = await response.json();
             setPosts(data);
             setLoading(false);
+            debugger
           } catch (error) {
             setError(error.message);
             setLoading(false);
+            debugger
+
           }
         };
     
-        fetchPosts();
+       const p =  await fetchPosts();
+            debugger
+
       }, []);
 
       if (loading) {
@@ -31,7 +36,7 @@ export default function Page() {
       }
     
       if (error) {
-        return <div>Error: {error}</div>;
+        return <div className="text-heading-1">Dropshipping Tutorial Posts coming soon!</div>;
       }
 
     return (
@@ -40,7 +45,7 @@ export default function Page() {
         title="Ecommerce Dropshipping Tutorials"
         subtitle="Learn about the latest in Ecommerce & Dropshipping"
         eyebrow="Amazon & Shopify"
-        cta={<EmailForm />}
+        cta={<Modal />}
         >
 
     <div className="container px-6 py-10 mx-auto">
@@ -54,7 +59,7 @@ export default function Page() {
                 The Official Amazon Dropshipping Handbook & Product Importer App Tutorials
             </h2>
         </div>
-
+        {posts.length === 0 && <div className="text-heading-1">Dropshipping Tutorial Posts coming soon!</div>}
         <div className="grid grid-cols-1 gap-8 mt-8 md:mt-16 md:grid-cols-2 xl:grid-cols-3">
             {posts.map((post) => {
                 return (
