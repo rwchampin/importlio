@@ -69,26 +69,26 @@ const calculateHeadlineColor = (bg) => {
     return color
 }  
 
-function Headline({ children,theme='light', className,  fontFamily="montserrat", fontWeight="bold",  ...rest }) {
+function Headline({ children,theme}) {
     
     return (
-        <span className={`uppercase ${className} font-${fontFamily} font-${fontWeight} text-${theme === 'dark' ? 'gray-300' : 'gray-400'}  text-headline  m-0`} {...rest}>
+        <span className={`uppercase font-montserrat font-bold text-${theme === 'dark' ? 'gray-300' : 'gray-400'}  text-headline  m-0`}>
             {children}
         </span>
     );
 };
-function Title({ children,theme,  fontFamily="montserrat", fontWeight="black" }) {
+function Title({ children,theme }) {
    
     return (
-        <h1 className={`${className} font-montserrat font-${fontWeight} text-${calculateTitleColor(theme)} not-prose text-heading-1 m-0 whitespace-pre-line`}>
+        <h1 className={` font-montserrat font-black text-${calculateTitleColor(theme)} not-prose text-heading-1 m-0 whitespace-pre-line`}>
             {children}
         </h1>
     );
 };
-function Subtitle({ children,theme,  fontFamily="apercu", fontWeight="800",  ...rest }) {
+function Subtitle({ children,theme}) {
     
     return (
-        <h2 className={`font-apercu font-apercu text-${theme === 'dark' ? 'gray-400' : 'gray-400'}  not-prose text-subtitle-1 line-tight m-0`} {...rest}>
+        <h2 className={`font-apercu font-bold text-${theme === 'dark' ? 'gray-400' : 'gray-400'}  not-prose text-subtitle-1 line-tight m-0`}>
             {children}
         </h2>
     );

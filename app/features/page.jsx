@@ -9,7 +9,7 @@ export default function Page() {
 
     return (
         <BasicPage
-        theme="dark"
+        theme="light"
                 title="Features"
                 subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
 				eyebrow="Learn More"

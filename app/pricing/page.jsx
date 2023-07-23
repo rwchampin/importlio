@@ -33,7 +33,7 @@ export default function Page() {
     return (
 
          <BasicPage
-        theme="dark"
+        theme="light"
 
                 title="Pricing"
                 subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."

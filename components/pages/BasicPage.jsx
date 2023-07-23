@@ -15,7 +15,9 @@ export default function BasicPage({theme, title, subtitle, headline, shadowText,
         headline={headline}
         shadowText={shadowText}
       />
-		{children}
+		<div className="prose-md p-5 max-w-[90vw] mx-auto z-10 relative">
+      {children}
+      </div>
     
     </div>
   );

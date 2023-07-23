@@ -5,23 +5,23 @@ import { BasicPage } from "@/components/pages"
 export default function Page() {
   return (
     <BasicPage
-      theme="dark"
+      theme="light"
         title="About Us"
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         headline="Learn More"
         shadowText="THE COMPANY"
         cta={<EmailForm />}
       >
-    <div className="prose-xl md:prose-2xl ">
+
       
 
-      <p>
+      <div>
         The ultimate solution for efficiently importing and managing your products on Amazon. With our powerful toolset and user-friendly interface, you can streamline your product listing process, maximize your sales potential, and save valuable time.
-      </p>
+      </div>
 
-      <div className="text-heading-5">Why Choose Our Product Importer App?</div>
+      <div className="text-heading-4">Why Choose Our Product Importer App?</div>
 
-      <ol>
+      <ul className="list-disc">
         <li>
           <p>Effortless Product Import</p>
           <p>Seamlessly import your product data from various sources such as CSV files, spreadsheets, or APIs. Our app simplifies the entire import process, eliminating the need for manual data entry.</p>
@@ -50,7 +50,7 @@ export default function Page() {
           <p>User-Friendly Interface</p>
           <p>Our app offers an intuitive and user-friendly interface, making it easy for both beginners and experienced sellers to navigate and utilize its powerful features.</p>
         </li>
-      </ol>
+      </ul>
 
       <p>Get Started Today!</p>
 
@@ -62,12 +62,8 @@ export default function Page() {
         Sign up now and unleash the true potential of your Amazon store with our feature-rich Product Importer App.
       </p>
 
-      <hr />
-
-      <p>
-        Please note that this text can be used as plain text content for your &quot;About&quot; page. Make sure to incorporate relevant keywords and phrases naturally throughout the text to optimize for search engines.
-      </p>
-    </div>
+      
+ 
     </BasicPage>
   );
 }

@@ -19,15 +19,15 @@ export default function Scrollbar({ children }) {
     const setScrollbar = (progress) => {
         gsap.to(scrollbar, { height:progress * scrollTrackHeight  });
     }
-    // ScrollSmoother.create({
-    //   smooth: .5,               // how long (in seconds) it takes to "catch up" to the native scroll position
-    //   effects: true,           // looks for data-speed and data-lag attributes on elements
-    //   smoothTouch: 0.1,
-    //   onUpdate: function(p) {
-    //     const progress = p.scrollTrigger.progress;
-    //     setScrollbar(progress)
-    //   }
-    // })
+    ScrollSmoother.create({
+      smooth: .5,               // how long (in seconds) it takes to "catch up" to the native scroll position
+      effects: true,           // looks for data-speed and data-lag attributes on elements
+      smoothTouch: 0.1,
+      onUpdate: function(p) {
+        const progress = p.scrollTrigger.progress;
+        setScrollbar(progress)
+      }
+    })
   }, [])
  
    
@@ -38,8 +38,8 @@ export default function Scrollbar({ children }) {
 
   return (
 
-      <div id="smooth-wrapper">
-        <div id="smooth-content fade flex flex-col min-h-screen gap-5">
+      <div id="smooth-wrapper" className="fade">
+        <div id="smooth-content"  className="flex flex-col min-h-screen gap-5">
         {children}
       </div>
       <div ref={scrollTrackRef} className="scroll-track fixed w-[2px] bg-gray-200 shadow-inner right-0">

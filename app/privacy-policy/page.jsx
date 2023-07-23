@@ -5,7 +5,7 @@ export default function Page() {
   const company = "Importlio";
   return (
      <BasicPage
-        theme="dark"
+        theme="light"
         title="Privacy Policy"
       >
       <p>
