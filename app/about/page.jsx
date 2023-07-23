@@ -4,22 +4,22 @@ import { EmailForm } from "@/components/forms";
 
 export default function Page() {
   return (
-    <div className="prose-xl">
+    <>
       <Hero
         title="About Us"
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
-        eyebrow="Learn More"
+        headline="Learn More"
         shadowText="THE COMPANY"
-        shadowSize="text-X"
-
         cta={<EmailForm />}
       />
+    <div className="prose-xl md:prose-2xl ">
+      
 
       <p>
         The ultimate solution for efficiently importing and managing your products on Amazon. With our powerful toolset and user-friendly interface, you can streamline your product listing process, maximize your sales potential, and save valuable time.
       </p>
 
-      <h2>Why Choose Our Product Importer App?</h2>
+      <div className="text-heading-5">Why Choose Our Product Importer App?</div>
 
       <ol>
         <li>
@@ -68,5 +68,6 @@ export default function Page() {
         Please note that this text can be used as plain text content for your &quot;About&quot; page. Make sure to incorporate relevant keywords and phrases naturally throughout the text to optimize for search engines.
       </p>
     </div>
+    </>
   );
 }

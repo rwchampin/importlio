@@ -1,8 +1,14 @@
+"use client"
+import gsap from 'gsap/all'
 
+import { useRef, useState, useEffect, useLayoutEffect} from 'react'
 import Link from "next/link"
-const LogoBlack = (props) => {
+import { motion } from "framer-motion"
 
-const Img = () => <svg
+
+
+const LogoBlack = (props) => {
+  let Img = (props) => <svg
     xmlns="http://www.w3.org/2000/svg"
     data-name="Layer 1"
     viewBox="0 0 409.68 448.32"
@@ -160,11 +166,24 @@ const Img = () => <svg
     />
   </svg>;
 
-  if(props.link && props.link === false) {
-    return <Img />
-  }else{
-    return <Link href="/"><Img /></Link>
-  }
+  const wrapperRef = useRef(null)
+  const logoRef = useRef(null)
+  const linkRef = useRef(null)
 
+
+  useEffect(() => {
+    const logo = logoRef.current
+
+    gsap.from(logo, {
+      opacity: 0,
+      duration: .5,
+      ease: "expo.out",
+    })
+
+  }, [])
+
+
+
+return (<Link href="/" style={{ width: 50, height: 'auto'}} className='logo'><Img /></Link>)
 }
 export default LogoBlack

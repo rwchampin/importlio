@@ -26,7 +26,7 @@ export default function ActiveNavLink({ hoveredLink }) {
                 ease: "circ.out"
             })
         }
-        const navLinks = gsap.utils.toArray('.not-logo');
+        const navLinks = gsap.utils.toArray('nav a');
         navLinks.forEach(link => {
             link.addEventListener('mouseenter', (e) => {
                 getHoveredNavLinkPosition(e.target)

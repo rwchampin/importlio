@@ -19,8 +19,8 @@ const ParticleText = ({ desktop, mobile, colors }) => {
 
   function createCanvas(properties) {
     let canvas = document.createElement('canvas');
-    canvas.width = properties.width;
-    canvas.height = properties.height;
+    canvas.width = window.innerWidth * .8;
+    canvas.height = 300;
     let context = canvas.getContext('2d');
     return {
       canvas: canvas,
@@ -48,7 +48,7 @@ const ParticleText = ({ desktop, mobile, colors }) => {
         // While the text width is too large, decrease the font size
         while (textWidth > canvas.width) {
           size--;
-          context.font = size + 'px Montserrat-Bold';
+          context.font = size + 'px Montserrat-Black';
           textWidth = context.measureText(lines[i]).width;
         }
   
@@ -95,10 +95,12 @@ const ParticleText = ({ desktop, mobile, colors }) => {
         this.w = window.innerWidth;
         this.h = window.innerHeight;
         this.radius = 0.5 + Math.random() * 20;
-        this.color = this.radius > 5 ? colors[0] : colors; //this.randomColor()
+        this.color = this.randomColor()
       }
 
-   
+      randomColor() {
+        return colors[Math.floor(Math.random() * colors.length)];
+      }
 
       randomIntFromInterval(min, max) {
         return Math.floor(Math.random() * (max - min + 1) + min);
@@ -230,7 +232,7 @@ const ParticleText = ({ desktop, mobile, colors }) => {
     // other existing code...
 
     
-  return <div className="title" ref={title}></div>;
+  return <div className="particle-text" ref={title}></div>;
 };
 
 export default ParticleText;

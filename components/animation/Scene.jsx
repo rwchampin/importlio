@@ -41,7 +41,7 @@ export default function Scene({ children, type }) {
     return (
         <section
             ref={sceneRef}
-         className="relative w-full h-full p-3 md:p-4 lg:p-5"
+         className="relative w-full h-full"
          >
         {children}
         </section>

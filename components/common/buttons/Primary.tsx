@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 interface Props {
     children: React.ReactNode;
-    buttonType?: "button" | "submit" | "reset" | any | undefined;
+    type?: "button" | "submit" | "reset" | any | undefined;
     className?: string;
     isLoading?: boolean;
     isMobile?: boolean;
@@ -13,7 +13,7 @@ interface Props {
 const Spinner:any = dynamic(() => import('@/components/common/Spinner'), {
     ssr: false
 });
-export default function Primary({ children, buttonType="button", className, isLoading, isMobile }:Props) {
+export default function Primary({ children="Submit", type="button", className, isLoading, isMobile }:Props) {
     let classes:string = "bg-offgray text-offwhite font-apercu font-bold uppercase hover:shadow-2xl hover:drop-shadow-2xl hover:cursor-pointer h-[46px] px-6 py-2 max-w-lg text-sm w-full"
 
     classes += className ? ` ${className}` : '';
@@ -21,7 +21,7 @@ export default function Primary({ children, buttonType="button", className, isLo
 
     return (
         <motion.button
-        type={buttonType}
+        type={type}
         whileHover={{
             scale: 1.02,
             transition: {
@@ -35,7 +35,7 @@ export default function Primary({ children, buttonType="button", className, isLo
                 duration: .3
             }
         }}
-        className={classes}
+        className={classes + "text-white text-sm font-bold max-w-lg"}
         >
             {isLoading ? Spinner : children}
         </motion.button>

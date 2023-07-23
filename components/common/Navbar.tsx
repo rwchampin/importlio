@@ -7,11 +7,10 @@ import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 import { useLogoutMutation } from "@/redux/features/authApiSlice";
 import { logout as setLogout } from "@/redux/features/authSlice";
 import { NavLink, CustomSuspense } from "@/components/common";
-import { LogoBlack } from "@/components/common/logo";
 import dynamic from "next/dynamic";
 import { useEffect, useState } from "react";
-
-const ActiveNavLink:any = dynamic(() => import("@/components/common/ActiveNavLink"));
+import gsap from "gsap";
+const Avatar:any = dynamic(() => import("@/components/auth/Avatar"));
 const DynamicSocialIcons:any = dynamic(() => import("@/components/common/SocialIcons"));
 // gsap.registerPlugin(ScrollTrigger)
 export default function Navbar() {
@@ -133,23 +132,22 @@ export default function Navbar() {
     },
   ];
 
-  // useEffect(() => {
+  useEffect(() => {
 
-  //   ScrollTrigger.create({
-  //     trigger: 'nav',
-  //     pin: true,
-  //     pinSpacing: false,
-  //     start: "top top",
-  //     end: 9999999999
-  //   })
+    gsap.to("nav a:not(.logo)",{
+      opacity: 1,
+      stagger: 0.05,
+      duration: 0.15,
+      ease: 'power3.inOut',
+    })
 
-  // }, [])
+  }, [])
 
 
-  // const DynamicLogo = dynamic(() => import("@/components/common/logo/LogoBlack"));
+  const DynamicLogo:any = dynamic(() => import("@/components/common/logo/LogoBlack"));
   return (
     <CustomSuspense>
-    <Disclosure as="nav" className="fixed top-0 w-full">
+    <Disclosure as="nav" className="fixed top-0 w-full z-50">
       {({ open }) => (
         <>
           <div className="ccc mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
@@ -168,7 +166,7 @@ export default function Navbar() {
                 <div className="flex gap-5 justify-between items-center w-full">
                   {/* <div className="flex flex-shrink-0 items-center"> */}
 
-                    <LogoBlack />
+                    <DynamicLogo />
                     <div className="hidden md:flex relative gap-5 mr-auto">
                           
                       {links.map((link: LinkProps) => {
@@ -185,7 +183,6 @@ export default function Navbar() {
                           </NavLink>
                         );
                       })}
-                      <ActiveNavLink  />
                     </div>
                   {/* </div> */}
                 </div>
@@ -230,6 +227,7 @@ export default function Navbar() {
                 </div>
                
                 {/* <NavAvatar /> */}
+                <DynamicSocialIcons />
               </div>
             </div>
             {/* <SubNav

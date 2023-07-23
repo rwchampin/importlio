@@ -1,5 +1,8 @@
+
 // import "@/assets/styles/awwwards.css";
 import "@/assets/styles/cursor.css";
+import "@/assets/styles/typography.css";
+
 import "@/assets/styles/globals.css";
 import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
@@ -40,7 +43,7 @@ const meta = {
     "Bulk import Amazon Dropshipping Products into Shopify E-Commerce Stores. Source and Sell Profitable Dropshipping Products from Amazon",
   // cardImage: "../assets/img/PNG/logo-greyhdpi.png",
   robots: "follow, index",
-  favicon: "../public/favicon.ico",
+  favicon: "/favicon.ico",
   url: "https://www.importlio.com",
   type: "website",
 };
@@ -111,7 +114,7 @@ export default function RootLayout({
          
          
              <DynamicNavbar /> 
-            <DynamicScroller>
+            <DynamicScroller> 
             
             <main className="flex-grow flex flex-col gap-5">
              
@@ -119,13 +122,13 @@ export default function RootLayout({
               {children}
               
             </main>
-              <DynamicFooter /> 
-            </DynamicScroller>
+             <DynamicFooter /> 
+            </DynamicScroller> 
          
           
          
         </div>
-        {/* <DynamicCursor size={10} /> */}
+        <DynamicCursor size={10} />
         </Provider>
       
       </body>

@@ -3,37 +3,21 @@ import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import dynamic from 'next/dynamic'
 
+const Primary = dynamic(() => import("@/components/common/buttons/Primary"));
 const DynamicLogoBlack = dynamic(() => import("@/components/common/logo/LogoBlack"));
 const Close = dynamic(() => import("@/components/common/Close"));
 
-const Trigger = ({ children, triggerModal }) => {
-	return (
-		<div 
-			onClick={triggerModal}
-			>
-			{children}
-			</div>
-	)
-}
-
- 
-export default function Modal({modalBody, trigger, loadForm, setLoadForm }) {
+export default function Modal({ModalBody}) {
   let [isOpen, setIsOpen] = useState(false)
-
-  function closeModal() {
-    setIsOpen(false)
-  }
-
-  function openModal() {
-    setIsOpen(true)
-  }
-
+ 
+ 
+ 
   return (
     <>
        
 
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={closeModal}>
+        <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -58,20 +42,20 @@ export default function Modal({modalBody, trigger, loadForm, setLoadForm }) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="modal w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
-                  <Close closeFN={closeModal} />
+                  <Close closeFN={() => setIsOpen(false)} />
                   <div className="flex items-center justify-center">
                   <DynamicLogoBlack />
                   </div>
-                 {modalBody}
+                 <ModalBody />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
-	  <Trigger triggerModal={openModal}>
-      {trigger}
-		</Trigger>
+
+      <Primary onClick={() => setIsOpen(true)}>Preregister</Primary>
+
 
     </>
   )

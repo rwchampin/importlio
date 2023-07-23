@@ -37,20 +37,180 @@ export default function Form({
 
 }: Props) {
 
-	const getPlaceholder = (type:string) => {
+	const getInputType = (type:string) => {
 		switch(type) {
 			case 'email':
-				return 'john@gmail.com';
+				return 'email';
 				break;
 			case 'password':
-				return '********';
+				return 'password';
 				break;
+			case 'new-password':
+				return 'new-password';
+				break;
+			case 'text':
+				return 'text';
+				break;
+			case 'tel':
+				return 'tel';
+				break;
+			case 'number':
+				return 'number';
+				break;
+			case 'url':
+				return 'url';
+				break;
+			case 'search':
+				return 'search';
+				break;
+			case 'date':
+				return 'date';
+				break;
+			case 'time':
+				return 'time';
+				break;
+			case 'datetime-local':
+				return 'datetime-local';
+				break;
+
 			default:
 				return '';
 				break;
 		}
+
 	}
-	
+
+	const getFormFieldAttrsByType = (type:string) => {
+		let attrs = {};
+		switch(type) {
+			case 'email':
+				attrs = {
+					autoComplete: 'email',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'password':
+				attrs = {
+					autoComplete: 'current-password',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'new-password':
+				attrs = {
+					autoComplete: 'new-password',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'text':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'on',
+					autoCapitalize: 'on',
+					spellCheck: 'true',
+				};
+				break;
+			case 'tel':
+				attrs = {
+					autoComplete: 'tel',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'number':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'url':
+				attrs = {
+					autoComplete: 'url',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'search':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'date':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'time':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+			case 'datetime-local':
+				attrs = {
+					autoComplete: 'on',
+					autoCorrect: 'off',
+					autoCapitalize: 'off',
+					spellCheck: 'false',
+				};
+				break;
+
+			default:
+				attrs = {};
+				break;
+		}
+
+		return attrs;
+
+	}
+
+	const getPlaceholder = (type:string) => {
+		switch(type) {
+			case 'email':
+				return 'Email';
+				break;
+			case 'password':
+				return 'Password';
+				break;
+			case 'new-password':
+				return 'New Password';
+				break;
+			case 'text':
+				return 'Text';
+				break;
+			case 'tel':
+				return 'Phone Number';
+				break;
+
+			default:
+				return '';
+				break;
+		}
+
+	}
+
+ 
+
+
+
+
 
 
 	return (
@@ -68,6 +228,8 @@ export default function Form({
 					link={input.link}
 					required={input.required}
 					placeholder={getPlaceholder(input.type)}
+					{...getFormFieldAttrsByType(input.type)}
+					
 				>
 					{input.labelText}
 				</Input>

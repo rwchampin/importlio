@@ -13,7 +13,7 @@ export default function Iphone(props) {
   const { nodes, materials } = useGLTF("/models/iphone.glb");
   return (
     <group {...props} dispose={null}>
-      <group scale={0.01}>
+      <group scale={0.5} rotation={[0,-Math.PI,0]} position={[0,-5,0]}>
         <mesh
           castShadow
           receiveShadow

@@ -3,18 +3,18 @@ import dynamic from 'next/dynamic';
 
 
 
-export default function BasicPage({homepage, title, subtitle, headline, shadowText, children, cta }) {
+export default function BasicPage({homepage, title, subtitle, headline, shadowText, children, }) {
  
   return (
     <div className="prose-xl overflow-visible">
       <Hero
+        showButton={true}
         homepage
         bg="light"
         title={title}
 			  subtitle={subtitle}
         headline={headline}
         shadowText={shadowText}
-        cta={cta}
       />
 		{children}
     

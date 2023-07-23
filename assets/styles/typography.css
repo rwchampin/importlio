@@ -1,4 +1,11 @@
-.heading-1 {
+* {
+    word-wrap: break-word;
+}
+.text-heading-1 {
+    line-height: 100% !important;
+}
+
+/* .heading-1 {
     font-size: 42px;
     font-size: clamp(42px, -6.5915492958px + 9.7183098592vw, 180px);
     line-height: 100%
@@ -61,4 +68,4 @@
     text-overflow: ellipsis;
     white-space: nowrap;
     overflow: hidden
-}
+} */

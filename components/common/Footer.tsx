@@ -7,16 +7,16 @@ const LogoBlack:any = dynamic(() => import("@/components/common/logo/LogoBlack")
 export default function Footer() {
   return (
     <>
-      <footer className="bg-offwhite dark:bg-offgray text-black">
+      <footer className="bg-offwhite dark:bg-offgray text-black z-50 relative">
       <div className="container p-6 mx-auto">
-        <div className="lg:flex">
+        <div className="flex flex-col">
           <div className="w-full -mx-6 lg:w-2/5">
             <div className="px-6">
 
-                <LogoBlack size="40" />
+              <LogoBlack size="40" />
 
 
-              <p className="max-w-sm mt-2 dark:text-white">
+              <p className="max-w-sm mt-2 text-xs dark:text-white">
                 The world&apos;s first Amazon Dropshipping Bulk Product Importer & management plugin.
               </p>
 
@@ -126,10 +126,10 @@ export default function Footer() {
           </div>
         </div>
 
-        <hr className="h-px my-6 bg-black border-none dark:bg-black" />
+        <hr className="h-[1px] my-6 bg-black border-none dark:bg-black" />
 
         <div>
-          <p className="text-center text-black dark:text-black font-bold">
+          <p className="text-center text-xs text-black dark:text-black font-bold">
             &copy; Importlio 2023 All rights reserved
           </p>
         </div>

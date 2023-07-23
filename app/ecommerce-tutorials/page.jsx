@@ -12,7 +12,7 @@ export default function Page() {
     useEffect(() => {
         const fetchPosts = async () => {
           try {
-            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/posts/`);
+            const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`);
             const data = await response.json();
             setPosts(data);
             setLoading(false);

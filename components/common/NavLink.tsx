@@ -27,25 +27,7 @@ export default function NavLink({
 	border,
 	...rest
 }: Props) {
-	useEffect(() => {
-		gsap.fromTo(
-			'nav a',
-			{
-				opacity: 0,
-				y: -20,
-				scale:.5,
-			},	
-			{
-				opacity: 1,
-				y: 0,
-				scale:1,
-				stagger: 0.05,
-				duration: 0.15,
-				ease: 'power3.inOut',
 
-			}
-		);
-	}, []);
 	
 	const className = cn(
 		rest.className,

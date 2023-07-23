@@ -8,6 +8,12 @@ module.exports = {
   ],
   theme: {
     extend: {
+      width: {
+        "1/2": "50vw",
+        "1/3": "33.333333vw",
+        "2/3": "66.666667vw",
+        "1/4": "25vw",
+      },
       colors: {
         "black": "#000000",
         "white": "#FFFFFF",
@@ -45,17 +51,27 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontSize: {
-        "subtitle": "2rem",
-        "2xs": ".625rem",
+        "2xs": ".125rem",
         "3xl": "1.875rem",
         "4xl": "2.25rem",
         "5xl": "2.5rem",
-        "heading-1": " clamp(42px, -6.5915492958px + 9.7183098592vw, 180px)",
+        "heading-1": "clamp(38px, -6.5915492958px + 9.7183098592vw, 140px)",
         "heading-2": "clamp(32px, -3.3707865169px + 7.1265822785vw, 100px)",
         "heading-3": "clamp(24px, -1.8987341772px + 5.0632911392vw, 60px)",
         "heading-4": "clamp(20px, -1.2658227848px + 4.253164557px, 50px)",
         "heading-5": "clamp(16px, -0.6329113924px + 3.164556962px, 40px)",
         "heading-6": "clamp(14px, -0.3164556962px + 2.5316455696px, 30px)",
+
+        "subtitle-1": "clamp(18px, -1.8987341772px + 5.0632911392vw, 28px)",
+        "subtitle-2": "clamp(20px, -1.2658227848px + 4.253164557px, 50px)",
+        "subtitle-3": "clamp(16px, -0.6329113924px + 3.164556962px, 40px)",
+        "subtitle-4": "clamp(14px, -0.3164556962px + 2.5316455696px, 30px)",
+        "subtitle-5": "clamp(13px, -0.3164556962px + 2.5316455696px, 29px)",
+        "subtitle-6": "clamp(12px, -0.3164556962px + 2.5316455696px, 28px)",
+
+        "headline": "clamp(10px, -0.3164556962px + 2.5316455696px, 29px)",
+
+
         "jumbo-xs": "10vw",
         "jumbo-sm": "15vw",
         "jumbo": "20vw",
