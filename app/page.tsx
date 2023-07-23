@@ -59,10 +59,10 @@ export default function Page() {
 
          <BasicPage
          theme="light"
-        headline="The Best AI Powered"
-        title="Amazon Dropshipping Product Importer"
-        subtitle="Bulk Import Amazon Products to Shopify in seconds!"
-        shadowText={`Amazon Products`}
+          headline="The Best AI Powered"
+          title="Amazon Dropshipping Product Importer"
+          subtitle="Bulk Import Amazon Products to Shopify in seconds!"
+          shadowText={`Amazon Products`}
       >     
 <div className="z-100">
 <Video play src={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4`} />

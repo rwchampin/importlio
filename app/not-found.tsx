@@ -7,6 +7,8 @@ export default function NotFound() {
 			<div className='text-center'>
 					<ShadowText
 						text={404}
+						xPos={0}
+						yPos={50}
 					/>
 					<ParticleText 
 					mobile='Page\nnot\nfound'

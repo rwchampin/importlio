@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 
 
 export default function BasicPage({theme, title, subtitle, headline, shadowText, children, }) {
- 
+  // debugger
   return (
     <div className="prose-xl overflow-visible">
       <Hero

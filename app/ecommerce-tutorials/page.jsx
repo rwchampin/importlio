@@ -36,7 +36,7 @@ export default function Page() {
 
     return (
       <BasicPage
-        theme="dark"
+        theme="light"
         title="Ecommerce Dropshipping Tutorials"
         subtitle="Learn about the latest in Ecommerce & Dropshipping"
         eyebrow="Amazon & Shopify"

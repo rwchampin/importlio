@@ -21,7 +21,7 @@ export default function FeatureHero() {
          scrollTrigger:{
             trigger:parent.current,
             scrub: true,
-            markers: true,
+            // markers: true,
             start: "top center",
             end: "bottom center"
         }

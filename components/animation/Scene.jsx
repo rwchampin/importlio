@@ -1,7 +1,7 @@
 "use client";
 import { useRef, useEffect } from 'react';
 import gsap from 'gsap';
-export default function Scene({ children, type }) {
+export default function Scene({ children }) {
     const sceneRef = useRef(null);
 
     useEffect(() => {

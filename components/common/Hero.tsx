@@ -14,7 +14,9 @@ interface Props {
     showButton?: boolean
 }
 export default function Hero({title, subtitle, headline, shadowText, theme, showButton}:Props) {
-
+    if(!theme) {
+        throw new Error("Page must have a theme")
+    }
  
 	
      return (
@@ -23,17 +25,20 @@ export default function Hero({title, subtitle, headline, shadowText, theme, show
 
 
 			<div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full md:w-2/3 max-w-[90vw]">
-                <Headline theme={theme}>{headline}</Headline>
+                {/* <Headline theme={theme}>{headline}</Headline>
                 <Spacer size={1} />
-                <Title data-enter={1} theme={"dark"}>{title}</Title>
+                <Title data-enter={1} theme={theme}>{title}</Title>
                 <Spacer size={1} />
                 <Subtitle data-enter={2} theme={theme}>{subtitle}</Subtitle>
                 <Spacer size={1} />
-				{showButton && <Modal theme={theme} ModalBody={EmailForm} data-enter={3} className="mt-5" />}
+				{showButton && <Modal theme={theme} ModalBody={EmailForm} data-enter={3} className="mt-5" />} */}
             </div>
 				
 			</section>
-			<ShadowText text={shadowText} />
+			<ShadowText
+            xPos="0"
+            yPos="50"
+            text={shadowText} />
 		</Scene>
     )
 }
