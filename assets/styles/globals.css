@@ -246,9 +246,9 @@ path.focus {
 }
 
 .shadow-text{
-    position: absolute;
+    position: fixed;
 	top: 0px;
-    transform: translate3d(-30%,0,0);
+    /* transform: translate3d(0%,0,0); */
     /* transform: translate(-10%,0); */
 	width: auto;
 	height: auto;
@@ -309,7 +309,7 @@ label {
 .scroll-track {
   top: 50%;
   transform: translate(0, -50%);
-  right: 10px;
+  right:5px;
   height: 80vh;
 } 
 .scroll-bar {

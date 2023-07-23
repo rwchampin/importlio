@@ -56,7 +56,7 @@ export default function ShadowText({text, xPos, yPos}) {
 	return (
 		    <div 
 			ref={titleRef} 
-			data-speed="1.2"
+			data-lag="5.2"
 			className={`shadow-text font-montserrat font-black`}>
 				{text}
 			</div>

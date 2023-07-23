@@ -22,7 +22,7 @@ export default function FeatureHero() {
             trigger:parent.current,
             scrub: true,
             // markers: true,
-            start: "top center",
+            start: "top center+=20%",
             end: "bottom center"
         }
     

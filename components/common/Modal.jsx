@@ -54,7 +54,7 @@ export default function Modal({ModalBody, theme}) {
         </Dialog>
       </Transition>
 
-      <Primary theme={theme} onClick={() => setIsOpen(true)}>Preregister</Primary>
+      <button className="max-w-lg" theme={theme} onClick={() => setIsOpen(true)}>Preregister</button>
 
 
     </>

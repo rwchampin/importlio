@@ -39,7 +39,7 @@ export default function Scrollbar({ children }) {
   return (
 
       <div id="smooth-wrapper" className="fade">
-        <div id="smooth-content"  className="flex flex-col min-h-screen gap-5">
+        <div id="smooth-content"  className="flex flex-col gap-5">
         {children}
       </div>
       <div ref={scrollTrackRef} className="scroll-track fixed w-[2px] bg-gray-200 shadow-inner right-0">

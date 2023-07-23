@@ -8,6 +8,7 @@ interface Props {
     className?: string;
     isLoading?: boolean;
     isMobile?: boolean;
+    onClick?: () => {};
     theme: "light" | "dark"
 }
 
@@ -36,6 +37,7 @@ export default function Primary({ children="Submit", type="button", className, i
                 duration: .3
             }
         }}
+        onClick={onClick}
         className={classes + `color-${theme === "light" ? "offwhite":"offgray"} text-sm font-bold max-w-lg bg-${theme === "light" ? "offgray" : "offwhite"}`}
         >
             {isLoading ? Spinner : children}

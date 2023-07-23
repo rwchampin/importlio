@@ -15,7 +15,7 @@ export default function BasicPage({theme, title, subtitle, headline, shadowText,
         headline={headline}
         shadowText={shadowText}
       />
-		<div className="prose-md p-5 max-w-[90vw] mx-auto z-10 relative">
+		<div className="bg-red-100 prose-md max-w-[90vw] min-h-screen mx-auto z-10 relative">
       {children}
       </div>
     
