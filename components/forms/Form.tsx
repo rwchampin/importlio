@@ -85,10 +85,10 @@ export default function Form({
 		switch(type) {
 			case 'email':
 				attrs = {
-					autoComplete: 'email',
-					autoCorrect: 'off',
-					autoCapitalize: 'off',
-					spellCheck: 'false',
+					autoComplete: 'on',
+					autoCorrect: 'on',
+					autoCapitalize: 'on',
+					spellCheck: 'true',
 				};
 				break;
 			case 'password':
@@ -117,7 +117,7 @@ export default function Form({
 				break;
 			case 'tel':
 				attrs = {
-					autoComplete: 'tel',
+					autoComplete: 'on',
 					autoCorrect: 'off',
 					autoCapitalize: 'off',
 					spellCheck: 'false',
@@ -184,7 +184,7 @@ export default function Form({
 	const getPlaceholder = (type:string) => {
 		switch(type) {
 			case 'email':
-				return 'Email';
+				return 'johnsmith@gmail.com';
 				break;
 			case 'password':
 				return 'Password';
@@ -228,7 +228,7 @@ export default function Form({
 					link={input.link}
 					required={input.required}
 					placeholder={getPlaceholder(input.type)}
-					{...getFormFieldAttrsByType(input.type)}
+					// {...getFormFieldAttrsByType(input.type)}
 					
 				>
 					{input.labelText}

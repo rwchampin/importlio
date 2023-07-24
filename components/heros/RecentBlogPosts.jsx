@@ -1,54 +1,39 @@
 "use client"
-
-import { useEffect, useState, Suspense } from 'react';
-
+import { useEffect, useState } from 'react';
+import { PostCard } from '@/components/common';
 export default function RecentBlogPosts() {
-    const [posts, setPosts] = useState([]);
+    const [ posts, setPosts ]=useState([]);
 
-    // const { data, error, isLoading } = useGetBlogPostsQuery();
 
     useEffect(() => {
-       const res = fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`).then(res => res.json()).then(data => {
-            if(data && data.length > 0) {
-              setPosts(data)
+        const res=fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`).then(res => res.json()).then(data => {
+            if(data&&data.length>0) {
+
+                setPosts(data)
             }
-         }
-         )
+        }
+        )
 
     }, [])
 
-    if(posts.length === 0) return null;
+    if(posts.length===0) return null;
 
     return (
-        <div className="flex flex-col items-center justify-center w-full h-full">
-            <div className="flex flex-col items-center justify-center w-full h-full">
-                <h1 className="text-3xl font-bold text-center">Recent Blog Posts</h1>
-                <div className="prose flex flex-col gap-5 md:flex-row items-center justify-center w-full h-full">
-                     {posts.map((post, idx) => {
-                        return (
-                            <div key={idx} className="prose flex flex-col p-5 items-center justify-center flex-1 rounded-lg bg-gray-300">
-                                <h1>{post.title}</h1>
-                                <small className='font-bold'>{post.published_at}</small>
-                                <small>{post.readtime} min read</small>
-                                 {/* <img src={post.image} alt="" />  */}
-                                <p className="text-center">{post.content}</p>
-                                <div>{post.tags.map((tag, idx) => {
-                                    return (
-                                        <span key={idx} className="text-xs font-bold text-white bg-gray-500 rounded-lg p-1">{tag}</span>
-                                    )
-                                })}</div>
+        <div className="recent-posts p-5 flex flex-col items-center justify-center w-fill py-10 my-10">
 
-<div>{post.categories.map((tag, idx) => {
-                                    return (
-                                        <span key={idx} className="text-xs font-bold text-white bg-gray-500 rounded-lg p-1">{tag}</span>
-                                    )
-                                })}</div>
-                            </div>
-                        )
-                    } 
-                    )} 
-                </div>
+            <h1 className="text-3xl font-bold text-center">Recent Blog Posts</h1>
+            {/* <div className="grid grid-cols-1 gap-1 items-center justify-center auto-rows-max md:grid-cols-2 lg:grid-cols-3"> */}
+            <div className='flex flex-col md:flex-row flex-wrap mt-5 gap-5 items-start justify-center'>
+                {posts.map((post, idx) => {
+                    return (
+                        <div key={idx} className='w-full md:w-1/3 lg:w-1/4 h-full place-items-stretch'>
+                            <PostCard post={post} key={idx} />
+                        </div>
+                    )
+                }
+                )}
             </div>
+
         </div>
     )
 

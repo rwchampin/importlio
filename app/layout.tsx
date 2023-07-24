@@ -89,7 +89,7 @@ const DynamicFooter:any = dynamic(() => import("@/components/common/Footer"), {
     ssr: false,
   });
 
-  const DynamicGA = dynamic(() => import("@/components/utils/GA"), {
+  const DynamicGA:any = dynamic(() => import("@/components/utils/GA"), {
     ssr: false,
   });
 export default function RootLayout({
@@ -102,9 +102,9 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`h-full ${apercu.variable} ${montserrat.variable}`}
+      className={`${apercu.variable} ${montserrat.variable}`}
     >
-      
+      <DynamicGA GA_TRACKING_ID={"G-V8X4P8V5SZ"} />
       <body>
       <Provider>
       <Setup />
@@ -113,22 +113,24 @@ export default function RootLayout({
 
          
          
-             <DynamicNavbar /> 
+         
             <DynamicScroller> 
-            
+                <DynamicNavbar /> 
 
              
              
-              {children}
-              
+             <main className="flex flex-col">
+               {children}
+              </main>
 
              <DynamicFooter /> 
+              <DynamicCursor size={10} />
             </DynamicScroller> 
          
           
          
 
-        <DynamicCursor size={10} />
+       
         </Provider>
       
       </body>

@@ -11,8 +11,8 @@ export default function Footer() {
       <footer className="bg-offwhite dark:bg-offgray text-black z-50 relative">
       <div className="container p-6 mx-auto">
         <div className="flex flex-col">
-          <div className="w-full -mx-6 lg:w-2/5">
-            <div className="px-6">
+          <div className="w-full md:-mx-6 lg:w-2/5">
+            <div className="px-5 text-center flex items-center flex-col justify-center md:block md:text-left">
 
               <LogoBlack size="40" />
 

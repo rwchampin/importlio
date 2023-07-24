@@ -152,16 +152,7 @@ export default function Navbar() {
         <>
           <div className="ccc mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
             <div className="relative flex h-16 items-center justify-between w-full">
-              <div className="absolute inset-y-0 right-0 flex items-center sm:hidden">
-                <Disclosure.Button className="inline-flex items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="sr-only">Open main menu</span>
-                  {open ? (
-                    <RxCross2 className="block h-6 w-6" aria-hidden="true" />
-                  ) : (
-                    <RiMenu5Fill className="block h-6 w-6" aria-hidden="true" />
-                  )}
-                </Disclosure.Button>
-              </div>
+             
               <div className="w-full flex flex-1 items-center justify-center md:justify-center sm:items-center sm:justify-center gap-5">
                 <div className="flex gap-5 justify-between items-center w-full">
                   {/* <div className="flex flex-shrink-0 items-center"> */}
@@ -198,7 +189,7 @@ export default function Navbar() {
                               // onClick={link.onClick}
                               isMobile={false}
                               className={`${
-                                link.name === "login"
+                                link.name === "Login"
                                   ? "bg-black text-white rounded-lg"
                                   : "text-blue-500"
                               } hover:bg-blue-500 hover:text-white px-3 py-2 rounded-md text-sm font-medium`}
@@ -228,6 +219,16 @@ export default function Navbar() {
                
                 {/* <NavAvatar /> */}
                 <DynamicSocialIcons />
+                 <div className="inset-y-0 right-0 flex items-center sm:hidden">
+                  <Disclosure.Button className="inline-flex aspect-square items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
+                    <span className="sr-only">Open main menu</span>
+                    {open ? (
+                      <RxCross2 className="block h-6 w-6" aria-hidden="true" />
+                    ) : (
+                      <RiMenu5Fill className="block h-6 w-6" aria-hidden="true" />
+                    )}
+                  </Disclosure.Button>
+                </div>
               </div>
             </div>
             {/* <SubNav
@@ -238,7 +239,7 @@ export default function Navbar() {
           </div>
 
           <Disclosure.Panel className="sm:hidden">
-            <div className="space-y-1 px-2 pb-3 pt-2 fixed h-full w-full bg-offwhite flex flex-col">
+            <div className="space-y-1 px-2 pb-3 pt-2 fixed h-full w-full bg-offwhite flex flex-col items-center justify-center text-center">
               {isAuthenticated
                 ? authLinks.map((link) => {
                     return (

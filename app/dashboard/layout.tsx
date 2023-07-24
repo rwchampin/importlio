@@ -5,7 +5,7 @@ interface Props {
 	children: React.ReactNode;
 }
 
-export default function Layout({ children }: Props) {
+export default function DashboardLayout({ children }: Props) {
 	return (
 	<RequireAuth>
 		 <div className="bg-blue-300 flex flex-col-reverse md:flex-row gap-5 w-full flex-1">

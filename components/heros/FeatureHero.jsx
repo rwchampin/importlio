@@ -8,25 +8,27 @@ export default function FeatureHero() {
     useEffect(() => {
 
         const fg = gsap.utils.selector(".feature-grid")
-        const features = fg(".feature")
+        const feat = fg(".feature")
 
          
+        // features.forEach((feat, index) => {
+        gsap.from(feat, {
+                opacity: 0,
+                y: 50,
+                stagger: 0.5,
+                ease: "power2.out",
+                scrollTrigger: {
+                    trigger: parent.current,
+                    scrub: true,
+                    markers: true,
+                    start: `top 80%`,
+                    end: `bottom 20%`,
+                }
 
+            })
+        // })
       
-       gsap.from(".feature", {
-        opacity:0,
-        y: 50,
-        stagger: .4,
-        ease: "expo.out",
-         scrollTrigger:{
-            trigger:parent.current,
-            scrub: true,
-            // markers: true,
-            start: "top center+=20%",
-            end: "bottom center"
-        }
-    
-      })
+      
     }, [])
     const features = [
         {
@@ -83,12 +85,12 @@ export default function FeatureHero() {
         },
     ]
     return (
-        <section ref={parent} className="bg-white dark:bg-gray-200 rounded-lg relative z-10">
+        <section ref={parent} className="dark:bg-gray-200 relative z-10">
             <div className="px-6 py-10 mx-auto prose-xl">
                 <h2 className="feature font-montserrat font-black text-heading-3">Shopify Product Importer App Features</h2>
 
                 <div className="mt-8 xl:mt-12 lg:flex lg:items-center">
-                    <div className="feature-grid grid w-full grid-cols-1 gap-8 lg:w-full xl:gap-16 md:grid-cols-2 lg:grid-cols-3">
+                    <div className="feature-grid grid w-full grid-cols-1 gap-5 lg:w-full xl:gap-16 md:grid-cols-2 lg:grid-cols-3">
                         {features.map((feature, index) => {
                             return (
                                 <div key={index} className="feature space-y-3">

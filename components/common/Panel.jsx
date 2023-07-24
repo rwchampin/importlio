@@ -1,7 +1,7 @@
-export default function Panel({ children,bg, className }) {
+export default function Panel({ children,className, round }) {
 	return (
-		<div className={`${className} p-5 rounded-lg ${bg === 'dark' ? 'text-offwhite bg-offgray' : 'text-black bg-offwhite'}`}>
+		<section className={`${round? 'rounded-lg':''} bg-offwhite shadow-xl hover:shadow-2xl ${className}`}>
 			{children}
-		</div>
+		</section>
 	)
 }

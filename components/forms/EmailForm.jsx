@@ -32,7 +32,7 @@ return <Form
 			btnText='Pre-register'
 			onChange={onChange}
 			onSubmit={onSubmit}
-			postFormText="Register today for a free trial of the world$apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
+			postFormText="Register today for a free trial of the world&apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
 		/>
 
 }

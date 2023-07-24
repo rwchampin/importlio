@@ -70,9 +70,11 @@ export default function Input({
           value={value}
           required={required}
           placeholder={placeholder}
-          autoComplete={renderAutomplete(type)}
+          autoComplete={'on'}
         />}
       </div>
     </div>
   );
+
+
 }

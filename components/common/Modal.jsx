@@ -2,7 +2,7 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import dynamic from 'next/dynamic'
-
+import { useUi } from '@/hooks'
 const Primary = dynamic(() => import("@/components/common/buttons/Primary"));
 const DynamicLogoBlack = dynamic(() => import("@/components/common/logo/LogoBlack"));
 const Close = dynamic(() => import("@/components/common/Close"));
@@ -10,7 +10,8 @@ const Close = dynamic(() => import("@/components/common/Close"));
 export default function Modal({ModalBody, theme}) {
   let [isOpen, setIsOpen] = useState(false)
  
- 
+  const ui = useUi()
+
  
   return (
     <>
@@ -31,7 +32,7 @@ export default function Modal({ModalBody, theme}) {
           </Transition.Child>
 
           <div className="fixed inset-0 overflow-y-auto">
-            <div className="flex min-h-full items-center justify-center p-4 text-center">
+            <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"
@@ -41,7 +42,7 @@ export default function Modal({ModalBody, theme}) {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="modal w-full max-w-md transform overflow-hidden rounded-lg bg-white p-6 text-left align-middle shadow-xl transition-all">
+                <Dialog.Panel className="modal">
                   <Close closeFN={() => setIsOpen(false)} />
                   <div className="flex items-center justify-center">
                   <DynamicLogoBlack />
@@ -53,7 +54,7 @@ export default function Modal({ModalBody, theme}) {
           </div>
         </Dialog>
       </Transition>
-
+    
       <button className="max-w-lg" theme={theme} onClick={() => setIsOpen(true)}>Preregister</button>
 
 

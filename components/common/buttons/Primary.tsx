@@ -15,7 +15,7 @@ interface Props {
 const Spinner:any = dynamic(() => import('@/components/common/Spinner'), {
     ssr: false
 });
-export default function Primary({ children="Submit", type="button", className, isLoading, isMobile, theme }:Props) {
+export default function Primary({ children="Submit", type="button", className, isLoading, isMobile, theme, onClick }:Props) {
     let classes:string = "bg-offgray text-offwhite font-apercu font-bold uppercase hover:shadow-2xl hover:drop-shadow-2xl hover:cursor-pointer h-[46px] px-6 py-2 max-w-lg text-sm w-full"
 
     classes += className ? ` ${className}` : '';

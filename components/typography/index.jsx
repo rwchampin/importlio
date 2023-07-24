@@ -80,7 +80,7 @@ function Headline({ children,theme}) {
 function Title({ children,theme }) {
    
     return (
-        <h1 className={` font-montserrat font-black text-${calculateTitleColor(theme)} not-prose text-heading-1 m-0 whitespace-pre-line`}>
+        <h1 className={` font-montserrat-black font-black text-${calculateTitleColor(theme)} not-prose text-heading-1 m-0 whitespace-pre-line`}>
             {children}
         </h1>
     );
