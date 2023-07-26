@@ -5,7 +5,7 @@ import { TbPackageImport } from "react-icons/tb";
 import { AiOutlineDashboard } from "react-icons/ai";
 import { CgProfile } from "react-icons/cg";
 import { RiFileList2Line } from "react-icons/ri";
-import { BsCart4 } from "react-icons/bs";
+import { BsCart4, BsPencil } from "react-icons/bs";
 import { FaBook } from "react-icons/fa";
 import { Popover } from "@/components/common";
 import { BiSolidCog } from "react-icons/bi";
@@ -21,6 +21,12 @@ export default function Sidebar() {
       name: "Posts",
       href: "/dashboard/posts",
       icon: <FaBook size={size} />,
+      protected: true,
+    },
+    {
+      name: "Posts",
+      href: "/dashboard/posts/create/",
+      icon: <BsPencil size={size} />,
       protected: true,
     },
     {
@@ -62,7 +68,7 @@ export default function Sidebar() {
           <Link
             href={link.href}
             key={link.name}
-            className="flex items-center justify-center gap-2 text-white hover:text-gray-500"
+            className="flex items-center justify-center gap-2 text-white hover:text-gray-500 hover:cursor-pointer"
           >
             {link.icon}
           </Link>

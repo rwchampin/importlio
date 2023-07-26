@@ -46,7 +46,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
     },
   ];
   return (
-    <div className="flex flex-col h-screen w-full flex-1 bg-red-900 rounded-lg p-5">
+    <div className="flex flex-col h-full w-full flex-1 bg-offwhite md:rounded-lg p-5">
       <AnimatePresence>
         <motion.main
           key={pathname}
@@ -54,7 +54,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="flex flex-auto w-full flex-col gap-5 bg-red-300"
+          className="flex flex-auto w-full flex-col overflow-y-auto"
         >
           {children}
         </motion.main>

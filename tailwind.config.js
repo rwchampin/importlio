@@ -53,6 +53,8 @@ module.exports = {
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
       fontSize: {
+        "xxxs": ".5rem",
+        "xxs": ".65rem",
         "2xs": ".125rem",
         "3xl": "1.875rem",
         "4xl": "2.25rem",
@@ -86,7 +88,9 @@ module.exports = {
         "4xl": "2.5rem",
         "5xl": "2.75rem",
       },
-      
+      height: {
+        input: "60px",
+      },
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
         apercu: ["var(--font-apercu)"],

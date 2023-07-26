@@ -1,5 +1,5 @@
 import { useAppDispatch } from '@/redux/hooks';
-import { setColorMode } from '@/redux/features/uiSlice';
+import { setColorMode } from '@/redux/slices/ui';
 
 export default function useUi() {
     const dispatch = useAppDispatch();

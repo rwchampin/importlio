@@ -10,7 +10,7 @@ export default function ShadowText({text, xPos, yPos}) {
 		if(titleRef.current) {
 		gsap.set(titleRef.current, {
 			percentX: xPos || 0,
-			percentY: yPos || 50,
+			y: "50vh",
 			top: -titleRef.current.getBoundingClientRect().height / 2
 		})
 	}

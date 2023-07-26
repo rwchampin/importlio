@@ -100,10 +100,24 @@ const authApiSlice = apiSlice.injectEndpoints({
 			}
 		},
 		}),
+		createPost: builder.mutation({
+			query: ({
+				title,
+				content,
+			}) => ({
+				url: '/posts/create/',
+				method: 'POST',
+				body: {
+					title,
+					content,
+				},
+			}),
+		}),
 	}),
 });
 
 export const {
+		useCreatePostMutation,
 	useRetrieveUserQuery,
 	useSocialAuthenticateMutation,
 	useLoginMutation,

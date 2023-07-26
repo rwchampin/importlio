@@ -18,7 +18,7 @@ export default function Feature(feature) {
       scrollTrigger: {
         scrub: true,
         trigger: p.current,
-        markers: true
+        // markers: true
       }
     })
   }, []) // Add iconRef to the dependency array

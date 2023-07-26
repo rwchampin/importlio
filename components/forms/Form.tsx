@@ -237,12 +237,11 @@ export default function Form({
 
 
 
-				<button
-				 type="submit" 
-				 disabled={isLoading}
-				 >
+			<Primary
+				className="w-full max-w-full"
+			>
 					{isLoading ? <DynamicSpinner /> : btnText}
-				</button>
+				</Primary>
 
 
 				<div className="text-xs mt-2">{postFormText}</div>

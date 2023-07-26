@@ -1,4 +1,5 @@
-export { default as useLogin } from './use-login';
+"use client";
+export {default as useLogin} from './use-login';
 export { default as useRegister } from './use-register';
 export { default as useResetPasswordConfirm } from './use-reset-password-confirm';
 export { default as useResetPassword } from './use-reset-password';
@@ -8,3 +9,4 @@ export { default as useEventEmitter } from './use-event-emitter';
 export { default as useIntersectionObserver } from './useIntersectionObserver';
 export { default as useUi } from './use-ui';
 export { default as usePreregister } from './use-preregister';
+export {default as useCreatePost} from './use-create-post';

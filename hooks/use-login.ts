@@ -1,4 +1,5 @@
-import { useState, ChangeEvent, FormEvent } from 'react';
+'use client';
+import {useState,ChangeEvent,FormEvent} from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
 import { useLoginMutation } from '@/redux/features/authApiSlice';

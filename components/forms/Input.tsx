@@ -1,6 +1,9 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, useState } from "react";
 import Link from "next/link";
-import { render } from "@headlessui/react/dist/utils/render";
+import { Editor } from "@/components/forms";
+import { HiOutlineMail as EmailIcon } from "react-icons/hi";
+import { IoLockClosedOutline as PasswordIcon } from "react-icons/io5";
+import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
 
 interface Props {
   labelId: string;
@@ -14,6 +17,7 @@ interface Props {
     linkUrl: string;
   };
   required?: boolean;
+  className?: string;
 }
 
 export default function Input({
@@ -23,9 +27,11 @@ export default function Input({
   value,
   children,
   placeholder,
+  className,
   link,
   required = false,
 }: Props) {
+  const [focus, setFocus ] = useState(false)
   const renderAutomplete = (type: string) => {
     switch (type) {
       case "text":
@@ -39,12 +45,46 @@ export default function Input({
         break;
     }
   };
+
+  interface IconProps {
+    className?: string;
+    style?: React.CSSProperties;
+  }
+  const Icon = ({ className, style }: IconProps) => {
+    switch (type) {
+      case "email":
+        return (
+          <EmailIcon
+            className={`absolute top-1/2 left-3 transform -translate-y-1/2 text-offgray ${className}`}
+            style={style}
+          />
+        );
+      case "password":
+        return (
+          <PasswordIcon
+            className={`absolute top-1/2 left-3 transform -translate-y-1/2 text-offgray ${className}`}
+            style={style}
+          />
+        );
+      case "search":
+        return (
+          <SearchIcon
+            className={`absolute top-1/2 left-3 transform -translate-y-1/2 text-offgray ${className}`}
+            style={style}
+          />
+        );
+
+      default:
+        return null;
+    }
+  };
+
   return (
     <div>
       <div className="flex justify-between align-center">
         <label
           htmlFor={labelId}
-          className="block text-sm font-bold font-apercu leading-6 text-gray-900"
+          className="block text-sm font-bold font-apercu leading-6 text-offgray"
         >
           {children}
         </label>
@@ -60,21 +100,44 @@ export default function Input({
         )}
       </div>
       <div className="mt-2">
-        {type === "textarea" && <textarea></textarea>}
-        {type !== "textarea" && <input
-          id={labelId}
-          className="block font-apercu w-full rounded-md border-0 py-1.5 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-neutral-400 placeholder:font-apercu placeholder:font-bolder focus:ring-2 focus:ring-inset focus:ring-gray-400 sm:text-sm sm:leading-6"
-          name={labelId}
-          type={type}
-          onChange={onChange}
-          value={value}
-          required={required}
-          placeholder={placeholder}
-          autoComplete={'on'}
-        />}
+        {type==="textarea"&&(
+           
+
+
+          <Editor
+            onChange={onChange}
+            value={value}
+            placeholder={placeholder}
+            autoComplete={"on"}
+            name={labelId}
+            id={labelId}
+            type={type}
+          />
+        )}
+        {type !== "textarea" && (
+          <div className="relative overflow-hidden rounded-lg bg-input   hover:bg-offgray  rounded-lg h-input  hover:shadow-lg flex items-center justify-start bg-input w-full min-w-[400px]">
+            <Icon
+              className={`${focus === true ? "text-offwhite" : "text-black"}`}
+            />
+            <input
+              onFocus={() => setFocus(true)}
+              onBlur={() => setFocus(true)}
+              onMouseLeave={() => setFocus(false)}
+              onMouseOut={() => setFocus(false)}
+              onMouseEnter={() => setFocus(true)}
+              id={labelId}
+              name={labelId}
+              type={type}
+              onChange={onChange}
+              value={value}
+              required={required}
+              placeholder={placeholder}
+              autoComplete={"on"}
+              className={`pl-10 w-full h-input bg-transparent   hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`}
+            />
+          </div>
+        )}
       </div>
     </div>
   );
-
-
 }

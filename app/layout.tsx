@@ -9,7 +9,9 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Provider from "@/redux/provider";
-import { Setup } from "@/components/utils";
+import {Setup} from "@/components/utils";
+import { Header } from "@/components/common";
+
 
 const montserrat = Montserrat({
   weight:  "900",
@@ -81,9 +83,7 @@ const DynamicFooter:any = dynamic(() => import("@/components/common/Footer"), {
   ssr: false,
   });
 
-  const DynamicNavbar:any = dynamic(() => import("@/components/common/Navbar"), { 
-    ssr: false,
-  });
+  
 
   const DynamicCursor:any = dynamic(() => import("@/components/common/Cursor"), {
     ssr: false,
@@ -92,48 +92,33 @@ const DynamicFooter:any = dynamic(() => import("@/components/common/Footer"), {
   const DynamicGA:any = dynamic(() => import("@/components/utils/GA"), {
     ssr: false,
   });
-export default function RootLayout({
+const RootLayout = ({
   children,
 }: {
   children: React.ReactNode;
-}) {
+}) => {
+
+
 
  
   return (
-    <html
-      lang="en"
-      className={`${apercu.variable} ${montserrat.variable}`}
-    >
-      <DynamicGA GA_TRACKING_ID={"G-V8X4P8V5SZ"} />
-      <body>
-      <Provider>
-      <Setup />
-     
+    <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
+      <body className={`pt-[4rem]`}>
+        <Provider>
+          <Setup />
+          <Header />
 
+          <DynamicScroller>
+            <main className="flex flex-col">{children}</main>
 
-         
-         
-         
-            <DynamicScroller> 
-                <DynamicNavbar /> 
-
-             
-             
-             <main className="flex flex-col">
-               {children}
-              </main>
-
-             <DynamicFooter /> 
-              <DynamicCursor size={10} />
-            </DynamicScroller> 
-         
-          
-         
-
-       
+            <DynamicFooter />
+            <DynamicCursor size={10} />
+          </DynamicScroller>
         </Provider>
-      
+        <DynamicGA GA_TRACKING_ID={"G-V8X4P8V5SZ"} />
       </body>
     </html>
   );
 }
+
+export default RootLayout;

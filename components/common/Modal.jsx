@@ -1,24 +1,27 @@
 "use client";
-import { Dialog, Transition } from '@headlessui/react'
-import { Fragment, useState } from 'react'
+import {Dialog, Transition} from '@headlessui/react'
+import {Fragment, useState} from 'react'
 import dynamic from 'next/dynamic'
-import { useUi } from '@/hooks'
-const Primary = dynamic(() => import("@/components/common/buttons/Primary"));
-const DynamicLogoBlack = dynamic(() => import("@/components/common/logo/LogoBlack"));
-const Close = dynamic(() => import("@/components/common/Close"));
+import {toggleModal} from '@/redux/slices/ui';
+import {useAppSelector, useAppDispatch} from "@/redux/hooks";
+
+const Primary=dynamic(() => import("@/components/common/buttons/Primary"));
+const DynamicLogoBlack=dynamic(() => import("@/components/common/logo/LogoBlack"));
+const Close=dynamic(() => import("@/components/common/Close"));
 
 export default function Modal({ModalBody, theme}) {
-  let [isOpen, setIsOpen] = useState(false)
- 
-  const ui = useUi()
+  const {isModalOpen}=useAppSelector(state => state.ui);
+  const dispatch=useAppDispatch();
 
- 
+  const toggle=() => {
+    dispatch(toggleModal());
+  }
   return (
     <>
-       
 
-      <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={() => setIsOpen(false)}>
+
+      <Transition appear show={isModalOpen} as={Fragment}>
+        <Dialog as="div" className="relative z-10" onClose={toggle}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -43,19 +46,19 @@ export default function Modal({ModalBody, theme}) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="modal">
-                  <Close closeFN={() => setIsOpen(false)} />
+                  <Close closeFN={toggle} />
                   <div className="flex items-center justify-center">
-                  <DynamicLogoBlack />
+                    <DynamicLogoBlack />
                   </div>
-                 <ModalBody />
+                  <ModalBody />
                 </Dialog.Panel>
               </Transition.Child>
             </div>
           </div>
         </Dialog>
       </Transition>
-    
-      <button className="max-w-lg" theme={theme} onClick={() => setIsOpen(true)}>Preregister</button>
+
+      <Primary onClick={toggle}>Preregister</Primary>
 
 
     </>

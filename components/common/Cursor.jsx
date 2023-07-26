@@ -85,7 +85,8 @@ class MouseFollower {
                 // '-icon': 'a,button',
                 '-media': 'img,video',
                 '-stick': 'a,button,.btn',
-                '-inverse': '.inverse'
+                '-inverse': '.inverse',
+                'morph': 'a,button,.btn',
             },
             visible: true,
             visibleOnState: false,
@@ -231,6 +232,7 @@ class MouseFollower {
                     if (params.img) this.setImg(params.img);
                     if (params.video) this.setVideo(params.video);
                     if(params.morph) this.setMorph(target)
+
                     if (typeof (params.show) !== 'undefined') this.show();
                     if (typeof (params.stick) !== 'undefined') this.setStick(params.stick || target);
                 }
@@ -586,7 +588,8 @@ class MouseFollower {
             icon: dataset[this.options.dataAttr + 'Icon'],
             img: dataset[this.options.dataAttr + 'Img'],
             video: dataset[this.options.dataAttr + 'Video'],
-            stick: dataset[this.options.dataAttr + 'Stick'],
+            stick: dataset[ this.options.dataAttr+'Stick' ],
+            morph: dataset[ this.options.dataAttr+'Morph' ],
         };
     }
 

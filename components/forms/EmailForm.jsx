@@ -1,7 +1,6 @@
 'use client';
 import { usePreregister } from '@/hooks';
 import { Form } from '@/components/forms';
-import { Modal } from '@/components/common/';
 
 export default function EmailForm() {
 	const { 

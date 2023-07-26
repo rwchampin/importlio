@@ -1,7 +1,26 @@
-export default function Outline({children}) {
+import { motion } from "framer-motion";
+export default function Outline({children, onClick}) {
     return (
-        <button class="px-6 py-2 font-medium tracking-wide text-black capitalize transition-colors duration-300 transform rounded-lg hover:bg-blue-500 focus:outline-none focus:ring focus:ring-blue-300 focus:ring-opacity-80">
+        <motion.button
+            type={onClick? "button":"submit"}
+            whileHover={{
+                scale: 1.02,
+                transition: {
+                    type: 'spring',
+                    duration: .3
+                }
+            }}
+            whileTap={{
+                scale: .9,
+                transition: {
+                    duration: .3
+                }
+            }}
+            onClick={onClick}
+            className="outline hover:cursor-pointer h-input bg-transparent hover:bg-offgray hover:text-offwhite text-offgray text-sm  w-full max-w-lg rounded-lg h-input hover:cursor-pointer hover:shadow-lg font-bold font-apercu-bold rounded-lg"
+        >
+            
             {children}
-</button>
+        </motion.button>
     );
 }

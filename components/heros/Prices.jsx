@@ -38,7 +38,7 @@ export default function Prices() {
         },
     ]
     return (
-        <div className="bg-white text-black dark:bg-gray-300 rounded-lg">
+        <div className="prose-2xl text-black dark:bg-gray-300 rounded-lg">
     <div className="container px-6 py-8 mx-auto">
         <div className="flex flex-col items-center justify-center xl:items-center xl:-mx-8 xl:flex">
             

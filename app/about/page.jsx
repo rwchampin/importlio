@@ -1,5 +1,5 @@
 "use client"
-import { Hero } from "@/components/common";
+import {Section} from '@/components/common'
 import { EmailForm } from "@/components/forms";
 import { BasicPage } from "@/components/pages"
 export default function Page() {
@@ -13,7 +13,9 @@ export default function Page() {
         cta={<EmailForm />}
       >
 
-      
+      <Section
+        className='p-5'
+      >
 
       <div>
         The ultimate solution for efficiently importing and managing your products on Amazon. With our powerful toolset and user-friendly interface, you can streamline your product listing process, maximize your sales potential, and save valuable time.
@@ -62,7 +64,7 @@ export default function Page() {
         Sign up now and unleash the true potential of your Amazon store with our feature-rich Product Importer App.
       </p>
 
-      
+      </Section>
  
     </BasicPage>
   );

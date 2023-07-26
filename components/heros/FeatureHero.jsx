@@ -20,7 +20,7 @@ export default function FeatureHero() {
                 scrollTrigger: {
                     trigger: parent.current,
                     scrub: true,
-                    markers: true,
+                    // markers: true,
                     start: `top 80%`,
                     end: `bottom 20%`,
                 }
@@ -86,7 +86,7 @@ export default function FeatureHero() {
     ]
     return (
         <section ref={parent} className="dark:bg-gray-200 relative z-10">
-            <div className="px-6 py-10 mx-auto prose-xl">
+            <div className="py-10 mx-auto prose-xl">
                 <h2 className="feature font-montserrat font-black text-heading-3">Shopify Product Importer App Features</h2>
 
                 <div className="mt-8 xl:mt-12 lg:flex lg:items-center">

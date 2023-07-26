@@ -1,0 +1,62 @@
+.share {
+  width: 600px;
+  height: 200px;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+.share-content {
+  max-width: 600px;
+  height: 200px;
+  position: relative;
+}
+.share-button,
+.share-toggle-button {
+  position: absolute;
+  display: inline-block;
+  left: 50%;
+  top: 50%;
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  line-height: 80px;
+  margin-left: -40px;
+  margin-top: -40px;
+  background: #7c4dff;
+  text-align: center;
+  color: #e6e3e3;
+  border: 0 0;
+  outline: 0;
+  border: none;
+}
+.share-button:hover,
+.share-toggle-button:hover {
+  color: #fff;
+  cursor: pointer;
+}
+.share-button {
+  font-size: 30px;
+  background: #7c4dff;
+  transform: scale(0.95, 0.95);
+  color: #222;
+}
+.share-toggle-button {
+  z-index: 100;
+  background: #7c4dff;
+  font-size: 20px;
+}
+.share-items {
+  display: inline-block;
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+}
+a.share-button {
+  color: #e6e3e3;
+}
+a.share-button:hover,
+a.share-button:focus {
+  color: #fff;
+  cursor: pointer;
+}

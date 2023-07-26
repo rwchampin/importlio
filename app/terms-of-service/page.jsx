@@ -1,6 +1,6 @@
 "use client";
 import { BasicPage } from "@/components/pages";
-
+import {Section} from '@/components/common'
 export default function Page() {
   const text = `1. Introduction
   <section className="text-left">
