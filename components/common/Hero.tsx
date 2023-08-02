@@ -4,13 +4,16 @@ import { Spacer } from "@/components/utils";
 import { Modal } from "@/components/common/";
 import Scene from "@/components/animation/Scene";
 import Image from "next/image";
+import dynamic from "next/dynamic";
+
+
 interface Props {
   bg?: string;
   title: string;
   subtitle?: string;
   headline?: string;
   shadowText?: string;
-  theme: "dark" | "light";
+  theme?: "dark" | "light";
   showButton?: boolean;
   xPos?: string;
   yPos?: string;
@@ -36,18 +39,18 @@ export default function Hero({
   return (
     <Scene>
       <section
-        className={`${
-          theme === "light" ? "bg-offwhite" : "bg-offgray"
-        } mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
+      style={{ zIndex: 100 }}
+        className={`z-100 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
       >
-       {bg && ( <Image
-          src={bg}
-          alt="background"
-          fill
-          className="absolute top-0 left-0 m-0 w-full h-full object-cover z-0"
-        />
-       )}
-        <div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw]">
+        {bg && (
+          <Image
+            src={bg}
+            alt="background"
+            fill
+            className="absolute top-0 left-0 m-0 w-full h-full object-cover z-0"
+          />
+        )}
+        <div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
           <Headline theme={theme}>{headline}</Headline>
           <Spacer size={1} />
           <Title data-enter={1} theme={theme}>
@@ -63,6 +66,7 @@ export default function Hero({
           )}
           {customComponent}
         </div>
+
       </section>
       <ShadowText xPos={xPos} yPos={yPos} text={shadowText} />
     </Scene>

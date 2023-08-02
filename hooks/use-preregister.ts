@@ -1,8 +1,8 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
-import {usePreregisterMutation} from '@/redux/features/authApiSlice';
+import {usePreregisterMutation} from '@/redux/slices/apiSlice';
 import { useAppDispatch } from '@/redux/hooks';
-import { toggleModal, setModalErrors } from '@/redux/slices/ui';
+import { toggleModal } from '@/redux/slices/ui';
 import { toast } from 'react-toastify';
 
 export default function usePreRegister() {
@@ -21,7 +21,9 @@ export default function usePreRegister() {
 		setFormData({ "email": value });
 	};
 
-
+	const toggle=() => {
+		dispatch(toggleModal());
+	}
 
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -29,13 +31,13 @@ export default function usePreRegister() {
 		preregister({ email })
 			.unwrap()
 			.then(() => {
-				dispatch(toggleModal());
+				toggle()
 				toast.success('Thanks for registering!');
 
 			})
 			.catch(() => {
-				useAppDispatch(setModalErrors());
 				toast.error('Failed to register account');
+
 			});
 	};
 

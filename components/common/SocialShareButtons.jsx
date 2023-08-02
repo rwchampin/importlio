@@ -133,12 +133,12 @@ export default function SocialShareButtons({url, title, summary, className, show
 			menuOpen? openShareMenu():closeShareMenu();
 		}
 
-		toggleButton.current.addEventListener("mousedown", function () {
+		$toggleButton.addEventListener("mousedown", function () {
 			toggleShareMenu();
 		})
 
 		return () => {
-			toggleButton.current.removeEventListener("mousedown");
+			$toggleButton.removeEventListener("mousedown");
 		}
 	}, []);
 	// useEffect(() => {

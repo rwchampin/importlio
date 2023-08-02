@@ -8,8 +8,10 @@ import { RiFileList2Line } from "react-icons/ri";
 import { BsCart4, BsPencil } from "react-icons/bs";
 import { FaBook } from "react-icons/fa";
 import { Popover } from "@/components/common";
-import { BiSolidCog } from "react-icons/bi";
+import {BiSolidCog} from "react-icons/bi";
+import { usePathname } from "next/navigation";
 export default function Sidebar() {
+  const pathname = usePathname();
   const size = 25;
   const sidebarLinks = [
     {
@@ -18,27 +20,23 @@ export default function Sidebar() {
       icon: <AiOutlineDashboard size={size} />,
     },
     {
-      name: "Posts",
+      name: "Posts List",
       href: "/dashboard/posts",
       icon: <FaBook size={size} />,
       protected: true,
     },
     {
-      name: "Posts",
+      name: "Create Posts",
       href: "/dashboard/posts/create/",
       icon: <BsPencil size={size} />,
       protected: true,
     },
     {
-      name: "Import",
+      name: "Import Products",
       href: "/dashboard/import",
       icon: <TbPackageImport size={size} />,
     },
-    {
-      name: "Import",
-      href: "/dashboard/import",
-      icon: <TbPackageImport size={size} />,
-    },
+     
 
     {
       name: "Products",
@@ -62,13 +60,13 @@ export default function Sidebar() {
     },
   ];
   return (
-    <div className="p-5 rounded-lg bg-black h-full flex items-center justify-center md:justify-start gap-5 md:flex-col">
+    <div className="p-5 rounded-lg bg-gray-3 ring-2 ring-gray-7 h-auto md:h-full flex items-center justify-center md:justify-start gap-5 md:flex-col">
       {sidebarLinks.map((link) => {
         return (
           <Link
             href={link.href}
             key={link.name}
-            className="flex items-center justify-center gap-2 text-white hover:text-gray-500 hover:cursor-pointer"
+            className={`flex items-center text-xs justify-center gap-2 ${pathname===link.href ? 'text-white-12' : 'text-gray-500'} hover:text-white-12 hover:cursor-pointer duration-200 ease-in-out hover:scale-110`}
           >
             {link.icon}
           </Link>

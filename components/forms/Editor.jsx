@@ -1,25 +1,76 @@
-import React, {useState,useEffect} from 'react';
-import ReactQuill, {Quill} from 'react-quill';
+import React, {useState} from 'react';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+import PropTypes from 'prop-types';
 
-import 'react-quill/dist/quill.snow.css';
-
-
-
-
-
-export default function Editor({value, onChange, name, placeholder, required, label, labelId, type}) {
-
-	 
-	return <textarea value={value} name={name} onChange={onChange} />
-	// return <ReactQuill
-	// 	theme="snow"
-	// 	value={textContent}
-	// 	name={name}
-	// 	onChange={(content, delta, source, editor) => {
-	// 		setTextContent(content);
-
-		
-	// }} />;
+const Editor=({
+	placeholder,
+	onChange,
+	value
+}) => {
 
 
-}
+
+	const handleChange=(html) => {
+		onChange({target: {value: html, name: 'content'}})
+	};
+
+
+	const modules={
+		toolbar: [
+			[ {header: '1'}, {header: '2'}, {font: []} ],
+			[ {size: []} ],
+			[ 'bold', 'italic', 'underline', 'strike', 'blockquote' ],
+			[
+				{list: 'ordered'},
+				{list: 'bullet'},
+				{indent: '-1'},
+				{indent: '+1'},
+			],
+			[ 'link', 'image', 'video' ],
+			[ 'clean' ],
+		],
+		clipboard: {
+			// toggle to add extra line breaks when pasting HTML:
+			matchVisual: false,
+		},
+	};
+
+	const formats=[
+		'header',
+		'font',
+		'size',
+		'bold',
+		'italic',
+		'underline',
+		'strike',
+		'blockquote',
+		'list',
+		'bullet',
+		'indent',
+		'link',
+		'image',
+		'video',
+	];
+ 
+
+	return (
+
+			<ReactQuill
+				theme={'snow'}
+			onChange={handleChange}
+			value={value}
+				modules={modules}
+				formats={formats}
+				// bounds={'.app'}
+				placeholder={placeholder}
+			/>
+			 
+		 
+	);
+};
+
+
+ 
+
+export default Editor;

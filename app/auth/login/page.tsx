@@ -5,8 +5,8 @@ import { SocialButtons } from '@/components/common';
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {
-	title: 'Importlio | Login',
-	description: 'Importlio login page',
+	title: 'Importlio | Login - Amazon FBA Product Research Tool',
+	description: 'Importlio login page for Amazon FBA product research tool.',
 };
 
 export default function Page() {
@@ -26,7 +26,7 @@ export default function Page() {
 				<p className='mt-10 text-center text-sm text-gray-500'>
 					Don&apos;t have an account?{' '}
 					<Link
-						href='/auth/register'
+						href='/auth/register/'
 						className='font-semibold leading-6 text-black'
 					>
 						Register here

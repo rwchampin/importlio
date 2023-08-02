@@ -214,38 +214,35 @@ export default function Form({
 
 
 	return (
-		<form autoComplete='on' autoCorrect='on' method="POST" className={`flex flex-col space-y-6`} onSubmit={onSubmit}>
-			{/* <input name="sub-input-info" value="" /> */}
-			{config.map(input => (
+    <form
+      autoComplete="on"
+      autoCorrect="on"
+      method="POST"
+      className={`flex flex-col space-y-6`}
+      onSubmit={onSubmit}
+    >
+      {/* <input name="sub-input-info" value="" /> */}
+      {config.map((input) => (
+        <Input
+          key={input.labelId}
+          labelId={input.labelId}
+          type={input.type}
+          onChange={onChange}
+          value={input.value}
+          link={input.link}
+          required={input.required}
+          placeholder={getPlaceholder(input.type)}
+          // {...getFormFieldAttrsByType(input.type)}
+        >
+          {input.labelText}
+        </Input>
+      ))}
 
-				
-				<Input
-					key={input.labelId}
-					labelId={input.labelId}
-					type={input.type}
-					onChange={onChange}
-					value={input.value}
-					link={input.link}
-					required={input.required}
-					placeholder={getPlaceholder(input.type)}
-					// {...getFormFieldAttrsByType(input.type)}
-					
-				>
-					{input.labelText}
-				</Input>
-			))}
+      <Primary className="w-full max-w-full" variant="solid" type="submit">
+        {isLoading ? <DynamicSpinner /> : btnText}
+      </Primary>
 
-
-
-			<Primary
-				className="w-full max-w-full"
-			>
-					{isLoading ? <DynamicSpinner /> : btnText}
-				</Primary>
-
-
-				<div className="text-xs mt-2">{postFormText}</div>
-
-		</form>
-	);
+      <div className="text-xs mt-2">{postFormText}</div>
+    </form>
+  );
 }

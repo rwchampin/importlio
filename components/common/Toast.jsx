@@ -8,26 +8,20 @@ const Toast = ({title, description, action, swipeDirection="right", open, setOpe
  
 
   return (
-    <ToastDemo.Provider swipeDirection={swipeDirection}>
-      <ToastDemo.Root
-        className="bg-white rounded-md shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] p-[15px] grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-[15px] items-center data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out] data-[swipe=end]:animate-swipeOut"
-        open={open}
-        onOpenChange={setOpen}
-      >
-        <ToastDemo.Title className="[grid-area:_title] mb-[5px] font-medium text-slate12 text-[15px]">
-            {title}
-        </ToastDemo.Title>
-        <ToastDemo.Description asChild>
-            {description}
-        </ToastDemo.Description>
-       {action && <ToastDemo.Action className="[grid-area:_action]" asChild altText={action}>
-          <button className="inline-flex items-center justify-center rounded font-medium text-xs px-[10px] leading-[25px] h-[25px] bg-green2 text-green11 shadow-[inset_0_0_0_1px] shadow-green7 hover:shadow-[inset_0_0_0_1px] hover:shadow-green8 focus:shadow-[0_0_0_2px] focus:shadow-green8">
-            {action}
-          </button>
-        </ToastDemo.Action>}
-      </ToastDemo.Root>
-      <ToastDemo.Viewport className="[--viewport-padding:_25px] fixed bottom-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
-    </ToastDemo.Provider>
+    <div class="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
+      <div class="flex items-center justify-center w-12 bg-emerald-500">
+        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+          <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
+        </svg>
+      </div>
+
+      <div class="px-4 py-2 -mx-3">
+        <div class="mx-3">
+          <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
+          <p class="text-sm text-gray-600 dark:text-gray-200">Your account was registered!</p>
+        </div>
+      </div>
+    </div>
   );
 };
 

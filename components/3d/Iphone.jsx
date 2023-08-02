@@ -5,15 +5,92 @@ License: CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
 Source: https://sketchfab.com/3d-models/iphone-14-pro-max-95f11f5a06604c8b9fd44046ae52a9cc
 Title: iPhone 14 Pro Max
 */
+import { useEffect,useLayoutEffect, useRef } from "react";
+import gsap, { ScrollTrigger } from "gsap/all";
+import { useGLTF, Center,PresentationControls,Float, Backdrop } from "@react-three/drei";
 
+gsap.registerPlugin(ScrollTrigger);
 
-import { useGLTF } from "@react-three/drei";
 
 export default function Iphone(props) {
+  const ref = useRef();
+  const tl = useRef();
+  const viewport = window.innerHeight;
   const { nodes, materials } = useGLTF("/models/iphone.glb");
+
+  useLayoutEffect(() => {
+    tl.current = gsap.timeline();
+    const scaleStart = 1
+    // ref.current.scale.set(scaleStart, scaleStart, scaleStart);
+    // ref.current.position.set(0, -.5, 0);
+    // gsap.set(ref.current.scale, { x: scaleStart, y: scaleStart, z: scaleStart });
+
+  });
+
+  // useEffect(() => {
+  //   const element = ref.current;
+  
+  //   const scaleEnd = .05
+  //   const rotation = Math.PI;;
+  //   const sceneDuration = window.innerHeight;
+  //   const pause = 0.05;
+  //   tl.current.to(element.scale, {
+  //     scrollTrigger: {
+  //       // trigger: element,
+  //       start: 0,
+  //       end: sceneDuration,
+  //       // ease: "expo.inOut",
+  //       scrub: true,
+  //     },
+  //     x: scaleEnd,
+  //     y: scaleEnd,
+  //     z: scaleEnd,
+  //   })
+  //   tl.current.to(element.position, {
+  //     scrollTrigger: {
+  //       // trigger: element,
+  //       start: 0,
+  //       end: sceneDuration,
+  //       // ease: "expo.inOut",
+  //       scrub: true,
+  //     },
+  //     x: 0,
+  //     y: -.5,
+  //     z: 0,
+  //   })
+  //     // tl.current.to(element.rotation, {
+  //     //   scrollTrigger: {
+  //     //     // trigger: element,
+  //     //     start: sceneDuration * pause,
+  //     //     end: (sceneDuration * 2) + pause,
+  //     //     ease: "circ.inOut",
+  //     //     scrub: true,
+  //     //   },
+  //     //   y: rotation,
+  //     // })
+  //     // tl.current.to(element.position, {
+  //       // scrollTrigger: {
+  //       //   // trigger: element,
+  //       //   start: sceneDuration * pause,
+  //       //   end: (sceneDuration * 2) + pause,
+  //       //   ease: "circ.inOut",
+  //       //   scrub: true,
+  //       // },
+  //       // x: 1
+  //     // })
+
+  // }, []);
   return (
-    <group {...props} dispose={null}>
-      <group scale={0.5} rotation={[0,-Math.PI,0]} position={[0,-5,0]}>
+    <Center>
+     
+      <Float
+  speed={1} // Animation speed, defaults to 1
+  rotationIntensity={1} // XYZ rotation intensity, defaults to 1
+  floatIntensity={1} // Up/down float intensity, works like a multiplier with floatingRange,defaults to 1
+  floatingRange={[1, 10]} // Range of y-axis values the object will float within, defaults to [-0.1,0.1]
+>
+    <group {...props} dispose={null} position={[0,0,0]} rotation={[0,-Math.PI,0]}>
+      <group ref={ref}>
         <mesh
           castShadow
           receiveShadow
@@ -346,6 +423,10 @@ export default function Iphone(props) {
         />
       </group>
     </group>
+
+</Float>
+ 
+    </Center>
   );
 }
 

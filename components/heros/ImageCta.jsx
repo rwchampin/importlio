@@ -1,16 +1,20 @@
-import dynamic from "next/dynamic";
-import { useMemo } from "react";
-import { Panel } from "@/components/common"
 
+import { LazyLoad } from "@/components/utils"
+import { Panel } from "@/components/common";
 export default function ImageCta({ title, description, image, cta }) {
-  const DynamicVideo = useMemo(() => dynamic(() => import("@/components/common/VideoPlayer")), []);
 
   return (
     <Panel round>
       <div className="overflow-hidden bg-white dark:bg-gray-400 lg:flex lg:w-full lg:shadow-md lg:rounded-xl">
         <div className="lg:w-1/2">
           <div className="h-64 object-fill lg:h-full">
-            <DynamicVideo src={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/dash-video.mp4`} />
+            <LazyLoad
+              type="video"
+              className="m-0 p-0 overflow-hidden"
+              src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/dash-video-grey.mp4"
+              dataSrc={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/dash-video.mp4`}
+              alt="Shopify Amazon Dropshipping Product Importer App - Bulk import thousands of Amazon Dropshipping Products instantly!"
+              />
           </div>
         </div>
 

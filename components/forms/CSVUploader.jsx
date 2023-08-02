@@ -35,7 +35,8 @@ function CSVUploader() {
 		  </div>
 	  		
 		  )}
-		 {/* {urls.length && <URLTable urls={urls} /> } */}
+      {/* {urls.length && <URLTable urls={urls} /> } */}
+      
     </div>
   );
 }

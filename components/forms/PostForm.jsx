@@ -1,17 +1,14 @@
-import {Form} from '@/components/forms';
+import Form from './Form';
 import {useCreatePost} from '@/hooks';
 
 export default function PostForm() {
 	const {
 		title,
 		content,
-
-		featured_image,
 		tags,
 		categories,
-		post_image_1,
-		post_image_2,
-		post_image_3,
+		featured_image,
+		 
 		post_type,
 
 		isLoading,
@@ -19,7 +16,16 @@ export default function PostForm() {
 		onSubmit
 	}=useCreatePost();
 
-	const config = [
+	const config=[
+		{
+			labelText: 'Post Type',
+			labelId: 'post_type',
+			type: 'select',
+			value: post_type,
+			onChange: onChange,
+			required: true,
+			placeholder: 'Post Type',
+		},
 		{
 			labelText: 'Title',
 			labelId: 'title',
@@ -38,41 +44,41 @@ export default function PostForm() {
 			required: false,
 			placeholder: 'Image',
 		},
-		{
-			labelText: 'Post Image 1',
-			labelId: 'post_image_1',
-			type: 'file',
-			value: post_image_1,
-			required: false,
-			placeholder: 'Image',
-		},
-		{
-			labelText: 'Post Image 2',
-			labelId: 'post_image_2',
-			type: 'file',
-			value: post_image_2,
-			required: false,
-			placeholder: 'Image',
-		},
-		{
-			labelText: 'Post Image 3',
-			labelId: 'post_image_3',
-			type: 'file',
-			value: post_image_3,
-			required: false,
-			placeholder: 'Image',
-		},
+		// {
+		// 	labelText: 'Post Image 1',
+		// 	labelId: 'post_image_1',
+		// 	type: 'file',
+		// 	value: post_image_1,
+		// 	required: false,
+		// 	placeholder: 'Image',
+		// },
+		// {
+		// 	labelText: 'Post Image 2',
+		// 	labelId: 'post_image_2',
+		// 	type: 'file',
+		// 	value: post_image_2,
+		// 	required: false,
+		// 	placeholder: 'Image',
+		// },
+		// {
+		// 	labelText: 'Post Image 3',
+		// 	labelId: 'post_image_3',
+		// 	type: 'file',
+		// 	value: post_image_3,
+		// 	required: false,
+		// 	placeholder: 'Image',
+		// },
 		{
 			labelText: 'Tags',
 			labelId: 'tags',
-			type: 'text',
+			type: 'multiselect',
 			value: tags,
 			required: false,
 			placeholder: 'Tags',
 		},
 		{
 			labelText: 'Categories',
-			labelId: 'Categories',
+			labelId: 'categories',
 			type: 'multiselect',
 			value: categories,
 			required: false,

@@ -15,14 +15,20 @@ export default function FeatureHero() {
         gsap.from(feat, {
                 opacity: 0,
                 y: 50,
-                stagger: 0.5,
-                ease: "power2.out",
+                // duration: .83,
+            stagger: {
+                each: .1,
+                from: "top",
+                amount: feat.length * .14,
+            },
+            ease: "expo.out",
+
                 scrollTrigger: {
                     trigger: parent.current,
                     scrub: true,
-                    // markers: true,
-                    start: `top 80%`,
-                    end: `bottom 20%`,
+                    // markers: false,
+                    start: "top bottom",
+
                 }
 
             })

@@ -58,7 +58,7 @@ export default function Modal({ModalBody, theme}) {
         </Dialog>
       </Transition>
 
-      <Primary onClick={toggle}>Preregister</Primary>
+      <Primary variant="solid" className='max-w-[500px]' onClick={toggle}>Preregister</Primary>
 
 
     </>

@@ -1,3 +1,41 @@
+import {
+  black,
+  white,
+  gray,
+  red,
+  green,
+  yellow,
+  darkGray,
+  darkRed,
+  darkGreen,
+  darkYellow,
+} from "@radix-ui/colors";
+
+const colors = {
+  ...black,
+  ...white,
+  ...gray,
+  ...red,
+  ...green,
+  ...yellow,
+  ...darkGray,
+  ...darkRed,
+  ...darkGreen,
+  ...darkYellow,
+};
+
+function convertColorKeysToObjectWithIntegers(colors) {
+  const keys = Object.keys(colors);
+  const result = {};
+
+  keys.forEach((key, index) => {
+    const newKey = index + 1;
+    result[newKey] = colors[key];
+  });
+
+  return result;
+}
+
 /** @type {import('tailwindcss').Config} */
 module.exports = {
   darkMode: "class",
@@ -15,9 +53,8 @@ module.exports = {
         "1/4": "25vw",
       },
       colors: {
-        black: "#000000",
-        white: "#FFFFFF",
         input: "#d2d2d2",
+        "input-hover": "#222222",
         "input-focus": "#323232",
         "input-dropdown": "#222222",
         button: "#222222",
@@ -25,6 +62,10 @@ module.exports = {
         offwhite: "#f8f8f8",
         offgray: "#1f2029",
         backdrop: "rgba(0, 0, 0, 0.7)",
+
+        // Radix Colors
+        ...colors,
+       
       },
       keyframes: {
         hide: {
@@ -52,9 +93,14 @@ module.exports = {
         "gradient-conic":
           "conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))",
       },
+      background: {
+        space: "bg-gradient-to-b from-gray-900 to-gray-600 bg-gradient-to-r",
+        gotham: "bg-gradient-to-br from-gray-700 via-gray-900 to-black",
+        silver: "bg-gradient-to-r from-gray-100 to-gray-300",
+      },
       fontSize: {
-        "xxxs": ".5rem",
-        "xxs": ".65rem",
+        xxxs: ".5rem",
+        xxs: ".65rem",
         "2xs": ".125rem",
         "3xl": "1.875rem",
         "4xl": "2.25rem",
@@ -89,7 +135,7 @@ module.exports = {
         "5xl": "2.75rem",
       },
       height: {
-        input: "60px",
+        input: "50px",
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
@@ -97,5 +143,13 @@ module.exports = {
       },
     },
   },
-  plugins: [require("@tailwindcss/forms"), require("@tailwindcss/typography")],
+  plugins: [
+    require("@tailwindcss/forms"),
+    require("@tailwindcss/typography"),
+    // require("tailwindcss-radix-colors"),
+    // require("tailwindcss-gradients"),
+  ],
 };
+
+
+ 

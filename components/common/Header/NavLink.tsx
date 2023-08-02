@@ -31,16 +31,14 @@ export default function NavLink({
 	
 	const className = cn(
 		rest.className,
-		'py-2 font-medium hover:pointer-cursor',
+		'font-medium hover:pointer-cursor ',
 		{
-			'underline text-black font-apercu font-bold': isSelected,
-			'text-black font-apercu font-bold':
-				!isSelected && !isBanner,
-			'block text-heading-1 font-montserrat font-black': isMobile,
-			'text-sm': !isMobile,
-			'text-gray-300': isBanner,
-			'bg-black text-white rounded-md px-4 py-2 outline-2 outline-black no-underline focus:text-white focus:bg-black active:bg-black active:text-white active:no-underline': solid,
-			'bg-transparent text-black outline-2 outline-black rounded-md  px-4 py-2 no-underline': border,
+			'border-3 border-black rounded-full': isBanner,
+			'text-xs': !isSelected,
+			'active-nav text-black font-apercu font-bold text-xs': isSelected,
+			'text-lg': isMobile,
+			'bg-black text-white text-xs rounded-md px-4 py-2 outline-2 outline-black no-underline focus:text-white focus:bg-black active:bg-black active:text-white active:no-underline': solid,
+			'bg-transparent text-black text-xs outline-2 outline-black rounded-md  px-4 py-2 no-underline': border,
 		}
 	);
 

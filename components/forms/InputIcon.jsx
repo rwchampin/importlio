@@ -32,7 +32,7 @@ export default function InputIcon({
 	}
 
 	const input=(
-		<div className='relative overflow-hidden rounded-lg hover:bg-offgray hover:text-offwhite max-w-lg rounded-lg h-input hover:cursor-pointer hover:shadow-lg'>
+		<div className='relative overflow-hidden rounded-lg hover:text-offwhite max-w-lg rounded-lg h-input hover:cursor-pointer hover:shadow-lg'>
 			<span>{getIcon()}</span>
 			<input
 				onChange={onChange}

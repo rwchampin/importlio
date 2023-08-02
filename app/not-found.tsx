@@ -1,3 +1,4 @@
+'use client';
 import { ParticleText, ShadowText } from "@/components/typography";
 
 export default function NotFound() {

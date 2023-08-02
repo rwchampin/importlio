@@ -1,19 +1,19 @@
 "use client"
 import gsap from 'gsap/all'
-
-import { useRef, useState, useEffect, useLayoutEffect} from 'react'
+import Spinner from '@/components/common/Spinner'
+import {useRef, useState, useEffect, Suspense} from 'react'
 import Link from "next/link"
-import { motion } from "framer-motion"
+import {motion} from "framer-motion"
 
 
 
-const LogoBlack = (props) => {
-  let Img = (props) => <svg
+const LogoBlack=(props) => {
+  let Img=(props) => <svg
     xmlns="http://www.w3.org/2000/svg"
     data-name="Layer 1"
     viewBox="0 0 409.68 448.32"
     style={{
-      width: props.size || "40px",
+      width: props.size||"40px",
       height: "auto",
       maxWidth: "100px",
       maxHeight: "100px",
@@ -166,13 +166,13 @@ const LogoBlack = (props) => {
     />
   </svg>;
 
-  const wrapperRef = useRef(null)
-  const logoRef = useRef(null)
-  const linkRef = useRef(null)
+  const wrapperRef=useRef(null)
+  const logoRef=useRef(null)
+  const linkRef=useRef(null)
 
 
   useEffect(() => {
-    const logo = logoRef.current
+    const logo=logoRef.current
 
     gsap.from(logo, {
       opacity: 0,
@@ -184,6 +184,13 @@ const LogoBlack = (props) => {
 
 
 
-return (<Link href="/" style={{ width: 50, height: 'auto'}} className='logo'><Img /></Link>)
+  return (
+    <Suspense
+      fallback={<Spinner />}
+    >
+      <Link href="/" style={{width: 50, height: 'auto'}} className='logo'><Img /></Link>
+
+    </Suspense>
+  )
 }
 export default LogoBlack

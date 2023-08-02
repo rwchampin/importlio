@@ -67,6 +67,10 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
+      url: 'https://importlio.com/faq',
+      lastModified: new Date(),
+    },
+    {
       url: 'https://importlio.com/pricing',
       lastModified: new Date(),
     },
@@ -83,13 +87,25 @@ export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
       lastModified: new Date(),
     },
     {
+      url: 'https://importlio.com/password-reset',
+      lastModified: new Date(),
+    },
+    {
       url: 'https://importlio.com/auth/login',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://importlio.com/auth/register/',
+      lastModified: new Date(),
+    },
+    {
+      url: 'https://importlio.com/password-reset',
       lastModified: new Date(),
     },
     // Add the post slugs here
     ...(await getAllPostSlugs()),
-    // ...(await getFoldersRecursive('/src/app/'))
+    ...(await getFoldersRecursive('./'))
   ];
 
-  return 
+  return staticUrls
 }

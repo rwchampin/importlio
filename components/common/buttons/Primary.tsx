@@ -1,51 +1,56 @@
-"use client";
+import cn from "classnames";
 import { motion } from "framer-motion";
-import dynamic from "next/dynamic";
+import Link from "next/link";
 
-interface Props {
+interface Props { 
+  solid?: boolean;
+  outline?: boolean;
   children: React.ReactNode;
+  color?: string;
   className?: string;
-  onClick?: () => {};
-    href?: string;
-    type?: any;
+  onClick?: () => void;
+  href?: string;
+  type?: "button" | "submit" | "reset"; // Specify the allowed values for type prop
+  [rest: string]: any;
 }
 
-export default function Primary({
+export default function Button({
   children = "Submit",
   className,
+  color="black",
   onClick,
-    href,
-    type,
+  variant="solid",
+  href,
+  type="button",
+  ...rest
 }: Props) {
-  const common = {
-    whileHover: {
-      scale: 1.02,
-      transition: {
-        type: "spring",
-        duration: 0.3,
-      },
+  const buttonClasses = cn(
+    `flex items-center justify-center text-sm uppercase min-w-[100px] h-input w-full rounded-lg font-bold font-apercu-bold no-underline text-xs shadow-lg  hover:shadow-2xl hover:pointer-cursor hover:bg-button-hover`,
+    {
+      "bg-button hover:bg-button-hover text-white text-xs": variant === "solid",
+      "border-2 border-button text-xs  hover:border-button-hover hover:text-offwhite": variant === "outline",
     },
-    whileTap: {
-      scale: 0.9,
-      transition: {
-        duration: 0.3,
-      },
-    },
-    className: `text-sm font-bold font-apercu-bold text-offwhite bg-offgray w-full max-w-lg rounded-lg h-input hover:cursor-pointer hover:shadow-lg flex items-center justify-center ${className}`,
-  };
+    className
+  );
 
-  const button = {
-    ...common,
-    type: onClick ? "button" : "submit",
-    onClick: onClick,
-  };
+  if (href) {
+    return (
 
-  const link = {
-    ...common,
-    href: href,
-  };
+        <Link className={buttonClasses} href={href} onClick={onClick} {...rest}>
+          {children}
+        </Link>
 
-  if (href) return <motion.a {...link}>{children}</motion.a>;
+    );
+  }
 
-  return <motion.button {...button}>{children}</motion.button>;
+  return (
+    <button
+      className={buttonClasses}
+      onClick={onClick}
+      type={type} // Add the type prop to the button element
+      {...rest}
+    >
+      {children}
+    </button>
+  );
 }

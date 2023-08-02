@@ -6,7 +6,10 @@ export default function Page() {
   return (
      <BasicPage
         theme="light"
-        title="Privacy Policy"
+      title="Privacy Policy"
+      subtitle="Our Policy on the Collection, Use, and Disclosure of Your Information"
+      headline="Your Privacy Matters"
+      shadowText={"secrets"}
       >
       <p>
         Effective Date: {date}

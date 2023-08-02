@@ -3,7 +3,12 @@
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useEffect, useState, useLayoutEffect } from "react";
+
+ 
+
+// import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action
+
 
 interface Props {
   children: React.ReactNode;
@@ -23,6 +28,8 @@ export default function CustomProvider({ children }: Props) {
       .replace(/\//g, "-");
         document.body.classList.add(`page-${pageName}`);
       }
+
+      // store.dispastch(fetchBlogPosts());
     }, [pathname]);
 
 

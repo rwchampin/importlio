@@ -8,18 +8,18 @@ const getConfig = require('next/config').default;
 // const { serverRuntimeConfig } = getConfig();
 
 
-// function generateSitemap() {
-//   const pageUrls = [];
+function generateSitemap() {
+  const pageUrls = [];
 
-//   for (const folder of topLevelFolders) {
-//     const folderPath = path.join(__dirname, folder);
-//     findPageUrls(folderPath, pageUrls);
-//   }
+  for (const folder of topLevelFolders) {
+    const folderPath = path.join(__dirname, folder);
+    findPageUrls(folderPath, pageUrls);
+  }
 
-//   const sitemapContent = generateSitemapContent(pageUrls);
-//   fs.writeFileSync(sitemapFilePath, sitemapContent);
-//   console.log('Sitemap file created successfully!');
-// }
+  const sitemapContent = generateSitemapContent(pageUrls);
+  fs.writeFileSync(sitemapFilePath, sitemapContent);
+  console.log('Sitemap file created successfully!');
+}
 
 
 
@@ -54,7 +54,7 @@ const getAllPostSlugs = async () => {
 
 // Function to generate and save the sitemap.xml file
 const generateSitemapFile = async () => {
-  const staticUrls = ['/', '/about', '/contact'];
+  const staticUrls = ['/', '/about', '/ecommerce-tutorials', "/faq", "/features", "/pricing", "/privacy-policy", "/terms-of-service", "/contact"];
   const dynamicUrls = await getAllPostSlugs();
   const allUrls = [...staticUrls, ...dynamicUrls];
 
@@ -67,7 +67,7 @@ const generateSitemapFile = async () => {
   console.log('Sitemap generated and saved successfully!');
 };
 
-generateSitemapFile();
+// generateSitemapFile();
 
 
 

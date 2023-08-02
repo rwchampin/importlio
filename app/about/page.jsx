@@ -1,16 +1,17 @@
-"use client"
-import {Section} from '@/components/common'
-import { EmailForm } from "@/components/forms";
 import { BasicPage } from "@/components/pages"
+import { Section } from "@/components/common"
 export default function Page() {
   return (
     <BasicPage
-      theme="light"
+        theme="light"
         title="About Us"
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         headline="Learn More"
         shadowText="THE COMPANY"
-        cta={<EmailForm />}
+        showButton={true}
+        xPos="0"
+        yPos="50"
+        customComponent={null}
       >
 
       <Section

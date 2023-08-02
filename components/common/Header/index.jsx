@@ -4,7 +4,7 @@ import Navbar from './Navbar'
 export default function Header() {
 
 	return (
-		<header className="bg-white">
+		<header>
 			<Navbar />
 		</header>
 	)

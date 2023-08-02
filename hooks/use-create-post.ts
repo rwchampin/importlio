@@ -1,53 +1,62 @@
-'use client';
-import {useState,ChangeEvent,FormEvent} from 'react';
+import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
-import { useCreatePostMutation } from '@/redux/features/authApiSlice';
-import { createPost } from '@/redux/features/authSlice';
+import { useCreatePostMutation } from '@/redux/slices/apiSlice';
 import { toast } from 'react-toastify';
 
 export default function useCreatePost() {
-	const router = useRouter();
-	const dispatch = useAppDispatch();
-	const [createPost, { isLoading }] = useCreatePostMutation();
+  const router = useRouter();
+  const dispatch = useAppDispatch();
+  const [createPost, { isLoading }] = useCreatePostMutation();
 
-	const [formData, setFormData] = useState({
-		title: '',
-    content: '',
-    featured_image: '',
-    post_image_1: '',
-    post_image_2: '',
-    post_image_3: '',
-	});
+  const [formData, setFormData] = useState({
+    post_type: '',
+    title: '',
+	  content: '',
 
-	const {   title, content } = formData;
+	  categories: '',
+	  tags: '',
+  });
 
-	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const {name,value}=event.target;
-    debugger
-    console.log(name, value);
-		setFormData({ ...formData, [name]: value });
-	};
+  const { post_type, title, content, tags, categories } = formData;
 
-	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-		event.preventDefault();
+  const onChange = (event: any) => {
+    const { name, value, type } = event.target;
+    // Check if the input is a file input (type "file")
+	//   if(type==='file') {
+	// 	debugger
+    //   // Set the "featured_image" property to the selected file
+    //   setFormData({ ...formData, [name]: event.target.files[0] });
+    // } else {
+      // For regular inputs and textareas, update the form data as usual
+      setFormData({ ...formData, [name]: value });
+    }
+  
 
-		createPost({ title, content })
-			.unwrap()
-			.then(() => {
-				toast.success('Post created successfully');
-				router.push('/dashboard/posts/');
-			})
-			.catch(() => {
-				toast.error('Failed tto create Post');
-			});
-	};
+  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+	  event.preventDefault();
+ 
 
-	return {
-		title,
-		content,
-		isLoading,
-		onChange,
-		onSubmit,
-	};
+
+    createPost({ post_type, title, content, tags, categories })
+      .unwrap()
+      .then(() => {
+        toast.success('Post created successfully');
+        router.push('/dashboard/posts/');
+      })
+      .catch(() => {
+        toast.error('Failed to create Post');
+      });
+  };
+
+  return {
+    title,
+    content,
+	  post_type,
+	  tags,
+	  categories,
+    isLoading,
+    onChange,
+    onSubmit,
+  };
 }

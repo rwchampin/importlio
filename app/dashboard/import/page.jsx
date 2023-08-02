@@ -1,7 +1,7 @@
 "use client";
 import {useState} from 'react'
 import { Tab } from '@headlessui/react'
-import { CSVUploader } from '@/components/forms'
+// import { CSVUploader } from '@/components/forms'
 function className(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }
@@ -46,9 +46,9 @@ export default function Page() {
     <div className="w-full h-full flex-1 px-2 sm:px-0">
       <Tab.Group>
         <Tab.List className="flex space-x-1 rounded-xl bg-blue-900/20 p-1">
-          {Object.keys(categories).map((category) => (
+          {Object.keys(categories).map((category, idx) => (
             <Tab
-              key={category}
+              key={idx}
               className={({ selected }) =>
                 className(
                   'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
@@ -86,7 +86,7 @@ export default function Page() {
                 'flex-1 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
               )}
             >
-                <CSVUploader />
+                {/* <CSVUploader /> */}
                  {/* <div>
     <label for="file" className="block text-sm text-gray-500 dark:text-gray-300">File</label>
 

@@ -1,26 +1,31 @@
-"use client"
-import {useEffect, useState} from 'react';
+"use client";
+import { useBlogContext } from "@/store/";
+import dynamic from "next/dynamic";
 import {BasicPage} from "@/components/pages";
-import {Section, PostCard} from '@/components/common';
-import Sidebar from './Sidebar';
-export default function Page() {
-    const [ posts, setPosts ]=useState([]);
+import {Section} from "@/components/common";
+// import {Sidebar} from "@/components/blog";
+import { useEffect } from "react";
+// import { PostCardSkeleton } from "@/components/common/skeletons/";
+import PostCardSkeleton  from "@/components/common/skeletons/PostCardSkeleton";
+const PostCard=dynamic(() => import('@/components/common/PostCard'));
 
+// const Sidebar=dynamic(() => import('@/components/blog/Sidebar'));
+export default async function Page() {
+    const { posts, loading, error } = useBlogContext();
+    debugger
     useEffect(() => {
+        debugger
+    },[ posts, loading, error])
+    useEffect(() => {
+        if (error) {
+            console.log(error);
+        }
+    }, [error]);
 
-        fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`).then(res => res.json()).then(data => {
-            debugger
-            setPosts(data)
-        })
-
-
-
-
-    }, []);
-
-    if(posts.length===0) return null;
-
+    if (loading) return <PostCardSkeleton />;
     return (
+        <>
+
         <BasicPage
             theme="light"
             title="Ecommerce Dropshipping Tutorials"
@@ -28,34 +33,35 @@ export default function Page() {
             headline="Amazon & Shopify"
             shadowText={"Amazon Dropshipping Tutorials"}
         >
-            <Section className="p-5 flex">
-                <div className='flex-1'>
-                {posts.length===0&&<div className="text-heading-1">Dropshipping Tutorial Posts coming soon!</div>}
-                <div className="grid grid-cols-1 gap-5 mt-8 md:mt-16 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+            <Section className="p-5 flex flex-col gap-5 lg:flex-row">
+                <div className="flex flex-col md:flex-row gap-5 flex-wrap">
                     {posts.map((post, idx) => {
-
-
                         return (
-
-                                <PostCard key={idx} post={post} />
-
-                        )
+                        // <Suspense key={idx} fallback={<PostCardSkeleton />}>
+                                <PostCard
+                                    key={idx}
+                                    title={post.title}
+                                    content={post.content}
+                                    featured_image={post.featured_image}
+                                    post_type={post.post_type}
+                                    tags={post.tags}
+                                    categories={post.categories}
+                                    slug={post.slug}
+                                    published={post.published}
+                                    updated={post.updated}
+                                    readtime={post.readtime}
+                                />
+                        // </Suspense>
+                        );
                     })}
-
                 </div>
-                </div>
-                {(posts&&posts.length>0)&&<div className='bg-red-500 w-[300px] p-5 rounded-lg sticky top-0'>
-                    <Sidebar posts={posts} />
-                </div>}
-
+                {/* <div className='w-full lg:w-1/4'>
+                    <Sidebar />
+                </div> */}
             </Section>
+
         </BasicPage>
-    )
+        </>
+    );
 }
-
-
-
-
-
-
-

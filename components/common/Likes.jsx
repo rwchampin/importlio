@@ -1,12 +1,12 @@
 "use client";
-import {useState, useEffect} from 'react';
+import {useState, useEffect, useCallback} from 'react';
 import "@/assets/styles/likes.css";
 import { Spinner } from '@/components/common';
 export default async function Likes({postId, likes}) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [liked, setLiked] = useState(false)
 
-	const handleLike=async () => {
+	const handleLike=useCallback(async () => {
 		setIsLoading(true)
 		const res=await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${postId}/${liked? 'remove':'add'}`, (res) => {
 			if(res.ok) {
@@ -14,11 +14,11 @@ export default async function Likes({postId, likes}) {
 				setLiked(true)
 			}
 		})
-	}
+	}, [liked, postId])
 
 	useEffect(() => {
 		handleLike()
-	}, [liked])
+	}, [ handleLike])
 	 
 	return (
 		<div class='middle-wrapper'>	

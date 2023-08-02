@@ -1,12 +1,11 @@
 import { Hero } from "../common";
-import dynamic from 'next/dynamic';
 
 
 
 export default function BasicPage({theme,bg, title, subtitle, headline, shadowText, children, showButton, xPos, yPos, customComponent }) {
   // debugger
   return (
-    <div className="prose-xl overflow-visible">
+    <>
       <Hero
         showButton={showButton}
         theme={theme}
@@ -19,10 +18,11 @@ export default function BasicPage({theme,bg, title, subtitle, headline, shadowTe
         yPos={yPos}
         customComponent={customComponent}
       />
-		<div className="flex flex-col gap-10 min-h-screen mx-auto z-10 relative">
+      {/* this must be 100% width, no margin, no padding for the full width sections */}
+		<div className="flex flex-col gap-10 min-h-screen z-10 relative">
       {children}
       </div>
     
-    </div>
+    </>
   );
 }
