@@ -1,6 +1,6 @@
 "use client"
 import gsap from 'gsap/all'
-import Spinner from '@/components/common/Spinner'
+import Spinner from '@/app/components/Spinner'
 import {useRef, useState, useEffect, Suspense} from 'react'
 import Link from "next/link"
 import {motion} from "framer-motion"

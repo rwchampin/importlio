@@ -4,8 +4,9 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useLayoutEffect } from "react";
-
- 
+import { Toast } from '@/components/common'
+import { useCore } from '@/store';
+import { use } from "chai";
 
 // import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action
 
@@ -15,6 +16,7 @@ interface Props {
 }
 
 export default function CustomProvider({ children }: Props) {
+    const { setLoading } = useCore();
     const pathname: any = usePathname();
 
 
@@ -28,10 +30,13 @@ export default function CustomProvider({ children }: Props) {
       .replace(/\//g, "-");
         document.body.classList.add(`page-${pageName}`);
       }
-
+     
       // store.dispastch(fetchBlogPosts());
     }, [pathname]);
 
-
-  return <Provider store={store}>{children}</Provider>;
+    useEffect(() => {
+      setLoading(false);
+    }, [])
+    
+  return <Provider store={store}><Toast openModal={open} />{children}</Provider>;
 }

@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 const Avatar: any = dynamic(() => import("@/components/common/Avatar"));
 const Primary: any = dynamic(
-  () => import("@/components/common/buttons/Primary")
+  () => import("@/app/components/buttons/Primary")
 );
 
 export default function LoginOrAvatar() {

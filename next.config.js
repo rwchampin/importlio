@@ -6,6 +6,7 @@
 // })
 
 const nextConfig = {
+  reactStrictMode: process.env.NODE_ENV !== 'production',
   images: {
     remotePatterns: [
       {
@@ -22,6 +23,7 @@ const nextConfig = {
       }
     ],
   },
+  
 };
 
 module.exports = nextConfig

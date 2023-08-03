@@ -1,22 +1,23 @@
 "use client";
-import { BasicPage } from "@/components/pages";
 import dynamic from "next/dynamic";
-import Example from '@/components/marketing/sections/blog-sections/3_column_cards';
+import { BasicPage } from "@/components/pages";
+
 import {
 
   FeatureHero,
   ImageCta,
-  RecentBlogPosts,
+  // RecentBlogPosts,
 
 } from "@/components/heros/";
 
 import { Spacer, LazyLoad } from "@/components/utils/";
 import { Section } from "@/components/common";
-import MegaDropdown from "@/components/common/Megadropdown";
+
+import { Canvas, Model, Dom } from "@react-three/fiber";
 
 
+const DynamicDark = dynamic(() => import("@/components/3d/Dark"));
 
- 
 export default function Page() {
 
 
@@ -34,8 +35,14 @@ export default function Page() {
       xPos="0"
       yPos="50"
     >
-      
-      <Section 
+      <Section full>
+        <Canvas   camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
+          <ambientLight intensity={0.5} />
+          <DynamicDark />
+        </Canvas>
+
+      </Section>
+      <Section
         full
       >
         <LazyLoad
@@ -46,7 +53,7 @@ export default function Page() {
           height={"100%"}
         />
       </Section>
-      
+
       <Spacer size={1} />
 
       <Section>
@@ -65,9 +72,9 @@ export default function Page() {
       </Section>
       <Spacer size={1} />
 
-      <Section>
+      {/* <Section>
         <RecentBlogPosts />
-      </Section>
+      </Section> */}
       {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
             <Canvas>
               <OrbitControls />

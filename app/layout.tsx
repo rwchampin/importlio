@@ -10,12 +10,13 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { GA } from "@/components/utils/";
-import { BlogProvider } from '@/store'; // Import the BlogProvider
+import { BlogProvider, CoreProvider } from '@/store'; // Import the BlogProvider
+import { Toast } from '@/components/common'
 
 import Provider from "@/redux/provider";
 import { Setup } from "@/components/utils";
 import { Header } from "@/components/common";
-import { useLocalHost } from "@/hooks";
+
 
 const montserrat = Montserrat({
   weight: "900",
@@ -108,8 +109,9 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
     <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
       <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
 
-      <body className={`pt-[4rem] `}>
-          <BlogProvider> {/* Wrap the BlogProvider around the children */}
+      <body className={`pt-[4rem] bg-darkGray2`}>
+        <CoreProvider>
+          <BlogProvider> 
           <Provider>
             <Setup />
             <Header />
@@ -121,9 +123,18 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             </DynamicScroller>
           </Provider>
           </BlogProvider>
+        </CoreProvider>
         <DynamicCursor />
         <CookieBanner />
-        <NextTopLoader />
+        <NextTopLoader 
+          color="#000"
+          size="10"
+
+
+          showOnScroll={true}
+
+          
+        />
       </body>
     </html>
   );

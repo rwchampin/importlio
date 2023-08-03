@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Primary } from '@/components/common/buttons';
+import { Primary } from '@/app/components/buttons';
 interface Props {
 	provider: 'google' | 'facebook';
 	children: React.ReactNode;

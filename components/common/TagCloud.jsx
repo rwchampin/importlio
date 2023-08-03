@@ -1,10 +1,13 @@
-export default function TagCloud({data, className}) {
-
+import { Badge } from '@/components/common'
+export default function TagCloud({data }) {
+	console.log(data)
 	return (
 
 		<div className='flex flex-wrap gap-1'>
 			{data.map((obj, i) => (
-				<h6 key={i} className={`rounded-2xl px-3 py-1 text-xxs ${className}`}>{obj.name}</h6>
+				<Badge key={i} type="info">
+					{obj.name}
+				</Badge>
 			))}
 		</div>
 

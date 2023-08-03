@@ -2,8 +2,8 @@ import { ChangeEvent, FormEvent } from 'react';
 import { Input } from '@/components/forms';
 import dynamic from 'next/dynamic';
 
-const DynamicSpinner:any = dynamic(() => import('@/components/common/Spinner'));
-const Primary:any = dynamic(() => import('@/components/common/buttons/Primary'));
+const DynamicSpinner:any = dynamic(() => import('@/app/components/Spinner'));
+const Primary:any = dynamic(() => import('@/app/components/buttons/Primary'));
 interface Config {
 	labelText: string;
 	labelId: string;

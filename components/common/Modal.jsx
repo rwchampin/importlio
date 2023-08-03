@@ -5,7 +5,7 @@ import dynamic from 'next/dynamic'
 import {toggleModal} from '@/redux/slices/ui';
 import {useAppSelector, useAppDispatch} from "@/redux/hooks";
 
-const Primary=dynamic(() => import("@/components/common/buttons/Primary"));
+const Primary=dynamic(() => import("@/app/components/buttons/Primary"));
 const DynamicLogoBlack=dynamic(() => import("@/components/common/logo/LogoBlack"));
 const Close=dynamic(() => import("@/components/common/Close"));
 

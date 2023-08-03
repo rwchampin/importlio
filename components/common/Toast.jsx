@@ -1,30 +1,53 @@
-"use client"
 import * as React from 'react';
-import * as ToastDemo from '@radix-ui/react-toast';
+import { Toast as TT } from '@radix-ui/react-toast';
 
-const Toast = ({title, description, action, swipeDirection="right", open, setOpen}) => {
+const Toast = ({ openModal }) => {
+  const [open, setOpen] = React.useState(false);
+  const eventDateRef = React.useRef(new Date());
+  const timerRef = React.useRef(0);
 
-
- 
+  React.useEffect(() => {
+    return () => clearTimeout(timerRef.current);
+  }, []);
 
   return (
-    <div class="flex w-full max-w-sm overflow-hidden bg-white rounded-lg shadow-md dark:bg-gray-800">
-      <div class="flex items-center justify-center w-12 bg-emerald-500">
-        <svg class="w-6 h-6 text-white fill-current" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
-          <path d="M20 3.33331C10.8 3.33331 3.33337 10.8 3.33337 20C3.33337 29.2 10.8 36.6666 20 36.6666C29.2 36.6666 36.6667 29.2 36.6667 20C36.6667 10.8 29.2 3.33331 20 3.33331ZM16.6667 28.3333L8.33337 20L10.6834 17.65L16.6667 23.6166L29.3167 10.9666L31.6667 13.3333L16.6667 28.3333Z" />
-        </svg>
-      </div>
+    <></>
+  // <TT.Primitive swipeDirection="right">
+  //     <button
+  //       className="inline-flex items-center justify-center rounded font-medium text-[15px] px-[15px] leading-[35px] h-[35px] bg-white text-violet11 shadow-[0_2px_10px] shadow-blackA7 outline-none hover:bg-mauve3 focus:shadow-[0_0_0_2px] focus:shadow-black"
+  //       onClick={() => {
+  //         setOpen(false);
+  //         window.clearTimeout(timerRef.current);
+  //         timerRef.current = window.setTimeout(() => {
+  //           eventDateRef.current = oneWeekAway();
+  //           setOpen(true);
+  //         }, 100);
+  //       }}
+  //     >
+  //       Add to calendar
+  //     </button>
 
-      <div class="px-4 py-2 -mx-3">
-        <div class="mx-3">
-          <span class="font-semibold text-emerald-500 dark:text-emerald-400">Success</span>
-          <p class="text-sm text-gray-600 dark:text-gray-200">Your account was registered!</p>
-        </div>
-      </div>
-    </div>
+  //     <TT.Root
+  //       className="bg-white rounded-md shadow-[hsl(206_22%_7%_/_35%)_0px_10px_38px_-10px,_hsl(206_22%_7%_/_20%)_0px_10px_20px_-15px] p-[15px] grid [grid-template-areas:_'title_action'_'description_action'] grid-cols-[auto_max-content] gap-x-[15px] items-center data-[state=open]:animate-slideIn data-[state=closed]:animate-hide data-[swipe=move]:translate-x-[var(--radix-toast-swipe-move-x)] data-[swipe=cancel]:translate-x-0 data-[swipe=cancel]:transition-[transform_200ms_ease-out] data-[swipe=end]:animate-swipeOut"
+  //       open={open || openModal}
+  //       onOpenChange={setOpen}
+  //     >
+  //       <TT.Title className="[grid-area:_title] mb-[5px] font-medium text-slate12 text-[15px]">
+  //         Scheduled: Catch up
+  //       </TT.Title>
+  //       <TT.Description asChild>
+  //          TEST
+  //       </TT.Description>
+  //       <TT.Action className="[grid-area:_action]" asChild altText="Goto schedule to undo">
+  //         <button className="inline-flex items-center justify-center rounded font-medium text-xs px-[10px] leading-[25px] h-[25px] bg-green2 text-green11 shadow-[inset_0_0_0_1px] shadow-green7 hover:shadow-[inset_0_0_0_1px] hover:shadow-green8 focus:shadow-[0_0_0_2px] focus:shadow-green8">
+  //           Undo
+  //         </button>
+  //       </TT.Action>
+  //     </TT.Root>
+  //     <TT.Viewport className="[--viewport-padding:_25px] fixed bottom-0 right-0 flex flex-col p-[var(--viewport-padding)] gap-[10px] w-[390px] max-w-[100vw] m-0 list-none z-[2147483647] outline-none" />
+  //   </TT.Primitive>
   );
 };
-
  
 
 export default Toast;

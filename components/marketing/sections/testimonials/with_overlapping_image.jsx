@@ -21,7 +21,8 @@ export default function Example() {
             <div aria-hidden="true" className="absolute inset-x-0 top-0 h-1/2 bg-white lg:hidden" />
             <div className="mx-auto max-w-md px-6 sm:max-w-3xl lg:h-full lg:p-0">
               <div className="aspect-w-10 aspect-h-6 overflow-hidden rounded-xl shadow-xl sm:aspect-w-16 sm:aspect-h-7 lg:aspect-none lg:h-full">
-                <img
+                <Image
+                fill
                   className="object-cover lg:h-full lg:w-full"
                   src="https://images.unsplash.com/photo-1520333789090-1afc82db536a?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=2102&q=80"
                   alt=""

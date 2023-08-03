@@ -65,7 +65,7 @@ export default function Navbar() {
   ];
 
   useEffect(() => {
-    gsap.to("nav a:not(.logo)", {
+    gsap.to("nav a", {
       opacity: 1,
       stagger: 0.05,
       duration: 0.15,

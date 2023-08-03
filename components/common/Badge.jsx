@@ -30,8 +30,8 @@ export default function Badge({ type,showClose, children, className, ...props })
                 return "gray";
         }
     };
-    const color = getRandomColor();
-    const style = `bg-${color}-50 inline-flex items-center rounded-xl white-space-nowrap  px-2 text-[10px] hyphens  text-${color}-600 ring-1 ring-inset ring-${color}-500/10`
+    const color = "blue"
+    const style = `bg-${color}-200 inline-flex items-center rounded-xl white-space-nowrap  px-2 py-0.5 text-[10px] hyphens  text-${color}-600 ring-1 ring-inset ring-${color}-500/10`
 
         return (
           <>

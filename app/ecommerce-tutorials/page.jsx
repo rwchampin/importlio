@@ -3,24 +3,15 @@ import { useBlogContext } from "@/store/";
 import dynamic from "next/dynamic";
 import {BasicPage} from "@/components/pages";
 import {Section} from "@/components/common";
-// import {Sidebar} from "@/components/blog";
+import {Sidebar} from "@/components/ecommerce-tutorials";
 import { useEffect } from "react";
-// import { PostCardSkeleton } from "@/components/common/skeletons/";
 import PostCardSkeleton  from "@/components/common/skeletons/PostCardSkeleton";
 const PostCard=dynamic(() => import('@/components/common/PostCard'));
 
-// const Sidebar=dynamic(() => import('@/components/blog/Sidebar'));
+// const Sidebar=dynamic(() => import('@/components/ecommerce-tutorials/Sidebar'));
 export default async function Page() {
-    const { posts, loading, error } = useBlogContext();
-    debugger
-    useEffect(() => {
-        debugger
-    },[ posts, loading, error])
-    useEffect(() => {
-        if (error) {
-            console.log(error);
-        }
-    }, [error]);
+    const { blog, loading, error } = useBlogContext();
+    const { posts } = blog;
 
     if (loading) return <PostCardSkeleton />;
     return (
@@ -56,9 +47,9 @@ export default async function Page() {
                         );
                     })}
                 </div>
-                {/* <div className='w-full lg:w-1/4'>
-                    <Sidebar />
-                </div> */}
+                <div className='w-full lg:w-1/4'>
+                    <Sidebar blog={blog} />
+                </div>
             </Section>
 
         </BasicPage>

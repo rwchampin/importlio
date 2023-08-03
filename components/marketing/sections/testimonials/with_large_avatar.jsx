@@ -50,7 +50,8 @@ export default function Example() {
 
         <div className="relative lg:flex lg:items-center">
           <div className="hidden lg:block lg:flex-shrink-0">
-            <img
+            <Image
+              fill
               className="h-64 w-64 rounded-full xl:h-80 xl:w-80"
               src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
               alt=""
@@ -80,7 +81,7 @@ export default function Example() {
               <footer className="mt-8">
                 <div className="flex">
                   <div className="flex-shrink-0 lg:hidden">
-                    <img
+                    <Image
                       className="h-12 w-12 rounded-full"
                       src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
                       alt=""
