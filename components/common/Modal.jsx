@@ -34,10 +34,10 @@ export default function Modal({ModalBody, theme}) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-backdrop blur-lg bg-opacity-45" />
+            <div className="fixed inset-0 bg-backdrop bg-opacity-45" />
           </Transition.Child>
 
-          <div style={{ zIndex: '999999999px !important'}} className="fixed inset-0 overflow-y-auto bg-slate-400 ">
+          <div style={{ zIndex: '999999999px !important'}} className="fixed inset-0 overflow-y-auto">
             <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}

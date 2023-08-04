@@ -38,10 +38,10 @@ export default function Page() {
       yPos="50"
     >
       <Section full>
-        <Canvas camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
+        {/* <Canvas camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
           <ambientLight intensity={0.5} />
           <DynamicDark />
-        </Canvas>
+        </Canvas> */}
 
       </Section>
       <Section

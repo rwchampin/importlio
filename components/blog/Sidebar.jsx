@@ -9,7 +9,7 @@ const SidebarPostCard=dynamic(() => import("@/components/blog/SidebarPostCard"))
 
 
 
-export default async function Sidebar() {
+export default function Sidebar() {
 	const {posts, categories,tags} = useBlog();
 
 	return (

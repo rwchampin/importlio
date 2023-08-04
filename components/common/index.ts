@@ -40,7 +40,7 @@ export {default as ToTop} from "@/components/common/ToTop";
 export {default as PostCardSkeleton} from "@/components/skeletons/PostCardSkeleton";
 export {default as Badge} from "@/components/common/Badge";
 export {default as Toolbar} from "@/components/common/Toolbar";
-export {default as Megadropdown} from "@/components/common/Megadropdown";
+
 export {default as Alert} from "@/components/common/Alert";
 export {default as Subscribe} from "@/components/common/Subscribe";
 export {default as Banner} from "@/components/common/Banner";

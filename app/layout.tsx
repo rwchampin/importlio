@@ -9,13 +9,13 @@ import dynamic from "next/dynamic";
 import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
-import { GA } from "@/components/utils/";
+import { GA, Scroller } from "@/components/utils/";
 
 
 import Provider from "@/redux/provider";
 import { Setup } from "@/components/utils";
-import { Header } from "@/components/common";
-
+import { Header, Footer } from "@/components/common";
+import NextTopLoader from "nextjs-toploader";
 
 const montserrat = Montserrat({
   weight: "900",
@@ -83,18 +83,11 @@ export const metadata = {
   // },
 };
 
-const NextTopLoader: any = dynamic((): any => import("nextjs-toploader"));
-const DynamicScroller: any = dynamic(
-  () => import("@/components/utils/Scroller"),
-  {
-    ssr: false,
-  }
-);
+
+ 
 
 const DynamicCursor: any = dynamic(() => import("@/components/common/Cursor"));
-const DynamicFooter: any = dynamic(() => import("@/components/common/Footer"), {
-  ssr: false,
-});
+
 
 const CookieBanner: any = dynamic(
   () => import("@/components/utils/CookieBanner"),
@@ -115,22 +108,20 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
           
             <Setup />
             <Header />
-             <DynamicScroller>
+             <Scroller>
               {children}
               <Suspense fallback={<div>Loading...</div>}>
-                <DynamicFooter />
+                <Footer />
               </Suspense>
-            </DynamicScroller>  
+            </Scroller>  
 
 
         <DynamicCursor />
         <CookieBanner />
         <NextTopLoader 
           color="#000"
-          size="10"
-
-
-          showOnScroll={true}
+          height={4}
+          // showSpinner={true}
 
           
         />

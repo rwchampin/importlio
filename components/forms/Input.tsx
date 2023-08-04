@@ -8,8 +8,7 @@ import PostTypeSelect from "@/components/forms/PostTypeSelect";
 import { IoLockClosedOutline as PasswordIcon } from "react-icons/io5";
 import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
 import dynamic from "next/dynamic";
-import { Suspense } from "react";
-import { on } from "events";
+
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
   ssr: false,
 });
@@ -33,8 +32,8 @@ const InputIcon: React.FC<{ type: string; isFocused: boolean }> = ({
   type,
   isFocused,
 }) => {
-  let iconClassName = `input-svg z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
-    isFocused ? "stroke-gray-dark-1" : "stroke-gray-1"
+  let iconClassName = `input-svg stroke-gray-1 z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
+    isFocused ? "stroke-gray-11" : "stroke-gray-11"
   }`;
 
   switch (type) {
