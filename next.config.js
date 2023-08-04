@@ -6,7 +6,7 @@
 // })
 
 const nextConfig = {
-  reactStrictMode: process.env.NODE_ENV !== 'production',
+  // reactStrictMode: process.env.NODE_ENV !== 'production',
   images: {
     remotePatterns: [
       {

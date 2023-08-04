@@ -30,16 +30,14 @@ export default function Badge({ type,showClose, children, className, ...props })
                 return "gray";
         }
     };
-    const color = "blue"
-    const style = `bg-${color}-200 inline-flex items-center rounded-xl white-space-nowrap  px-2 py-0.5 text-[10px] hyphens  text-${color}-600 ring-1 ring-inset ring-${color}-500/10`
-
+    const color = `indigo`
+    const style = `bg-${color}-dark-a-3 hover:bg-${color}-dark-4 active:bg-${color}-dark-5 inline-flex items-center rounded-xl whitespace-nowrap  px-2 py-0.5 text-[10px] hyphens  text-${color}-11 ring-1 ring-inset ring-${color}-7 hover:ring-${color}-8 ${className}`
         return (
-          <>
-            <span className={style}>
+
+            <div className={style}>
                 {children}
-            </span>
+            </div>
              
-          </>
         )
 
 }

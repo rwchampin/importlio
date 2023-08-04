@@ -1,12 +1,13 @@
 "use client";
 import dynamic from "next/dynamic";
 import { BasicPage } from "@/components/pages";
+import { Spinner } from "@/app/components";
+import { Suspense } from "react";
 
 import {
 
   FeatureHero,
   ImageCta,
-  // RecentBlogPosts,
 
 } from "@/components/heros/";
 
@@ -15,6 +16,7 @@ import { Section } from "@/components/common";
 
 import { Canvas, Model, Dom } from "@react-three/fiber";
 
+const DynamicRecentBlogPosts = dynamic(() => import("@/components/heros/RecentBlogPosts"));
 
 const DynamicDark = dynamic(() => import("@/components/3d/Dark"));
 
@@ -36,7 +38,7 @@ export default function Page() {
       yPos="50"
     >
       <Section full>
-        <Canvas   camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
+        <Canvas camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
           <ambientLight intensity={0.5} />
           <DynamicDark />
         </Canvas>
@@ -72,9 +74,14 @@ export default function Page() {
       </Section>
       <Spacer size={1} />
 
-      {/* <Section>
-        <RecentBlogPosts />
-      </Section> */}
+      <Section>
+
+        <Suspense fallback={<Spinner />}>
+        <DynamicRecentBlogPosts />
+        </Suspense>
+
+
+      </Section>
       {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
             <Canvas>
               <OrbitControls />

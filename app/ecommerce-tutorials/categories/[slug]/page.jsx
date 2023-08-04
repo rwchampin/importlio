@@ -1,12 +1,15 @@
-export default async function Page( ) {
+import { useFetch } from '@/hooks';
 
-    const postRes = await fetch(`https://importlio.com/api/posts/categories/${slug}`, {
+export default async function Page({ params: { slug }}) {
+    const {loading, data, error} = useFetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/${slug}`, {
         method: 'GET',
         headers: {
             'Content-Type': 'application/json',
         },
-    })
-    const posts =  postRes.json().results
+    });
+    debugger
+    const postsData = await postsRes.json()
+    const posts = postsData.results;
 
     return (
         <div className="flex flex-col gap-5 md:flex-row md:items-center justify-center shrink-0">

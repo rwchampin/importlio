@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-
+import { useCore } from '@/store';
 
 interface Options {
   method?: string;
@@ -24,6 +24,7 @@ export default function useFetch(url:string, options: Options = {}) {
     fetch(url, { signal, ...options })
       .then((res) => res.json())
       .then((data) => {
+        debugger
         if (isMounted) {
           setData(data);
           setLoading(false);

@@ -657,14 +657,3 @@ body.light .progress-wrap svg.progress-circle path {
   margin: 0 !important;
   @apply text-xxs;
 }
-
-canvas {
-  position: fixed;
-  height: 100vh !important;
-  width: 100vw !important;
-  /* z-index: -1 ; */
-  top:0;
-  left:0;
-  right: 0;
-  bottom: 0;
-}

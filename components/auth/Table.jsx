@@ -72,7 +72,7 @@ export default function Table({posts}){
                                     </div>
                                 </td>
                                 <th scope="row" className="flex items-center justify-center  text-xxs  font-medium text-gray-900   whitespace-nowrap dark:text-white">
-                                    {/* <img src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" className="w-auto h-8 mr-3" /> */}
+                                    {/* <Image fill src="https://flowbite.s3.amazonaws.com/blocks/application-ui/products/imac-front-image.png" alt="iMac Front Image" className="w-auto h-8 mr-3" /> */}
                                    {post.published}
                                 </th>
                                 <td className="px-4 py-2 text-xxs">

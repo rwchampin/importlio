@@ -1,7 +1,8 @@
+"use client";
 import React, {useState} from 'react';
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
-import PropTypes from 'prop-types';
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+
 
 const Editor=({
 	placeholder,
@@ -55,16 +56,16 @@ const Editor=({
  
 
 	return (
-
-			<ReactQuill
-				theme={'snow'}
-			onChange={handleChange}
-			value={value}
-				modules={modules}
-				formats={formats}
-				// bounds={'.app'}
-				placeholder={placeholder}
-			/>
+		<textarea></textarea>
+			// <ReactQuill
+			// 	theme={'snow'}
+			// onChange={handleChange}
+			// value={value}
+			// 	modules={modules}
+			// 	formats={formats}
+			// 	// bounds={'.app'}
+			// 	placeholder={placeholder}
+			// />
 			 
 		 
 	);

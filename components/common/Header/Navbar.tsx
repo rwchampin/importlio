@@ -5,24 +5,18 @@ import { Disclosure } from "@headlessui/react";
 import { RxCross2 } from "react-icons/rx";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 
-import { CustomSuspense } from "@/components/common";
+import { CustomSuspense, LogoBlack, SocialIcons } from "@/components/common";
 import NavLink from "./NavLink";
 import dynamic from "next/dynamic";
 
-
-import { useEffect, useState, Suspense } from "react";
+import { useEffect, useState } from "react";
 import gsap from "gsap";
 import { useResponsive } from "@/hooks";
 
-
-
-
-const DynamicSocialIcons: any = dynamic(
-  () => import("@/components/common/SocialIcons")
-);
+ 
 
 export default function Navbar() {
-  const responsive:any = useResponsive();
+  const responsive: any = useResponsive();
   const [hoveredLink, setHoveredLink] = useState<string | undefined>("");
   const pathname = usePathname();
   const dispatch = useAppDispatch();
@@ -73,9 +67,7 @@ export default function Navbar() {
     });
   }, []);
 
-  const DynamicLogo: any = dynamic(
-    () => import("@/components/common/logo/LogoBlack")
-  );
+  
 
   return (
     <CustomSuspense>
@@ -87,10 +79,8 @@ export default function Navbar() {
                 <div className="w-full flex flex-1 items-center justify-center md:justify-center sm:items-center sm:justify-center gap-5">
                   <div className="flex gap-5 justify-between items-center w-full">
 
+                    <LogoBlack />
 
-                    <Suspense fallback={<div>Loading...</div>}>
-                      <DynamicLogo  />
-                    </Suspense>
                     <menu className="hidden md:flex relative gap-5 mr-auto">
                       {links.map((link: LinkProps) => {
                         return (
@@ -108,15 +98,14 @@ export default function Navbar() {
                         );
                       })}
                     </menu>
-
                   </div>
                   <div className="hidden sm:ml-6 md:flex   gap-3">
                     {/* <div className="flex h-full items-center justify-center space-x-4"> */}
-                      {/* <LoginOrAvatar /> */}
+                    {/* <LoginOrAvatar /> */}
                     {/* </div> */}
                   </div>
 
-                  {responsive.lg === true && <DynamicSocialIcons />}
+                  {responsive.lg === true && <SocialIcons />}
                   <div className="inset-y-0 right-0 flex items-center md:hidden">
                     <Disclosure.Button className="inline-flex aspect-square items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                       <span className="sr-only">Open main menu</span>
@@ -140,7 +129,6 @@ export default function Navbar() {
               hoveredLink={hoveredLink}
               handleHover={handleHover}
             /> */}
-
             </div>
 
             <Disclosure.Panel className="sm:hidden">

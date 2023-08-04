@@ -16,7 +16,7 @@ export default function Spinner({ sm, md, lg, showText }: Props) {
   });
 
   return (
-    <span role="status">
+    <span role="status" className='h-full w-full flex items-center justify-center drop-shadow-xl'>
       <CgSpinner className={className} />
 		  {showText===true&&<span className="sr-only">Loading...</span>}
     </span>

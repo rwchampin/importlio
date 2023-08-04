@@ -1,15 +1,15 @@
-"use client";
-import { useParams } from "next/navigation";
+
 
 import { Section, TagCloud } from "@/components/common";
 import { BasicPage } from "@/components/pages";
-import { Sidebar } from "@/components/ecommerce-tutorials";
+import { Sidebar } from "@/components/blog";
 import dynamic from "next/dynamic";
 
 // gsap.registerPlugin(ScrollTrigger)
 
-export default async function Page({ params }: { params: { slug: string } }) {
-  const { slug } = useParams();
+export default async function Page({ params }:any) {
+  debugger
+  const { slug } = params;
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
   const post = await res.json();
 

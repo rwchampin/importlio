@@ -1,72 +1,70 @@
 import { useEffect, useRef } from 'react';
 import gsap from 'gsap';
+import Image from "next/image"
 
-const MouseFollower = (options = {}) => {
-    const {
-        el = null,
-        container = document.body,
-        className = 'mf-cursor',
-        innerClassName = 'mf-cursor-inner',
-        dataAttr = 'cursor',
-        hiddenState = '-hidden',
-        stateDetection = {
-            '-pointer': 'a,button',
-        },
-        visible = true,
-        visibleOnState = false,
-        speed = 0.55,
-        ease = 'expo.out',
-        overwrite = true,
-        skewing = 0,
-        skewingText = 2,
-        skewingIcon = 2,
-        skewingMedia = 2,
-        skewingDelta = 0.001,
-        skewingDeltaMax = 0.15,
-        stickDelta = 0.15,
-        showTimeout = 0,
-        hideOnLeave = true,
-        hideTimeout = 300,
-        hideMediaTimeout = 300,
-        initialPos = [-window.innerWidth, -window.innerHeight],
-    } = options;
-
-    const elRef = useRef(null);
-    const innerRef = useRef(null);
-    const mediaRef = useRef(null);
-    const textRef = useRef(null);
-    const gsapRef = useRef(null);
-    const tickerRef = useRef(null);
-    const visibleIntRef = useRef(null);
-    const posRef = useRef({ x: initialPos[0], y: initialPos[1] });
-    const velRef = useRef({ x: 0, y: 0 });
-    const eventRef = useRef({});
-    const eventsRef = useRef({});
+const MouseFollower = () => {
+    const initialPos = useRef([-window.innerWidth, -window.innerHeight]);
+    const el = useRef(null);
+    const inner = useRef(null);
+    const media = useRef(null);
+    const text = useRef(null);
+    const gsap = useRef(null);
+    const ticker = useRef(null);
+    const container = useRef(document.body)
+    const className = useRef('mf-cursor')
+    const innerClassName = useRef('mf-cursor-inner')
+    const dataAttr = useRef('cursor')
+    const hiddenState = useRef('-hidden')
+    const stateDetection = useRef({
+        '-pointer': 'a,button'
+    })
+    const visibleInt = useRef(null)
+    const pos = useRef({ x: initialPos[0], y: initialPos[1] });
+    const vel = useRef({ x: 0, y: 0 });
+    const event = useRef({});
+    const events = useRef({});
+    const visible = useRef(true);
+    const visibleOnState = useRef(false);
+    const speed = useRef(.55);
+    const ease = useRef('expo.out');
+    const overwrite = useRef(true);
+    const skewing = useRef(0)
+    const skewingText = useRef(2)
+    const skewingIcon = useRef(2)
+    const skewingMedia = useRef(2)
+    const skewingDelta = useRef(0.001)
+    const skewingDeltaMax = useRef(0.15)
+    const stickDelta = useRef(0.15)
+    const showTimeout = useRef(0)
+    const hideOnLeave = useRef(true)
+    const hideTimeout = useRef(300)
+    const hideMediaTimeout = useRef(300)
+    const activeState = useRef('-active')
+    const activeStateOn = useRef(false)
 
     useEffect(() => {
         const create = () => {
-            const el = document.createElement('div');
-            el.className = className;
-            el.classList.add(hiddenState);
 
-            const inner = document.createElement('div');
-            inner.className = innerClassName;
+            el.current.className = className;
+            el.current.classList.add(hiddenState);
 
-            const media = document.createElement('div');
-            media.className = 'mf-media';
-            mediaRef.current = media;
 
-            const text = document.createElement('div');
-            text.className = 'mf-text';
-            textRef.current = text;
+            inner.current.className = innerClassName;
 
-            inner.appendChild(media);
-            inner.appendChild(text);
-            el.appendChild(inner);
-            container.appendChild(el);
+            media.current = document.createElement('div');
+            media.current.className = 'mf-media';
 
-            elRef.current = el;
-            innerRef.current = inner;
+            text.current = document.createElement('div');
+            text.current.className = 'mf-text';
+
+
+            inner.current.appendChild(media);
+            inner.current.appendChild(text);
+
+
+
+
+
         };
 
         const createSetter = () => {
@@ -90,8 +88,8 @@ const MouseFollower = (options = {}) => {
             const event = {
                 mouseleave: () => hide(),
                 mouseenter: () => show(),
-                mousedown: () => addState(options.activeState),
-                mouseup: () => removeState(options.activeState),
+                mousedown: () => addState(activeState.current),
+                mouseup: () => removeState(activeState.current),
                 mousemoveOnce: () => show(),
                 mousemove: (e) => {
                     gsap.to(pos, {
@@ -99,7 +97,7 @@ const MouseFollower = (options = {}) => {
                         y: stick ? stick.y - ((stick.y - e.clientY) * options.stickDelta) : e.clientY,
                         overwrite: options.overwrite,
                         ease: options.ease,
-                        duration: visible ? options.speed : 0,
+                        duration: visible.current ? options.speed : 0,
                         onUpdate: () => vel.x = e.clientX - pos.x,
                         onUpdate: () => vel.y = e.clientY - pos.y
                     });
@@ -144,7 +142,7 @@ const MouseFollower = (options = {}) => {
             if (options.visible) {
                 container.addEventListener('mouseenter', event.mouseenter, { passive: true });
             }
-            if (options.activeState) {
+            if (activeState.current) {
                 container.addEventListener('mousedown', event.mousedown, { passive: true });
                 container.addEventListener('mouseup', event.mouseup, { passive: true });
             }
@@ -204,7 +202,7 @@ const MouseFollower = (options = {}) => {
         const show = () => {
             clearTimeout(visibleIntRef.current);
             if (!visible) {
-                visible = true;
+                visible.current = true;
                 visibleIntRef.current = setTimeout(() => {
                     elRef.current.classList.remove(hiddenState);
                 }, options.showTimeout);
@@ -214,7 +212,7 @@ const MouseFollower = (options = {}) => {
         const hide = () => {
             clearTimeout(visibleIntRef.current);
             if (visible) {
-                visible = false;
+                visible.current = false;
                 elRef.current.classList.add(hiddenState);
             }
         }
@@ -265,10 +263,10 @@ const MouseFollower = (options = {}) => {
 
     return (
         <svg
-            ref={elRef}
+            ref={el}
             className="mf-cursor" width="100" height="100" viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle
-                ref={innerRef}
+                ref={inner}
                 className="mf-cursor-inner" cx="50" cy="50" r="50" fill="white" />
         </svg>
     )

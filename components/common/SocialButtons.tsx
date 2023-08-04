@@ -1,4 +1,5 @@
 'use client';
+import Image from "next/image"
 
 import { ImGoogle, ImFacebook } from 'react-icons/im';
 import { SocialButton } from '@/components/common';

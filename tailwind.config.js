@@ -1,39 +1,121 @@
-import {
-  black,
-  white,
-  gray,
-  red,
-  green,
-  yellow,
-  darkGray,
-  darkRed,
-  darkGreen,
-  darkYellow,
-} from "@radix-ui/colors";
+import * as F from "@radix-ui/colors";
+// const originalColors = {
+//   gray,
+//   red,
+//   green,
+//   yellow,
+//   blue,
+//   indigo,
+//   purple,
+//   plum,
+//   pink,
+//   violet,
+//   cyan,
+//   teal,
+//   emerald,
+//   lime,
+//   amber,
+//   orange,
+//   brown,
+//   tomato,
+// }
 
-const colors = {
-  ...black,
-  ...white,
-  ...gray,
-  ...red,
-  ...green,
-  ...yellow,
-  ...darkGray,
-  ...darkRed,
-  ...darkGreen,
-  ...darkYellow,
-};
+// const originalColorsA = {
+//   blackA,
+//   whiteA,
+//   grayA,
+//   redA,
+//   greenA,
+//   yellowA,
+//   blueA,
+//   indigoA,
+//   purpleA,
+//   plumA,
+//   pinkA,
+//   violetA,
+//   cyanA,
+//   tealA,
+//   emeraldA,
+//   limeA,
+//   amberA,
+//   orangeA,
+//   brownA,
+//   tomatoA,
+// }
+// const originalColorsDark = {
+//   darkGray,
+//   darkRed,
+//   darkGreen,
+//   darkYellow,
+//   darkBlue,
+//   darkIndigo,
+//   darkPurple,
+//   darkPlum,
+//   darkPink,
+//   darkViolet,
+//   darkCyan,
+//   darkTeal,
+//   darkEmerald,
+//   darkLime,
+//   darkAmber,
+//   darkOrange,
+//   darkBrown,
+//   darkTomato,
+// }
 
-function convertColorKeysToObjectWithIntegers(colors) {
-  const keys = Object.keys(colors);
-  const result = {};
+// const originalColorsDarkA = {
+//   darkGrayA,
+//   darkRedA,
+//   darkGreenA,
+//   darkYellowA,
+//   darkBlueA,
+//   darkIndigoA,
+//   darkPurpleA,
+//   darkPlumA,
+//   darkPinkA,
+//   darkVioletA,
+//   darkCyanA,
+//   darkTealA,
+//   darkEmeraldA,
+//   darkLimeA,
+//   darkAmberA,
+//   darkOrangeA,
+//   darkBrownA,
+//   darkTomatoA,
+// }
+function transformColorsToObject(inputObject) {
+  const transformedObject = {};
 
-  keys.forEach((key, index) => {
-    const newKey = index + 1;
-    result[newKey] = colors[key];
-  });
+  for (const key in inputObject) {
+      const colorObj = inputObject[key];
 
-  return result;
+      for (const colorKey in colorObj) {
+          const matches = colorKey.match(/\d+/);
+          if (matches) {
+              const numericKey = matches[0];
+              const dashedKey = `${key}-${numericKey}`.replace(/([a-z])([A-Z])/g, '$1-$2').toLowerCase();
+              transformedObject[dashedKey] = colorObj[colorKey];
+          }
+      }
+  }
+
+  return transformedObject;
+}
+ const colors = {
+  input: "#d2d2d2",
+  "input-hover": "#222222",
+  "input-focus": "#323232",
+  "input-dropdown": "#222222",
+  button: "#222222",
+  "button-hover": "#323232",
+  offwhite: "#f8f8f8",
+  offgray: "#1f2029",
+  backdrop: "rgba(0, 0, 0, 0.7)",
+
+  // Radix Colors
+  ...transformColorsToObject(F)
+
+ 
 }
 
 /** @type {import('tailwindcss').Config} */
@@ -52,21 +134,7 @@ module.exports = {
         "2/3": "66.666667vw",
         "1/4": "25vw",
       },
-      colors: {
-        input: "#d2d2d2",
-        "input-hover": "#222222",
-        "input-focus": "#323232",
-        "input-dropdown": "#222222",
-        button: "#222222",
-        "button-hover": "#323232",
-        offwhite: "#f8f8f8",
-        offgray: "#1f2029",
-        backdrop: "rgba(0, 0, 0, 0.7)",
-
-        // Radix Colors
-        ...colors,
-       
-      },
+      colors,
       keyframes: {
         hide: {
           from: { opacity: 1 },

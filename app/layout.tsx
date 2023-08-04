@@ -10,8 +10,7 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { GA } from "@/components/utils/";
-import { BlogProvider, CoreProvider } from '@/store'; // Import the BlogProvider
-import { Toast } from '@/components/common'
+
 
 import Provider from "@/redux/provider";
 import { Setup } from "@/components/utils";
@@ -105,25 +104,25 @@ const CookieBanner: any = dynamic(
 );
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
+
   return (
+    <Provider>
     <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
       <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
-
+      
       <body className={`pt-[4rem] bg-darkGray2`}>
-        <CoreProvider>
-          <BlogProvider> 
-          <Provider>
+      
+          
             <Setup />
             <Header />
-            <DynamicScroller>
+             <DynamicScroller>
               {children}
               <Suspense fallback={<div>Loading...</div>}>
                 <DynamicFooter />
               </Suspense>
-            </DynamicScroller>
-          </Provider>
-          </BlogProvider>
-        </CoreProvider>
+            </DynamicScroller>  
+
+
         <DynamicCursor />
         <CookieBanner />
         <NextTopLoader 
@@ -137,6 +136,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
         />
       </body>
     </html>
+    </Provider>
   );
 };
 

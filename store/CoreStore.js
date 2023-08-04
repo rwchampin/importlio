@@ -1,20 +1,16 @@
 "use client"
 import React, { createContext, useContext, useReducer, useState } from 'react';
 
-
-
-
 // Define the actions that can be dispatched to update the store
 const actions = {
     SET_DEBUG_MODE: 'SET_DEBUG_MODE',
-    'TOGGLE_DEBUG_MODE': 'TOGGLE_DEBUG_MODE',
+    TOGGLE_DEBUG_MODE: 'TOGGLE_DEBUG_MODE',
     TOGGLE_LOADING: 'TOGGLE_LOADING',
     SET_LOADING: 'SET_LOADING',
     TOGGLE_MODAL: 'TOGGLE_MODAL',
     SET_MODAL: 'SET_MODAL',
     SET_ERRORS: 'SET_ERRORS',
     CLEAR_ERRORS: 'CLEAR_ERRORS',
-
 };
 
 
@@ -71,7 +67,7 @@ const coreReducer = (state, action) => {
 const CoreContext = createContext();
 
 
-const CoreProvider = ({ children }) => {debugger
+const CoreProvider = ({ children }) => {
     const [coreState, dispatch] = useReducer(coreReducer, {
         debugMode: false,
         isLoading: true,

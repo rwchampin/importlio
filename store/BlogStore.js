@@ -1,71 +1,23 @@
 "use client"
 import React, { createContext, useContext, useEffect, useReducer } from 'react';
 
-
-async function getTags() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/tags/list`)
-    return res.json()
-}
-
-async function getCategories() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/list`)
-    return res.json()
-}
-
-const getPosts = async () => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
-
-    const data = await res.json();
-    return data.results; // Assuming the API response has an array of posts in the 'results' property
-}
-
-const getAll = async () => {
-    const postRes = getPosts()
-    const tagRes = getTags()
-    const categoryRes = getCategories()
-
-    const [posts, tags, categories] = await Promise.all([postRes, tagRes, categoryRes])
-
-    return {
-        posts,
-        tags,
-        categories,
-    }
-}
-
 // Define the actions that can be dispatched to update the store
 const actions = {
-    INITIAL_LOAD: 'INITIAL_LOAD',
     SET_POSTS: 'SET_POSTS',
     SET_TAGS: 'SET_TAGS',
     SET_CATEGORIES: 'SET_CATEGORIES',
     SET_POST_TYPES: 'SET_POST_TYPES',
-    SET_LOADED_POSTS: 'SET_LOADED_POSTS',
 };
 
 const blogReducer = (state, action) => {
     switch (action.type) {
-        case actions.SET_LOADED_POSTS:
-            return {
-                ...state,
-                loadedPosts: true,
-            };
-
         case actions.INITIAL_LOAD:
-
             return {
                 ...state,
                 posts: action.payload.posts,
                 tags: action.payload.tags.results,
                 categories: action.payload.categories.results,
-                // postTypes: action.payload.postTypes,
             };
-
         case actions.SET_POSTS:
             return {
                 ...state,
@@ -87,101 +39,122 @@ const blogReducer = (state, action) => {
                 postTypes: action.payload,
             };
         default:
-
-
             return state;
     }
 };
-
 const BlogContext = createContext();
 
 
 
-const BlogProvider = ({ children }) => {
-    debugger
+const getTags = async (callback) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/tags/list`)
+    const data = await res.json()
 
+    if(data && data.results) {
+        callback(data.results)
+
+        return data.results;
+    }
+
+   callback(data)
+
+    return data;
+}
+
+const getCategories = async (callback) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/list`)
+
+
+    const data = await res.json()
+    if(data && data.results) {
+        callback(data.results)
+
+        return data.results;
+    }
+
+    callback(data)
+    return data;
+}
+
+const getPosts = async (callback) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    });
+
+    const data = await res.json();
+    if(data && data.results) {
+        callback(data.results)
+        return data.results;
+    }
+    callback(data)
+    return data;
+}
+const getAll = async (callbacks) => {
+    const [posts, tags, categories] = await Promise.all([
+        getPosts(callbacks.setPosts),
+        getTags(callbacks.setTags),
+        getCategories(callbacks.setCategories),
+    ]);
+
+    return {
+        posts,
+        tags,
+        categories,
+    };
+};
+
+
+const BlogProvider = ({ children }) => {
     const [blogState, dispatch] = useReducer(blogReducer, {
         posts: [],
         tags: [],
         categories: [],
         postTypes: [],
-        loadedPosts: false,
     });
+
     useEffect(() => {
-        const fetchPosts = async () => {
-
-            try {
-                const fetchedPosts = await getPosts();
-                const fetchedTags = await getTags();
-                const fetchedCategories = await getCategories();
-
-                const [categories, tags, posts] = await Promise.all([fetchedCategories, fetchedTags, fetchedPosts])
-
-                dispatch({
-                    type: actions.INITIAL_LOAD,
-                    payload: {
-                        posts,
-                        tags,
-                        categories,
-                        // postTypes,
-                    },
-                });
-
-
-            } catch (error) {
-                console.error("Error fetching posts:", error);
-
-            }
+        const fetchData = async () => {
+            const callbacks = {
+                setPosts: (data) => dispatch({ type: actions.SET_POSTS, payload: data }),
+                setTags: (data) => dispatch({ type: actions.SET_TAGS, payload: data }),
+                setCategories: (data) => dispatch({ type: actions.SET_CATEGORIES, payload: data }),
+            };
+            const { posts, tags, categories } = await getAll(callbacks);
+            dispatch({ type: actions.INITIAL_LOAD, payload: { posts, tags, categories } });
         };
 
-        fetchPosts();
+        fetchData();
     }, []);
 
     return (
-        <BlogContext.Provider value={{ blogState, dispatch }}>
+        <BlogContext.Provider value={{ ...blogState, dispatch }}>
             {children}
         </BlogContext.Provider>
     );
 };
 const useBlog = () => {
-    const store = useContext(BlogContext);
-    
-    const getPosts = async () => {
-        if(store.loadedPosts) return store.posts
-
-        const {posts, tags, categories} = await getAll()
-        store.dispatch({
-            type: actions.SET_LOADED_POSTS,
-        });
-
-        store.dispatch({
-            type: actions.INITIAL_LOAD,
-            payload: {
-                posts,
-                tags,
-                categories,
-                // postTypes,
-            },
-        });
-
-        return {
-            posts,
-            tags,
-            categories,
-        }
+    const {
+        dispatch,
+        posts,
+        tags,
+        categories,
+     } = useContext(BlogContext);
 
 
-    }
-
-
-    if (!store) {
-        throw new Error('useBlogContext must be used within a BlogProvider');
-    }
+ 
 
     return {
-        ...store,
-        dispatch:store.dispatch,
+        posts,
+        tags,
+        categories,
+        dispatch,
         getPosts,
+        getTags,
+        getCategories,
+        getAll,
     }
 };
 

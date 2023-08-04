@@ -299,7 +299,7 @@ export const Particles = () => {
     return (
  <></>
             // <canvas id="splash-canvas" ref={canvasRef}/>
-            // <img className='base-image' ref={logoRef} style={{ display: 'none', opacity: 0, margin: '0 auto' }} src={logo} alt="Cosentyx" />
+            // <Image fill className='base-image' ref={logoRef} style={{ display: 'none', opacity: 0, margin: '0 auto' }} src={logo} alt="Cosentyx" />
 
     );
 };

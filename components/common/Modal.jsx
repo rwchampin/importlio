@@ -17,11 +17,14 @@ export default function Modal({ModalBody, theme}) {
     dispatch(toggleModal());
   }
   return (
-    <>
+    <div className='main-mofal'>
 
 
-      <Transition appear show={isModalOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={toggle}>
+     
+      <Primary variant="solid" className='max-w-[500px]' onClick={toggle}>Preregister</Primary>
+
+      <Transition appear show={isModalOpen} as={Fragment} className="outer-modal z-[999999]">
+        <Dialog as="div" className="modal relative z-[999999]" onClose={toggle}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -31,10 +34,10 @@ export default function Modal({ModalBody, theme}) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-backdrop blur-lg bg-opacity-25" />
+            <div className="fixed inset-0 bg-backdrop blur-lg bg-opacity-45" />
           </Transition.Child>
 
-          <div className="fixed inset-0 overflow-y-auto">
+          <div style={{ zIndex: '999999999px !important'}} className="fixed inset-0 overflow-y-auto bg-slate-400 ">
             <div className="flex min-h-full items-center justify-center text-center">
               <Transition.Child
                 as={Fragment}
@@ -58,9 +61,6 @@ export default function Modal({ModalBody, theme}) {
         </Dialog>
       </Transition>
 
-      <Primary variant="solid" className='max-w-[500px]' onClick={toggle}>Preregister</Primary>
-
-
-    </>
+    </div>
   )
 }

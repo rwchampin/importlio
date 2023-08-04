@@ -33,8 +33,8 @@ const InputIcon: React.FC<{ type: string; isFocused: boolean }> = ({
   type,
   isFocused,
 }) => {
-  let iconClassName = `input-svg z-100 absolute top-1/2 left-3 transform -translate-y-1/2 ${
-    isFocused ? "stroke-offwhite" : "stroke-offgray"
+  let iconClassName = `input-svg z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
+    isFocused ? "stroke-gray-dark-1" : "stroke-gray-1"
   }`;
 
   switch (type) {
