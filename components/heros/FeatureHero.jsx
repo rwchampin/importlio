@@ -36,59 +36,39 @@ export default function FeatureHero() {
       
       
     }, [])
+
+
+
     const features = [
         {
-            title: "Unleash the Power of Bulk Importing",
+            title: "Import Amazon Products in Bulk",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: `Say goodbye to the tedious task of manually adding products one by
-            one. Our powerful tool enables you to effortlessly import a large
-            number of products into your Amazon store in just a few clicks. With
-            our Amazon Product Bulk Importer, you can save valuable time and focus
-            on what truly matters – growing your business.`
+            description: `Effortlessly expand your product catalog by importing a multitude of Amazon products in one go. Seamlessly integrate and diversify your offerings with just a few clicks.`
         }, {
-            title: "Streamline Your Product Management",
+            title: "Load Products by Amazon Results Page URL",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: `Efficiency is the name of the game, and our tool is designed to
-            streamline your product management process. Seamlessly organize and
-            update your product listings, prices, descriptions, and more, all
-            from a centralized dashboard. Experience hassle-free inventory
-            management and keep your Amazon store up-to-date effortlessly.`
+            description: `Streamline the process of populating your inventory by directly importing products using Amazon's search results. Effortlessly curate a selection that resonates with your customers' preferences.`
         }, {
-            title: "Keyword Optimization for Enhanced Visibility",
+            title: "Fill your Shopify Store by Amazon Product Category",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: ` We understand the importance of standing out in the highly
-            competitive Amazon marketplace. Our Amazon Product Bulk Importer
-            allows you to optimize your product listings with strategic
-            keywords, ensuring maximum visibility for your products. Boost your
-            rankings, attract more customers, and watch your sales soar to new
-            heights.`
+            description: `Elevate your Shopify store's appeal by importing products from specific Amazon categories. Tailor your inventory to cater precisely to your target audience's desires.`
         }, {
-            title: "Effortless Integration and User-Friendly Interface",
+            title: "Import in seconds with our Amazon Autocomplete Product Search",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: `No complex setup or technical expertise required! Our Amazon Product
-            Bulk Importer seamlessly integrates with your existing Amazon seller
-            account, making it a breeze to get started. The intuitive user
-            interface ensures a smooth and hassle-free experience, even for
-            beginners. Get up and running in no time, and let our tool simplify
-            your Amazon selling journey.`
+            description: `Swiftly add products to your store using our Amazon Autocomplete Product Search feature. Expedite the import process and bring a diverse array of top-selling items to your customers' fingertips.`
         }, {
-            title: "Stay Ahead with Real-Time Update",
+            title: "CSV Import/Export",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: ` Keep your finger on the pulse of your Amazon business with real-time
-            updates. Our Amazon Product Bulk Importer provides you with the
-            latest insights and analytics to monitor the performance of your
-            products. Stay informed about sales trends, inventory levels, and
-            more, empowering you to make data-driven decisions for sustainable
-            growth.`
+            description: `Seamlessly manage your product data with our CSV Import/Export functionality. Effortlessly transfer information between platforms, ensuring your inventory remains accurate and up to date.`
         }, {
-            title: "Experience the Power of Our Amazon Product Bulk Importer",
+            title: "Import Products by Amazon Product ASIN",
             icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
-            description: `Unleash the true potential of your Amazon business with our
-            revolutionary Amazon Product Bulk Importer. Say goodbye to manual
-            data entry and embrace the efficiency of bulk importing. Stay ahead
-            of the competition, optimize your product listings, and watch your
-            sales skyrocket.`
-        },
+            description: `Precision meets convenience as you import products using Amazon's unique ASIN identifiers. Ensure accuracy and enhance your offerings by directly incorporating products your customers already love.`
+        }, {
+            title: "Import Products by Amazon Product Keyword",
+            icon: "https://tailwindui.com/img/ecommerce/icons/icon-delivery-light.svg",
+            description: `Tailor your product selection to customer intent by importing items based on Amazon product keywords. Effortlessly match your inventory with popular search terms, boosting your store's visibility.`
+        }
     ]
     return (
         <section ref={parent} className="dark:bg-gray-200 relative z-10">

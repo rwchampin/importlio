@@ -72,7 +72,7 @@ const calculateHeadlineColor = (bg) => {
 function Headline({ children,theme}) {
     
     return (
-        <span data-lag=".3" className={`uppercase font-montserrat font-bold text-gray-400  text-headline  m-0`}>
+        <span data-lag=".3" data-enter className={`uppercase font-montserrat font-bold text-gray-400  text-headline  m-0`}>
             {children}
         </span>
     );
@@ -80,7 +80,10 @@ function Headline({ children,theme}) {
 function Title({ children,theme }) {
    
     return (
-        <h1 data-speed="1.5" className={` font-montserrat-black font-black text-offgray not-prose text-heading-1 m-0 whitespace-pre-line`}>
+        <h1
+         data-speed="1.5"
+          data-enter 
+          className={`font-montserrat-black font-black text-heading-1 m-0 whitespace-pre-line bg-gradient-to-br from-gray-700 via-gray-900 to-black`}>
             {children}
         </h1>
     );
@@ -88,7 +91,7 @@ function Title({ children,theme }) {
 function Subtitle({ children,theme}) {
     
     return (
-        <h2 data-speed=".9" className={`font-apercu font-bold text-${theme === 'dark' ? 'gray-400' : 'gray-400'}  not-prose text-subtitle-1 line-tight m-0`}>
+        <h2 data-speed=".9" data-enter className={`font-apercu font-bold text-${theme === 'dark' ? 'gray-400' : 'gray-400'}  not-prose text-subtitle-1 line-tight m-0`}>
             {children}
         </h2>
     );

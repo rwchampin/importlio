@@ -2,7 +2,7 @@ import { Hero } from "../common";
 
 
 
-export default function BasicPage({theme,bg, title, subtitle, headline, shadowText, children, showButton, xPos, yPos, customComponent }) {
+export default function BasicPage({theme,bg, title, subtitle,belowSubtitle, headline, shadowText, children, showButton, xPos, yPos, customComponent }) {
   // debugger
   return (
     <>
@@ -12,6 +12,7 @@ export default function BasicPage({theme,bg, title, subtitle, headline, shadowTe
         bg={bg}
         title={title}
 			  subtitle={subtitle}
+        belowSubtitle={belowSubtitle}
         headline={headline}
         shadowText={shadowText}
         xPos={xPos}

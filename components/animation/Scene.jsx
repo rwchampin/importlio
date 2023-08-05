@@ -6,15 +6,11 @@ export default function Scene({ children }) {
 
     useEffect(() => {
         const entrances = gsap.utils.toArray('[data-enter]');
-        gsap.fromTo(entrances, {
+        gsap.from(entrances, {
             opacity: 0,
-            y: -30
-        }, {
-            opacity: 1,
-            y: 0,
-            stagger: .05,
-            duration: .55,
-            ease: 'power3.inOut'
+            y: -30,
+            stagger: .2,
+            duration: .5
         })
     }, []);
 

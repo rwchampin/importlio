@@ -45,3 +45,4 @@ export {default as Alert} from "@/components/common/Alert";
 export {default as Subscribe} from "@/components/common/Subscribe";
 export {default as Banner} from "@/components/common/Banner";
 export {default as DropdownAlt} from "@/components/common/DropdownAlt";
+export {default as JsonLd} from "@/components/common/JsonLd";

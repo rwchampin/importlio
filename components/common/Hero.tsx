@@ -11,6 +11,7 @@ interface Props {
   bg?: string;
   title: string;
   subtitle?: string;
+  belowSubtitle?: string;
   headline?: string;
   shadowText?: string;
   theme?: "dark" | "light";
@@ -23,6 +24,7 @@ export default function Hero({
   bg,
   title,
   subtitle,
+  belowSubtitle,
   headline,
   shadowText,
   theme,
@@ -61,6 +63,12 @@ export default function Hero({
             {subtitle}
           </Subtitle>
           <Spacer size={1} />
+          {belowSubtitle && (
+            <>
+            {belowSubtitle}
+            <Spacer size={1} />
+            </>
+          )}
           {showButton && (
             <Modal theme={theme} ModalBody={EmailForm} data-enter={3} />
           )}
