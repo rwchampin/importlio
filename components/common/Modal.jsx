@@ -1,30 +1,23 @@
 "use client";
 import {Dialog, Transition} from '@headlessui/react'
-import {Fragment, useState} from 'react'
-import dynamic from 'next/dynamic'
-import {toggleModal} from '@/redux/slices/ui';
-import {useAppSelector, useAppDispatch} from "@/redux/hooks";
+import {Fragment} from 'react'
+import { Close, LogoBlack, EmailForm } from '@/components/common';
+import { Primary } from '@/app/components/buttons';
+import { useModal } from '@/store';
 
-const Primary=dynamic(() => import("@/app/components/buttons/Primary"));
-const DynamicLogoBlack=dynamic(() => import("@/components/common/logo/LogoBlack"));
-const Close=dynamic(() => import("@/components/common/Close"));
 
-export default function Modal({ModalBody, theme}) {
-  const {isModalOpen}=useAppSelector(state => state.ui);
-  const dispatch=useAppDispatch();
+export default function Modal({theme}) {
+  const { toggleModal,isOpen  } = useModal();
 
-  const toggle=() => {
-    dispatch(toggleModal());
-  }
   return (
-    <div className='main-mofal'>
+    <div className='main-modal'>
 
 
      
-      <Primary variant="solid" className='max-w-[500px]' onClick={toggle}>Preregister</Primary>
+      <Primary variant="solid" className='max-w-[500px]' onClick={toggleModal}>Preregister</Primary>
 
-      <Transition appear show={isModalOpen} as={Fragment} className="outer-modal z-[999999]">
-        <Dialog as="div" className="modal relative z-[999999]" onClose={toggle}>
+      <Transition appear show={isOpen} as={Fragment} className="outer-modal z-[999999]">
+        <Dialog as="div" className="modal relative z-[999999]" onClose={toggleModal}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -34,7 +27,7 @@ export default function Modal({ModalBody, theme}) {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <div className="fixed inset-0 bg-backdrop bg-opacity-45" />
+            <div className="fixed inset-0 bg-opacity-45" />
           </Transition.Child>
 
           <div style={{ zIndex: '999999999px !important'}} className="fixed inset-0 overflow-y-auto">
@@ -49,11 +42,11 @@ export default function Modal({ModalBody, theme}) {
                 leaveTo="opacity-0 scale-95"
               >
                 <Dialog.Panel className="modal">
-                  <Close closeFN={toggle} />
+                  <Close closeFN={toggleModal} />
                   <div className="flex items-center justify-center">
-                    <DynamicLogoBlack />
+                    <LogoBlack />
                   </div>
-                  <ModalBody />
+                  <EmailForm />
                 </Dialog.Panel>
               </Transition.Child>
             </div>

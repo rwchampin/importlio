@@ -58,19 +58,20 @@ export default function Hero({
           <Title data-enter={1} theme={theme}>
             {title}
           </Title>
-          <Spacer size={1} />
+          <Spacer size={2} />
           <Subtitle data-enter={2} theme={theme}>
             {subtitle}
           </Subtitle>
-          <Spacer size={1} />
+          <Spacer size={2} />
           {belowSubtitle && (
             <>
             {belowSubtitle}
             <Spacer size={1} />
             </>
           )}
+          <Spacer size={2} />
           {showButton && (
-            <Modal theme={theme} ModalBody={EmailForm} data-enter={3} />
+            <Modal theme={theme} data-enter={3} />
           )}
           {customComponent}
         </div>

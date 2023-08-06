@@ -1,3 +1,4 @@
+"use client";
 
 import {Suspense} from 'react';
 import {TagCloud} from '@/components/common';
@@ -25,11 +26,11 @@ export default function Sidebar() {
 			})}  
 			<Spacer size={2} />
 
-			<div className='text-heading-5 mb-2'>Tags</div>
-			<TagCloud data={tags} className="bg-gray-300 shadow-xl" />
+			{/* <div className='text-heading-5 mb-2'>Tags</div>
+			<TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />
 			<Spacer size={3} />
 			<div className='text-heading-5 mb-2'>Categories</div>
-			<TagCloud data={categories} className="bg-gray-300 shadow-xl" />
+			<TagCloud data={categories} type="categories" className="bg-gray-300 shadow-xl" /> */}
 			</div> 
 		</div>
 	)

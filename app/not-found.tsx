@@ -26,6 +26,8 @@ export default function NotFound() {
       yPos={50}
 	  customComponent={null}
       showButton={false}
+	  belowSubtitle={null}
+		
     >
       <Section>
         <p className="mt-6 text-base leading-7 text-black">

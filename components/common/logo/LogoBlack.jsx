@@ -30,7 +30,7 @@ const LogoBlack = (props) => {
           className={`z-100 ease-in duration-200 aspect-square ${isLoading ? 'opacity-0' : 'opacity-100'}`}// Set image
           priority
           src={logoSrc}
-          fill
+          fill="responsive"
           alt="Bulk Amazon Product Shopify Importer"
           onLoad={() => { setIsLoading((prev) => !prev)}} // Handle image load event
         /> 

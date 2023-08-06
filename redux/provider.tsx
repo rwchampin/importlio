@@ -4,7 +4,7 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useEffect, useState, useLayoutEffect } from "react";
-import { BlogProvider, CoreProvider } from '@/store'; // Import the BlogProvider
+import { BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
 
 // import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action
 
@@ -29,7 +29,13 @@ export default function CustomProvider({ children }: Props) {
   return (
     <Provider store={store}>
       <CoreProvider>
-        <BlogProvider>{children}</BlogProvider>
+        <BlogProvider>
+          <ModalProvider>
+            <DebugProvider>
+              {children}
+            </DebugProvider>
+          </ModalProvider>
+        </BlogProvider>
       </CoreProvider>
     </Provider>
   );

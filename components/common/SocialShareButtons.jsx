@@ -4,7 +4,7 @@ import {use, useEffect, useRef} from 'react';
 import "@/assets/styles/socialshare.css";
 
 import { BsFacebook, BsMessenger, BsTwitter, BsLinkedin, BsInstagram, BsShare} from 'react-icons/bs';
-export default function SocialShareButtons({url, title, summary, className, show}) {
+export default function SocialShareButtons({url, title, summary, classNameName, show}) {
 	const shareButton=useRef(null);
 	const toggleButton=useRef(null);
 
@@ -158,16 +158,16 @@ export default function SocialShareButtons({url, title, summary, className, show
 
 
 
-		<div class="share">
-			<div class="share-content">
-				<button class="share-toggle-button" ref={toggleButton}>
+		<div className="share">
+			<div className="share-content">
+				<button className="share-toggle-button" ref={toggleButton}>
 					<BsShare />
 				</button>
-				<ul class="share-items">
+				<ul className="share-items">
 
 					{buttons.map((button, i) => (
-						<li class="share-item" key={i}>
-							<a class="share-button" href={button.url} ref={shareButton}>
+						<li className="share-item" key={i}>
+							<a className="share-button" href={button.url} ref={shareButton}>
 								{button.icon}
 							</a>
 						</li>

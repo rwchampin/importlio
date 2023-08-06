@@ -60,7 +60,9 @@
         font-family: var(--font-apercu);
         font-weight: bold;
     }
-     
+    a:hover, button:hover, .btn:hover {
+        cursor: pointer;
+    }
     .vertical-lr {
         -webkit-writing-mode: vertical-lr;
         writing-mode: vertical-lr
@@ -132,9 +134,9 @@ body,#smooth-wrapper, #smooth-content {
   z-index: 1;
 
 }
- #smooth-content {
+ /* #smooth-content {
   overflow: scroll !important;
- }
+ } */
 nav {
   z-index: 100 !important;
   position: fixed !important;
@@ -221,12 +223,12 @@ input[type="file"] {
   width: unset;
 
 }
-:not(.tox) form path:not(.tox-icon svg path) {
+/* :not(.tox) form path:not(.tox-icon svg path) {
   stroke: var(--color-primary);
 }
  
 
- 
+  */
  
 input:focus {
   background: #323232 !important;
@@ -350,6 +352,7 @@ form {
     width: 100%;
     height:200px;
     z-index: 10;
+    pointer-events: none;
 }
 .fade::after {
     background: linear-gradient(0deg, rgba(248,248,248,1) 0%, transparent 85%);
@@ -371,11 +374,11 @@ form {
 .page-dashboard .fade::after {
     display: none !important;
 }
- 
+/*  
 .page-dashboard-posts .table svg path {
   stroke: var(--color-primary) !important;
   stroke-width: 3px !important;
-}
+} */
 .page-dashboard-posts table {
   width: 100% !important;
   overflow: hidden !important;
@@ -574,26 +577,30 @@ textarea {
   
 }
 
+.bg-opacity-45 {
+  background-color: rgba(0, 0, 0, 0.45) !important;
+}
+
 .mobile-text a{
   font-size: 40px !important;
   line-height: 200% !important;
 }
-.progress-wrap svg.progress-circle path {
+/* .progress-wrap svg.progress-circle path {
 	stroke: black;
 	stroke-width: 4;
 	box-sizing:border-box;
 	-webkit-transition: all 200ms linear;
     transition: all 200ms linear;
-}
+} */
 body.light .progress-wrap {
 	box-shadow: inset  0 0 0 2px rgba(0,0,0,0.2);
 }
 body.light .progress-wrap::after {
 	color: var(--black-blue);
 }
-body.light .progress-wrap svg.progress-circle path {
+/* body.light .progress-wrap svg.progress-circle path {
 	stroke: var(--black-blue);
-}
+} */
 .switch,
 .circle {
 	-webkit-transition: all 300ms linear;

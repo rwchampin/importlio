@@ -32,8 +32,8 @@ const InputIcon: React.FC<{ type: string; isFocused: boolean }> = ({
   type,
   isFocused,
 }) => {
-  let iconClassName = `input-svg stroke-gray-1 z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
-    isFocused ? "stroke-gray-11" : "stroke-gray-11"
+  let iconClassName = `input-svg z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
+    isFocused ? "stroke-gray-1" : "stroke-gray-dark-8"
   }`;
 
   switch (type) {
@@ -162,12 +162,13 @@ const Input: React.FC<Props> = ({
           />
         );
         break;
+       
 
       default:
         return (
           <div className="relative overflow-hidden  hover:bg-offgray rounded-lg h-input hover:shadow-lg flex items-center justify-start bg-input w-full min-w-[400px]">
             <InputIcon type={type} isFocused={isFocused} />
-            <input {...inputElementProps} />
+            <input {...inputElementProps} value={value} onChange={onChange} />
           </div>
         );
     }

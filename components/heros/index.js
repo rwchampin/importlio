@@ -7,4 +7,4 @@ export {default as Prices } from './Prices';
 
 export {default as ParticleText } from './ParticleText';
 export {default as Spheres } from './Spheres';
-  
+export {default as TopFeatures } from './TopFeatures';

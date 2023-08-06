@@ -28,9 +28,10 @@ export default function EmailForm() {
 return <Form
 			config={config}
 			isLoading={isLoading}
-			btnText='Pre-register'
+			btnText='Preregister'
 			onChange={onChange}
 			onSubmit={onSubmit}
+			value={email}
 			postFormText="Register today for a free trial of the world&apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
 		/>
 

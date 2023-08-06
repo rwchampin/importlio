@@ -1,32 +1,30 @@
-// ... (Previous imports and code)
+"use client"
 import {Fragment, lazy, Suspense, useEffect, useState} from 'react';
 import {Combobox as CC, Transition} from '@headlessui/react';
 import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid';
 import {BiCheckCircle} from 'react-icons/bi';
+import {useBlog} from '@/store';
 export default function Combobox({onChange, value, required, placeholder, labelId, label, type, name}) {
-	const [ options, setOptions ]=useState([ {value: '-------------'} ]);
+	const {categories, tags }=useBlog();
+
+	const [ options, setOptions ]=useState([  ]);
 	const [ selectedOptions, setSelectedOptions ]=useState([]);
 	const [ selected, setSelected ]=useState(options[ 0 ]);
 	const [ query, setQuery ]=useState('');
 
 	useEffect(() => {
-		fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${labelId}/list/`, {
-			method: 'GET',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-		})
-			.then((res) => res.json())
-			.then((data) => {
-				if(data&&data.length>0) {
-					setOptions(data);
-					setSelected(data[ 0 ]);
-				} else {
-					// Set the default selected option if no data is fetched
-					setSelected({value: '-------------'});
-				}
-			});
-	}, [ labelId ]);
+		if(categories && tags) {
+			const o = [{value: '-------------'}]
+			[labelId].map((item) => {
+				o.push({
+					value: item.name,
+					name: item.name
+				})
+			})
+			setOptions(o);
+		}
+	}, [categories,labelId, tags]);
+	 
 
 	const handleChange=(selectedItems) => {
 		setSelectedOptions(selectedItems); // Updated: Set selectedOptions directly as an array

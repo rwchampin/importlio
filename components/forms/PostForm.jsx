@@ -1,7 +1,9 @@
 import Form from './Form';
 import {useCreatePost} from '@/hooks';
-
+import { useBlog } from '@/store';
 export default function PostForm() {
+	const store = useBlog();
+
 	const {
 		title,
 		content,
@@ -18,6 +20,7 @@ export default function PostForm() {
 
 	const config=[
 		{
+			data: store.postTypes,
 			labelText: 'Post Type',
 			labelId: 'post_type',
 			type: 'select',
@@ -69,6 +72,7 @@ export default function PostForm() {
 		// 	placeholder: 'Image',
 		// },
 		{
+			data: store.tags,
 			labelText: 'Tags',
 			labelId: 'tags',
 			type: 'multiselect',
@@ -77,6 +81,7 @@ export default function PostForm() {
 			placeholder: 'Tags',
 		},
 		{
+			data: store.categories,
 			labelText: 'Categories',
 			labelId: 'categories',
 			type: 'multiselect',
@@ -85,6 +90,7 @@ export default function PostForm() {
 			placeholder: 'Categories',
 		},
 		{
+
 			labelText: 'Post Content',
 			labelId: 'content',
 			type: 'textarea',

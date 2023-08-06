@@ -1,14 +1,14 @@
 "use client";
 import dynamic from "next/dynamic";
 import { BasicPage } from "@/components/pages";
-import { Primary, Spinner } from "@/app/components";
+import { Spinner, Primary } from "@/app/components";
 import { Suspense } from "react";
 
 import {
 
   FeatureHero,
   ImageCta,
-
+  TopFeatures
 } from "@/components/heros/";
 
 import { Spacer, LazyLoad } from "@/components/utils/";
@@ -18,7 +18,6 @@ import { Canvas, Model, Dom } from "@react-three/fiber";
 
 const DynamicRecentBlogPosts = dynamic(() => import("@/components/heros/RecentBlogPosts"));
 
-const DynamicDark = dynamic(() => import("@/components/3d/Dark"));
 
 const jsonLd = {
   "@context": "http://schema.org",
@@ -59,64 +58,19 @@ const jsonLd = {
   }
 }
 
-const MainFeatures = () => {
- const data = [
-  {
-    "title": "Harness Amazon's Search Results",
-    "subtitle": "Your Gateway to Trending Products",
-    "description": "Discover the ultimate e-commerce advantage through our \"Import By Amazon Results Page\" feature. Seamlessly integrate Amazon's dynamic search results into your store, effortlessly importing top-trending, popular, and niche products. Stay ahead of the curve by curating an extensive range of offerings that resonate with your audience and boost sales.",
-    "cta": "Uncover Success with Search"
-  },
-  {
-    "title": "Explore Amazon Categories",
-    "subtitle": "Diversify Your Catalog with Ease",
-    "description": "Elevate your product lineup with the revolutionary \"Import By Amazon Category\" tool. Effortlessly import products from specific Amazon categories to diversify your inventory. Whether you're targeting a niche or aiming for comprehensive variety, this tool empowers you to seamlessly integrate products that align perfectly with your brand.",
-    "cta": "Expand Your Horizon"
-  },
-  {
-    "title": "Target with Amazon Keywords",
-    "subtitle": "Precision-Driven Product Selection",
-    "description": "Experience the future of e-commerce with our \"Import By Amazon Keyword\" functionality. Curate a product lineup tailored to your audience's exact needs by sourcing products based on Amazon keywords. Craft a store that caters precisely to preferences, trends, and emerging markets, ensuring your customers find exactly what they're searching for.",
-    "cta": "Hit the Bullseye"
+
+
+  const Prereg = () => {
+    return (
+      <>
+      <div className="max-w-2xl">
+      Pre-register today and secure a FREE month&apos;s membership when we launch. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
+      </div>
+      <Primary className="max-w-md mt-5">PREREGISTER</Primary>
+      </>  
+    )
   }
-]
-  
-  return (
-    <>
-    <div className="flex flex-col gap-5 md:flex-row md:items-center justify-center shrink-0">
-     {data.map((item, idx) => (
-       <div key={idx} className="flex flex-col flex-1 h-auto gap-1 rounded-lg shrink-0 bg-gray-3 p-3 border-2 border-gray-7 drop-shadow-xl">
-       <h2 className="heading-4 uppercase smallcaps font-bold">{item.title}</h2>
-        <h3 className="heading-6 text-gray-11">{item.subtitle}</h3>
-       <p className="text-xxs">{item.description}</p>
-        <Primary>{item.cta}</Primary>
-     </div>
-      ))}
-  </div>
-<div className="heading-6">Be the First to Access the Power of Our App! 🚀</div>
-
-Don't miss out on a game-changing opportunity! Pre-register today to secure your spot and unlock a FREE month membership when our app launches.
-
-🔥 Get Ready To:
-✨ Harness Amazon's search results for trending products
-✨ Explore and enrich your catalog with Amazon categories
-✨ Target your audience with precision using Amazon keywords
-
-Experience the future of e-commerce firsthand and give your business the competitive edge it deserves. Join our community of savvy entrepreneurs and be among the first to elevate your store's success.
-
-Simply enter your email below and be a part of our exclusive launch!
-
-<Primary>
-  Pre-Register Now
-  </Primary>
-
-</>
-    
-
-
-  )
-}
-
+ 
 
 export default function Page() {
 
@@ -126,23 +80,17 @@ export default function Page() {
     <BasicPage
       bg={null}
       theme="light"
-      headline="The Best AI Powered"
+      headline="The Official Shopify"
       title="Amazon Dropshipping Product Importer"
-      subtitle={`Fill your Shopify store with Amazon products in seconds!`}
-      belowSubtitle={<MainFeatures />}
+      subtitle={`Official Shopify Bulk Product Importer App`}
+      belowSubtitle={<Prereg />}
       shadowText={`Amazon Products`}
-      showButton={true}
+      showButton={false}
       customComponent={null}
-      xPos="0"
+      xPos="100"
       yPos="50"
     >
-      <Section full>
-        {/* <Canvas camera={{ position: [0, 0, 12], fov: 50, near: 7, far: 15 }}>
-          <ambientLight intensity={0.5} />
-          <DynamicDark />
-        </Canvas> */}
-
-      </Section>
+     
       <Section
         full
       >

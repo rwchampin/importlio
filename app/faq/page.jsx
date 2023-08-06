@@ -34,6 +34,12 @@ export default function Page() {
 			subtitle="Frequently Asked Questions"
 			headline="Learn More"
 			shadowText="FAQ"
+			belowSubtitle={null}
+			showButton={false}
+			customComponent={null}
+			xPos="100"
+			yPos="50"
+			
 		>
 
 			<Section className='p-5'>

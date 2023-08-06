@@ -4,7 +4,6 @@ export { default as Footer } from '@/components/common/Footer';
 export { default as Header } from '@/components/common/Header';
 export {default as List} from './List';
 export { default as NavBar} from '@/components/common/Header';
-
 export { default as NavLink } from '@/components/common/Header';
 export { default as SocialButton } from './SocialButton';
 export { default as SocialButtons } from './SocialButtons';
@@ -17,7 +16,7 @@ export { default as Crumbs } from '@/components/common/Header';
 export { default as Cursor } from './Cursor';
 export { default as VideoPlayer } from './VideoPlayer';
 export { default as Popover } from './Popover';
-
+export { default as EmailForm } from '../forms/EmailForm';
 export { default as Panel } from './Panel';
 export { default as Modal } from './Modal'
 export { default as CustomSuspense } from './CustomSuspense'

@@ -71,8 +71,8 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Select() {
-  const [selected, setSelected] = useState(people[3])
+export default function Select({ data }) {
+  const [selected, setSelected] = useState(data[3])
 
   return (
     <Listbox value={selected} onChange={setSelected} >
@@ -98,25 +98,25 @@ export default function Select() {
               leaveTo="opacity-0"
             >
               <Listbox.Options className="absolute z-10 mt-1 max-h-56 w-full overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
-                {people.map((person) => (
+                {data.map((item, idc) => (
                   <Listbox.Option
-                    key={person.id}
+                    key={idc}
                     className={({ active }) =>
                       classNames(
                         active ? 'bg-indigo-600 text-white' : 'text-gray-900',
                         'relative cursor-default select-none py-2 pl-3 pr-9'
                       )
                     }
-                    value={person}
+                    value={item.name}
                   >
                     {({ selected, active }) => (
                       <>
                         <div className="flex items-center">
-                          <Image fill src={person.avatar} alt="" className="h-5 w-5 flex-shrink-0 rounded-full" />
+
                           <span
                             className={classNames(selected ? 'font-semibold' : 'font-normal', 'ml-3 block truncate')}
                           >
-                            {person.name}
+                            {item.name}
                           </span>
                         </div>
 

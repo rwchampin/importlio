@@ -11,6 +11,12 @@ export default function Page() {
             subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
             headline="Ecommerce Dropshipping"
             shadowText="Features"
+        belowSubtitle={null}
+        showButton={false}
+        customComponent={null}
+        xPos="100"
+        yPos="50"
+        
         >
             <Section className="p-5">
                 <p>Importlio empowers entrepreneurs like you to automate and optimize your dropshipping business, ensuring success and efficiency every step of the way.</p>

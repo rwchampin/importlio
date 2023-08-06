@@ -56,7 +56,7 @@ const Editor=({
  
 
 	return (
-		<textarea></textarea>
+		<select></select>
 			// <ReactQuill
 			// 	theme={'snow'}
 			// onChange={handleChange}

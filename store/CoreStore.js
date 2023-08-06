@@ -3,8 +3,10 @@ import React, { createContext, useContext, useReducer, useState } from 'react';
 
 // Define the actions that can be dispatched to update the store
 const actions = {
-    SET_DEBUG_MODE: 'SET_DEBUG_MODE',
-    TOGGLE_DEBUG_MODE: 'TOGGLE_DEBUG_MODE',
+    SHOW_MODAL: 'SHOW_MODAL',
+    HIDE_MODAL: 'HIDE_MODAL',
+    SET_DEBUG_STATE: 'SET_DEBUG_MODE',
+    TOGGLE_DEBUG_STATE: 'TOGGLE_DEBUG_MODE',
     TOGGLE_LOADING: 'TOGGLE_LOADING',
     SET_LOADING: 'SET_LOADING',
     TOGGLE_MODAL: 'TOGGLE_MODAL',
@@ -70,8 +72,8 @@ const CoreContext = createContext();
 const CoreProvider = ({ children }) => {
     const [coreState, dispatch] = useReducer(coreReducer, {
         debugMode: false,
-        isLoading: true,
-        showModal: false,
+        appStatus: true,
+        modalStatus: false,
         errors: [],
     });
 
@@ -109,6 +111,18 @@ const useCore = () => {
         store.dispatch({
             type: actions.SET_MODAL,
             payload: showModal,
+        });
+    };
+
+    const showModal = () => {
+        store.dispatch({
+            type: actions.SHOW_MODAL,
+        });
+    };
+
+    const hideModal = () => {
+        store.dispatch({
+            type: actions.HIDE_MODAL,
         });
     };
 
@@ -151,6 +165,8 @@ const useCore = () => {
         setModal,
         toggleModal,
         setErrors,
+        showModal,
+        hideModal,
         clearErrors,    
         setDebugMode,
         toggleDebugMode,

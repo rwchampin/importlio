@@ -1,4 +1,6 @@
 import cn from "classnames";
+import Link from "next/link";
+import slugify from "slugify";
 import { IoIosCloseCircleOutline } from "react-icons/io";
 export default function Badge({ type,showClose, children, className, ...props }) {
     const getRandomColor = () => {
@@ -30,13 +32,16 @@ export default function Badge({ type,showClose, children, className, ...props })
                 return "gray";
         }
     };
-    const color = `indigo`
-    const style = `bg-${color}-dark-a-3 hover:bg-${color}-dark-4 active:bg-${color}-dark-5 inline-flex items-center rounded-xl whitespace-nowrap  px-2 py-0.5 text-[10px] hyphens  text-${color}-11 ring-1 ring-inset ring-${color}-7 hover:ring-${color}-8 ${className}`
+    const color = "green"
+    const style = `bg-indigo-5 hover:bg-indigo-dark-4 active:bg-indigo-dark-5 inline-flex items-center rounded-xl whitespace-nowrap  px-2 py-0.5 text-[10px] hyphens  text-indigo-11 ring-1 ring-inset ring-indigo-7 hover:ring-indigo-8 ${className}`
         return (
 
-            <div className={style}>
+            <Link
+                href={`/ecommerce-tutorials/${type}/${slugify(children.toLowerCase())}`}
+             className={style}
+             >
                 {children}
-            </div>
+            </Link>
              
         )
 

@@ -82,7 +82,7 @@ const LazyLoad = ({ src, dataSrc, type = "img", ...props }) => {
       trigger: element,
       start: "-50% bottom",
       onEnter: loadImage,
-      markers: true,
+      // markers: true,
       onEnterBack: loadImage, // make sure it works in either direction
     });
 
@@ -92,6 +92,7 @@ const LazyLoad = ({ src, dataSrc, type = "img", ...props }) => {
   }, [dataSrc, type, src]);
 
   if (type === "img") {
+
     return <Image ref={elementRef} fill src={src} {...props} alt="Ecommerce Dropshipping Product Import & Management App for Shopify" />;
   } else if (type === "video") {
     return (

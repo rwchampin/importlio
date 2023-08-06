@@ -22,7 +22,7 @@ interface Posts {
   posts: Post[];
 }
 export default function Page() {
-  const { posts }: Posts = useBlog();
+  const { posts}: Posts = useBlog();
 
   // if (loading) return <PostCardSkeleton />;
   return (
@@ -33,6 +33,7 @@ export default function Page() {
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
         shadowText={"Amazon Dropshipping Tutorials"}
+        belowSubtitle={null}
         bg={null}
         xPos={0}
         yPos={50}
@@ -49,9 +50,9 @@ export default function Page() {
               );
             })}
           </div>
-          <div className="w-full lg:w-1/4">
-            {/* <Sidebar posts={posts} /> */}
-          </div>
+          {/* <div className="w-full lg:w-1/4">
+            <Sidebar />
+          </div> */}
         </Section>
       </BasicPage>
     </>

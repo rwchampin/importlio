@@ -14,7 +14,7 @@ import { GA, Scroller } from "@/components/utils/";
 
 import Provider from "@/redux/provider";
 import { Setup } from "@/components/utils";
-import { Header, Footer } from "@/components/common";
+import { Header, Footer, Cursor } from "@/components/common";
 import NextTopLoader from "nextjs-toploader";
 
 const montserrat = Montserrat({
@@ -85,10 +85,7 @@ export const metadata = {
 
 
  
-
-const DynamicCursor: any = dynamic(() => import("@/components/common/Cursor"));
-
-
+ 
 const CookieBanner: any = dynamic(
   () => import("@/components/utils/CookieBanner"),
   {
@@ -110,13 +107,13 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             <Header />
              <Scroller>
               {children}
-              <Suspense fallback={<div>Loading...</div>}>
+
                 <Footer />
-              </Suspense>
+
             </Scroller>  
 
 
-        <DynamicCursor />
+        <Cursor />
         <CookieBanner />
         <NextTopLoader 
           color="#000"

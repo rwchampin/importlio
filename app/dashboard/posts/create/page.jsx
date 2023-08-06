@@ -1,9 +1,9 @@
-
+import { PostForm } from '@/components/forms/'
 
 export default function Page() {
 
 	return (
 		// <PostForm />
-		<div>fsdfsdfsdf</div>
+		<div>hello</div>
 	)
 }

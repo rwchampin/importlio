@@ -1,14 +1,15 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { Input } from '@/components/forms';
+import { Primary,Spinner } from '@/app/components';
+
 import dynamic from 'next/dynamic';
 
-const DynamicSpinner:any = dynamic(() => import('@/app/components/Spinner'));
-const Primary:any = dynamic(() => import('@/app/components/buttons/Primary'));
 interface Config {
 	labelText: string;
 	labelId: string;
 	type: string;
 	value: string;
+
 	placeholder?: string;
 	link?: {
 		linkText: string;
@@ -20,6 +21,7 @@ interface Config {
 interface Props {
 	config: Config[];
 	isLoading: boolean;
+
 	btnText: string;
 	postFormText?: string;
 	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -222,7 +224,9 @@ export default function Form({
       onSubmit={onSubmit}
     >
       {/* <input name="sub-input-info" value="" /> */}
-      {config.map((input) => (
+      {config.map((input) => {
+
+		return (
         <Input
           key={input.labelId}
           labelId={input.labelId}
@@ -236,10 +240,11 @@ export default function Form({
         >
           {input.labelText}
         </Input>
-      ))}
+		)
+		})}
 
       <Primary className="w-full max-w-full" variant="solid" type="submit">
-        {isLoading ? <DynamicSpinner /> : btnText}
+        {isLoading ? <Spinner /> : btnText}
       </Primary>
 
       <div className="text-xs mt-2">{postFormText}</div>

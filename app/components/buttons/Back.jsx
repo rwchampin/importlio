@@ -6,7 +6,7 @@ const FaArrowLeftCircle=dynamic(() => import('react-icons/fa').then((mod) => mod
 
 const CircleSkeleton=() => {
 	return (
-		<p class="w-32 h-32 bg-gray-200 rounded-full dark:bg-gray-700 ring-4 ring-gray-300 dark:ring-gray-600"></p>
+		<p className="w-32 h-32 bg-gray-200 rounded-full dark:bg-gray-700 ring-4 ring-gray-300 dark:ring-gray-600"></p>
 	)
 }
 export default function Back() {

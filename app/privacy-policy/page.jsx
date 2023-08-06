@@ -10,6 +10,13 @@ export default function Page() {
       subtitle="Our Policy on the Collection, Use, and Disclosure of Your Information"
       headline="Your Privacy Matters"
       shadowText={"secrets"}
+      belowSubtitle={null}
+
+      showButton={false}
+      customComponent={null}
+      xPos="100"
+      yPos="50"
+      
       >
       <p>
         Effective Date: {date}

@@ -14,6 +14,12 @@ export default function Page() {
                 subtitle="The ultimate solution for efficiently importing and managing your dropshipping products on Amazon into your shopify store."
                 headline="Pricing & Plans"
                 shadowText="Plans & Pricing"
+        belowSubtitle={null}
+        showButton={false}
+        customComponent={null}
+        xPos="100"
+        yPos="50"
+        
         >
             <Section className="p-5">
             <DynamicPrices />

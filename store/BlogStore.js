@@ -10,6 +10,7 @@ const actions = {
 };
 
 const blogReducer = (state, action) => {
+
     switch (action.type) {
         case actions.INITIAL_LOAD:
             return {
@@ -45,18 +46,31 @@ const blogReducer = (state, action) => {
 const BlogContext = createContext();
 
 
-
-const getTags = async (callback) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/tags/list`)
+const getPostTypes = async (callback) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/post-types/list`)
     const data = await res.json()
 
-    if(data && data.results) {
+    if (data && data.results) {
         callback(data.results)
 
         return data.results;
     }
 
-   callback(data)
+    callback(data)
+
+    return data;
+}
+const getTags = async (callback) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/tags/list`)
+    const data = await res.json()
+
+    if (data && data.results) {
+        callback(data.results)
+
+        return data.results;
+    }
+
+    callback(data)
 
     return data;
 }
@@ -66,7 +80,7 @@ const getCategories = async (callback) => {
 
 
     const data = await res.json()
-    if(data && data.results) {
+    if (data && data.results) {
         callback(data.results)
 
         return data.results;
@@ -85,7 +99,7 @@ const getPosts = async (callback) => {
     });
 
     const data = await res.json();
-    if(data && data.results) {
+    if (data && data.results) {
         callback(data.results)
         return data.results;
     }
@@ -93,16 +107,18 @@ const getPosts = async (callback) => {
     return data;
 }
 const getAll = async (callbacks) => {
-    const [posts, tags, categories] = await Promise.all([
+    const [posts, tags, categories, postTypes] = await Promise.all([
         getPosts(callbacks.setPosts),
         getTags(callbacks.setTags),
         getCategories(callbacks.setCategories),
+        getPostTypes(callbacks.setPostTypes),
     ]);
 
     return {
         posts,
         tags,
         categories,
+        postTypes,
     };
 };
 
@@ -121,9 +137,9 @@ const BlogProvider = ({ children }) => {
                 setPosts: (data) => dispatch({ type: actions.SET_POSTS, payload: data }),
                 setTags: (data) => dispatch({ type: actions.SET_TAGS, payload: data }),
                 setCategories: (data) => dispatch({ type: actions.SET_CATEGORIES, payload: data }),
+                setPostTypes: (data) => dispatch({ type: actions.SET_POST_TYPES, payload: data }),
             };
-            const { posts, tags, categories } = await getAll(callbacks);
-            dispatch({ type: actions.INITIAL_LOAD, payload: { posts, tags, categories } });
+            const { posts, tags, categories, postTypes } = await getAll(callbacks);
         };
 
         fetchData();
@@ -141,19 +157,22 @@ const useBlog = () => {
         posts,
         tags,
         categories,
-     } = useContext(BlogContext);
+        postTypes
+    } = useContext(BlogContext);
 
 
- 
+
 
     return {
         posts,
         tags,
         categories,
+        postTypes,
         dispatch,
         getPosts,
         getTags,
         getCategories,
+        getPostTypes,
         getAll,
     }
 };

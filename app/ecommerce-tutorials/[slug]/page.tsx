@@ -7,9 +7,9 @@ import dynamic from "next/dynamic";
 
 // gsap.registerPlugin(ScrollTrigger)
 
-export default async function Page({ params }:any) {
-  debugger
+export default async function Page({ params }:any) {debugger
   const { slug } = params;
+  // if(slug === 'tags' || slug === 'categories') 
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
   const post = await res.json();
 
@@ -31,6 +31,8 @@ export default async function Page({ params }:any) {
     <BasicPage
       showButton={false}
       customComponent={null}
+
+    belowSubtitle={null}
       theme="light"
       title={post.title}
       subtitle={post.title}
@@ -40,10 +42,10 @@ export default async function Page({ params }:any) {
       xPos={0}
       yPos={50}
     >
-      <Section>
+      <Section className="mb-10">
        <div className="flex gap-1 bg-red5">
-	   <TagCloud data={post.tags} />
-        <TagCloud data={post.categories} />
+	   <TagCloud data={post.tags} type="tags"/>
+        {/* <TagCloud data={post.categories} type="categories" /> */}
 	   </div>
 
         <div className="flex flex-row gap-5">

@@ -5,7 +5,7 @@ export default function FullImageCard({ post }) {
   const { title, slug, featured_image, content, published, tags, categories, post_type } = post;
   console.log(featured_image)
   return (
-    <Link href={`/ecommerce-tutorial/${slug}`} className="rounded-xl overflow-hidden relative shadow drop-shadow-2xl flex-1 h-auto transition hover:shadow-lg">
+    <Link href={`/ecommerce-tutorials/${slug}`} className="rounded-xl overflow-hidden relative shadow drop-shadow-2xl flex-1 h-auto transition hover:shadow-lg">
       <article
         className="relative h-full w-full"
       >
