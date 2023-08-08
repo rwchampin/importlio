@@ -14,7 +14,7 @@ export default function Sidebar() {
 	const {posts, categories,tags} = useBlog();
 
 	return (
-		<div className="sidebar bg-gray-2 p-3 sm:w-full md:max-w-[300px]   shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col   sticky top-[5rem]">
+		<div className="sidebar bg-gray-2 p-3   shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col   sticky top-[5rem]">
 
 			<div className="flex-auto overflow-y-scroll flex flex-col gap-3">
 			  {posts.map((post, idx) => {

@@ -1,3 +1,4 @@
+"use client"
 import Form from './Form';
 import {useCreatePost} from '@/hooks';
 import { useBlog } from '@/store';
@@ -9,7 +10,6 @@ export default function PostForm() {
 		content,
 		tags,
 		categories,
-		featured_image,
 		 
 		post_type,
 
@@ -38,15 +38,7 @@ export default function PostForm() {
 			required: true,
 			placeholder: 'Title',
 		},
-		
-		{
-			labelText: 'Featured Image',
-			labelId: 'featured_image',
-			type: 'file',
-			value: featured_image,
-			required: false,
-			placeholder: 'Image',
-		},
+		 
 		// {
 		// 	labelText: 'Post Image 1',
 		// 	labelId: 'post_image_1',
@@ -77,6 +69,7 @@ export default function PostForm() {
 			labelId: 'tags',
 			type: 'multiselect',
 			value: tags,
+			onChange: onChange,
 			required: false,
 			placeholder: 'Tags',
 		},
@@ -86,11 +79,11 @@ export default function PostForm() {
 			labelId: 'categories',
 			type: 'multiselect',
 			value: categories,
+			onChange: onChange,
 			required: false,
 			placeholder: 'Categories',
 		},
 		{
-
 			labelText: 'Post Content',
 			labelId: 'content',
 			type: 'textarea',

@@ -227,7 +227,7 @@ export const apiSlice = createApi({
 				formDataToSubmit.append('post_type',post_type);
 				formDataToSubmit.append('title',title);
 				formDataToSubmit.append('content',content);
-				formDataToSubmit.append('featured_image',featured_image); // Append the file data
+				// formDataToSubmit.append('featured_image',featured_image); // Append the file data
 				formDataToSubmit.append('tags',tags); // Append the file data
 				formDataToSubmit.append('categories',categories); // Append the file data
 				// Set the headers for the request

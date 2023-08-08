@@ -5,6 +5,7 @@ import { BsCheckCircle } from 'react-icons/bs';
 import gsap from 'gsap';
 import Badge from '@/components/common/Badge';
 
+
 const Option = ({ value, selected, onClick }) => {
 	return (
 		<div className={`flex p-5 items-center w-full hover:bg-gray-5 text-black border-b border-gray-6 ${selected ? 'border-l-4 border-l-green-8' : ''}`} onClick={onClick}>
@@ -36,6 +37,9 @@ export default function ComboBox({ label, type, onChange, value, name, labelId, 
 	// 		window.removeEventListener('click', handleClose);
 	// 	}
 	// }, [active]);
+	useEffect(() => {
+		onChange({ target: { name, value: selected.map(option => option.id) }});
+	}, [selected]);
 
 	useEffect(() => {
 		if (labelId === "categories") {
@@ -75,7 +79,9 @@ export default function ComboBox({ label, type, onChange, value, name, labelId, 
 						<input
 							type="text"
 							value={selected.map(option => option.name).join(', ')}
-							onChange={onChange}
+							onChange={() => { 
+								onChange({ target: { name, value: selected.map(option => option.id).join(',') } });
+							}}
 							className="hidden w-full h-full bg-transparent border-none outline-none"
 							placeholder={placeholder}
 						/>

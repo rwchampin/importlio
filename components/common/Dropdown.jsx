@@ -70,7 +70,9 @@ export default function Dropdown({
                <div className="w-auto">
                <Menu.Item>
                  {({ active }) => (
-                   
+                   <Link
+                    href={`/ecommerce-tutorials/${item.slug}`}
+                    >
                   <span
                       key={idx}
                       className="flex items-center gap-x-2 px-4 py-3 text-sm text-gray-700 hover:bg-gray-100 hover:text-gray-900 cursor-pointer"
@@ -89,10 +91,10 @@ export default function Dropdown({
                       </Badge>
                     </div>
                     </span>
-
+                    </Link>
                   )}
 
-
+                 
                </Menu.Item>
                </div>
             ))}

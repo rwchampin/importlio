@@ -1,4 +1,4 @@
-import { useState, FormEvent } from 'react';
+import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
 import { useCreatePostMutation } from '@/redux/slices/apiSlice';
@@ -17,6 +17,10 @@ export default function useCreatePost() {
 	  categories: '',
 	  tags: '',
   });
+
+  useEffect(() => {
+    console.log('form data', formData);
+  }, [formData]);
 
   const { post_type, title, content, tags, categories } = formData;
 

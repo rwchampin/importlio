@@ -1,4 +1,4 @@
-
+import Link from "next/link";
 
 import { Section, TagCloud } from "@/components/common";
 import { BasicPage } from "@/components/pages";
@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 import JsonLd from "@/components/common/JsonLd";
 // gsap.registerPlugin(ScrollTrigger)
 
-export default async function Page({ params }:any) {debugger
+export default async function Page({ params }:any) { 
   const { slug } = params;
   // if(slug === 'tags' || slug === 'categories') 
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
@@ -63,6 +63,30 @@ export default async function Page({ params }:any) {debugger
   // 	ease: "none"
   // })
 
+const t = post.tags.map((tag, idx) => { debugger
+  return (
+    <span><Link
+    href={`/ecommerce-tutorials/tags/${tag.slug}`}
+   className='text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}>
+    {tag.name}
+  </Link></span>
+  );
+
+})
+
+const c = post.categories.map((cat, idx) => { debugger
+  return (
+    <span><Link
+    href={`/ecommerce-tutorials/tags/${cat.slug}`}
+   className='inline-block text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}>
+    {cat.name}
+  </Link></span>
+  );
+
+})
+
+const badges = [...post.categories, ...post.tags]
+debugger
   return (
     <BasicPage
       showButton={false}
@@ -78,21 +102,28 @@ export default async function Page({ params }:any) {debugger
       xPos={0}
       yPos={50}
     >
-      <Section className="mb-10">
-       <div className="flex gap-1 bg-red5">
-	   <TagCloud data={post.tags} type="tags"/>
-        {/* <TagCloud data={post.categories} type="categories" /> */}
-	   </div>
 
-        <div className="flex flex-row gap-5">
-          <aside>
-            <article dangerouslySetInnerHTML={{ __html: post.content }} />
-          </aside>
-          <aside>
+
+<div className="flex flex-ro flex-wrap gap-5 w-full p-5">
+{badges.map((badge, idx) => {
+
+        return (
+          <span className='text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}>
+            {badge.name}
+          </span>
+        );
+      })}
+
+</div>
+
+        <div className="flex flex-row gap-5 w-full p-5">
+
+            <article className=" bg-green-4 flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
+          <aside className="w-full lg:w-1/4">
             <Sidebar />
           </aside>
         </div>
-      </Section>
+
       <JsonLd json={json} />
     </BasicPage>
   );
