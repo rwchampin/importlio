@@ -14,3 +14,7 @@ export {
   useModal,
   ModalProvider,
 } from '@/store/ModalStore'
+export {
+  useAnalytics,
+  AnalyticsProvider,
+} from '@/store/AnalyticsStore'

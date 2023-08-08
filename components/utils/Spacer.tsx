@@ -8,7 +8,7 @@ export default function Spacer({ size=1, showLine=false, color="bg-gray-400" }:P
     return (
         <div
             style={{
-                height: showLine ? 1 : `${size/2}rem`,
+                height: showLine ? 1 : `${size}rem`,
             }} 
             className={`not-prose ${showLine ? color : 'transparent'}`}
         />

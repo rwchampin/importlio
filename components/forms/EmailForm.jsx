@@ -2,7 +2,7 @@
 import { usePreregister } from '@/hooks';
 import { Form } from '@/components/forms';
 
-export default function EmailForm() {
+export default function EmailForm({ className }) {
 	const { 
 		email,
 		isLoading,
@@ -32,7 +32,8 @@ return <Form
 			onChange={onChange}
 			onSubmit={onSubmit}
 			value={email}
-			postFormText="Register today for a free trial of the world&apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
+
+			postFormText={<div className={className}>Register today for a free trial of the world&apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!</div>}
 		/>
 
 }

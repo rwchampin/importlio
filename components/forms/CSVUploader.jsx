@@ -1,9 +1,9 @@
 "use client"
-import React, {useState} from 'react';
+import {useState} from 'react';
 import {useDropzone} from 'react-dropzone';
  
 import Papa from 'papaparse';
-import dynamic from 'next/dynamic';
+
 
 function CSVUploader() {
   const [urls, setUrls] = useState([]);

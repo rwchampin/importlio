@@ -2,9 +2,9 @@
 
 import Image from 'next/image';
 import Link from 'next/link';
-import {useState, Suspense} from 'react';
+import {useState} from 'react';
 import {Spacer} from '@/components/utils';
-import {  SocialShareButtons, TagCloud, Likes} from '@/components/common';
+import {TagCloud} from '@/components/common';
 import {Primary} from '@/app/components/buttons';
 
 export default function PostCard({title, content, featured_image,post_type, tags, categories, slug, published, updated, readtime}) {

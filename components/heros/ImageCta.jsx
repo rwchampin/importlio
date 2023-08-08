@@ -19,13 +19,11 @@ export default function ImageCta({ title, description, image, cta }) {
         </div>
 
         <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
-          <h2 className="text-2xl font-semibold text-gray-800 dark:text-black md:text-3xl">
+          <div className="text-[2rem] not-prose font-semibold text-gray-800 dark:text-black">
             {title}
-          </h2>
+          </div>
 
-          <p className="mt-4 text-black dark:text-black mb-5">
-            {description}
-          </p>
+          <p className="mt-4 text-black dark:text-black mb-5 text-md leading-normal" dangerouslySetInnerHTML={{ __html: description }} />
 
           {cta}
         </div>

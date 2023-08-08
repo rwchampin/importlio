@@ -1,13 +1,9 @@
-import dynamic from "next/dynamic";
+import { LogoBlack, SocialIcons } from '@/components/common'
 import { Spacer } from '@/components/utils'
-
-const ColorSwitch:any = dynamic(() => import("@/components/common/ColorSwitch"));
-const SocialIcons:any = dynamic(() => import("@/components/common/SocialIcons"));
-const LogoBlack:any = dynamic(() => import("@/components/common/logo/LogoBlack"));
 
 export default function Footer() {
   return (
-    <footer className=" shadow-inner p-5 bg-offwhite dark:bg-offgray text-black z-50">
+    <footer className="shadow-xl p-5 bg-offwhite dark:bg-offgray text-black z-50">
       <div className="flex flex-col md:flex-row">
         <div className="w-full md:-mx-6 md: lg:w-2/5">
           <div className="px-5 text-center flex items-center flex-col justify-center md:block md:text-left">

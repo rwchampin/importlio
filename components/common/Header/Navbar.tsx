@@ -3,60 +3,70 @@ import { RiMenu5Fill } from "react-icons/ri";
 import { usePathname } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
 import { RxCross2 } from "react-icons/rx";
-import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+import { useBlog } from "@/store";
 
-import { CustomSuspense, LogoBlack, SocialIcons } from "@/components/common";
+import { LogoBlack, SocialIcons } from "@/components/common";
 import NavLink from "./NavLink";
-import dynamic from "next/dynamic";
 
-import { useEffect, useState } from "react";
+
+import { useEffect,useState } from "react";
 import gsap from "gsap";
 import { useResponsive } from "@/hooks";
 
  
 
 export default function Navbar() {
+  const { posts } = useBlog();
+  const [blogPosts, setBlogPosts] = useState<any>([]);
   const responsive: any = useResponsive();
-  const [hoveredLink, setHoveredLink] = useState<string | undefined>("");
-  const pathname = usePathname();
-  const dispatch = useAppDispatch();
 
-  const handleHover = (path: string | undefined) => {
-    setHoveredLink(path);
-  };
+  const pathname = usePathname();
+  // const dispatch = useAppDispatch();
+
+  
 
   const isSelected = (path: string | undefined) =>
     pathname === path ? true : false;
 
   interface LinkProps {
-    className?: string;
     href?: string;
-    isHovered?: boolean;
-    handleHover?: (path: string | undefined) => void;
-    [rest: string]: any;
+    pretty: string;
+
   }
-  const links: LinkProps = [
+  const links: any = [
     {
-      name: "About",
+      pretty: "About",
       href: "/about",
+      dropdownData: [],
+
     },
     {
-      name: "Features",
+      pretty: "Features",
       href: "/features",
+      dropdownData: [],
     },
     {
-      name: "FAQ",
+      pretty: "FAQ",
       href: "/faq",
+      dropdownData: [],
     },
     {
-      name: "Pricing",
+      pretty: "Pricing",
       href: "/pricing",
+      dropdownData: [],
     },
     {
-      name: "E-commerce Tutorials",
+      pretty: "E-commerce Tutorials",
       href: "/ecommerce-tutorials",
+      dropdownData: blogPosts
     },
   ];
+
+  useEffect(() => {
+    if(posts.length > 0) {
+      setBlogPosts(posts);
+    }
+  }, [posts]);
 
   useEffect(() => {
     gsap.to("nav a", {
@@ -70,7 +80,7 @@ export default function Navbar() {
   
 
   return (
-    <CustomSuspense>
+
       <Disclosure as="nav" className="fixed top-0 w-full z-50">
         {({ open }) => (
           <>
@@ -82,17 +92,14 @@ export default function Navbar() {
                     <LogoBlack />
 
                     <menu className="hidden md:flex relative gap-5 mr-auto">
-                      {links.map((link: LinkProps) => {
+                      {links.map((link: LinkProps, idx:number) => {
                         return (
-                          <li key={link.name}>
+                          <li key={idx}>
                             <NavLink
-                              isSelected={isSelected(link.href)}
-                              onMouseEnter={() => handleHover(link.href)}
-                              onMouseLeave={() => handleHover("")}
-                              href={link.href}
+                              link={link}
                               className="not-logo flex items-center justify-center font-apercu"
                             >
-                              {link.name}
+                              {link.pretty}
                             </NavLink>
                           </li>
                         );
@@ -137,10 +144,7 @@ export default function Navbar() {
                   return (
                     <NavLink
                       key={link.name}
-                      isSelected={isSelected(link.href)}
-                      href={link.href}
-                      // onClick={link.onClick}
-                      isMobile={true}
+                      link={link}
                     >
                       {link.name}
                     </NavLink>
@@ -151,6 +155,6 @@ export default function Navbar() {
           </>
         )}
       </Disclosure>
-    </CustomSuspense>
+
   );
 }

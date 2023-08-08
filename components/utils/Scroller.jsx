@@ -1,9 +1,6 @@
 "use client";
-import React, {useEffect, useRef, useLayoutEffect} from 'react';
+import {useEffect, useRef} from 'react';
 import gsap, {ScrollSmoother, ScrollTrigger} from 'gsap/all';
-import dynamic from 'next/dynamic';
-
-const ToTop=dynamic(() => import('@/components/common/ToTop'));
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 

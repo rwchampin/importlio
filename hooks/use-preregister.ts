@@ -1,13 +1,13 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { useRouter } from 'next/navigation';
+import { useModal } from '@/store';
 import {usePreregisterMutation} from '@/redux/slices/apiSlice';
-import { useAppDispatch } from '@/redux/hooks';
-import { toggleModal } from '@/redux/slices/ui';
+
+// import { useModal } from '@/store';
 import { toast } from 'react-toastify';
 
 export default function usePreRegister() {
-	const router=useRouter();
-	const dispatch = useAppDispatch();
+	const { toggleModal,hideModal, isOpen } = useModal();
+
 	const [preregister, { isLoading }] = usePreregisterMutation();
 
 	const [formData, setFormData] = useState({
@@ -21,9 +21,7 @@ export default function usePreRegister() {
 		setFormData({ "email": value });
 	};
 
-	const toggle=() => {
-		dispatch(toggleModal());
-	}
+	 
 
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
@@ -31,7 +29,8 @@ export default function usePreRegister() {
 		preregister({ email })
 			.unwrap()
 			.then(() => {
-				toggle()
+				hideModal()
+				setFormData({ "email": '' });
 				toast.success('Thanks for registering!');
 
 			})

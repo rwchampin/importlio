@@ -1,7 +1,6 @@
 "use client";
-import { Stars, OrbitControls, OrthographicCamera } from '@react-three/drei';
+import { OrthographicCamera } from '@react-three/drei';
 import { Canvas } from '@react-three/fiber'
-import { createPortal } from 'react'
 
 export default function CanvasManager({children}) {
 

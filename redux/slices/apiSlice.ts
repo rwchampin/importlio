@@ -192,6 +192,21 @@ export const apiSlice = createApi({
 				};
 			},
 		}),
+		fullRegister: builder.mutation({
+			query: ({first_name, last_name, email}) => {
+				// debugger; // Add debugger statement here
+				debugger
+				return {
+					url: '/registrants/',
+					method: 'POST',
+					body: {
+						"first_name": first_name,
+						"last_name": last_name,
+						"email": email
+					},
+				};
+			},
+		}),
 		getPosts: builder.query({
 			query: () => {
 				// debugger; // Add debugger statement here
@@ -234,6 +249,7 @@ export const apiSlice = createApi({
 
 
 export const {
+	useFullRegisterMutation,
 	useGetPostsQuery,
 	useCreatePostMutation,
 	useRetrieveUserQuery,

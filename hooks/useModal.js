@@ -1,7 +1,6 @@
 import { useEffect } from "react";
 import { useAppDispatch } from "@/redux/hooks";
 import { setAuth, finishInitialLoad } from "@/redux/features/authSlice";
-import { useVerifyMutation } from "@/redux/services/apiSlice";
 
 export default function useModal() {
   const dispatch = useAppDispatch();

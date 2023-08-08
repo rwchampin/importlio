@@ -1,6 +1,6 @@
 "use client";
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, Stars, useGLTF } from '@react-three/drei'
+import { OrbitControls, Stars } from '@react-three/drei'
 import { Iphone, Ipad, Macbook } from '@/components/3d'
 
 export default function IphoneHero() {

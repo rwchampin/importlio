@@ -23,7 +23,7 @@ export default function BasicPage({theme,bg, title, subtitle,belowSubtitle, head
 		<div className="flex flex-col gap-10 min-h-screen z-10 relative">
       {children}
       </div>
-    
+
     </>
   );
 }

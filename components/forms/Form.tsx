@@ -2,8 +2,6 @@ import { ChangeEvent, FormEvent } from 'react';
 import { Input } from '@/components/forms';
 import { Primary,Spinner } from '@/app/components';
 
-import dynamic from 'next/dynamic';
-
 interface Config {
 	labelText: string;
 	labelId: string;

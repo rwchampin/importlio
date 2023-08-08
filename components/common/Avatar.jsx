@@ -1,9 +1,7 @@
 
 "use client"
-import { Menu, Transition } from '@headlessui/react';
-import { Fragment, useEffect, useRef, useState } from 'react';
 import Image from 'next/image';
-import { BiChevronDown } from 'react-icons/bi';
+
 
 function className(...classNames) {
   return classNames.filter(Boolean).join(' ');

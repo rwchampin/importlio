@@ -1,4 +1,6 @@
-import { Modal } from '@/components/common'
+"use client"
+
+import { Section } from '@/components/common'
 export default function TopFeatures() {
     
 
@@ -26,7 +28,7 @@ export default function TopFeatures() {
   ]
     
     return (
-
+<Section>
         <div className="flex flex-col gap-5 md:flex-row md:items-center justify-center shrink-0">
         {data.map((item, idx) => (
             <div data-enter key={idx} className="flex flex-col flex-1 h-auto gap-1 rounded-lg shrink-0 bg-gray-3 p-3 border-2 border-gray-7 drop-shadow-xl">
@@ -37,9 +39,8 @@ export default function TopFeatures() {
             </div>
 
             ))}
-             <Modal />
         </div>
-
+        </Section>
     )
  }
 

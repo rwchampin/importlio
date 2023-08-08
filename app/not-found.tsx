@@ -2,8 +2,8 @@ import React from "react";
 import Link from "next/link";
 import { Section } from "@/components/common";
 import { BsArrowLeft } from "react-icons/bs";
-import { Primary } from "./components/buttons";
-import { ParticleText } from "@/components/typography";
+import { Primary } from "@/app/components/buttons";
+import { ParticleText } from "@/app/components";
 import { BasicPage } from "@/components/pages";
 export default function NotFound() {
   const customComponent = (

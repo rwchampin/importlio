@@ -1,5 +1,5 @@
 "use client"
-import { useRef, useState, useEffect, useLayoutEffect} from 'react'
+import { useRef, useEffect} from 'react'
 import gsap, { ScrollTrigger, SplitText} from 'gsap/all'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)

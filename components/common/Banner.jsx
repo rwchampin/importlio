@@ -1,4 +1,4 @@
-import { XMarkIcon } from '@heroicons/react/20/solid'
+import { CgCloseO } from 'react-icons/cg'
 
 export default function Banner() {
   return (
@@ -45,7 +45,7 @@ export default function Banner() {
       <div className="flex flex-1 justify-end">
         <button type="button" className="-m-3 p-3 focus-visible:outline-offset-[-4px]">
           <span className="sr-only">Dismiss</span>
-          <XMarkIcon className="h-5 w-5 text-gray-900" aria-hidden="true" />
+          <CgCloseO className="h-5 w-5 text-gray-900" aria-hidden="true" />
         </button>
       </div>
     </div>

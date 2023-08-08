@@ -1,4 +1,4 @@
-``
+
 function compareStrings(str1, str2) {
     // Remove any leading/trailing whitespace
     str1 = str1.trim();
@@ -55,6 +55,4 @@ function Subtitle({ children, theme }) {
 
 
 export { default as ShadowText } from "./ShadowText";
-
-export { default as ParticleText } from "./ParticleText";
 export { Title, Headline, Subtitle }

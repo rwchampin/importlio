@@ -1,4 +1,4 @@
-export {default as ProductHero } from './ProductHero';
+
 export {default as FeatureHero } from './FeatureHero';
 export {default as ImageCta } from './ImageCta';
 export {default as Video } from './Video';

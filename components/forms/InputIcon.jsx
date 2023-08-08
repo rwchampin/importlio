@@ -1,8 +1,6 @@
 import {HiOutlineMail as EmailIcon} from 'react-icons/hi'
 import {IoLockClosedOutline as PasswordIcon} from 'react-icons/io5'
 import {AiOutlineSearch as SearchIcon} from 'react-icons/ai'
-import {IoIosArrowDown as ArrowDownIcon} from 'react-icons/io'
-import {IoIosArrowUp as ArrowUpIcon} from 'react-icons/io'
 
 export default function InputIcon({
 	icon,

@@ -1,15 +1,5 @@
-import {Fragment, useEffect, useState} from 'react';
-import {Listbox, Transition} from '@headlessui/react';
-import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid';
-
-const people=[
-	{name: 'Wade Cooper'},
-	{name: 'Arlene Mccoy'},
-	{name: 'Devon Webb'},
-	{name: 'Tom Cook'},
-	{name: 'Tanya Fox'},
-	{name: 'Hellen Schmidt'},
-];
+import { useEffect, useState} from 'react';
+ 
 
 export default function PostTypeSelect({ onChange, value ,required, placeholder, label, labelId, type, name}) {
 	const [ options, setOptions ]=useState([]);

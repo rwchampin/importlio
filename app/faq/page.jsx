@@ -1,10 +1,137 @@
 import {BasicPage} from '@/components/pages'
 import {Section} from '@/components/common'
+import { JsonLd } from '@/components/common/JsonLd'
 export default function Page() {
+	const jsonLd = {
+		"@context": "http://schema.org",
+		"@type": "FAQPage",
+		"breadcrumb": {
+			"@type": "BreadcrumbList",
+			"itemListElement": [
+			  {
+				"@type": "ListItem",
+				"position": 1,
+				"item": {
+				  "@id": "https://www.importlio.com",
+				  "name": "Home"
+				}
+			  },
+			  {
+				"@type": "ListItem",
+				"position": 2,
+				"item": {
+				  "@id": "https://www.importlio.com/faq",
+				  "name": "FAQ"
+				}
+			  }
+			]
+		  },
+		"mainEntity": [
+		  {
+			"@type": "Question",
+			"name": "What is Importlio?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "Importlio is a Shopify app that allows you to import products from Amazon.com to your Shopify store."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "How does it work?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "You can import products from Amazon.com by entering a product URL, search results page URL, category page URL, or keywords."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "How much does it cost?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "Importlio is in the early stages of development. We are offering a 1 month free trial. After the free trial, there will be a 3-tier subscription plan. The subscription plans will be $9.99/month, $19.99/month, and $29.99/month."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "What is the difference between the subscription plans?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "The plans are subject to change, as of now, the subscription plans are based on the number of products you can import per month. The $9.99/month plan allows you to import 100 products per month. The $19.99/month plan allows you to import 500 products per month. The $29.99/month plan allows you to import 1000 products per month."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "What sites can I import products from?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "You can import products from Amazon.com"
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "How many products can I import?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "You can import as many products as you want. There is no limit."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "How many stores can I connect?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "You can connect as many stores as you want. There is no limit."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "Do you offer a free trial?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "Yes, we offer a 1 month free trial. No credit card required."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "Can I cancel my subscription at any time?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "Yes, you can cancel your subscription at any time. You will not be charged if you cancel within the free trial period."
+			}
+		  },
+		  {
+			"@type": "Question",
+			"name": "Do you offer support?",
+			"acceptedAnswer": {
+			  "@type": "Answer",
+			  "text": "Yes, we offer 24/7 support. You can contact us at support@importlio.com."
+			}
+		  }
+		  // Add more questions and answers as needed
+		]
+	  }
+
+	  
 	const faqs=[
 		{
+			q: 'What is Importlio?',
+			a: 'Importlio is a Shopify app that allows you to import products from Amazon.com to your Shopify store.',
+		},
+		{
+			q: 'How does it work?',
+			a: 'You can import products from Amazon.com by entering a product URL, search results page URL, category page URL, or keywords.',
+		},
+		{
+			q: 'How much does it cost?',
+			a: 'Importlio is in the early stages of development. We are offering a 1 month free trial. After the free trial, there will be a 3-tier subscription plan. The subscription plans will be $9.99/month, $19.99/month, and $29.99/month.'
+		},
+		{
+			q: 'What is the difference between the subscription plans?',
+			a: 'The plans are subject to change, as of now, the subscription plans are based on the number of products you can import per month. The $9.99/month plan allows you to import 100 products per month. The $19.99/month plan allows you to import 500 products per month. The $29.99/month plan allows you to import 1000 products per month.'
+		},
+		{
 			q: 'What sites can I import products from?',
-			a: 'You can import products from Amazon, Walmart, AliExpress, and Costco. We are adding more sites soon!',
+			a: 'You can import products from Amazon.com'
 		},
 		{
 			q: 'How many products can I import?',
@@ -16,7 +143,7 @@ export default function Page() {
 		},
 		{
 			q: 'Do you offer a free trial?',
-			a: 'Yes, we offer a 7 day free trial. No credit card required.',
+			a: 'Yes, we offer a 1 month free trial. No credit card required.',
 		},
 		{
 			q: 'Can I cancel my subscription at any time?',
@@ -68,6 +195,7 @@ export default function Page() {
 					}
 				</div>
 			</Section>
+			<JsonLd json={jsonLd} />
 		</BasicPage>
 	)
 }

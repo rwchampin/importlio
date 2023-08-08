@@ -1,24 +1,19 @@
 import { Fragment } from 'react'
 import { Popover, Transition } from '@headlessui/react'
-import { ChevronDownIcon, PhoneIcon, PlayCircleIcon } from '@heroicons/react/20/solid'
-import {
-  ArrowPathIcon,
-  ChartPieIcon,
-  CursorArrowRaysIcon,
-  FingerPrintIcon,
-  SquaresPlusIcon,
-} from '@heroicons/react/24/outline'
+import { BiSolidChevronDown  } from 'react-icons/bi'
+import { AiOutlinePhone, AiOutlinePlayCircle } from 'react-icons/ai'
+
 
 const solutions = [
-  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: ChartPieIcon },
-  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: CursorArrowRaysIcon },
-  { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: FingerPrintIcon },
-  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: SquaresPlusIcon },
-  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: ArrowPathIcon },
+  { name: 'Analytics', description: 'Get a better understanding of your traffic', href: '#', icon: AiOutlinePhone },
+  { name: 'Engagement', description: 'Speak directly to your customers', href: '#', icon: AiOutlinePhone },
+  { name: 'Security', description: "Your customers' data will be safe and secure", href: '#', icon: AiOutlinePhone },
+  { name: 'Integrations', description: 'Connect with third-party tools', href: '#', icon: AiOutlinePhone },
+  { name: 'Automations', description: 'Build strategic funnels that will convert', href: '#', icon: AiOutlinePhone },
 ]
 const callsToAction = [
-  { name: 'Watch demo', href: '#', icon: PlayCircleIcon },
-  { name: 'Contact sales', href: '#', icon: PhoneIcon },
+  { name: 'Watch demo', href: '#', icon: AiOutlinePlayCircle },
+  { name: 'Contact sales', href: '#', icon: AiOutlinePhone },
 ]
 
 export default function DropdownAlt() {
@@ -26,7 +21,7 @@ export default function DropdownAlt() {
     <Popover className="relative">
       <Popover.Button className="inline-flex items-center gap-x-1 text-sm font-semibold leading-6 text-gray-900">
         <span>Solutions</span>
-        <ChevronDownIcon className="h-5 w-5" aria-hidden="true" />
+        <BiSolidChevronDown className="h-5 w-5" aria-hidden="true" />
       </Popover.Button>
 
       <Transition

@@ -1,9 +1,9 @@
 // components/JsonLd.js
 import Script from "next/script";
-const JsonLd = ({ data }) => (
+const JsonLd = ({ json }) => (
     <script
       type="application/ld+json"
-      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(json) }}
     />
   );
   

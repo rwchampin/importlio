@@ -7,7 +7,7 @@ export { default as useSocialAuth } from './use-social-auth';
 export { default as useVerify } from './use-verify';
 export { default as useEventEmitter } from './use-event-emitter';
 export { default as useIntersectionObserver } from './useIntersectionObserver';
-export { default as useUi } from './use-ui';
+
 export { default as usePreregister } from './use-preregister';
 export {default as useCreatePost} from './use-create-post';
 export {default as useResponsive} from './useResponsive';

@@ -1,4 +1,3 @@
-import { ParticleText as PT } from '@/components/typography';
 
 export default function ParticleText() {
 

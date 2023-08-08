@@ -4,7 +4,7 @@ import { Section, TagCloud } from "@/components/common";
 import { BasicPage } from "@/components/pages";
 import { Sidebar } from "@/components/blog";
 import dynamic from "next/dynamic";
-
+import JsonLd from "@/components/common/JsonLd";
 // gsap.registerPlugin(ScrollTrigger)
 
 export default async function Page({ params }:any) {debugger
@@ -13,6 +13,42 @@ export default async function Page({ params }:any) {debugger
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
   const post = await res.json();
 
+  const json = {
+    "@context": "http://schema.org",
+    "@type": "BlogPosting",
+    "headline": post.title,
+    "description": post.excerpt || post.content,
+    "url": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+    "datePublished": post.published,
+    "dateModified": post.updated,
+    "author": {
+      "@type": "Importlio Inc.",
+      "name": "Importlio Inc."
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Importlio Inc.",
+      "logo": {
+        "@type": "ImageObject",
+       "url": "https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/logo-black.svg",
+      }
+    },
+    "image": {
+      "@type": "ImageObject",
+      "url": post.featured_image,
+    },
+    "inLanguage": "en-US",
+    "isPartOf": {
+      "@type": "Blog",
+      "name": "Importlio ecommerce tutorials",
+      "url": "https://www.importlio.com/ecommerce-tutorials"
+    }
+  }
+  
   // gsap.to(".fi", {
   // 	scrollTrigger: {
   // 		trigger: ".fi",
@@ -57,6 +93,7 @@ export default async function Page({ params }:any) {debugger
           </aside>
         </div>
       </Section>
+      <JsonLd json={json} />
     </BasicPage>
   );
 }

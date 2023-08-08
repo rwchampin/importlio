@@ -23,7 +23,7 @@ export default function PostForm() {
 			data: store.postTypes,
 			labelText: 'Post Type',
 			labelId: 'post_type',
-			type: 'select',
+			type: 'multiselect',
 			value: post_type,
 			onChange: onChange,
 			required: true,

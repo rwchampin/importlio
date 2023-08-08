@@ -1,26 +1,33 @@
 import Link from 'next/link'
-import {BsInstagram, BsTwitter, BsFacebook} from 'react-icons/bs'
-import {TfiYoutube} from 'react-icons/tfi'
+import { BsInstagram, BsTwitter, BsFacebook } from 'react-icons/bs'
+// import {TfiYoutube} from 'react-icons/tfi'
 export default function SocialIcons() {
+    const socials = [{
+        name: 'Instagram',
+        url: 'www.instagram.com/importlio',
+        icon: <BsInstagram className="font-gray-300 hover:font-black text-lg" />
+    }, {
+        name: 'Twitter',
+        url: 'www.twitter.com/importlio',
+        icon: <BsTwitter className="font-gray-300 hover:font-black text-lg" />
+    }, {
+        name: 'Facebook',
+        url: 'www.facebook.com/importlio',
+        icon: <BsFacebook className="font-gray-300 hover:font-black text-lg" />
+    }]
     return (
         <div className="flex gap-5">
-        <Link href="www.instagram.com" className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" aria-label="Reddit">
-            <BsInstagram
-                className="font-gray-300 hover:font-black text-lg"
-            />
-        </Link>
+            {socials.map((social, idx) => (
+                <Link 
+                target="_blank" 
+                href={social.url} 
+                className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" 
+                aria-label={social.name}
+                >
+                    {social.icon}
+                </Link>
+            ))}
 
-        <Link href="www.twitter.com" className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" aria-label="Facebook">
-            <BsTwitter/>
-        </Link>
-
-        <Link href="www.facebook.com" className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" aria-label="Github">
-            <BsFacebook/>
-        </Link>
-
-        <Link href="www.youtube.com" className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" aria-label="Github">
-            <TfiYoutube/>
-        </Link>
-    </div>
+        </div>
     )
 }

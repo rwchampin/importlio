@@ -1,96 +1,92 @@
-"use client"
-import {Fragment, lazy, Suspense, useEffect, useState} from 'react';
-import {Combobox as CC, Transition} from '@headlessui/react';
-import {CheckIcon, ChevronUpDownIcon} from '@heroicons/react/20/solid';
-import {BiCheckCircle} from 'react-icons/bi';
-import {useBlog} from '@/store';
-export default function Combobox({onChange, value, required, placeholder, labelId, label, type, name}) {
-	const {categories, tags }=useBlog();
+"use client";
+import React, { useEffect, useState, useRef } from 'react';
+import { useBlog } from '@/store';
+import { BsCheckCircle } from 'react-icons/bs';
+import gsap from 'gsap';
+import Badge from '@/components/common/Badge';
 
-	const [ options, setOptions ]=useState([  ]);
-	const [ selectedOptions, setSelectedOptions ]=useState([]);
-	const [ selected, setSelected ]=useState(options[ 0 ]);
-	const [ query, setQuery ]=useState('');
+const Option = ({ value, selected, onClick }) => {
+	return (
+		<div className={`flex p-5 items-center w-full hover:bg-gray-5 text-black border-b border-gray-6 ${selected ? 'border-l-4 border-l-green-8' : ''}`} onClick={onClick}>
+			<BsCheckCircle className={`${selected ? 'text-green-500 mr-2' : 'text-transparent mr-2'} `} />
+			<span>{value}</span>
+		</div>
+	);
+};
+
+
+export default function ComboBox({ label, type, onChange, value, name, labelId, required, placeholder }) {
+	const { categories, tags, postTypes } = useBlog();
+	const [options, setOptions] = useState([]);
+	const [selected, setSelected] = useState([]);
+	const [active, setActive] = useState(false);
+	const dropdown = useRef(null);
+	const comboBoxRef = useRef(null);
+
+	// useEffect(() => {
+	// 	const handleClose = (e) => {
+	// 		if (active && comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
+	// 		  setActive(false);
+	// 		}
+	// 	  };
+
+	// 	window.addEventListener('click', handleClose)
+
+	// 	return () => {
+	// 		window.removeEventListener('click', handleClose);
+	// 	}
+	// }, [active]);
 
 	useEffect(() => {
-		if(categories && tags) {
-			const o = [{value: '-------------'}]
-			[labelId].map((item) => {
-				o.push({
-					value: item.name,
-					name: item.name
-				})
-			})
-			setOptions(o);
+		if (labelId === "categories") {
+			setOptions(categories);
+		} else if (labelId === "tags") {
+			setOptions(tags);
+		}else if (labelId === "post_type") {
+			setOptions(postTypes);
 		}
-	}, [categories,labelId, tags]);
-	 
+	}, [categories, tags]);
 
-	const handleChange=(selectedItems) => {
-		setSelectedOptions(selectedItems); // Updated: Set selectedOptions directly as an array
-		const selectedValues=selectedItems.map((item) => item.value);
-		onChange(selectedValues);
+	useEffect(() => {
+		const drop = dropdown.current;
+		if (active) {
+			gsap.to(drop, { duration: 0.1, height: 'auto' });
+		} else {
+			gsap.to(drop, { duration: 0.1, height: 0 });
+		}
+	}, [active]);
+
+	const selectItem = (option) => {
+		if (!selected.includes(option)) {
+			setSelected([...selected, option]);
+		} else {
+			setSelected(selected.filter(item => item !== option));
+		}
 	};
 
 	return (
-		<Suspense fallback={<div>Loading...</div>}>
-			<CC value={selectedOptions} onChange={handleChange}>
-				<div className="relative mt-1">
-					<div className="relative w-full cursor-default overflow-hidden rounded-lg bg-white text-left shadow-md focus:outline-none focus-visible:ring-2 focus-visible:ring-white focus-visible:ring-opacity-75 focus-visible:ring-offset-2 focus-visible:ring-offset-teal-300 sm:text-sm">
-						<CC.Input
-							className="w-full border-none py-2 pl-3 pr-10 text-sm leading-5 text-gray-900 focus:ring-0"
-							displayValue={(selected) => (selected? selected.value:'')}
-							onChange={(e) => setQuery(e.target.value)}
+		<div ref={comboBoxRef} className="mt-1">
+			<div className="relative h-input">
+				<div onClick={() => setActive(active => !active)} className="h-input border border-gray-300 rounded-md shadow-sm hover:bg-gray-6 z-10">
+					<div className="flex gap-3 overflow-x-scroll p-3 items-center justify-start">
+						{selected.map((option, idx) => (
+							<Badge type="info" key={idx}>{option.name}</Badge>
+						))}
+						<input
+							type="text"
+							value={selected.map(option => option.name).join(', ')}
+							onChange={onChange}
+							className="hidden w-full h-full bg-transparent border-none outline-none"
 							placeholder={placeholder}
-							type={type}
 						/>
-						<CC.Button className="absolute inset-y-0 right-0 flex items-center pr-2">
-							<ChevronUpDownIcon className="h-5 w-5 text-gray-400" aria-hidden="true" />
-						</CC.Button>
 					</div>
-					<Transition
-						as={Fragment}
-						leave="transition ease-in duration-100"
-						leaveFrom="opacity-100"
-						leaveTo="opacity-0"
-						afterLeave={() => setQuery('')}
-					>
-						<CC.Options
-							style={{zIndex: 99999}}
-							className="absolute mt-1 max-h-60 w-full overflow-auto rounded-lg   py-1 text-base shadow-xl z-[99999px]  sm:text-sm bg-light-gray-2"
-						>
-							{options.map((option, i) => (
-								<CC.Option
-									key={option.value}
-									className={({active}) =>
-										`relative cursor-default select-none py-2 pl-10 pr-4 ${active? 'bg-light-gray-6 text-white':'text-black'
-										} ${i!==options.length-1? 'border-b-2':''}`
-									}
-									value={option}
-								>
-									{({selected, active}) => (
-										<>
-											<span
-												className={`block truncate ${selected? 'font-medium':'font-normal'}`}
-											>
-												{option.name}
-											</span>
-											{selected? (
-												<span
-													className={`absolute inset-y-0 left-0 flex items-center pl-3 ${active? 'text-white':'text-teal-600'
-														}`}
-												>
-													<BiCheckCircle className="h-5 w-5" aria-hidden="true" />
-												</span>
-											):null}
-										</>
-									)}
-								</CC.Option>
-							))}
-						</CC.Options>
-					</Transition>
 				</div>
-			</CC>
-		</Suspense>
+				<div ref={dropdown} className="shadow-2xl bg-white max-h-[500px] w-full absolute top-[100%] left-0 flex flex-col overflow-hidden items-center z-[999] rounded-b-lg">
+					{options.map((option, idx) => (
+						<Option key={idx} value={option.name} selected={selected.includes(option)} onClick={() => selectItem(option)} />
+					))}
+				</div>
+			</div>
+		</div>
 	);
 }

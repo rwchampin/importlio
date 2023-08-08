@@ -1,6 +1,6 @@
 "use client";
 import {gsap} from 'gsap';
-import {use, useEffect, useRef} from 'react';
+import {useEffect, useRef} from 'react';
 import "@/assets/styles/socialshare.css";
 
 import { BsFacebook, BsMessenger, BsTwitter, BsLinkedin, BsInstagram, BsShare} from 'react-icons/bs';

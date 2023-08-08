@@ -1,6 +1,6 @@
 "use client"
 import * as THREE from "three";
-import React, { Suspense, useRef, useState } from "react";
+import  {  useState } from "react";
 import { Canvas, useFrame } from "@react-three/fiber";
 import {
   EffectComposer,
@@ -10,7 +10,7 @@ import {
   Vignette
 } from "@react-three/postprocessing";
 import {
-  Html,
+ 
   Icosahedron,
   useTexture,
   useCubeTexture,

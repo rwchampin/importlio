@@ -3,7 +3,7 @@
 import { store } from "./store";
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
-import { useEffect, useState, useLayoutEffect } from "react";
+import { useEffect } from "react";
 import { BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
 
 // import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action

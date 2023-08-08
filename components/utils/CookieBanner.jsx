@@ -26,14 +26,14 @@ export default function CookieBanner() {
 			});
 		}
 		setLocalStorage("cookie_consent", newValue)
-		gsap.to(".cookie-banner", {duration: 1,opacity:0, yPercent: 100, ease: "power2.out"})
+		gsap.to(".cookie-banner", {duration: 1,opacity:0, y: window.innerHeight + 500, ease: "power2.out"})
 		//For Testing
 		// console.log("Cookie Consent: ", cookieConsent)
 
 	}, [ cookieConsent ]);
 
 	return (
-		<section style={{zIndex: 999}} className="cookie-banner fixed max-w-md p-4 mx-auto bg-gray5 shadow-lg border border-3 border-gray8 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl ">
+		<section style={{zIndex: 999}} className="cookie-banner bg-white fixed max-w-md p-4 mx-auto bg-gray5 shadow-lg border border-3 border-gray8 dark:bg-gray-800 left-12 bottom-16 dark:border-gray-700 rounded-2xl ">
 			<h2 className="font-semibold text-gray-800 dark:text-white">🍪 Cookie Notice</h2>
 
 			<p className="mt-4 text-sm text-gray-600 dark:text-gray-300">We use cookies to ensure that we give you the best experience on our website. <a href="#" className="text-blue-500 hover:underline">Read cookies policies</a>. </p>

@@ -1,35 +1,26 @@
 "use client";
-import dynamic from "next/dynamic";
+
 import { BasicPage } from "@/components/pages";
-import { Spinner, Primary } from "@/app/components";
-import { Suspense } from "react";
+
 
 import {
-
+  RecentBlogPosts,
   FeatureHero,
   ImageCta,
-  TopFeatures
+ 
 } from "@/components/heros/";
-
+import  FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import { Spacer, LazyLoad } from "@/components/utils/";
-import { Section } from "@/components/common";
+import { Section, Modal, JsonLd } from "@/components/common";
 
-import { Canvas, Model, Dom } from "@react-three/fiber";
-
-const DynamicRecentBlogPosts = dynamic(() => import("@/components/heros/RecentBlogPosts"));
-
+import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 
 const jsonLd = {
   "@context": "http://schema.org",
   "@type": "WebSite",
-  "name": "Importlio - Amazon Dropshipping Bulk Product Importer & Management App",
+  "name": "Importlio - Amazon Dropshipping Product Importer & Management App",
   "url": "https://www.importlio.com",
-  "description": "Import Amazon dropshipping products with you Amazon Affiliate/associate ID attached to product links to guarantee you get paid for every sale.  Import Products from Amazon by category, tag, or keyword.  Provide a search result URL to our import tool and instantly fill your store with thousands of products to begin seling today!  Import Amazon products to Shopify in bulk.  Import Amazon products to WooCommerce in bulk.  Import Amazon products to BigCommerce in bulk.  Import Amazon products to Wix in bulk.  Import Amazon products to Squarespace in bulk.  Import Amazon products to Weebly in bulk.  Import Amazon products to Ecwid in bulk.  Import Amazon products to Etsy in bulk.  Import Amazon products to eBay in bulk.  Import Amazon products to Magento in bulk.  Import Amazon products to PrestaShop in bulk.  Import Amazon products to Volusion in bulk.  Import Amazon products to 3dcart in bulk.  Import Amazon products to Big Cartel in bulk.  Import Amazon products to OpenCart in bulk.  Import Amazon products to PinnacleCart in bulk.  Import Amazon products to SalesForce in bulk.",
-  "potentialAction": {
-    "@type": "SearchAction",
-    "target": "https://www.importlio.com/search?q={search_term_string}",
-    "query-input": "required name=search_term_string"
-  },
+  "description": "Import Amazon dropshipping products with your Amazon Affiliate/Associate ID attached to product links to guarantee you get paid for every sale.  Import Products from Amazon URL by result pages, category listing pages, or any other amazon page.  Provide a search result URL to our import tool and instantly fill your store with thousands of products to begin seling today!  Import Amazon products to Shopify in bulk.  Import Amazon products to WooCommerce in bulk.  Import Amazon products to BigCommerce in bulk.  Import Amazon products to Wix in bulk.  Import Amazon products to Squarespace in bulk.  Import Amazon products to Weebly in bulk.  Import Amazon products to Ecwid in bulk.  Import Amazon products to Etsy in bulk.  Import Amazon products to eBay in bulk.  Import Amazon products to Magento in bulk.  Import Amazon products to PrestaShop in bulk.  Import Amazon products to Volusion in bulk.  Import Amazon products to 3dcart in bulk.  Import Amazon products to Big Cartel in bulk.  Import Amazon products to OpenCart in bulk.  Import Amazon products to PinnacleCart in bulk.  Import Amazon products to SalesForce in bulk.",
   "publisher": {
     "@type": "Organization",
     "name": "Importlio Inc.",
@@ -37,8 +28,6 @@ const jsonLd = {
     "logo": {
       "@type": "ImageObject",
       "url": "https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/logo-black.svg",
-      "width": 600,
-      "height": 200
     }
   },
   "applicationCategory": "Ecommerce",
@@ -63,10 +52,11 @@ const jsonLd = {
   const Prereg = () => {
     return (
       <>
-      <div className="max-w-2xl">
+      <div className="mb-5 font-montserrat text-md leading-relaxed" style={{fontWeight: 300}}>
       Pre-register today and secure a FREE month&apos;s membership when we launch. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
       </div>
-      <Primary className="max-w-md mt-5">PREREGISTER</Primary>
+
+      <Modal />
       </>  
     )
   }
@@ -111,24 +101,38 @@ export default function Page() {
 
       <Spacer size={1} />
 
+     <Section full>
+     <FadingBackgroundCta />
+      </Section>
+      
+      <Spacer size={1} />
+
       <Section>
         <ImageCta
-          image="dfsf"
-          cta="fsfs"
-          title="Import Amazon Products to Shopify in seconds!"
-          description="Our Amazon Product Importer App is the best way to import Amazon products to Shopify. Our app is the only app that allows you to import Amazon products to Shopify in bulk. Our app is the only app that allows you to import Amazon products to Shopify in bulk. Our app is the only app that allows you to import Amazon products to Shopify in bulk."
+          title="Fill your Shopify Store with Amazon Search Results Pages"
+          description={`No other app allows you to import products from Amazon search results pages, category pages, keywords, and more!  Import products from Amazon in bulk to your Shopify store with the Importlio Shopify App. Import Amazon Dropshopping Products to Shopify in bulk by:\n
+           <ul>
+          <li>&bull; Amazon Search Results Page URL</li>
+          <li>&bull; Amazon Category Page URL</li>
+          <li>&bull; Amazon Keyword Search</li>
+          <li>&bull; Amazon Product ASIN</li>
+          <li>&bull; Amazon Product URL</li>
+          </ul>`}
+          cta={<NameAndEmailForm />}
         />
       </Section>
       <Spacer size={1} />
 
-      <Section>
-
-        <Suspense fallback={<Spinner />}>
-          <DynamicRecentBlogPosts />
-        </Suspense>
+      
 
 
-      </Section>
+        <Section>
+          <RecentBlogPosts />
+        </Section>
+
+        <JsonLd 
+          json={jsonLd}
+        />
       {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
             <Canvas>
               <OrbitControls />

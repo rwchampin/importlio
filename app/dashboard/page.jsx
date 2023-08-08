@@ -1,9 +1,10 @@
-
-
-
-export default function Page() {
+import Registrants from "@/components/pages/Registrants"
+export default async function Page() {
 
     return (
-        <div></div>
+
+            <Registrants />
+
+
     )
 }

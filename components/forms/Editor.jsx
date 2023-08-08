@@ -1,8 +1,6 @@
 "use client";
-import React, {useState} from 'react';
 // import ReactQuill from 'react-quill';
 // import 'react-quill/dist/quill.snow.css'; // Import Quill styles
-
 
 const Editor=({
 	placeholder,
