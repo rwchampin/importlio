@@ -3,15 +3,14 @@ import { Section } from "@/components/common"
 export default function Page() {
   return (
     <BasicPage
-        theme="light"
         title="About Us"
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         headline="Learn More"
         shadowText="THE COMPANY"
         showButton={true}
-        xPos="0"
-        yPos="50"
         customComponent={null}
+        belowSubtitle={null}
+        bg={null}
       >
 
       <Section

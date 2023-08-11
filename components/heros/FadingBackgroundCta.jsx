@@ -13,12 +13,12 @@ export default function FadingBackgroundCta() {
 
     }]
     return (
-        <div class="relative overflow-hidden bg-gray-dark-1 min-h-[500px] max-h-[50vh] text-center">
+        <div class="relative overflow-hidden bg-gray-dark-1 min-h-[500px] py-10 text-center">
 
    
 
 
-  <section aria-labelledby="sale-heading" class="relative mx-auto flex w-full h-full flex-col items-center justify-center p-5  text-center  ">
+  <section aria-labelledby="sale-heading" class="relative mx-auto flex w-full h-full flex-col items-center justify-center px-5 py-10  text-center  ">
     <div class="mx-auto max-w-2xl lg:max-w-none flex items-center justify-center flex-col">
       <div id="sale-heading" class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
         Give us your email. Get a free trial.

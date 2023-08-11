@@ -6,7 +6,7 @@ import { Primary } from '@/app/components/buttons';
 import { useModal } from '@/store';
 
 
-export default function Modal({theme}) {
+export default function Modal() {
   const { toggleModal,isOpen  } = useModal();
 
   return (

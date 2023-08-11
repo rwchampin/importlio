@@ -16,7 +16,7 @@ const Option = ({ value, selected, onClick }) => {
 };
 
 
-export default function ComboBox({ label, type, onChange, value, name, labelId, required, placeholder }) {
+export default function ComboBox({data, label, type, onChange, value, name, labelId, required, placeholder }) {
 	const { categories, tags, postTypes } = useBlog();
 	const [options, setOptions] = useState([]);
 	const [selected, setSelected] = useState([]);

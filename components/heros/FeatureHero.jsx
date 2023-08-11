@@ -86,7 +86,7 @@ export default function FeatureHero() {
                             return (
                                 <div key={index} className="feature space-y-3">
 
-                                        {/* {feature.Icon()} */}
+                                        {feature.Icon()}
                                         <h2 className="font-montserrat font-bold text-heading-4">{feature.title}</h2>
 
                                     <p className="text-left text-blacktext-black">

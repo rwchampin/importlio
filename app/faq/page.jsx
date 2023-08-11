@@ -166,6 +166,7 @@ export default function Page() {
 			customComponent={null}
 			xPos="100"
 			yPos="50"
+			bg={null}
 			
 		>
 

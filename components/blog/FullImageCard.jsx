@@ -17,7 +17,7 @@ export default function FullImageCard({ post }) {
           type="img"
           alt={getAlt()}
           dataSrc={featured_image}
-          src={'https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/img/placeholder.jpg'}
+          // src={'https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/img/placeholder.jpg'}
           className="object-cover absolute top-0 bottom-0 inset-0 h-full w-full   m-0 p-0"
         />
 

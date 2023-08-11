@@ -44,13 +44,21 @@ export default function NavLink({
 				className={className}
 				href={link.href}
 				link={link}
+				label={link.label}
+				onChange={link.onChange}
+				value={link.value}
 
+				required={link.required}
+				placeholder={link.placeholder}
 				dropdownData={link.dropdownData}
-				// isSelected={isSelected}
-				// isMobile={isMobile}
-				// isBanner={isBanner}
-				// solid={solid}
-				// border={border}
+				labelId={link.labelId}
+				{...rest}
+				solid={link.solid}
+				type={link.type}
+				border={link.border}
+				isSelected={isSelected}
+				name={link.name}
+
 			>
 				{link.pretty}
 			</Dropdown>

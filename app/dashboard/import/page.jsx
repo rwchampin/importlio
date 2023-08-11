@@ -1,8 +1,10 @@
 "use client";
 import {useState} from 'react'
 import { Tab } from '@headlessui/react'
+import { BiSolidChevronDown } from 'react-icons/bi';
+import { Primary } from '@/app/components/buttons';
 // import { CSVUploader } from '@/components/forms'
-function className(...classNames) {
+function classNames(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }
 
@@ -50,7 +52,7 @@ export default function Page() {
             <Tab
               key={idx}
               className={({ selected }) =>
-                className(
+                classNames(
                   'w-full rounded-lg py-2.5 text-sm font-medium leading-5 text-blue-700',
                   'ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2',
                   selected
@@ -72,12 +74,7 @@ export default function Page() {
               )}
             >
               
-            <form>
-              <div className="flex flex-col gap-5 mb-4">
-                <input className="border py-2 px-3 text-grey-800" type="text" name="name" id="name" placeholder="Name" />
-                <button className="bg-black text-white mx-auto rounded-lg" type="submit">Submit</button>
-              </div>
-            </form>
+            
             </Tab.Panel>
            <Tab.Panel
 

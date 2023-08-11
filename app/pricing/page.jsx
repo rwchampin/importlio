@@ -1,15 +1,13 @@
-import dynamic from "next/dynamic";
 
 import { BasicPage } from "@/components/pages";
 import {Section} from '@/components/common'
+import  Prices from "@/components/heros/Prices";
 export default function Page() {
-    const DynamicPrices = dynamic(() => import("@/components/heros/Prices"));
-    
+
     return (
 
          <BasicPage
-        theme="light"
-
+            theme="light"
                 title="Subscription Pricing"
                 subtitle="The ultimate solution for efficiently importing and managing your dropshipping products on Amazon into your shopify store."
                 headline="Pricing & Plans"
@@ -19,10 +17,11 @@ export default function Page() {
         customComponent={null}
         xPos="100"
         yPos="50"
-        
+
+
         >
             <Section className="p-5">
-            <DynamicPrices />
+            <Prices />
 
                 <p>Join over 10,000 successful store owners who have placed their trust in Importlio and witness a significant boost in sales for your business. Start your free trial today with no credit card required, and experience the transformative power of our comprehensive eCommerce importer app.</p>
 

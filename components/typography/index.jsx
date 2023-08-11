@@ -23,7 +23,7 @@ function compareStrings(str1, str2) {
     return str1 === str2;
 }
  
-function Headline({ children, theme }) {
+function Headline({ children }) {
 
     return (
         <span data-lag=".3" data-enter className={`uppercase font-montserrat font-bold text-gray-400  text-headline  m-0`}>
@@ -31,7 +31,7 @@ function Headline({ children, theme }) {
         </span>
     );
 };
-function Title({ children, theme }) {
+function Title({ children }) {
 
     return (
         <h1 data-enter className="text-heading-1 font-black font-montserrat text-button">
@@ -40,10 +40,10 @@ function Title({ children, theme }) {
     );
 };
 
-function Subtitle({ children, theme }) {
+function Subtitle({ children }) {
 
     return (
-        <h2 data-speed=".9" data-enter className={`font-apercu font-bold text-${theme === 'dark' ? 'gray-400' : 'gray-400'}  not-prose text-subtitle-1 line-tight m-0`}>
+        <h2 data-speed=".9" data-enter className={`font-apercu font-bold text-gray-11  not-prose text-subtitle-1 line-tight m-0`}>
             {children}
         </h2>
     );

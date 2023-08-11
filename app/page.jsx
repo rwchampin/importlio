@@ -101,11 +101,9 @@ export default function Page() {
 
       <Spacer size={1} />
 
-     <Section full>
-     <FadingBackgroundCta />
-      </Section>
+    
       
-      <Spacer size={1} />
+    
 
       <Section>
         <ImageCta
@@ -124,7 +122,11 @@ export default function Page() {
       <Spacer size={1} />
 
       
-
+      <Section full>
+     <FadingBackgroundCta />
+      </Section>
+      
+      <Spacer size={1} />
 
         <Section>
           <RecentBlogPosts />

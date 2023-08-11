@@ -4,12 +4,12 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
 
-import { useBlog } from "@/store";
+// import { useBlog } from "@/store";
 
 import { LogoBlack, SocialIcons, LoginOrAvatar } from "@/components/common";
 import NavLink from "./NavLink";
 
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import gsap from "gsap";
 import { useResponsive } from "@/hooks";
 
@@ -21,8 +21,8 @@ const RxCross2Dynamic: any = dynamic(() =>
 );
 
 export default function Navbar() {
-  const { posts } = useBlog();
-  const [blogPosts, setBlogPosts] = useState<any>([]);
+  // const { posts } = useBlog();
+  // const [blogPosts, setBlogPosts] = useState<any>([]);
   const responsive: any = useResponsive();
 
   const pathname = usePathname();
@@ -61,15 +61,15 @@ export default function Navbar() {
     {
       pretty: "E-commerce Tutorials",
       href: "/ecommerce-tutorials",
-      dropdownData: blogPosts,
+      dropdownData: [],
     },
   ];
 
-  useEffect(() => {
-    if (posts.length > 0) {
-      setBlogPosts(posts);
-    }
-  }, [posts]);
+  // useEffect(() => {
+  //   if (posts.length > 0) {
+  //     setBlogPosts(posts);
+  //   }
+  // }, [posts]);
 
   useEffect(() => {
     gsap.to("nav a", {

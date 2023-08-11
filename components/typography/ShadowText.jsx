@@ -3,13 +3,13 @@ import { useRef, useEffect} from 'react'
 import gsap, { ScrollTrigger, SplitText} from 'gsap/all'
 
 gsap.registerPlugin(ScrollTrigger, SplitText)
-export default function ShadowText({text, xPos, yPos}) {
+export default function ShadowText({text }) {
 	const titleRef = useRef(null)
 	
 	useEffect(() => {
 		if(titleRef.current) {
 		gsap.set(titleRef.current, {
-			percentX: xPos || 0,
+			percentX:   0,
 			y: "50vh",
 			top: -titleRef.current.getBoundingClientRect().height / 2
 		})

@@ -3,19 +3,17 @@ import { Spacer } from "@/components/utils";
 import { Modal } from "@/components/common/";
 
 import Image from "next/image";
+import React from "react";
 
 interface Props {
-  bg?: string;
-  title: string;
-  subtitle?: string;
-  belowSubtitle?: string;
-  headline?: string;
-  shadowText?: string;
-  theme?: "dark" | "light";
-  showButton?: boolean;
-  xPos?: string;
-  yPos?: string;
-  customComponent?: React.ReactNode;
+  bg?: string | null | undefined;
+  title: string | React.ReactNode;
+  subtitle?: string | React.ReactNode;
+  belowSubtitle?: string | null | undefined;
+  headline?: string | React.ReactNode;
+  shadowText?: string | React.ReactNode;
+  showButton?: boolean | null | undefined;
+  customComponent?: React.ReactNode | null | undefined;
 }
 export default function Hero({
   bg,
@@ -24,15 +22,9 @@ export default function Hero({
   belowSubtitle,
   headline,
   shadowText,
-  theme,
   showButton,
-  xPos = "0",
-  yPos = "50",
   customComponent,
 }: Props) {
-  if (!theme) {
-    throw new Error("Page must have a theme");
-  }
 
   return (
     <>
@@ -44,18 +36,19 @@ export default function Hero({
           <Image
             src={bg}
             alt="background"
+            priority
             fill
             className="absolute top-0 left-0 m-0 w-full h-full object-cover z-0"
           />
         )}
         <div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
-          <Headline theme={theme}>{headline}</Headline>
+          <Headline >{headline}</Headline>
           {/* <Spacer size={.5} /> */}
-          <Title data-enter={1} theme={theme}>
+          <Title data-enter={1}  >
             {title}
           </Title>
           <Spacer size={1} />
-          <Subtitle data-enter={2} theme={theme}>
+          <Subtitle data-enter={2}>
             {subtitle}
           </Subtitle>
 
@@ -71,7 +64,7 @@ export default function Hero({
           {showButton && (
             <>
               <Spacer size={2} />
-              <Modal theme={theme} data-enter={3} />
+              <Modal   data-enter={3} />
             </>
           )}
           <Spacer size={2} />
@@ -80,7 +73,7 @@ export default function Hero({
         <Spacer size={2} />
 
       </section>
-      <ShadowText xPos={xPos} yPos={yPos} text={shadowText} />
+      <ShadowText  text={shadowText} />
     </>
   );
 }

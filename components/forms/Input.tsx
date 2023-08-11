@@ -14,19 +14,16 @@ const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
 });
 
 interface Props {
-  labelId: string;
-  type: string;
-  data: any;
-  onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-  value: string;
-  children?: React.ReactNode;
-  placeholder?: string;
-  link?: {
-    linkText: string;
-    linkUrl: string;
-  };
-  required?: boolean;
-  className?: string;
+  labelId: any;
+  type?: any;
+  data?: any;
+  onChange:  any
+  value: any;
+  children?: any;
+  placeholder?: any;
+  link?: any
+  required?: any;
+  className?: any;
 }
 
 const InputIcon: React.FC<{ type: string; isFocused: boolean }> = ({
@@ -56,7 +53,7 @@ const Input: React.FC<Props> = ({
   data,
   value,
   children,
-  placeholder = null,
+  placeholder,
   className,
   link,
   required = false,
@@ -143,13 +140,13 @@ const Input: React.FC<Props> = ({
           <textarea
             onChange={onChange}
             value={value}
-            placeholder={placeholder}
-            rows="10"
+            placeholder={''}
+             
             name={labelId}
-            type={type}
+           
             required={required}
-            label={labelId}
-            labelId={labelId}
+
+
             className={` w-full bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`}
           ></textarea>
         );

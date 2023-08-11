@@ -16,17 +16,12 @@ export default function NotFound() {
 
   return (
     <BasicPage
-      title={customComponent	}
+      title={customComponent}
       subtitle="Sorry, we couldn't find the page you're looking for."
-      theme="light"
       headline="Try going back home"
       shadowText="404"
-      bg={null}
-      xPos={0}
-      yPos={50}
-	  customComponent={null}
       showButton={false}
-	  belowSubtitle={null}
+
 		
     >
       <Section>

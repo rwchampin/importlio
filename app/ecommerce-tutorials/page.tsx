@@ -39,15 +39,12 @@ export default function Page() {
   return (
     <>
       <BasicPage
-        theme="light"
         title="Ecommerce Dropshipping Tutorials"
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
         shadowText={"Amazon Dropshipping Tutorials"}
         belowSubtitle={null}
         bg={null}
-        xPos={0}
-        yPos={50}
         customComponent={null}
         showButton={true}
       >
