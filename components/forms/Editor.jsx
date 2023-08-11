@@ -1,6 +1,6 @@
 "use client";
-import ReactQuill from 'react-quill';
-import 'react-quill/dist/quill.snow.css'; // Import Quill styles
+// import ReactQuill from 'react-quill';
+// import 'react-quill/dist/quill.snow.css'; // Import Quill styles
 
 const Editor=({
 	placeholder,
@@ -54,16 +54,17 @@ const Editor=({
  
 
 	return (
+		<div>	</div>
 
-			<ReactQuill
-				theme={'snow'}
-			onChange={handleChange}
-			value={value}
-				modules={modules}
-				formats={formats}
-				// bounds={'.app'}
-				placeholder={placeholder}
-			/>
+			// <ReactQuill
+			// 	theme={'snow'}
+			// onChange={handleChange}
+			// value={value}
+			// 	modules={modules}
+			// 	formats={formats}
+			// 	bounds={'.app'}
+			// 	placeholder={placeholder}
+			// />
 			 
 		 
 	);
