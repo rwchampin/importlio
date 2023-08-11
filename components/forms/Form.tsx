@@ -7,7 +7,7 @@ interface Config {
 	labelId: string;
 	type: string;
 	value: string;
-
+	data?: any;
 	placeholder?: string;
 	link?: {
 		linkText: string;
@@ -231,6 +231,7 @@ export default function Form({
           type={input.type}
           onChange={onChange}
           value={input.value}
+		  data={input.data}
           link={input.link}
           required={input.required}
           placeholder={getPlaceholder(input.type)}

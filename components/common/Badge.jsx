@@ -6,7 +6,10 @@ export default function Badge({ type,showClose,size, children, className, ...pro
      
 
         return (
-             <p className={`self-start shadow-xl px-3 py-1 text-${size} text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60`}>{children}</p>
+             <Link 
+                href={`/${type}/${slugify(children)}`}
+             className={`self-start shadow-xl px-3 py-1 text-${size} text-indigo-500 rounded-full dark:bg-gray-800 bg-indigo-100/60`}
+             >{children}</Link>
 
         )
 

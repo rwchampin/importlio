@@ -16,6 +16,7 @@ const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
 interface Props {
   labelId: string;
   type: string;
+  data: any;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
   value: string;
   children?: React.ReactNode;
@@ -52,6 +53,7 @@ const Input: React.FC<Props> = ({
   labelId,
   type,
   onChange,
+  data,
   value,
   children,
   placeholder = null,
@@ -88,10 +90,11 @@ const Input: React.FC<Props> = ({
     }
   };
 
-  const inputElementProps = {
+  let inputElementProps = {
     onFocus: handleFocus,
     onBlur: handleBlur,
     id: labelId,
+    data,
     name: labelId,
     type,
     onChange,
@@ -102,12 +105,14 @@ const Input: React.FC<Props> = ({
     className: `pl-10 w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
   };
 
+
   const getInput = (type: string) => {
     switch (type) {
       case "select":
         return (
           <PostTypeSelect
             onChange={onChange}
+            data={data}
             value={value}
             placeholder={placeholder}
             name={labelId}
@@ -118,7 +123,7 @@ const Input: React.FC<Props> = ({
           />
         );
         break;
-      case "textarea":
+      case "richtext":
         return (
           <Editor
             onChange={onChange}
@@ -133,11 +138,29 @@ const Input: React.FC<Props> = ({
         );
         break;
 
+      case "textarea":
+        return (
+          <textarea
+            onChange={onChange}
+            value={value}
+            placeholder={placeholder}
+            rows="10"
+            name={labelId}
+            type={type}
+            required={required}
+            label={labelId}
+            labelId={labelId}
+            className={` w-full bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`}
+          ></textarea>
+        );
+        break;
+
       case "multiselect":
         return (
           <Combobox
             onChange={onChange}
             value={value}
+            data={data}
             placeholder={placeholder}
             name={labelId}
             type={type}

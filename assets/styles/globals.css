@@ -365,7 +365,14 @@ form {
     background: linear-gradient(180deg, rgba(248,248,248,1) 0%, transparent 85%);
     top: 0;
 }
-
+table, tr, tbody, thead {
+    width: 100%;
+    display: flex;
+}
+table, tbody {
+    flex-direction: column;
+    overflow: auto;
+}
 .page-dashboard-posts-create .fade::before,
 .page-dashboard-posts-create .fade::after,
 .page-dashboard-posts .fade::before,
@@ -386,12 +393,7 @@ form {
   flex-direction: column !important;
 }
  
-.page-dashboard-posts table tr {
-  padding: 1rem;
-}
-.page-dashboard-posts table thead {
-  height: 100px;
-}
+
 .page-dashboard-posts table tbody {
   flex: auto;
   overflow: scroll !important;
@@ -440,7 +442,6 @@ h1 {
 textarea {
   width: 100%;
   height: 400px;
-  background: red !important;
   @apply bg-input rounded-lg p-5 shadow-lg;
 }
 .avatar {

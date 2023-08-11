@@ -1,7 +1,7 @@
 "use client"
 
 import React, { createContext, useContext, useReducer, useState } from 'react';
-
+import Debug from '@/components/Debug';
 // Define the actions that can be dispatched to update the store
 const debugStates = {
     active: 'ACTIVE',
@@ -43,13 +43,13 @@ const DebugContext = createContext();
 
 const DebugProvider = ({ children }) => {
     const [debugState, dispatch] = useReducer(debugReducer, {
-        debugStatus: debugStates.INACTIVE,
+        debugStatus: debugStates.ACTIVE,
     });
 
 
 
     return (
-        <DebugContext.Provider value={{ debugState, dispatch }}>
+        <DebugContext.Provider value={{ ...debugState, dispatch }}>
             {children}
         </DebugContext.Provider>
     );

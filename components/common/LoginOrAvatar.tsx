@@ -5,9 +5,7 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 import { useAppDispatch } from "@/redux/hooks";
 const Avatar: any = dynamic(() => import("@/components/common/Avatar"));
-const Primary: any = dynamic(
-  () => import("@/app/components/buttons/Primary")
-);
+const Primary: any = dynamic(() => import("@/app/components/buttons/Primary"));
 
 export default function LoginOrAvatar() {
   const dispatch = useAppDispatch();
@@ -53,12 +51,12 @@ export default function LoginOrAvatar() {
   return (
     <>
       {pathname !== "/auth/login" && (
-        <Primary href="/auth/login" solid variant="solid">
+        <Primary href="/auth/login" target="_blank" variant="solid">
           Login
         </Primary>
       )}
       {pathname !== "/auth/register" && (
-        <Primary href="/auth/register" outline variant="outline">
+        <Primary href="/auth/register" target="_blank" variant="outline">
           Register
         </Primary>
       )}

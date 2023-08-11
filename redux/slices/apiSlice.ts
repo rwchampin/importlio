@@ -49,8 +49,8 @@ const baseQueryWithReauth: BaseQueryFn<
 					api,
 					extraOptions
 				);
-				if(refreshResult.data) {
-					
+				if (refreshResult.data) {
+
 					api.dispatch(setAuth());
 
 					result = await baseQuery(args, api, extraOptions);
@@ -62,7 +62,7 @@ const baseQueryWithReauth: BaseQueryFn<
 			}
 		} else {
 			await mutex.waitForUnlock();
-			result=await baseQuery(args,api,extraOptions);
+			result = await baseQuery(args, api, extraOptions);
 			debugger
 		}
 	}
@@ -73,8 +73,8 @@ export const apiSlice = createApi({
 	reducerPath: 'api',
 	baseQuery: baseQueryWithReauth,
 	endpoints: builder => ({
-		retrieveUser: builder.query<User,void>({
-			 
+		retrieveUser: builder.query<User, void>({
+
 			query: (res) => {
 				debugger; // Add debugger statement here
 
@@ -93,7 +93,7 @@ export const apiSlice = createApi({
 			SocialAuthArgs
 		>({
 			query: (res) => {
-				const {provider,state,code}=res;
+				const { provider, state, code } = res;
 				// debugger; // Add debugger statement here
 				return {
 					url: `/o/${provider}/?state=${encodeURIComponent(
@@ -108,12 +108,12 @@ export const apiSlice = createApi({
 			},
 		}),
 		login: builder.mutation({
-			query: ({email,password}) => {
+			query: ({ email, password }) => {
 				debugger; // Add debugger statement here
 				return {
 					url: '/jwt/create/',
 					method: 'POST',
-					body: {email,password},
+					body: { email, password },
 				};
 			},
 		}),
@@ -129,7 +129,7 @@ export const apiSlice = createApi({
 				return {
 					url: '/users/',
 					method: 'POST',
-					body: {first_name,last_name,email,password,re_password},
+					body: { first_name, last_name, email, password, re_password },
 				};
 			},
 		}),
@@ -139,7 +139,7 @@ export const apiSlice = createApi({
 				return {
 					url: '/jwt/verify/',
 					method: 'POST',
-					body: {token: res},
+					body: { token: res },
 				};
 			},
 		}),
@@ -153,12 +153,12 @@ export const apiSlice = createApi({
 			},
 		}),
 		activation: builder.mutation({
-			query: ({uid,token}) => {
+			query: ({ uid, token }) => {
 				// debugger; // Add debugger statement here
 				return {
 					url: '/users/activation/',
 					method: 'POST',
-					body: {uid,token},
+					body: { uid, token },
 				};
 			},
 		}),
@@ -168,32 +168,32 @@ export const apiSlice = createApi({
 				return {
 					url: '/users/reset_password/',
 					method: 'POST',
-					body: {email},
+					body: { email },
 				};
 			},
 		}),
 		resetPasswordConfirm: builder.mutation({
-			query: ({uid,token,new_password,re_new_password}) => {
+			query: ({ uid, token, new_password, re_new_password }) => {
 				debugger; // Add debugger statement here
 				return {
 					url: '/users/reset_password_confirm/',
 					method: 'POST',
-					body: {uid,token,new_password,re_new_password},
+					body: { uid, token, new_password, re_new_password },
 				};
 			},
 		}),
 		preregister: builder.mutation({
-			query: ({email}) => {
+			query: ({ email }) => {
 				// debugger; // Add debugger statement here
 				return {
 					url: '/registrants/',
 					method: 'POST',
-					body: {"email": email},
+					body: { "email": email },
 				};
 			},
 		}),
 		fullRegister: builder.mutation({
-			query: ({first_name, last_name, email}) => {
+			query: ({ first_name, last_name, email }) => {
 				// debugger; // Add debugger statement here
 				debugger
 				return {
@@ -220,26 +220,106 @@ export const apiSlice = createApi({
 			},
 		}),
 		createPost: builder.mutation({
-			query: ({post_type,title,content,featured_image, categories, tags}) => {
+			query: ({
+				post_type,
+				headline,
+				title,
+				subtitle,
+				shadow_text,
+				excerpt,
+				content,
+				featured_image,
+				 categories,
+				  tags,
+				  seo_title,
+				  seo_description,
+				  post_image_1,
+				  post_image_2,
+				  post_image_3,
+			}) => {
 
 
-				const formDataToSubmit=new FormData();
-				formDataToSubmit.append('post_type',post_type);
-				formDataToSubmit.append('title',title);
-				formDataToSubmit.append('content',content);
-				// formDataToSubmit.append('featured_image',featured_image); // Append the file data
-				formDataToSubmit.append('tags',tags); // Append the file data
-				formDataToSubmit.append('categories',categories); // Append the file data
-				// Set the headers for the request
-				const headers={
-					Accept: 'application/json',
+				const postData = {
+					"post_type": post_type,
+					"title": title,
+					"content": content,
+					"headline": headline,
+					"subtitle": subtitle,
+					"shadow_text": shadow_text,
+					"excerpt": excerpt,
+					"featured_image": featured_image,
+					"categories": categories,
+					"tags": tags,
+					"seo_title": seo_title,
+					"seo_description": seo_description,
+					"post_image_1": post_image_1,
+					"post_image_2": post_image_2,
+					"post_image_3": post_image_3,
 				};
+
+				// Convert the object to JSON format
+				const jsonData = JSON.stringify(postData);
+
 
 				return {
 					url: '/posts/create/',
 					method: 'POST',
-					headers: headers,
-					body: formDataToSubmit,
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: jsonData
+				};
+			},
+		}),
+		editPost: builder.mutation({
+			query: ({
+				post_type,
+				headline,
+				title,
+				subtitle,
+				shadow_text,
+				excerpt,
+				content,
+				featured_image,
+				 categories,
+				  tags,
+				  seo_title,
+				  seo_description,
+				  post_image_1,
+				  post_image_2,
+				  post_image_3,
+			}) => {
+
+
+				const postData = {
+					"post_type": post_type,
+					"title": title,
+					"content": content,
+					"headline": headline,
+					"subtitle": subtitle,
+					"shadow_text": shadow_text,
+					"excerpt": excerpt,
+					"featured_image": featured_image,
+					"categories": categories,
+					"tags": tags,
+					"seo_title": seo_title,
+					"seo_description": seo_description,
+					"post_image_1": post_image_1,
+					"post_image_2": post_image_2,
+					"post_image_3": post_image_3,
+				};
+
+				// Convert the object to JSON format
+				const jsonData = JSON.stringify(postData);
+
+
+				return {
+					url: '/posts/create/',
+					method: 'PUT',
+					headers: {
+						'Content-Type': 'application/json'
+					},
+					body: jsonData
 				};
 			},
 		}),
@@ -262,4 +342,4 @@ export const {
 	useResetPasswordMutation,
 	useResetPasswordConfirmMutation,
 	usePreregisterMutation,
-}=apiSlice;
+} = apiSlice;

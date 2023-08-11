@@ -42,7 +42,7 @@ export default function FeatureHero() {
     // }, [])
 
 
-    const size = "text-xl mx-auto mb-5 bg-gray-7 stroke-red-10 rounded-lg p-3 w-12 h-12 text-center shadow-xl"
+    const size = "text-2xl mx-auto mb-5 bg-gray-7 rounded-lg p-3 text-black h-12 w-12 flex-shrink-0 aspect-square text-center shadow-xl"
     const features = [
         {
             title: "Import Dropshipping Products in Bulk",
@@ -85,8 +85,9 @@ export default function FeatureHero() {
                         {features.map((feature, index) => {
                             return (
                                 <div key={index} className="feature space-y-3">
-                                    {feature.Icon()}
-                                    <h2 className="font-montserrat font-bold text-heading-4">{feature.title}</h2>
+
+                                        {/* {feature.Icon()} */}
+                                        <h2 className="font-montserrat font-bold text-heading-4">{feature.title}</h2>
 
                                     <p className="text-left text-blacktext-black">
                                         {feature.description}

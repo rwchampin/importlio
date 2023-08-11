@@ -1,10 +1,15 @@
 "use client";
 import {useEffect, useRef} from 'react';
 import gsap, {ScrollSmoother, ScrollTrigger} from 'gsap/all';
-
+import dynamic from 'next/dynamic';
+import { useDebug } from '@/store/DebugStore';
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
+const Debug = dynamic(() => import('@/components/Debug'), {ssr: false});
+
 export default function Scrollbar({children}) {
+  const {debugStatus} = useDebug();
+
   const scrollTrackRef=useRef(null);
   const scrollBarRef=useRef(null);
 
@@ -38,10 +43,10 @@ export default function Scrollbar({children}) {
 
   return (
 
-    // <>
-    //   <div ref={scrollTrackRef} className="scroll-track fixed w-[2px] bg-gray-200 shadow-inner right-0">
+    <>
+    {/* //   <div ref={scrollTrackRef} className="scroll-track fixed w-[2px] bg-gray-200 shadow-inner right-0">
     //     <div ref={scrollBarRef} className="scroll-bar absolute w-full bg-black"></div>
-    //   </div>
+    //   </div> */}
       <div id="smooth-wrapper" className="fade">
         <div id="smooth-content" className="min-h-[calc(100vh-4rem)] w-full bg-darkRed2 flex flex-col">
           {children}
@@ -51,8 +56,8 @@ export default function Scrollbar({children}) {
       </div>
       
 
-
-    // </>
+     {debugStatus && <Debug />}
+    </>
 
   );
 };

@@ -85,7 +85,7 @@ const c = post.categories.map((cat, idx) => { debugger
 
 })
 
-const badges = [...post.categories, ...post.tags]
+
 debugger
   return (
     <BasicPage
@@ -104,21 +104,13 @@ debugger
     >
 
 
-<div className="flex flex-ro flex-wrap gap-5 w-full p-5">
-{badges.map((badge, idx) => {
+    <TagCloud data={post.tags}  type="tags" />
 
-        return (
-          <span className='text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}>
-            {badge.name}
-          </span>
-        );
-      })}
+    <TagCloud data={post.categories} type="categories"  />
 
-</div>
+        <div className="flex flex-col md:flex-row gap-5 w-full p-5">
 
-        <div className="flex flex-row gap-5 w-full p-5">
-
-            <article className=" bg-green-4 flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
+            <article className="flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
           <aside className="w-full lg:w-1/4">
             <Sidebar />
           </aside>

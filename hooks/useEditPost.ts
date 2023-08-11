@@ -51,7 +51,7 @@ export default function useCreatePost() {
   } = formData;
 
   const onChange = (event: any) => {
-
+    debugger
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
