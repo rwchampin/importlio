@@ -9,7 +9,7 @@ export default function RecentBlogPosts() {
             <div className="text-heading-5">
                 Recent Blog Posts
             </div>
-            <div className="mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center shrink-0">
+            <div className="bg-red-8 w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center  ">
                 {smaller.map((post, idx) => <FullImageCard key={idx} post={post} />)}
             </div>
            </>

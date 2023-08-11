@@ -5,8 +5,8 @@ export default function Section({ children, full=false, className="" }) {
 	const classes = cn(
 		"",
 		{
-			"max-w-[90vw]  mx-auto": !full,
-			"max-w-full": full,
+			"w-full max-w-[90vw]  mx-auto": !full,
+			"w-full max-w-full": full,
 		},
 		className
 	);

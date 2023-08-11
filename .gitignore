@@ -7,13 +7,18 @@
 .history
 env
 .env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 # testing
 /coverage
-
+.vscode
 # next.js
 /.next/
 /out/
-
+.next
+.lighthouseci
 # production
 /build
 

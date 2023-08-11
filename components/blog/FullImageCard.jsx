@@ -5,7 +5,9 @@ export default function FullImageCard({ post }) {
   const { title, slug, featured_image, content, published, tags, categories, post_type } = post;
 
   return (
-    <Link href={`/ecommerce-tutorials/${slug}`} className="rounded-xl overflow-hidden relative shadow drop-shadow-2xl h-auto transition hover:shadow-lg">
+    <Link 
+    href={`/ecommerce-tutorials/${slug}`} 
+    className="w-full md:w-1/2 rounded-xl overflow-hidden relative shadow drop-shadow-2xl h-auto transition hover:shadow-lg">
       <article
         className="relative h-full w-full"
       >
@@ -22,9 +24,9 @@ export default function FullImageCard({ post }) {
         >
           <div className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-5">
-              <Badge type="info">
+              {/* <Badge type="info">
                 {post_type.name}
-              </Badge>
+              </Badge> */}
               <time datetime="2022-10-10" className="block text-xs text-white/90">
                 {published}
               </time>
@@ -38,7 +40,7 @@ export default function FullImageCard({ post }) {
 
             <p className="mt-2 line-clamp-3 text-sm/relaxed text-white/95" dangerouslySetInnerHTML={{ __html: content }} />
 
-              <TagCloud data={[...tags, ...categories]} />
+              {/* <TagCloud data={[...tags, ...categories]} /> */}
 
           </div>
         </div>
