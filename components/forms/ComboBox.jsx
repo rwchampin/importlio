@@ -39,7 +39,7 @@ export default function ComboBox({ label, type, onChange, value, name, labelId, 
 	// }, [active]);
 	useEffect(() => {
 		onChange({ target: { name, value: selected.map(option => option.id) }});
-	}, [selected]);
+	}, [selected, name, onChange]);
 
 	useEffect(() => {
 		if (labelId === "categories") {
@@ -49,7 +49,7 @@ export default function ComboBox({ label, type, onChange, value, name, labelId, 
 		}else if (labelId === "post_type") {
 			setOptions(postTypes);
 		}
-	}, [categories, tags]);
+	}, [categories, tags, postTypes, labelId]);
 
 	useEffect(() => {
 		const drop = dropdown.current;
@@ -58,7 +58,7 @@ export default function ComboBox({ label, type, onChange, value, name, labelId, 
 		} else {
 			gsap.to(drop, { duration: 0.1, height: 0 });
 		}
-	}, [active]);
+	}, [active, dropdown]);
 
 	const selectItem = (option) => {
 		if (!selected.includes(option)) {

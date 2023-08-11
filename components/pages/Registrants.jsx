@@ -53,9 +53,11 @@ export default function Registrants() {
                                     </tr>
                                 </thead>
                                 <tbody className="bg-white divide-y divide-gray-200 dark:divide-gray-700 dark:bg-gray-900">
-                                    {registrants.map((registrant) => {
+                                    {registrants.map((registrant, idx) => {
                                         return (
-                                            <tr>
+                                            <tr
+                                                key={idx}
+                                            >
                                                 <td className=" p-4 text-sm font-medium text-gray-700 whitespace-nowrap">
                                                     <div className="inline-flex items-center gap-x-3">
                                                         <input type="checkbox" className="text-blue-500 border-gray-300 rounded dark:bg-gray-900 dark:ring-offset-gray-900 dark:border-gray-700" />

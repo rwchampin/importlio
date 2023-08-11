@@ -1,6 +1,6 @@
 import { PostForm } from '@/components/forms/'
 
-export default function Page({slug}) {
+export default function Page() {
 debugger
 	return (
 		<PostForm />

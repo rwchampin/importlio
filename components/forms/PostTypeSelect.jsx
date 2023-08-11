@@ -12,9 +12,9 @@ export default function PostTypeSelect({ data, onChange, value, required, placeh
 
     useEffect(() => {
         if (data) {
-            setOptions([...options, ...data]);
+            setOptions((prev) => [...prev, ...data]);
         }
-    }, [data]);
+    }, [data, options]);
 
  
 

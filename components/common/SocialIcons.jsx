@@ -19,6 +19,7 @@ export default function SocialIcons() {
         <div className="flex gap-5">
             {socials.map((social, idx) => (
                 <Link 
+                key={idx}
                 target="_blank" 
                 href={social.url} 
                 className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" 

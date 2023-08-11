@@ -44,18 +44,44 @@ const descriptionVariations = [
     "Easily add a diverse range of Amazon associate products to your Shopify e-commerce store.",
 ];
 
+const altVariations = [
+  "Import Amazon Dropshipping Products to Shopify",
+  "Import Amazon Affiliate Products to Shopify",
+  "Import Amazon Associate Products to Shopify",
+  "Bulk Import Amazon Dropshipping Products to Shopify",
+  "Bulk Import Amazon Affiliate Products to Shopify",
+  "Import amazon products by Category to Shopify",
+  "Import amazon products by Keyword to Shopify",
+  "Import amazon products by ASIN to Shopify",
+  "Import amazon products by URL to Shopify",
+  "Import amazon products by Brand to Shopify",
+  "Import amazon products by Seller to Shopify",
+  "Import amazon products by Price to Shopify",
+  "Import amazon products by Rating to Shopify",
+  "Import amazon products by Prime to Shopify",
+  "Import amazon products by FBA to Shopify",
+
+];
+
 const useTheme = (includeTitle = true, includeDescription = true) => {
-    let result = {};
-  
-    if (includeTitle) {
-      const randomTitleIndex = Math.floor(Math.random() * titleVariations.length);
-      result.title = titleVariations[randomTitleIndex];
-    }
-  
-    if (includeDescription) {
-      const randomDescriptionIndex = Math.floor(Math.random() * descriptionVariations.length);
-      result.description = descriptionVariations[randomDescriptionIndex];
-    }
-  
-    return result;
+  const getAlt = () => {
+    return altVariations[Math.floor(Math.random() * altVariations.length)]; 
   };
+
+  const getTitle = () => {
+    return titleVariations[Math.floor(Math.random() * titleVariations.length)]; 
+  }
+
+  const getDescription = () => {
+    return descriptionVariations[Math.floor(Math.random() * descriptionVariations.length)]; 
+  }
+
+  return {
+    getAlt,
+    getTitle,
+    getDescription,
+  };
+
+};
+
+export default useTheme;

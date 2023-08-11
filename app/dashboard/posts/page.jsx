@@ -2,7 +2,7 @@
 import { useBlog } from '@/store';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
 import Link from 'next/link';
-
+import Image from 'next/image';
 export default function Page() {
     const { posts } = useBlog();
     const columns = [
@@ -77,7 +77,7 @@ export default function Page() {
     ];
 
     const PostImage = ({ post_image }) => {
-        return <img className="h-10 w-10 rounded-full" src={post_image} alt="" />
+        return <Image height={50} width={50} className="h-10 w-10 rounded-full" src={post_image} alt="" />
     }
     const PostType = ({ post_type }) => {
         return <span className="text-xs px-2 inline-flex leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">{post_type.name}</span>
@@ -141,7 +141,9 @@ export default function Page() {
                                             {columns.map((col, idx) => {
                                                 if (col.value === 'post_type') {
                                                     return (
-                                                        <td className="px-4 py-4 whitespace-nowrap">
+                                                        <td
+                                                            key={idx}
+                                                        className="px-4 py-4 whitespace-nowrap">
                                                             <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
 
                                                                 <PostType key={idx} post_type={post[col.value]} />
@@ -151,7 +153,9 @@ export default function Page() {
                                                 }
                                                 if (col.value === 'featured_image') {
                                                     return (
-                                                        <td className="px-4 py-4 whitespace-nowrap">
+                                                        <td
+                                                            key={idx}
+                                                            className="px-4 py-4 whitespace-nowrap">
                                                             <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                                 <PostImage key={idx} post_image={post[col.value]} />
                                                             </span>
@@ -161,7 +165,9 @@ export default function Page() {
 
 
                                                 return (
-                                                    <td className="px-4 py-4 whitespace-nowrap">
+                                                    <td
+                                                        key={idx}
+                                                    className="px-4 py-4 whitespace-nowrap">
                                                         <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
                                                             {post[col.value]}
                                                         </span>

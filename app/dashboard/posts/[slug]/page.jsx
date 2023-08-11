@@ -1,6 +1,6 @@
 // import EditPostForm  from '@/components/forms/EditPostForm'
 
-export default function Page({ slug }) {
+export default function Page() {
 
 	return (
 		<div></div>

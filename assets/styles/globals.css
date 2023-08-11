@@ -289,7 +289,15 @@ path.focus {
 	white-space: nowrap;
 	z-index: 1;
 }
+.shadow-text.small {
+  font-size: 20vh;
+  @apply font-montserrat font-black bg-gradient-to-r from-transparent from-30% to-gray-300 bg-clip-text text-transparent;
+  left: -50px;;
+}
+.writing-tb {
+  writing-mode: tb;
 
+}
 .shadow-text .char {
     mix-blend-mode: difference;
     font-family: var(--font-monterrat);

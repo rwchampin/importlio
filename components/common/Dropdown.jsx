@@ -67,7 +67,10 @@ export default function Dropdown({
       >
         <Menu.Items className="absolute  left-0 z-10 top-[2rem] w-full min-w-[400px] max-h-[400px] overflow-y-auto divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
             {posts.map((item, idx) => (
-               <div className="w-auto">
+               <div 
+                key={idx}
+               className="w-auto" 
+               >
                <Menu.Item>
                  {({ active }) => (
                    <Link

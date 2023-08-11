@@ -1,21 +1,23 @@
 import Link from "next/link";
+import { badgeTypes } from "@/constants";
 import { Badge, LazyLoad, TagCloud } from "@/components/common";
-
+import useTheme from '@/hooks/useTheme'
 export default function FullImageCard({ post }) {
-  const { title, slug, featured_image, content, published, tags, categories, post_type } = post;
-
+  const { getAlt } = useTheme()
+  const { title, slug, featured_image, excerpt,shadow_text,subtitle, headline, published, tags, categories, post_type } = post;
+  debugger
   return (
     <Link 
     href={`/ecommerce-tutorials/${slug}`} 
-    className="w-full md:w-1/2 rounded-xl overflow-hidden relative shadow drop-shadow-2xl h-auto transition hover:shadow-lg">
+    className="w-full md:w-[calc(50%-1rem)] xl:w-[calc(33.33%-1rem)] rounded-xl overflow-hidden relative shadow drop-shadow-2xl h-auto transition hover:shadow-lg">
       <article
         className="relative h-full w-full"
       >
         <LazyLoad
           type="img"
-          alt="Shopify Ecommerce Bulk Product Importer App for Amazon Dropshipping"
+          alt={getAlt()}
           dataSrc={featured_image}
-          src=""
+          src={'https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/img/placeholder.jpg'}
           className="object-cover absolute top-0 bottom-0 inset-0 h-full w-full   m-0 p-0"
         />
 
@@ -24,27 +26,32 @@ export default function FullImageCard({ post }) {
         >
           <div className="p-4 sm:p-6">
             <div className="flex items-center justify-between mb-5">
-              {/* <Badge type="info">
+                <span className="text-xs px-3 py-1 bg-gray-dark-5 text-gray-11 rounded-full uppercase">
                 {post_type.name}
-              </Badge> */}
+              </span>
               <time datetime="2022-10-10" className="block text-xs text-white/90">
                 {published}
               </time>
             </div>
 
-
-            <h3 className="mt-0.5 text-heading-4 text-white">
+            <div className=" text-white font-bold font-apercu text-xxs">{headline}</div>
+            <h3 className="text-heading-3 text-black font-montserrat uppercase relative z-100">
               {title}
             </h3>
+            <div className="text-heading-4 font-bold text-gray-400">
+              {subtitle}
+            </div>
 
-
-            <p className="mt-2 line-clamp-3 text-sm/relaxed text-white/95" dangerouslySetInnerHTML={{ __html: content }} />
+            <p className="mt-2 line-clamp-3 text-sm/relaxed text-white/95" dangerouslySetInnerHTML={{ __html: excerpt }} />
 
               {/* <TagCloud data={[...tags, ...categories]} /> */}
 
           </div>
         </div>
       </article>
+      <div className="shadow-text small">
+        {shadow_text}
+      </div>
     </Link>
   );
 }

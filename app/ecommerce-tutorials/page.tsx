@@ -57,7 +57,9 @@ export default function Page() {
               return (
 
 
-                  <div className="overflow-hidden rounded-lg w-full flex-1 basis-full md:basis-[calc(50%-1rem)] xl:basis-[calc(33.33%-1rem)] 2xl:basis-[calc(25%-1rem)]">
+                  <div 
+                  key={idx}
+                  className="overflow-hidden rounded-lg w-full flex-1 basis-full md:basis-[calc(50%-1rem)] xl:basis-[calc(33.33%-1rem)] 2xl:basis-[calc(25%-1rem)]">
                      <FullImageCard key={idx} post={post} />
                   </div>
 

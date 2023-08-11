@@ -23,7 +23,7 @@ export default function FadingBackgroundCta() {
       <div id="sale-heading" class="text-4xl font-bold tracking-tight text-white sm:text-5xl lg:text-6xl">
         Give us your email. Get a free trial.
         </div>
-      <p class="mx-auto mt-4 max-w-xl text-xl text-white">Preregister today to get a free trial of our membership program. We'll send you a discount code when we launch our program.</p>
+      <p class="mx-auto mt-4 max-w-xl text-xl text-white">Preregister today to get a free trial of our membership program. We&apos;ll send you a discount code when we launch our program.</p>
      <div className='mt-4 max-w-lg mx-auto w-full group group-text-white' style={{color: 'white !important'}}>
         <EmailForm className="text-white text-sm"  />
      </div>

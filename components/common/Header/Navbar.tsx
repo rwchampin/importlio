@@ -34,6 +34,8 @@ export default function Navbar() {
   interface LinkProps {
     href?: string;
     pretty: string;
+    dropdownData: any;
+    name?: string;
   }
   const links: any = [
     {

@@ -117,13 +117,13 @@ export default function EditPostForm() {
     }
   };
 
-  useEffect(() => {
-    populateFormFields(); // Populate form fields on initial load
-  }, []);
+  // useEffect(() => {
+  //   populateFormFields(); // Populate form fields on initial load
+  // }, [ populateFormFields ]);
 
-  useEffect(() => {
-    populateFormFields(); // Populate form fields when postToEdit changes
-  }, [postToEdit]);
+  // useEffect(() => {
+  //   populateFormFields(); // Populate form fields when postToEdit changes
+  // }, [postToEdit]);
 
   // Rest of the code...
 
