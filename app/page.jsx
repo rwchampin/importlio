@@ -1,19 +1,19 @@
 "use client";
 
 import { BasicPage } from "@/components/pages";
-
-
 import {
   RecentBlogPosts,
   FeatureHero,
   ImageCta,
  
 } from "@/components/heros/";
+import Reviews from "./components/Reviews";
 import  FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import { Spacer, LazyLoad } from "@/components/utils/";
 import { Section, Modal, JsonLd } from "@/components/common";
 
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
+import { useEffect } from "react";
 
 const jsonLd = {
   "@context": "http://schema.org",
@@ -64,8 +64,6 @@ const jsonLd = {
 
 export default function Page() {
 
-
-
   return (
     <BasicPage
       bg={null}
@@ -102,7 +100,9 @@ export default function Page() {
       <Spacer size={1} />
 
     
-      
+      <Section>
+        <Reviews />
+      </Section>
     
 
       <Section>
@@ -125,7 +125,7 @@ export default function Page() {
       <Section full>
      <FadingBackgroundCta />
       </Section>
-      
+
       <Spacer size={1} />
 
         <Section>

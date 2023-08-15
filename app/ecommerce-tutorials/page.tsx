@@ -21,6 +21,7 @@ interface Posts {
 }
 export default function Page() {
   const { posts}: Posts = useBlog();
+  debugger
   const json = {
     "@context": "http://schema.org",
     "@type": "Blog",

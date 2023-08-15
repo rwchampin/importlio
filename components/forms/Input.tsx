@@ -1,13 +1,15 @@
 "use client";
-import { ChangeEvent, useState } from "react";
+import {  useState } from "react";
 import Link from "next/link";
 import FileField from "./FileField";
 import { HiOutlineMail } from "react-icons/hi";
 import Combobox from "./ComboBox";
+import Select from '@/components/forms/Select'
 import PostTypeSelect from "@/components/forms/PostTypeSelect";
 import { IoLockClosedOutline as PasswordIcon } from "react-icons/io5";
 import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
 import dynamic from "next/dynamic";
+import TextArea from "./TextArea";
 
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
   ssr: false,
@@ -18,6 +20,7 @@ interface Props {
   type?: any;
   data?: any;
   onChange:  any
+  setInitialValue?: any;
   value: any;
   children?: any;
   placeholder?: any;
@@ -50,6 +53,7 @@ const Input: React.FC<Props> = ({
   labelId,
   type,
   onChange,
+  setInitialValue,
   data,
   value,
   children,
@@ -107,6 +111,20 @@ const Input: React.FC<Props> = ({
     switch (type) {
       case "select":
         return (
+          <Select
+            onChange={onChange}
+            data={data}
+            value={value}
+            placeholder={placeholder}
+            name={labelId}
+            type={type}
+            required={required}
+            label={labelId}
+            labelId={labelId}
+          />
+        );
+      case "posttype":
+        return (
           <PostTypeSelect
             onChange={onChange}
             data={data}
@@ -137,18 +155,19 @@ const Input: React.FC<Props> = ({
 
       case "textarea":
         return (
-          <textarea
+          <TextArea
             onChange={onChange}
             value={value}
             placeholder={''}
-             
+            label={labelId}
             name={labelId}
-           
+            type={type}
+            labelId={labelId}
+            className=""
+
+
             required={required}
-
-
-            className={` w-full bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`}
-          ></textarea>
+          ></TextArea>
         );
         break;
 
@@ -193,6 +212,8 @@ const Input: React.FC<Props> = ({
         );
     }
   };
+
+
 
   return (
     <div>

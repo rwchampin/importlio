@@ -39,7 +39,7 @@ export default function ComboBox({data, label, type, onChange, value, name, labe
 	// }, [active]);
 	useEffect(() => {
 		onChange({ target: { name, value: selected.map(option => option.id) }});
-	}, [selected, name, onChange]);
+	}, [selected]);
 
 	useEffect(() => {
 		if (labelId === "categories") {

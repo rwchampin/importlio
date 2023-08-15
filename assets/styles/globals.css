@@ -270,7 +270,9 @@ path.focus {
 .home .hero {
     background: unset !important;
 }
-
+.cubic-elastic {
+  transition: all 250ms cubic-bezier(0.25, 0.25, 0.5, 1.9);
+}
 .shadow-text{
     position: fixed;
 	top: 0px;
@@ -291,6 +293,7 @@ path.focus {
 }
 .shadow-text.small {
   font-size: 20vh;
+  position: absolute !important;
   @apply font-montserrat font-black bg-gradient-to-r from-transparent from-30% to-gray-300 bg-clip-text text-transparent;
   left: -50px;;
 }
@@ -464,7 +467,9 @@ textarea {
 .quill {
   @apply shadow-xl h-[500px] rounded-lg bg-input;
 }
-
+.ql-container {
+  @apply h-full overflow-y-auto;
+}
 .ql-toolbar {
   @apply bg-input shadow-lg rounded-t-lg brightness-100;
 }
@@ -674,4 +679,46 @@ body.light .progress-wrap::after {
   @apply text-xxs;
 }
 
+ 
+.notification {
+  @apply rounded-lg shadow-xl p-5 fixed top-10 -right-10 z-50 opacity-0 ; 
+}
+.notification .title {
+  @apply font-bold text-sm;
+}
+.notification .message {
+  @apply text-xs;
+}
+.notification .close {
+  @apply text-xs;
+}
+.notification .close:hover {
+  @apply text-red-500;
+}
+
+.notification .close svg path {
+  stroke: var(--color-primary);
+}
+
+.notification.info {
+  @apply bg-blue-5 text-blue-9 border-2 border-blue-9;
+}
+
+.notification.success {
+  @apply bg-green-5 text-green-9 border-2 border-green-9;
+}
+
+.notification.warning {
+  @apply bg-yellow-5 text-yellow-9 border-2 border-yellow-9;
+}
+
+.notification.error {
+  @apply bg-red-5 text-red-9 border-2 border-red-9;
+}
+
+
+.quill.editor {
+  display: flex;
+  flex-direction: column;
+}
  

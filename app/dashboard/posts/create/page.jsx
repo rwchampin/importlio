@@ -1,8 +1,13 @@
 import { PostForm } from '@/components/forms/'
 
 export default function Page() {
-debugger
+
 	return (
+		<div className='flex'>
 		<PostForm />
+		<div>
+
+		</div>
+		</div>
 	)
 }

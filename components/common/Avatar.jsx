@@ -1,114 +1,85 @@
 
 "use client"
-import Image from 'next/image';
+import { signOut } from "next-auth/react";
+import { CgProfile } from "react-icons/cg";
+import { RiLogoutCircleRLine } from "react-icons/ri";
+import { LuSettings } from "react-icons/lu";
+import Image from "next/image";
+import Link from "next/link";
+import { AiOutlineDashboard } from "react-icons/ai";
 
+import { Popover, Transition } from '@headlessui/react';
 
-function className(...classNames) {
-  return classNames.filter(Boolean).join(' ');
-}
-
-export default function Avatar({ user }) {
+const AvatarDropdown = ({ user }) => {
+  const size = 55
+  const listStyle = 'px-4 py-2 hover:bg-gray-100 flex gap-1 items-center justify-start border-1 border-gray-8'
+  const iconStyle = 'text-2xl text-gray-500'
   return (
-    <div className="flex h-96 justify-center">
-      <div
-        x-data="{
-          open: true,
-          toggle() {
-            if (this.open) {
-              return this.close();
-            }
-
-            this.$refs.button.focus();
-
-            this.open = true;
-          },
-          close(focusAfter) {
-            if (!this.open) return;
-
-            this.open = false;
-
-            focusAfter && focusAfter.focus();
-          },
-        }"
-        // x-on:keydown.escape.prevent.stop="close($refs.button)"
-        // x-on:focusin.window="!$refs.panel.contains($event.target) && close()"
-        x-id="['dropdown-button']"
-        className="relative inline-block"
-      >
-        <button
-          // x-ref="button"
-          // x-on:click="toggle()"
-          // :aria-expanded="open"
-          // :aria-controls="$id('dropdown-button')"
-          type="button"
-        >
-          <div className="relative h-10 w-10">
+    <Popover className="relative group">
+      {({ open }) => (
+        <>
+          <Popover.Button className="group-hover:scale-110 transition transform outline-none border-none">
             <Image
-              className="h-full w-full rounded-full object-cover object-center ring ring-white"
-              src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-              alt=""
-              width={40}
-              height={40}
+              width={size}
+              height={size}
+              src={user.image}
+              alt={`Avatar of ${user.name}`}
+              className=" rounded-full cursor-pointer shadow-xl border-2 border-black p-1"
             />
-          </div>
-        </button>
+          </Popover.Button>
 
-        <div
-          x-ref="panel"
-          x-show="open"
-          // x-transition.origin.top.left
-          // x-on:click.outside="close($refs.button)"
-          // :id="$id('dropdown-button')"
-          className="absolute left-0 z-10 mt-2 w-60 divide-y divide-gray-100 rounded-lg border border-gray-100 bg-white text-left text-sm shadow-lg"
-        >
-          <div className="py-3 px-4">
-            <div className="flex items-center gap-3">
-              <div className="relative h-10 w-10">
-                <Image
-                  className="h-full w-full rounded-full object-cover object-center ring ring-white"
-                  src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80"
-                  alt=""
-                  width={40}
-                  height={40}
-                />
-                <span className="absolute right-0 bottom-0 h-2 w-2 rounded-full bg-green-400 ring ring-white"></span>
-              </div>
-              <div className="text-sm">
-                <div className="font-medium text-gray-700">Steven Jobs</div>
-                <div className="text-gray-400">jobs@sailboatui.com</div>
-              </div>
-            </div>
-          </div>
-          <div className="p-1">
-            <a
-              href="#"
-              className="flex w-full items-center gap-2 rounded-md px-3 py-2 text-gray-700 hover:bg-gray-100"
+          <Transition
+            show={open}
+            enter="transition ease-out duration-100"
+            enterFrom="transform opacity-0 scale-95"
+            enterTo="transform opacity-100 scale-100"
+            leave="transition ease-in duration-75"
+            leaveFrom="transform opacity-100 scale-100"
+            leaveTo="transform opacity-0 scale-95"
+          >
+            <Popover.Panel
+              as="div"
+              className="absolute right-0 mt-2 bg-white border rounded-lg shadow-xl"
             >
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke-width="1.5"
-                stroke="currentColor"
-                className="h-4 w-4"
-              >
-                <path
-                  stroke-linecap="round"
-                  stroke-linejoin="round"
-                  d="M15.75 6a3.75 3.75 0 11-7.5 0 3.75 3.75 0 017.5 0zM4.501 20.118a7.5 7.5 0 0114.998 0A17.933 17.933 0 0112 21.75c-2.676 0-5.216-.584-7.499-1.632z"
-                />
-              </svg>
-              View profile
-              <span className="inline-flex flex-1 justify-end gap-1 text-xs capitalize text-gray-400">
-                <kbd className="min-w-[1em] font-sans">⌥</kbd>
-                <kbd className="min-w-[1em] font-sans">⇧</kbd>
-                <kbd className="min-w-[1em] font-sans">P</kbd>
-              </span>
-            </a>
-            {/* Other menu items */}
-          </div>
-        </div>
-      </div>
-    </div>
+              {/* Dropdown content */}
+              <ul className="py-2">
+                <li>
+                  <Link
+                    className={listStyle}
+                    href={`/profile/${user.name}`}
+                  >
+                    <CgProfile className={iconStyle} />
+                    <button>Profile</button>
+                  </Link>
+                </li>
+                <li>
+                  <Link
+                    className={listStyle}
+                    href={`/dashboard/`}
+                  >
+                    <AiOutlineDashboard className={iconStyle} />
+                    <button>Profile</button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`/settings`} className={listStyle}>
+                    <LuSettings className={iconStyle} />
+                    <button>Settings</button>
+                  </Link>
+                </li>
+                <li>
+                  <Link href={`/api/auth/signout`} className={listStyle}>
+                    <RiLogoutCircleRLine className={iconStyle} />
+                    <button onClick={() => signOut()}>Logout</button>
+                  </Link>
+                </li>
+              </ul>
+            </Popover.Panel>
+          </Transition>
+        </>
+      )}
+    </Popover>
   );
-}
+};
+
+export default AvatarDropdown;

@@ -9,11 +9,11 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { GA, Scroller } from "@/components/utils/";
-
 import Provider from "@/redux/provider";
 import { Setup } from "@/components/utils";
 import { Header, Footer, Cursor } from "@/components/common";
 import NextTopLoader from "nextjs-toploader";
+
 
 const montserrat = Montserrat({
   weight: [ '500', '900'],
@@ -69,6 +69,7 @@ export const metadata: Metadata = {
  
 
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
+
   return (
     <Provider>
       <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
@@ -90,6 +91,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             height={4}
             // showSpinner={true}
           />
+          
         </body>
       </html>
     </Provider>

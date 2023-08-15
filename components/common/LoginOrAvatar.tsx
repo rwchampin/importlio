@@ -1,27 +1,34 @@
+"use client";
 import { useLogoutMutation } from "@/redux/slices/apiSlice";
 import { logout as setLogout } from "@/redux/slices/authSlice";
 import { useAppSelector } from "@/redux/hooks";
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
+import { useSession, signIn, signOut } from "next-auth/react";
 import { useAppDispatch } from "@/redux/hooks";
-const Avatar: any = dynamic(() => import("@/components/common/Avatar"));
+import { useEffect, useState } from "react";
+const AvatarDropdown: any = dynamic(() => import("@/components/common/Avatar"));
 const Primary: any = dynamic(() => import("@/app/components/buttons/Primary"));
 
+
+
 export default function LoginOrAvatar() {
+  const { data: session } = useSession();
   const dispatch = useAppDispatch();
   const pathname = usePathname();
   const [logout] = useLogoutMutation();
 
-  const { isAuthenticated } = useAppSelector((state) => state.auth);
+  // const { isAuthenticated } = useAppSelector((state) => state.auth);
 
-  const handleLogout = () => {
-    logout(undefined)
-      .unwrap()
-      .then(() => {
-        dispatch(setLogout());
-      });
-  };
+  // const handleLogout = () => {
+  //   logout(undefined)
+  //     .unwrap()
+  //     .then(() => {
+  //       dispatch(setLogout());
+  //     });
+  // };
 
+  
   const authLinks = [
     {
       name: "Dashboard",
@@ -29,7 +36,7 @@ export default function LoginOrAvatar() {
     },
     {
       name: "Logout",
-      onClick: handleLogout,
+      // onClick: handleLogout,
     },
   ];
 
@@ -44,14 +51,22 @@ export default function LoginOrAvatar() {
     },
   ];
 
-  if (isAuthenticated) {
-    return <Avatar />;
-  }
+  // if (isAuthenticated) {
+  //   return <Avatar />;
+  // }
+  if(session){
+    return (
 
+         <AvatarDropdown user={session.user} />
+    )
+  }
   return (
     <>
+
       {pathname !== "/auth/login" && (
-        <Primary href="/auth/login" target="_blank" variant="solid">
+        <Primary onClick={()=> signIn("google", {
+          callbackUrl: `/dashboard`,
+        })} target="_blank" variant="solid">
           Login
         </Primary>
       )}
@@ -60,6 +75,7 @@ export default function LoginOrAvatar() {
           Register
         </Primary>
       )}
+     
     </>
   );
 }

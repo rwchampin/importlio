@@ -11,7 +11,7 @@ export default function Error({error, reset}) {
 	return (
 		<div>
 			<div className='text-heading-1'>Something went wrong!</div>
-			{/* <p>{error.error}</p> */}
+			<p>ERRORL:{error.error}</p>
 
 			<button
 				onClick={

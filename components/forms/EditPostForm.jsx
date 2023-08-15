@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 export default function EditPostForm() {
   const { slug } = useParams();
-  const store = useBlog();
+  const { editPost } = useEditPost(slug)
 
   const { categories, tags, posts, postTypes } = store;
 

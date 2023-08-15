@@ -3,9 +3,14 @@ import { useBlog } from '@/store';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
 import Link from 'next/link';
 import Image from 'next/image';
+import { Badge } from '@/components/common';
 export default function Page() {
     const { posts } = useBlog();
     const columns = [
+        {
+            name: 'ID',
+            value: 'id',
+        },
 
         {
             name: 'Published',
@@ -77,13 +82,12 @@ export default function Page() {
     ];
 
     const PostImage = ({ post_image }) => {
-        return <Image height={50} width={50} className="h-10 w-10 rounded-full" src={post_image} alt="" />
+        if(!post_image) return <div className="h-10 w-10 rounded-full bg-gray-300"></div>
+        return <img height={50} width={50} className="h-10 w-10 rounded-full" src={post_image} alt="" />
     }
-    const PostType = ({ post_type }) => {
-        return <span className="text-xs px-2 inline-flex leading-5 font-semibold rounded-full bg-indigo-100 text-indigo-800">{post_type.name}</span>
-    }
+     
 
-    debugger
+    const td = `min-w-[150px] px-4 py-4 whitespace-nowrap text-center text-xs flex items-center justify-center`
     return (
         <section className="container px-4 mx-auto">
             <div
@@ -117,12 +121,12 @@ export default function Page() {
                                             <th
                                                 key={idx}
                                                 scope="col"
-                                                className=" whitespace-nowrap py-3.5 px-4 text-xs font-normal text-left rtl:text-right text-gray-500 dark:text-gray-400"
+                                                className="min-w-[150px] text-center whitespace-nowrap py-3.5 px-4 text-xs font-normal  rtl:text-right text-gray-500 dark:text-gray-400"
                                             >
                                                 {header.name}
                                             </th>
                                         ))}
-                                        <th scope="col" className="relative py-3.5 px-4">
+                                        <th scope="col" className="relative py-3.5 px-4 text-center">
                                             <span className="sr-only">Edit</span>
                                         </th>
                                     </tr>
@@ -138,44 +142,58 @@ export default function Page() {
                                                     className="focus:ring-indigo-500 h-4 w-4 text-indigo-600 border-gray-300 rounded"
                                                 />
                                             </td>
-                                            {columns.map((col, idx) => {
-                                                if (col.value === 'post_type') {
-                                                    return (
-                                                        <td
-                                                            key={idx}
-                                                        className="px-4 py-4 whitespace-nowrap">
-                                                            <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
+                                            <td className={td}>
+                                                {post.id}
+                                            </td>
+                                            <td className={td}>
+                                                {post.published} 
+                                            </td>
+                                            <td className={td}>
+                                                {post.post_type.name}
+                                            </td>
+                                            
+                                            <td className={td}>
+                                                {post.title}
+                                            </td>
+                                            <td className={td}>
+                                                {post.seo_title}
+                                            </td>
+                                            <td className={td}>
+                                                {post.headline}
+                                            </td>
+                                            <td className={td}>
+                                                {post.subtitle}
+                                            </td>
+                                            <td className={td}>
+                                                {post.excerpt}
+                                            </td>
+                                            <td className={td}>
+                                                {post.seo_description}
+                                            </td>
+                                            <td className={td}>
+                                                <PostImage post_image={post.featured_image} />
+                                            </td>
+                                            <td className={td}>
+                                            <PostImage post_image={post.post_image_1} />
 
-                                                                <PostType key={idx} post_type={post[col.value]} />
-                                                            </span>
-                                                        </td>
-                                                    )
-                                                }
-                                                if (col.value === 'featured_image') {
-                                                    return (
-                                                        <td
-                                                            key={idx}
-                                                            className="px-4 py-4 whitespace-nowrap">
-                                                            <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                                <PostImage key={idx} post_image={post[col.value]} />
-                                                            </span>
-                                                        </td>
-                                                    )
-                                                }
-
-
-                                                return (
-                                                    <td
-                                                        key={idx}
-                                                    className="px-4 py-4 whitespace-nowrap">
-                                                        <span className="px-2 text-xs inline-flex leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                                                            {post[col.value]}
-                                                        </span>
-                                                    </td>
-                                                )
-                                            })}
-
-                                            <td className="px-4 py-4 whitespace-nowrap text-right text-sm font-medium flex gap-1">
+                                            </td>
+                                            <td className={td}>
+                                            <PostImage post_image={post.post_image_2} />
+                                            </td>
+                                            <td className={td}>
+                                            <PostImage post_image={post.post_image_3} />
+                                            </td>
+                                            <td className={td}>
+                                                {post.categories.length}
+                                            </td>
+                                            <td className={td}>
+                                                {post.tags.length}
+                                            </td>
+                                             
+                                            <td className={td}>
+                                                {post.updated}
+                                            </td>
+                                            <td className="min-w-[150px] px-4 py-4 whitespace-nowrap text-center text-xs font-medium flex items-center justify-center gap-1">
                                                <Link href={`/dashboard/posts/${post.slug}`}>
                                                <BiPencil className="text-green-11 h-5 w-5" />
                                                   </Link>

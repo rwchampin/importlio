@@ -4,6 +4,7 @@ import { Tab } from '@headlessui/react'
 import { BiSolidChevronDown } from 'react-icons/bi';
 import { Primary } from '@/app/components/buttons';
 // import { CSVUploader } from '@/components/forms'
+import CommandBar from '@/app/components/CommandBar';
 function classNames(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }
@@ -73,7 +74,7 @@ export default function Page() {
                 'flex-1 ring-white ring-opacity-60 ring-offset-2 ring-offset-blue-400 focus:outline-none focus:ring-2'
               )}
             >
-              
+              <CommandBar />
             
             </Tab.Panel>
            <Tab.Panel

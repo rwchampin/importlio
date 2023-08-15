@@ -5,7 +5,7 @@ export default function TagCloud({data, type }) {
 
 		<div className='flex flex-wrap gap-1'>
 			{data.map((obj, i) => (
-				<Badge type={type} key={i}>
+				<Badge type={type} key={i} href={obj.slug}>
 					{obj.name}
 				</Badge>
 			))}

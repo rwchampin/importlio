@@ -285,9 +285,7 @@ export const apiSlice = createApi({
 				  tags,
 				  seo_title,
 				  seo_description,
-				  post_image_1,
-				  post_image_2,
-				  post_image_3,
+
 			}) => {
 
 
@@ -304,9 +302,7 @@ export const apiSlice = createApi({
 					"tags": tags,
 					"seo_title": seo_title,
 					"seo_description": seo_description,
-					"post_image_1": post_image_1,
-					"post_image_2": post_image_2,
-					"post_image_3": post_image_3,
+
 				};
 
 				// Convert the object to JSON format
@@ -329,6 +325,7 @@ export const apiSlice = createApi({
 
 
 export const {
+	useEditPostMutation,
 	useFullRegisterMutation,
 	useGetPostsQuery,
 	useCreatePostMutation,

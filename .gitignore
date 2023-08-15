@@ -21,7 +21,7 @@ env
 .lighthouseci
 # production
 /build
-
+tailwindui/
 # misc
 .DS_Store
 *.pem

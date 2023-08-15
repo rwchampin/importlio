@@ -1,5 +1,6 @@
-
+"use client";
 // import Link from "next/link";
+import dynamic from "next/dynamic";
 import {   TagCloud } from "@/components/common";
 import { BasicPage } from "@/components/pages";
 import { Sidebar } from "@/components/blog";
@@ -8,53 +9,61 @@ import JsonLd from "@/components/common/JsonLd";
 
 // gsap.registerPlugin(ScrollTrigger)
 
-export default async function Page({ params }: any) {
+const TagCategoryListPage:any = dynamic(() => import("@/app/components/TagCategoryListPage"));
+
+export default function Page({ params }: any) {
   const { slug }:any = params;
 
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-  const post = await res.json();
+  
+  if(slug === "tags" || slug === "categories") {
+    return <TagCategoryListPage type={slug} />
+  }
+
+
+  // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`, {
+  //   method: "GET",
+  //   headers: {
+  //     "Content-Type": "application/json",
+  //   },
+  // });
+  // const post = await res.json();
 
   
-  const json = {
-    "@context": "http://schema.org",
-    "@type": "BlogPosting",
-    "headline": post.title,
-    "description": post.excerpt || post.content,
-    "url": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
-    "datePublished": post.published,
-    "dateModified": post.updated,
-    "author": {
-      "@type": "Importlio Inc.",
-      "name": "Importlio Inc."
-    },
-    "mainEntityOfPage": {
-      "@type": "WebPage",
-      "@id": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
-    },
-    "publisher": {
-      "@type": "Organization",
-      "name": "Importlio Inc.",
-      "logo": {
-        "@type": "ImageObject",
-        "url": "https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/logo-black.svg",
-      }
-    },
-    "image": {
-      "@type": "ImageObject",
-      "url": post.featured_image,
-    },
-    "inLanguage": "en-US",
-    "isPartOf": {
-      "@type": "Blog",
-      "name": "Importlio ecommerce tutorials",
-      "url": "https://www.importlio.com/ecommerce-tutorials"
-    }
-  }
+  // const json = {
+  //   "@context": "http://schema.org",
+  //   "@type": "BlogPosting",
+  //   "headline": post.title,
+  //   "description": post.excerpt || post.content,
+  //   "url": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+  //   "datePublished": post.published,
+  //   "dateModified": post.updated,
+  //   "author": {
+  //     "@type": "Importlio Inc.",
+  //     "name": "Importlio Inc."
+  //   },
+  //   "mainEntityOfPage": {
+  //     "@type": "WebPage",
+  //     "@id": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+  //   },
+  //   "publisher": {
+  //     "@type": "Organization",
+  //     "name": "Importlio Inc.",
+  //     "logo": {
+  //       "@type": "ImageObject",
+  //       "url": "https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/logo-black.svg",
+  //     }
+  //   },
+  //   "image": {
+  //     "@type": "ImageObject",
+  //     "url": post.featured_image,
+  //   },
+  //   "inLanguage": "en-US",
+  //   "isPartOf": {
+  //     "@type": "Blog",
+  //     "name": "Importlio ecommerce tutorials",
+  //     "url": "https://www.importlio.com/ecommerce-tutorials"
+  //   }
+  // }
 
   
   // gsap.to(".fi", {
@@ -104,33 +113,33 @@ export default async function Page({ params }: any) {
 
   // })
 
+    return <div >tite</div>
+
+//   return (
+//     <BasicPage
+//       title={post.title}
+//       subtitle={post.title}
+//       headline={post.published + " | " + post.readtime}
+//       shadowText={post.title}
+//       bg={post.featured_image}
+//     >
 
 
-  return (
-    <BasicPage
-      title={post.title}
-      subtitle={post.title}
-      headline={post.published + " | " + post.readtime}
-      shadowText={post.title}
-      bg={post.featured_image}
-    >
+//       <div className="flex p-5">
+//       <TagCloud data={post.tags} type="tags" />
 
+// <TagCloud data={post.categories} type="categories" /> 
+//       </div>
 
-      <div className="flex p-5">
-      <TagCloud data={post.tags} type="tags" />
+//       <div className="flex flex-col md:flex-row gap-5 w-full p-5">
 
-<TagCloud data={post.categories} type="categories" /> 
-      </div>
+//         <article className="flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
+//         <aside className="w-full lg:w-1/4">
+//           <Sidebar />
+//         </aside>
+//       </div>
 
-      <div className="flex flex-col md:flex-row gap-5 w-full p-5">
-
-        <article className="flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
-        <aside className="w-full lg:w-1/4">
-          <Sidebar />
-        </aside>
-      </div>
-
-      <JsonLd json={json} />
-    </BasicPage>
-  );
+//       <JsonLd json={json} />
+//     </BasicPage>
+//   );
 }

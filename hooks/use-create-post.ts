@@ -21,14 +21,10 @@ export default function useCreatePost() {
     featured_image: '',
     categories: '',
     tags: '',
-    post_image_1: '',
-    post_image_2: '',
-    post_image_3: '',
+
   });
 
-  useEffect(() => {
-    console.log('form data', formData);
-  }, [formData]);
+ 
 
   const {
     headline,
@@ -44,18 +40,25 @@ export default function useCreatePost() {
     featured_image,
     categories,
     tags,
-    post_image_1,
-    post_image_2,
-    post_image_3,
 
   } = formData;
 
+
+  useEffect(() => {
+    console.log(formData);
+  }, [formData]);
+  
   const onChange = (event: any) => {
 
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
+
+
   }
 
+  const getUnchangedInputValues = () => {
+    const unchangedInputValues = {};
+  }
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -72,12 +75,10 @@ export default function useCreatePost() {
       post_type,
       title,
       content,
+
       featured_image,
       categories,
       tags,
-      post_image_1,
-      post_image_2,
-      post_image_3,
     })
       .unwrap()
       .then(() => {
@@ -103,9 +104,7 @@ export default function useCreatePost() {
     featured_image,
     categories,
     tags,
-    post_image_1,
-    post_image_2,
-    post_image_3,
+
 
     isLoading,
     onChange,

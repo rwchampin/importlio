@@ -4,7 +4,14 @@ import { store } from "./store";
 import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
+import { SessionProvider } from "next-auth/react";
+import {
+  BlogProvider,
+  CoreProvider,
+  DebugProvider,
+  ModalProvider,
+
+} from "@/store"; // Import the BlogProvider
 
 // import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action
 
@@ -25,18 +32,19 @@ export default function CustomProvider({ children }: Props) {
     // store.dispastch(fetchBlogPosts());
   }, [pathname]);
 
-
   return (
-    <Provider store={store}>
-      <CoreProvider>
-        <BlogProvider>
-          <ModalProvider>
-            <DebugProvider>
-              {children}
-            </DebugProvider>
-          </ModalProvider>
-        </BlogProvider>
-      </CoreProvider>
-    </Provider>
+    <SessionProvider>
+      <Provider store={store}>
+        <CoreProvider>
+          <BlogProvider>
+            <ModalProvider>
+              <DebugProvider>
+                {children}
+              </DebugProvider>
+            </ModalProvider>
+          </BlogProvider>
+        </CoreProvider>
+      </Provider>
+    </SessionProvider>
   );
 }

@@ -29,6 +29,7 @@ export default function PostForm() {
 	}=useCreatePost();
 
 	const config=[
+		 
 		{
 			data: store.postTypes,
 			labelText: 'Post Type',
@@ -96,30 +97,6 @@ export default function PostForm() {
 			onChange: onChange,
 			required: true,
 			placeholder: 'Excerpt',
-		},
-		{
-			labelText: 'Post Image 1',
-			labelId: 'post_image_1',
-			type: 'file',
-			value: post_image_1,
-			required: false,
-			placeholder: 'Image',
-		},
-		{
-			labelText: 'Post Image 2',
-			labelId: 'post_image_2',
-			type: 'file',
-			value: post_image_2,
-			required: false,
-			placeholder: 'Image',
-		},
-		{
-			labelText: 'Post Image 3',
-			labelId: 'post_image_3',
-			type: 'file',
-			value: post_image_3,
-			required: false,
-			placeholder: 'Image',
 		},
 		{
 			data: store.tags,

@@ -1,12 +1,11 @@
 import { useState, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useCreatePostMutation } from '@/redux/slices/apiSlice';
+import { useEditPostMutation } from '@/redux/slices/apiSlice';
 import { toast } from 'react-toastify';
 
-export default function useCreatePost() {
+export default function useEditPost(slug:any) {
+  const [editPost, { isLoading }] = useEditPostMutation();
   const router = useRouter();
-  const [createPost, { isLoading }] = useCreatePostMutation();
-
   const [formData, setFormData] = useState({
     headline: '',
     subtitle: '',
@@ -26,9 +25,15 @@ export default function useCreatePost() {
     post_image_3: '',
   });
 
+  const getPost = async (slug: any) => {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
+    const json = await res.json();
+    const {results} = json;
+    debugger;
+  }
   useEffect(() => {
-    console.log('form data', formData);
-  }, [formData]);
+   const p = getPost(slug);
+  }, []);
 
   const {
     headline,
@@ -51,7 +56,6 @@ export default function useCreatePost() {
   } = formData;
 
   const onChange = (event: any) => {
-    debugger
     const { name, value } = event.target;
     setFormData({ ...formData, [name]: value });
   }
@@ -62,7 +66,7 @@ export default function useCreatePost() {
 
 
 
-    createPost({
+    editPost({
       headline,
       subtitle,
       shadow_text,
@@ -75,9 +79,7 @@ export default function useCreatePost() {
       featured_image,
       categories,
       tags,
-      post_image_1,
-      post_image_2,
-      post_image_3,
+
     })
       .unwrap()
       .then(() => {

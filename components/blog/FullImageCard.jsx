@@ -35,7 +35,7 @@ export default function FullImageCard({ post }) {
             </div>
 
             <div className=" text-white font-bold font-apercu text-xxs">{headline}</div>
-            <h3 className="text-heading-3 text-black font-montserrat uppercase relative z-100">
+            <h3 className="text-heading-3 text-White font-montserrat uppercase relative z-100">
               {title}
             </h3>
             <div className="text-heading-4 font-bold text-gray-400">
