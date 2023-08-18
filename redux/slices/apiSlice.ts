@@ -50,7 +50,7 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
-
+					debugger
 					api.dispatch(setAuth());
 
 					result = await baseQuery(args, api, extraOptions);

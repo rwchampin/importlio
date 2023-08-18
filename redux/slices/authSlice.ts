@@ -11,7 +11,7 @@ interface User {
 interface AuthState {
 	isAuthenticated: boolean;
 	isLoading: boolean;
-	user: User | null;
+	user: any;
 }
 
 
@@ -26,8 +26,13 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setAuth: (state) => {
+		setAuth: (state, payload:any) => {
 			state.isAuthenticated = true;
+			state.user = {
+				user: payload.payload.user,
+				acess: payload.payload.access,
+				refresh: payload.payload.refresh,
+			}
 		},
 		 
 		logout: state => {

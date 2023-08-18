@@ -3,7 +3,7 @@ import gsap from "gsap";
 import { store } from "./store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { AiProvider, BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
+import {  BlogProvider, CoreProvider, ModalProvider } from '@/store'; // Import the BlogProvider
 
 import { Provider } from "react-redux";
 interface Props {
@@ -45,7 +45,7 @@ export default function CustomProvider({ children }: Props) {
       <Provider store={store}>
 
       <CoreProvider>
-        <AiProvider>
+     
         <BlogProvider>
           <ModalProvider>
 
@@ -53,7 +53,7 @@ export default function CustomProvider({ children }: Props) {
 
           </ModalProvider>
         </BlogProvider>
-        </AiProvider>
+    
       </CoreProvider>
 
 
