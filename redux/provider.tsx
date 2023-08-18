@@ -1,11 +1,11 @@
 "use client";
 import gsap from "gsap";
-
+import { store } from "./store";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { AiProvider, BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
-import { SessionProvider  } from "next-auth/react";
 
+import { Provider } from "react-redux";
 interface Props {
   children: React.ReactNode;
 }
@@ -42,7 +42,8 @@ export default function CustomProvider({ children }: Props) {
 
 
   return (
-    <SessionProvider>
+      <Provider store={store}>
+
       <CoreProvider>
         <AiProvider>
         <BlogProvider>
@@ -55,6 +56,7 @@ export default function CustomProvider({ children }: Props) {
         </AiProvider>
       </CoreProvider>
 
-    </SessionProvider>
+
+      </Provider>
   );
 }

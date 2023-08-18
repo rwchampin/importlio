@@ -1,18 +1,19 @@
 "use client";
+import { Spinner } from "@/app/components";
+import {useAppSelector, useAppDispatch} from "@/redux/hooks";
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { signIn, useSession } from "next-auth/react";
 const AvatarDropdown: any = dynamic(() => import("@/components/common/Avatar"));
 const Primary: any = dynamic(() => import("@/app/components/buttons/Primary"));
 
 
 
 export default function LoginOrAvatar() {
-  const { data: session, status } = useSession();
+  const {isAuthenticated, isLoading, user} = useAppSelector((state) => state);
   const pathname = usePathname();
 
- 
+
   
   const authLinks = [
     {
@@ -36,26 +37,27 @@ export default function LoginOrAvatar() {
     },
   ];
 
+  if(isLoading){
+    return <>TITS<Spinner />TITS</>
+  }
  
-  if(session){
-    debugger
+  if(user){
     return (
          <AvatarDropdown 
-          user={session.user}
+          user={user}
          />
     )
   }
-
-  const handleLogin = () => {
-    signIn("google", { callbackUrl: "http://localhost:3000/dashboard" });
-  };
+ 
 
 
   return (
     <>
 
       {pathname !== "/auth/login" && (
-        <Primary onClick={handleLogin} target="_blank" variant="solid">
+        <Primary 
+        href="/auth/login"
+       variant="solid">
           Login
         </Primary>
       )}
