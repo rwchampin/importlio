@@ -56,7 +56,7 @@ const useModal = () => {
     const store = useContext(ModalContext);
 
     if (!store) {
-        throw new Error('useCore must be used within a ModalProvider');
+        throw new Error('useModal must be used within a ModalProvider');
     }
     
     const showModal = () => {

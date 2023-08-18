@@ -18,7 +18,7 @@ export default function ImageCta({ title, description, image, cta }) {
           </div>
         </div>
 
-        <div className="max-w-xl px-6 py-12 lg:max-w-5xl lg:w-1/2">
+        <div className="px-6 py-12 lg:max-w-5xl lg:w-1/2">
           {/* <div className="text-[2rem] not-prose font-semibold text-gray-800 dark:text-black">
             {title}
           </div>

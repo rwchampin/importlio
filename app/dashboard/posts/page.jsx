@@ -2,8 +2,7 @@
 import { useBlog } from '@/store';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
 import Link from 'next/link';
-import Image from 'next/image';
-import { Badge } from '@/components/common';
+
 export default function Page() {
     const { posts } = useBlog();
     const columns = [

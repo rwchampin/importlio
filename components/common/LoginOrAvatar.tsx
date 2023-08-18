@@ -1,33 +1,18 @@
 "use client";
-import { useLogoutMutation } from "@/redux/slices/apiSlice";
-import { logout as setLogout } from "@/redux/slices/authSlice";
-import { useAppSelector } from "@/redux/hooks";
+
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-import { useSession, signIn, signOut } from "next-auth/react";
-import { useAppDispatch } from "@/redux/hooks";
-import { useEffect, useState } from "react";
+import { signIn, useSession } from "next-auth/react";
 const AvatarDropdown: any = dynamic(() => import("@/components/common/Avatar"));
 const Primary: any = dynamic(() => import("@/app/components/buttons/Primary"));
 
 
 
 export default function LoginOrAvatar() {
-  const { data: session } = useSession();
-  const dispatch = useAppDispatch();
+  const { data: session, status } = useSession();
   const pathname = usePathname();
-  const [logout] = useLogoutMutation();
 
-  // const { isAuthenticated } = useAppSelector((state) => state.auth);
-
-  // const handleLogout = () => {
-  //   logout(undefined)
-  //     .unwrap()
-  //     .then(() => {
-  //       dispatch(setLogout());
-  //     });
-  // };
-
+ 
   
   const authLinks = [
     {
@@ -51,22 +36,26 @@ export default function LoginOrAvatar() {
     },
   ];
 
-  // if (isAuthenticated) {
-  //   return <Avatar />;
-  // }
+ 
   if(session){
+    debugger
     return (
-
-         <AvatarDropdown user={session.user} />
+         <AvatarDropdown 
+          user={session.user}
+         />
     )
   }
+
+  const handleLogin = () => {
+    signIn("google", { callbackUrl: "http://localhost:3000/dashboard" });
+  };
+
+
   return (
     <>
 
       {pathname !== "/auth/login" && (
-        <Primary onClick={()=> signIn("google", {
-          callbackUrl: `/dashboard`,
-        })} target="_blank" variant="solid">
+        <Primary onClick={handleLogin} target="_blank" variant="solid">
           Login
         </Primary>
       )}

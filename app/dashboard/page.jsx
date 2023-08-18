@@ -1,9 +1,20 @@
 import Registrants from "@/components/pages/Registrants"
-export default async function Page() {
+import BlogList from "@/app/components/BlogList"
+export default function Page() {
 
     return (
 
-            <Registrants />
+
+           <>
+            <div className="bg-gray-5 rounded-xl p-5 shadow-xl flex-1 h-1/2">
+
+<Registrants />
+</div>
+<div className="bg-gray-5 rounded-xl p-5 shadow-xl flex-1 h-1/2">
+<BlogList />
+</div>
+
+</>
 
 
     )

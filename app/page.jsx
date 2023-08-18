@@ -7,13 +7,16 @@ import {
   ImageCta,
  
 } from "@/components/heros/";
-import Reviews from "./components/Reviews";
+
+// import { Canvas } from "@react-three/fiber";
+// import { OrbitControls } from "@react-three/drei";
+// import { Iphone } from "@/components/3d";
 import  FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import { Spacer, LazyLoad } from "@/components/utils/";
 import { Section, Modal, JsonLd } from "@/components/common";
 
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
-import { useEffect } from "react";
+// import { useEffect } from "react";
 
 const jsonLd = {
   "@context": "http://schema.org",
@@ -99,12 +102,7 @@ export default function Page() {
 
       <Spacer size={1} />
 
-    
-      <Section>
-        <Reviews />
-      </Section>
-    
-
+  
       <Section>
         <ImageCta
           title="Fill your Shopify Store with Amazon Search Results Pages"
@@ -136,18 +134,15 @@ export default function Page() {
           json={jsonLd}
         />
       {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
-            <Canvas>
-              <OrbitControls />
-              <ambientLight intensity={0.5} />
-              <Iphone />
-                <mesh>
-                  <sphereGeometry args={[10, 32, 32]} />
-                  <meshStandardMaterial color="hotpink" />
-
-
-                </mesh>
-            </Canvas>
-          </div> */}
+            <Canvas
+              camera={{ position: [0, 0, .3] }}
+            >
+              // {/* <OrbitControls /> */}
+              {/* // <ambientLight intensity={0.5} /> */}
+              {/* // <Iphone /> */}
+                 
+            {/* </Canvas> */}
+          {/* </div>  */}
     </BasicPage>
   );
 }

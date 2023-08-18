@@ -1,63 +1,95 @@
 "use client";
 import {useEffect, useRef} from 'react';
-import gsap, {ScrollSmoother, ScrollTrigger} from 'gsap/all';
-import dynamic from 'next/dynamic';
-import { useDebug } from '@/store/DebugStore';
-gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+import {gsap} from 'gsap';
+import {ScrollSmoother} from 'gsap/ScrollSmoother';
 
-const Debug = dynamic(() => import('@/components/Debug'), {ssr: false});
 
-export default function Scrollbar({children}) {
-  const {debugStatus} = useDebug();
+// import dynamic from 'next/dynamic';
+
+
+// const Debug = dynamic(() => import('@/components/Debug'), {ssr: false});
+gsap.registerPlugin(ScrollSmoother );
+
+export default function Scroller({children}) {
+  // const {debugStatus} = useDebug();
 
   const scrollTrackRef=useRef(null);
   const scrollBarRef=useRef(null);
 
 
+  const setScrollbar = (scrolled) => {
+    gsap.to(scrollBarRef.current, {
+      height: (scrolled / scrollTrackRef.current.clientHeight) * scrollTrackRef.current.clientHeight,
+      duration: 0.1,
+      ease: 'power2.out'
+    });
+  }
 
   useEffect(() => {
-    const scrollTrack=scrollTrackRef.current;
-    const scrollbar=scrollBarRef.current;
-    const windowHeight=window.innerHeight;
-    const scrollTrackHeight=windowHeight*0.8;
+    
+  //   ScrollSmoother.create({
+  //     wrapper: '#smooth-wrapper',
+  //     content: '#smooth-content',
+  //     smooth: 1,
+  //     effects: true,
+  //     onUpdate: self => {
+  //       // update scrollbar with scroll progress
+  //       const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
+  //       gsap.to(scrollBarRef.current, {
+  //         height: scrollBarHeight * self.progress,
+  //         duration: 0.1,
+  //         ease: 'power2.out'
+  //       });
 
-    const setScrollbar=(progress) => {
-      gsap.to(scrollbar, {height: progress*scrollTrackHeight});
-    }
-    // ScrollSmoother.create({
-    //   smooth: .5,               // how long (in seconds) it takes to "catch up" to the native scroll position
-    //   effects: true,           // looks for data-speed and data-lag attributes on elements
-    //   smoothTouch: 0.1,
-    //   onUpdate: function (p) {
-    //     const progress=p.scrollTrigger.progress;
-    //     setScrollbar(progress)
-    //   }
-    // })
-  }, [])
+  //     }
+  //   });
+    function setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight) {
+  // Calculate the maximum scroll distance
+  const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
+  gsap.to(scrollBarRef.current, {
+    height: scrollBarHeight * (scrollY / (document.body.clientHeight - windowHeight)),
+    duration: 0.1,
+    ease: 'power2.out'
+  });
+}
+
+// Example usage inside a window.scroll event listener
+window.addEventListener('scroll', () => {
+  const scrollY = window.scrollY;
+  const windowHeight = window.innerHeight;
+  const scrollTrackHeight = windowHeight * 0.9; // Assuming the scroll track is 90% of the window height
+
+  const scrollbarHeight = setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight);
+
+  // Set the calculated height to your custom scrollbar indicator element
 
 
+  scrollBarRef.current.style.height = `${scrollbarHeight}px`;
+});
+    
+  }, []);
 
-  const size=30;
+
 
 
 
   return (
 
-    <>
-    {/* //   <div ref={scrollTrackRef} className="scroll-track fixed w-[2px] bg-gray-200 shadow-inner right-0">
-    //     <div ref={scrollBarRef} className="scroll-bar absolute w-full bg-black"></div>
-    //   </div> */}
-      <div id="smooth-wrapper" className="fade">
-        <div id="smooth-content" className="min-h-[calc(100vh-4rem)] w-full bg-darkRed2 flex flex-col">
-          {children}
-          
-        </div>
 
+<>
+    <div id="smooth-wrapper" className=''>
+    <div id="smooth-content" className='flex flex-col'>
+
+      {children}
       </div>
-      
-
-     {debugStatus && <Debug />}
-    </>
+      </div>
+          
+      <div className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999]" ref={scrollTrackRef}>
+        <div className="scroll-bar absolute top-0 bg-black w-full" ref={scrollBarRef}></div>
+      </div>
+      </>
+     
+    
 
   );
 };

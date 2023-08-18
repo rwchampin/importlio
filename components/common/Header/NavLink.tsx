@@ -76,7 +76,7 @@ export default function NavLink({
 	
 
 	return (
-		<Link data-attr="cursor"  className={link.className} href={link.href}>
+		<Link data-enter  className={link.className} href={link.href}>
 			{link.pretty}
 		</Link>
 	);

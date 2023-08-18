@@ -6,7 +6,7 @@ import { UnrealBloomPass } from 'three-stdlib'
 import { Effects, CatmullRomLine, Sphere, Sparkles, OrthographicCamera, BakeShadows } from '@react-three/drei'
 import { useControls } from 'leva'
 import { EffectComposer, EffectPass, RenderPass } from 'postprocessing';
-import { elasticIn} from 'eases'
+
 import { createNoise3D } from 'simplex-noise'
 
 const noise3D = createNoise3D();

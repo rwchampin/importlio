@@ -1,26 +1,34 @@
 "use client";
+import gsap from "gsap";
 
-import { store } from "./store";
-import { Provider } from "react-redux";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
-import { SessionProvider } from "next-auth/react";
-import {
-  BlogProvider,
-  CoreProvider,
-  DebugProvider,
-  ModalProvider,
-
-} from "@/store"; // Import the BlogProvider
-
-// import { fetchBlogPosts } from "@/redux/slices/blogPostSlice"; // Import your fetchBlogPosts action
+import { AiProvider, BlogProvider, CoreProvider, DebugProvider, ModalProvider } from '@/store'; // Import the BlogProvider
+import { SessionProvider  } from "next-auth/react";
 
 interface Props {
   children: React.ReactNode;
 }
 
 export default function CustomProvider({ children }: Props) {
+  
   const pathname: any = usePathname();
+  const tl = gsap.timeline();
+  useEffect(() => {
+    const enteringElements = document.querySelectorAll('[data-enter]');
+    tl.from('body', {
+      opacity: 0,
+      duration: 0.3,
+      ease: 'power2.out',
+    });
+    tl.to(enteringElements, {
+      opacity: 1,
+      y: 0,
+      duration: 0.3,
+      stagger: 0.1,
+      ease: 'power2.out',
+    });
+  }, []);
 
   useEffect(() => {
     // Extract the page name from the pathname
@@ -32,19 +40,21 @@ export default function CustomProvider({ children }: Props) {
     // store.dispastch(fetchBlogPosts());
   }, [pathname]);
 
+
   return (
     <SessionProvider>
-      <Provider store={store}>
-        <CoreProvider>
-          <BlogProvider>
-            <ModalProvider>
-              <DebugProvider>
-                {children}
-              </DebugProvider>
-            </ModalProvider>
-          </BlogProvider>
-        </CoreProvider>
-      </Provider>
+      <CoreProvider>
+        <AiProvider>
+        <BlogProvider>
+          <ModalProvider>
+
+              {children}
+
+          </ModalProvider>
+        </BlogProvider>
+        </AiProvider>
+      </CoreProvider>
+
     </SessionProvider>
   );
 }

@@ -1,6 +1,6 @@
 "use client";
 import dynamic from "next/dynamic";
-
+import { useProfile } from "@/hooks";
 import { usePathname } from "next/navigation";
 import { Disclosure } from "@headlessui/react";
 
@@ -21,6 +21,9 @@ const RxCross2Dynamic: any = dynamic(() =>
 );
 
 export default function Navbar() {
+  // const { profile, fetchProfile } = useProfile();
+
+  
   // const { posts } = useBlog();
   // const [blogPosts, setBlogPosts] = useState<any>([]);
   const responsive: any = useResponsive();
@@ -71,6 +74,10 @@ export default function Navbar() {
   //   }
   // }, [posts]);
 
+  // useEffect(() => {
+  //   fetchProfile();
+  // }, []);
+
   useEffect(() => {
     gsap.to("nav a", {
       opacity: 1,
@@ -79,6 +86,10 @@ export default function Navbar() {
       ease: "power3.inOut",
     });
   }, []);
+
+  // useEffect(() => {
+  //   console.log("profile", profile )
+  // }, [profile]);
 
   return (
     <Disclosure as="nav" className="fixed top-0 w-full z-50">

@@ -1,9 +1,12 @@
-import { ShadowText, Title, Subtitle, Headline } from "@/components/typography";
+import Headline from "@/app/components/typography/Headline";
+import Title from "@/app/components/typography/Title";
+import Subtitle from "@/app/components/typography/Subtitle";
+import ShadowText from "@/app/components/typography/ShadowText";
 import { Spacer } from "@/components/utils";
 import { Modal } from "@/components/common/";
 
 import Image from "next/image";
-import React from "react";
+
 
 interface Props {
   bg?: string | null | undefined;
@@ -44,11 +47,11 @@ export default function Hero({
         <div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
           <Headline >{headline}</Headline>
           {/* <Spacer size={.5} /> */}
-          <Title data-enter={1}  >
+          <Title>
             {title}
           </Title>
           <Spacer size={1} />
-          <Subtitle data-enter={2}>
+          <Subtitle>
             {subtitle}
           </Subtitle>
 
@@ -64,7 +67,7 @@ export default function Hero({
           {showButton && (
             <>
               <Spacer size={2} />
-              <Modal   data-enter={3} />
+              <Modal  />
             </>
           )}
           <Spacer size={2} />

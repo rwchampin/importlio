@@ -72,7 +72,7 @@ const useAlert = () => {
     const store = useContext(AlertContext);
 
     if (!store) {
-        throw new Error('useAlert must be used within a CoreProvider');
+        throw new Error('useAlert must be used within a AlertProvider');
     }
 
     const showAlert = (message, type="info") => {

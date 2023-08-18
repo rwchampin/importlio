@@ -17,7 +17,7 @@ export default function useCreatePost() {
     post_type: '',
     title: '',
     content: '',
-
+    status: '',
     featured_image: '',
     categories: '',
     tags: '',
@@ -33,7 +33,7 @@ export default function useCreatePost() {
     excerpt,
     seo_title,
     seo_description,
-
+    status,
     post_type,
     title,
     content,
@@ -64,6 +64,8 @@ export default function useCreatePost() {
     event.preventDefault();
 
 
+    debugger
+
 
     createPost({
       headline,
@@ -75,7 +77,7 @@ export default function useCreatePost() {
       post_type,
       title,
       content,
-
+      status,
       featured_image,
       categories,
       tags,
@@ -105,7 +107,7 @@ export default function useCreatePost() {
     categories,
     tags,
 
-
+    status,
     isLoading,
     onChange,
     onSubmit,

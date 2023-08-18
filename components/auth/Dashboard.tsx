@@ -54,7 +54,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
           initial="initial"
           animate="animate"
           exit="exit"
-          className="flex flex-auto w-full flex-col overflow-y-auto p-5"
+          className="flex flex-auto w-full flex-col overflow-y-auto p-5 gap-5 bg-red-9 rounded-xl"
         >
           {children}
         </motion.main>

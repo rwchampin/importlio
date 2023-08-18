@@ -60,9 +60,9 @@ export const metadata: Metadata = {
       'en-US': '/en-US',
     },
   },
-  // openGraph: {
-  //   images: '/dark/favicon.ico',
-  // },
+  openGraph: {
+    images: '@/assets/img/jpg/og-image.jpg',
+  },
 };
 
  
@@ -71,19 +71,22 @@ export const metadata: Metadata = {
 const RootLayout = ({ children }: { children: React.ReactNode }) => {
 
   return (
-    <Provider>
+   
       <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
-        <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
+        <head>
+          <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
+        </head>
 
-        <body className={`pt-[4rem] bg-darkGray2`}>
-          <Setup />
-          <Header />
-          <Scroller>
-            {children}
-
-            <Footer />
-          </Scroller>
-
+        <body className={`pt-[4rem] min-w-[320px]`}> <Scroller>
+          <Provider>
+            
+           
+            <Header />
+                {children}
+               
+               
+         
+         
           <Cursor />
           <CookieBanner />
           <NextTopLoader
@@ -91,10 +94,14 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             height={4}
             // showSpinner={true}
           />
-          
+          <Setup />
+          </Provider>
+          <Footer />
+          </Scroller>
+        
         </body>
       </html>
-    </Provider>
+    
   );
 };
 

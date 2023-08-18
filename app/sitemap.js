@@ -153,7 +153,7 @@ const generateURLs = async () => {
   })),
       ...posts.map((post) => ({
           url: `https://importlio.com/ecommerce-tutorials/${post.slug}`,
-          lastModified: post.published || currentDate,
+          lastModified: currentDate,
       })),
   ];
 

@@ -67,16 +67,7 @@ const Input: React.FC<Props> = ({
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
-  const renderAutomplete = (type: string) => {
-    switch (type) {
-      case "text":
-        return "username";
-      case "password":
-        return "current-password";
-      default:
-        return "off";
-    }
-  };
+ 
 
   const getPlaceholder = (type: string) => {
     switch (type) {
@@ -205,7 +196,7 @@ const Input: React.FC<Props> = ({
 
       default:
         return (
-          <div className="relative overflow-hidden  hover:bg-offgray rounded-lg h-input hover:shadow-lg flex items-center justify-start bg-input w-full min-w-[400px]">
+          <div className="relative overflow-hidden  hover:bg-offgray rounded-lg h-input hover:shadow-lg flex items-center justify-start bg-input w-full">
             <InputIcon type={type} isFocused={isFocused} />
             <input {...inputElementProps} value={value} onChange={onChange} />
           </div>

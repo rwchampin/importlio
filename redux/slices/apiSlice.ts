@@ -63,7 +63,7 @@ const baseQueryWithReauth: BaseQueryFn<
 		} else {
 			await mutex.waitForUnlock();
 			result = await baseQuery(args, api, extraOptions);
-			debugger
+
 		}
 	}
 	return result;
@@ -76,8 +76,8 @@ export const apiSlice = createApi({
 		retrieveUser: builder.query<User, void>({
 
 			query: (res) => {
-				debugger; // Add debugger statement here
-
+// Add debugger statement here
+				debugger
 				return {
 					url: '/users/me/',
 					method: 'GET',
@@ -225,6 +225,7 @@ export const apiSlice = createApi({
 				headline,
 				title,
 				subtitle,
+				status,
 				shadow_text,
 				excerpt,
 				content,
