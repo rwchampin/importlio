@@ -5,7 +5,6 @@ import cn from 'classnames';
 import Dropdown from '../Dropdown';
 import { usePathname } from 'next/navigation';
 interface Props {
-	isSelected?: boolean; // used to determine if the link is selected
 	href?: string;
 	dropdownData?: any;
 	children: React.ReactNode;
@@ -22,6 +21,7 @@ export default function NavLink({
 	link,
 	...rest
 }: Props) {
+
 	const {pathname}:any = usePathname();
 	
 	const isSelected = (path: string | undefined) =>
@@ -76,7 +76,7 @@ export default function NavLink({
 	
 
 	return (
-		<Link data-enter  className={link.className} href={link.href}>
+		<Link className={link.className} href={link.href}>
 			{link.pretty}
 		</Link>
 	);

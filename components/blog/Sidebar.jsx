@@ -1,17 +1,17 @@
-"use client";
 
+import { getPosts } from '@/lib/functions';
 import {Suspense} from 'react';
 import {TagCloud} from '@/components/common';
 import {Spacer} from '@/components/utils';
 import dynamic from 'next/dynamic';
-import { useBlog } from '@/store';
+
 import { SidebarPostCardSkeleton } from '../skeletons';
 const SidebarPostCard=dynamic(() => import("@/components/blog/SidebarPostCard"));
 
 
 
-export default function Sidebar() {
-	const {posts, categories,tags} = useBlog();
+export default async function Sidebar() {
+	const posts = await getPosts();
 
 	return (
 		<div className="sidebar bg-gray-2 p-3   shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col   sticky top-[5rem]">

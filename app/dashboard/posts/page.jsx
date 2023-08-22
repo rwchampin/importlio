@@ -1,10 +1,10 @@
-'use client';
-import { useBlog } from '@/store';
+
+import { getPosts } from '@/lib/functions';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
 import Link from 'next/link';
 
-export default function Page() {
-    const { posts } = useBlog();
+export default async function Page() {
+    const posts = await getPosts();
     const columns = [
         {
             name: 'ID',
@@ -193,7 +193,7 @@ export default function Page() {
                                                 {post.updated}
                                             </td>
                                             <td className="min-w-[150px] px-4 py-4 whitespace-nowrap text-center text-xs font-medium flex items-center justify-center gap-1">
-                                               <Link href={`/dashboard/posts/${post.slug}`}>
+                                               <Link href={`/dashboard/posts/create?slug=${post.slug}`}>
                                                <BiPencil className="text-green-11 h-5 w-5" />
                                                   </Link>
                                                 <BiTrash className="text-red-11  h-5 w-5" />

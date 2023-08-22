@@ -1,5 +1,5 @@
 
-import ChatRoom from "@/app/components/ChatRoom";
+import ChatRoom from "@/app/_components/ChatRoom";
 
 
 export default function Page() {

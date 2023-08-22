@@ -2,7 +2,7 @@
 
 import { useSocialAuthenticateMutation } from '@/redux/slices/apiSlice';
 import { useSocialAuth } from '@/hooks';
-import { Spinner } from '@/app/components/';
+import { Spinner } from '@/app/_components';
 
 export default function Page() {
 	const [googleAuthenticate] = useSocialAuthenticateMutation();

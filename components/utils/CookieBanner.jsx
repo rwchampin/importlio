@@ -1,7 +1,7 @@
 
 'use client';
 import {getLocalStorage, setLocalStorage} from './storageHelper';
-import {Primary} from '@/app/components/buttons';
+import {Primary} from '@/app/_components/buttons';
 import gsap from 'gsap';
 
 import {useState, useEffect} from 'react';

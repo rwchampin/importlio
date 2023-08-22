@@ -2,7 +2,7 @@
 import {Dialog, Transition} from '@headlessui/react'
 import {Fragment} from 'react'
 import { Close, LogoBlack, EmailForm } from '@/components/common';
-import { Primary } from '@/app/components/buttons';
+import { Primary } from '@/app/_components/buttons';
 import { useModal } from '@/store';
 
 

@@ -70,6 +70,18 @@ export default function Table({ headers, columns, data }: Props) {
                 <tbody className="bg-white">
                   {data.map((post, rowIndex) => (
                     <tr key={rowIndex}>
+                       <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {post.id}
+                      </td>
+                      <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {post.status}
+                      </td>
+                      <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {post.updated}
+                      </td>
+                      <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
+                        {post.post_type}
+                      </td>
                       <td className="px-3 py-4 whitespace-nowrap text-sm font-medium text-gray-900">
                         {post.title}
                       </td>

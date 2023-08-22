@@ -4,7 +4,7 @@ import Image from "next/image";
 import {useState } from 'react';
 import Link from "next/link";
 import logoSrc from '@/assets/logo/logo-black.svg';
-import Spinner from '@/app/components/Spinner';
+import Spinner from '@/app/_components/Spinner';
 
 const LogoBlack = (props) => {
   const [isLoading, setIsLoading] = useState(true);

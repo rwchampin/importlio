@@ -1,10 +1,13 @@
-"use client";
-import { useBlog } from "@/store/";
+
+import { getPosts } from "@/lib/functions";
 import { BasicPage } from "@/components/pages";
 import { Section } from "@/components/common";
 import { FullImageCard, Sidebar } from "@/components/blog";
 
+
+
 import JsonLd from "@/components/common/JsonLd";
+// import { useEffect, useState } from "react";
 interface Post {
   title: string;
   slug: string;
@@ -19,24 +22,26 @@ interface Post {
 interface Posts {
   posts: Post[];
 }
-export default function Page() {
-  const { posts}: Posts = useBlog();
-  debugger
-  const json = {
-    "@context": "http://schema.org",
-    "@type": "Blog",
-    "name": "Importlio Ecommerce Tutorials",
-    "description": "Read our latest ecommerce tutorials & articles about Amazon dropshipping, Shopify, ecommerce, Amazon Dropshipping product importing, and more.",
-    "url": "https://www.importlio.com/blog",
-    "inLanguage": "en-US",
-    "isPartOf": {
-      "@type": "WebSite",
-      "name": "Importlio - Amazon Dropshipping Bulk Product Importer & Management App",
-      "url": "https://www.importlio.com"
-    }
+
+const json = {
+  "@context": "http://schema.org",
+  "@type": "Blog",
+  "name": "Importlio Ecommerce Tutorials",
+  "description": "Read our latest ecommerce tutorials & articles about Amazon dropshipping, Shopify, ecommerce, Amazon Dropshipping product importing, and more.",
+  "url": "https://www.importlio.com/blog",
+  "inLanguage": "en-US",
+  "isPartOf": {
+    "@type": "WebSite",
+    "name": "Importlio - Amazon Dropshipping Bulk Product Importer & Management App",
+    "url": "https://www.importlio.com"
   }
+}
+export default async function Page() {
+ const posts = await getPosts();
+
   
-  // if (loading) return <PostCardSkeleton />;
+
+
   return (
     <>
       <BasicPage
@@ -51,7 +56,7 @@ export default function Page() {
       >
         <Section className="p-5 flex flex-col gap-5 lg:flex-row">
           <div className="flex flex-col md:flex-row flex-wrap gap-5">
-            {posts.map((post, idx) => {
+            {posts.map((post:any, idx:number) => {
               return (
 
 

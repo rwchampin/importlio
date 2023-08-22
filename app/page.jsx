@@ -1,16 +1,8 @@
-"use client";
 
 import { BasicPage } from "@/components/pages";
-import {
-  RecentBlogPosts,
-  FeatureHero,
-  ImageCta,
- 
-} from "@/components/heros/";
-
-// import { Canvas } from "@react-three/fiber";
-// import { OrbitControls } from "@react-three/drei";
-// import { Iphone } from "@/components/3d";
+import ImageCta from "./ImageCta";
+import FeatureHero from "./FeatureHero";
+import RecentBlogPosts from "./RecentBlogPosts";
 import  FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import { Spacer, LazyLoad } from "@/components/utils/";
 import { Section, Modal, JsonLd } from "@/components/common";
@@ -64,9 +56,21 @@ const jsonLd = {
     )
   }
  
+async function getData() {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
 
-export default function Page() {
-
+  if(!res.ok) throw new Error(res.statusText)
+  const promise = await res.json()
+  return promise.results
+}
+ 
+export default async function Page() {
+  const recentPosts = await getData();
   return (
     <BasicPage
       bg={null}
@@ -85,13 +89,13 @@ export default function Page() {
       <Section
         full
       >
-        <LazyLoad
+        {/* <LazyLoad
           type="video"
           dataSrc={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4`}
           src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video-low-res.mp4"
           width={"100%"}
           height={"100%"}
-        />
+        /> */}
       </Section>
 
       <Spacer size={1} />
@@ -127,22 +131,15 @@ export default function Page() {
       <Spacer size={1} />
 
         <Section>
-          <RecentBlogPosts />
+          <RecentBlogPosts
+            posts={recentPosts}
+          />
         </Section>
 
         <JsonLd 
           json={jsonLd}
         />
-      {/* <div className="fixed top-0 left-0 z-50 w-screen h-screen bg-red-500">
-            <Canvas
-              camera={{ position: [0, 0, .3] }}
-            >
-              // {/* <OrbitControls /> */}
-              {/* // <ambientLight intensity={0.5} /> */}
-              {/* // <Iphone /> */}
-                 
-            {/* </Canvas> */}
-          {/* </div>  */}
+      
     </BasicPage>
   );
 }

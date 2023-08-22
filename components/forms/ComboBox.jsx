@@ -1,9 +1,10 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
-import { useBlog } from '@/store';
+import { getTags, getCategories, getPostTypes } from '@/lib/functions';
 import { BsCheckCircle } from 'react-icons/bs';
 import gsap from 'gsap';
 import Badge from '@/components/common/Badge';
+
 
 
 const Option = ({ value, selected, onClick }) => {
@@ -15,14 +16,37 @@ const Option = ({ value, selected, onClick }) => {
 	);
 };
 
+const getData = async () => {
+	const tags =  getTags();
+	const categories =  getCategories();
+	const postTypes =  getPostTypes();
+
+	return await Promise.all([tags, categories, postTypes]);
+}
 
 export default function ComboBox({data, label, type, onChange, value, name, labelId, required, placeholder }) {
-	const { categories, tags, postTypes } = useBlog();
+
 	const [options, setOptions] = useState([]);
 	const [selected, setSelected] = useState([]);
 	const [active, setActive] = useState(false);
 	const dropdown = useRef(null);
 	const comboBoxRef = useRef(null);
+
+	const getOptions = async (labelId) => {
+		const {
+			tags,
+			categories,
+			postTypes
+		} = await getData();
+
+		if (labelId === "categories") {
+			setOptions(categories);
+		} else if (labelId === "tags") {
+			setOptions(tags);
+		}else if (labelId === "post_type") {
+			setOptions(postTypes);
+		}
+	};
 
 	// useEffect(() => {
 	// 	const handleClose = (e) => {
@@ -42,14 +66,10 @@ export default function ComboBox({data, label, type, onChange, value, name, labe
 	}, [selected]);
 
 	useEffect(() => {
-		if (labelId === "categories") {
-			setOptions(categories);
-		} else if (labelId === "tags") {
-			setOptions(tags);
-		}else if (labelId === "post_type") {
-			setOptions(postTypes);
-		}
-	}, [categories, tags, postTypes, labelId]);
+		
+		getOptions(labelId);
+
+	}, [labelId]);
 
 	useEffect(() => {
 		const drop = dropdown.current;
@@ -68,6 +88,7 @@ export default function ComboBox({data, label, type, onChange, value, name, labe
 		}
 	};
 
+	if(!options) return null;
 	return (
 		<div ref={comboBoxRef} className="mt-1">
 			<div className="relative h-input">

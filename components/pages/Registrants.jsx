@@ -1,4 +1,4 @@
-"use client";
+"use client"
 import { useAnalytics } from "@/store";
 import { CgProfile } from "react-icons/cg";
 export default function Registrants() {

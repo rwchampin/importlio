@@ -1,16 +1,10 @@
-"use client";
-import dynamic from "next/dynamic";
-import { useProfile } from "@/hooks";
-import { usePathname } from "next/navigation";
-import { Disclosure } from "@headlessui/react";
 
-// import { useBlog } from "@/store";
+import dynamic from "next/dynamic";
+import { Disclosure } from "@headlessui/react";
 
 import { LogoBlack, SocialIcons, LoginOrAvatar } from "@/components/common";
 import NavLink from "./NavLink";
 
-import { useEffect } from "react";
-import gsap from "gsap";
 import { useResponsive } from "@/hooks";
 
 const RiMenu5FillDynamic: any = dynamic(() =>
@@ -20,26 +14,24 @@ const RxCross2Dynamic: any = dynamic(() =>
   import("react-icons/rx").then((mod) => mod.RxCross2)
 );
 
-export default function Navbar() {
-  // const { profile, fetchProfile } = useProfile();
 
-  
-  // const { posts } = useBlog();
-  // const [blogPosts, setBlogPosts] = useState<any>([]);
+ 
+interface LinkProps {
+  href?: string;
+  pretty: string;
+  dropdownData: any;
+  name?: string;
+}
+
+export default function Navbar({ posts }:any) {
+
+
   const responsive: any = useResponsive();
 
-  const pathname = usePathname();
-  // const dispatch = useAppDispatch();
 
-  const isSelected = (path: string | undefined) =>
-    pathname === path ? true : false;
 
-  interface LinkProps {
-    href?: string;
-    pretty: string;
-    dropdownData: any;
-    name?: string;
-  }
+
+
   const links: any = [
     {
       pretty: "About",
@@ -64,37 +56,15 @@ export default function Navbar() {
     {
       pretty: "E-commerce Tutorials",
       href: "/ecommerce-tutorials",
-      dropdownData: [],
+      dropdownData: posts,
     },
   ];
-
-  // useEffect(() => {
-  //   if (posts.length > 0) {
-  //     setBlogPosts(posts);
-  //   }
-  // }, [posts]);
-
-  // useEffect(() => {
-  //   fetchProfile();
-  // }, []);
-
-  useEffect(() => {
-    gsap.to("nav a", {
-      opacity: 1,
-      stagger: 0.05,
-      duration: 0.15,
-      ease: "power3.inOut",
-    });
-  }, []);
-
-  // useEffect(() => {
-  //   console.log("profile", profile )
-  // }, [profile]);
+ 
 
   return (
     <Disclosure as="nav" className="fixed top-0 w-full z-50">
       {({ open }) => (
-        <>
+        <div key={0}>
           <div className="ccc mx-auto max-w-[90vw]">
             <div className="relative flex h-16 items-center justify-between w-full">
               <div className="w-full flex flex-1 items-center justify-center md:justify-center sm:items-center sm:justify-center gap-5">
@@ -162,7 +132,7 @@ export default function Navbar() {
               })}
             </div>
           </Disclosure.Panel>
-        </>
+        </div>
       )}
     </Disclosure>
   );

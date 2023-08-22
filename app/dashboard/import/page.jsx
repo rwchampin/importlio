@@ -2,9 +2,9 @@
 import {useState} from 'react'
 import { Tab } from '@headlessui/react'
 import { BiSolidChevronDown } from 'react-icons/bi';
-import { Primary } from '@/app/components/buttons';
+import { Primary } from '@/app/_components/buttons';
 // import { CSVUploader } from '@/components/forms'
-import CommandBar from '@/app/components/CommandBar';
+import CommandBar from '@/app/_components/CommandBar';
 function classNames(...classNames) {
   return classNames.filter(Boolean).join(' ')
 }

@@ -44,9 +44,7 @@ export default function useCreatePost() {
   } = formData;
 
 
-  useEffect(() => {
-    console.log(formData);
-  }, [formData]);
+  
   
   const onChange = (event: any) => {
 
@@ -56,15 +54,13 @@ export default function useCreatePost() {
 
   }
 
-  const getUnchangedInputValues = () => {
-    const unchangedInputValues = {};
-  }
+  
 
   const onSubmit = (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
 
 
-    debugger
+
 
 
     createPost({
@@ -74,13 +70,13 @@ export default function useCreatePost() {
       excerpt,
       seo_title,
       seo_description,
-      post_type,
+      // post_type,
       title,
       content,
-      status,
+      // status,
       featured_image,
-      categories,
-      tags,
+      // categories,
+      // tags,
     })
       .unwrap()
       .then(() => {

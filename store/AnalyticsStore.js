@@ -22,7 +22,12 @@ const AnalyticsContext = createContext();
 
 
 const getRegistrants = async (callback) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/registrants/`)
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/registrants/`, {
+        method: 'GET',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+    })
     const data = await res.json()
 
     if (data && data.results) {

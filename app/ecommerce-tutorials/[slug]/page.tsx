@@ -9,7 +9,7 @@ import JsonLd from "@/components/common/JsonLd";
 
 // gsap.registerPlugin(ScrollTrigger)
 
-const TagCategoryListPage:any = dynamic(() => import("@/app/components/TagCategoryListPage"));
+const TagCategoryListPage:any = dynamic(() => import("@/app/_components/TagCategoryListPage"));
 
 export default function Page({ params }: any) {
   const { slug }:any = params;

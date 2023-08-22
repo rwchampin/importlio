@@ -9,10 +9,11 @@ import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { GA, Scroller } from "@/components/utils/";
-import Provider from "@/redux/provider";
+import CustomProvider from "@/redux/provider";
 import { Setup } from "@/components/utils";
 import { Header, Footer, Cursor } from "@/components/common";
 import NextTopLoader from "nextjs-toploader";
+import { getRecentPosts } from "@/lib/functions";
 
 
 const montserrat = Montserrat({
@@ -68,20 +69,21 @@ export const metadata: Metadata = {
  
  
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  const posts = await getRecentPosts();
 
   return (
    
-      <html lang="en" className={`${apercu.variable} ${montserrat.variable}`}>
+      <html lang="en" className={`${apercu.variable} ${montserrat.variable}`} suppressHydrationWarning>
         <head>
           <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
         </head>
 
-        <body className={`pt-[4rem] min-w-[320px]`}> <Scroller>
-          <Provider>
+        <body suppressHydrationWarning> <Scroller>
+          <CustomProvider>
             
            
-            <Header />
+            <Header posts={posts} />
                 {children}
                
                
@@ -95,7 +97,7 @@ const RootLayout = ({ children }: { children: React.ReactNode }) => {
             // showSpinner={true}
           />
           <Setup />
-          </Provider>
+          </CustomProvider>
           <Footer />
           </Scroller>
         

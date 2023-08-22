@@ -1,20 +1,18 @@
 'use client' // Error components must be Client Components
 
-import {useEffect} from 'react'
-import { Primary } from '../components'
+
+import { Primary } from '../_components'
 export default function Error({error, reset}) {
-	useEffect(() => {
-		// Log the error to an error reporting service
-		console.error(error)
-	}, [ error ])
+ 
 
 
 	return (
-		<div>
+		<div className='flex-auto flex flex-col items-center justify-center'>
 			<div className='text-heading-1'>Something went wrong!</div>
 			<p>{error.error}</p>
 
 			<Primary
+				className='mt-5 max-w-xl mx-auto'
 				onClick={
 					// Attempt to recover by trying to re-render the segment
 					() => reset()

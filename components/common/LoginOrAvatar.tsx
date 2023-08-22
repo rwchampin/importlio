@@ -1,11 +1,11 @@
 "use client";
-import { Spinner } from "@/app/components";
+import { Spinner } from "@/app/_components";
 import {useAppSelector, useAppDispatch} from "@/redux/hooks";
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 const AvatarDropdown: any = dynamic(() => import("@/components/common/Avatar"));
-const Primary: any = dynamic(() => import("@/app/components/buttons/Primary"));
+const Primary: any = dynamic(() => import("@/app/_components/buttons/Primary"));
 
 
 

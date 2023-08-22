@@ -1,7 +1,7 @@
-import Headline from "@/app/components/typography/Headline";
-import Title from "@/app/components/typography/Title";
-import Subtitle from "@/app/components/typography/Subtitle";
-import ShadowText from "@/app/components/typography/ShadowText";
+import Headline from "@/app/_components/typography/Headline";
+import Title from "@/app/_components/typography/Title";
+import Subtitle from "@/app/_components/typography/Subtitle";
+import ShadowText from "@/app/_components/typography/ShadowText";
 import { Spacer } from "@/components/utils";
 import { Modal } from "@/components/common/";
 

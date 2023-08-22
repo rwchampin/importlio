@@ -2,7 +2,6 @@
 import { Fragment, useState } from 'react'
 import { Menu, Transition } from '@headlessui/react'
 import { BiSolidChevronDown } from 'react-icons/bi';
-import { useBlog } from '@/store';
 import Badge from '@/components/common/Badge';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -14,7 +13,7 @@ function classNames(...classes) {
 export default function Dropdown({
   children,
   link,
-   
+  dropdownData,
   label,
   labelId,
   type,
@@ -25,7 +24,7 @@ export default function Dropdown({
   placeholder,
   ...props
 }) {
-  const { posts } = useBlog();
+
   const [isHovered, setIsHovered] = useState(false);
 
   const handleMouseEnter = () => {
@@ -66,7 +65,7 @@ export default function Dropdown({
         leaveTo="transform opacity-0 scale-95"
       >
         <Menu.Items className="absolute  left-0 z-10 top-[2rem] w-full min-w-[400px] max-h-[400px] overflow-y-auto divide-y divide-gray-100 rounded-md bg-white shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-            {posts.map((item, idx) => (
+            {dropdownData.map((item, idx) => (
                <div 
                 key={idx}
                className="w-auto" 
@@ -88,6 +87,10 @@ export default function Dropdown({
                       className="rounded-md aspect-square flex-shrink-0"
                     />
                     <div className="flex flex-col">
+                     <span
+                      className="font-semibold text-gray-900 text-xxxs"
+                     >{item.readtime}</span>
+                     <span>{item.post_type.name}</span>
                     {item.title}
                     <Badge size='xxs'>
                       {item.published}

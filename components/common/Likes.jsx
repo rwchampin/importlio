@@ -1,7 +1,7 @@
 "use client";
 import {useState, useEffect, useCallback} from 'react';
 import "@/assets/styles/likes.css";
-import { Spinner } from '@/app/components/';
+import { Spinner } from '@/app/_components';
 export default async function Likes({postId, likes}) {
 	const [isLoading, setIsLoading] = useState(false)
 	const [liked, setLiked] = useState(false)

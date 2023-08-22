@@ -21,7 +21,6 @@ export default async function continueWithSocialAuth(
 			credentials: 'include',
 		});
 		const data = await res.json();
-		debugger
 		if (res.status === 200 && typeof window !== 'undefined') {
 			window.location.replace(data.authorization_url);
 		} else {

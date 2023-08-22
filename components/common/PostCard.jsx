@@ -5,7 +5,7 @@ import Link from 'next/link';
 import {useState} from 'react';
 import {Spacer} from '@/components/utils';
 import {TagCloud} from '@/components/common';
-import {Primary} from '@/app/components/buttons';
+import {Primary} from '@/app/_components/buttons';
 
 export default function PostCard({title, content, featured_image,post_type, tags, categories, slug, published, updated, readtime}) {
 	const [ hover, setHover ]=useState(false);

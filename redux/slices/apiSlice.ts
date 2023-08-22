@@ -36,12 +36,12 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
 	await mutex.waitForUnlock();
 	let result = await baseQuery(args, api, extraOptions);
-
+	debugger
 	if (result.error && result.error.status === 401) {
 		if (!mutex.isLocked()) {
 			const release = await mutex.acquire();
 			try {
-				const refreshResult = await baseQuery(
+				const refreshResult:any = await baseQuery(
 					{
 						url: '/jwt/refresh/',
 						method: 'POST',
@@ -50,8 +50,8 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
-					debugger
-					api.dispatch(setAuth());
+
+					api.dispatch(setAuth(refreshResult.data));
 
 					result = await baseQuery(args, api, extraOptions);
 				} else {
@@ -112,11 +112,11 @@ export const apiSlice = createApi({
 			}),
 		}),
 		verify: builder.mutation({
-			query: () => {
+			query: (res) => {
 				return {
 					url: '/jwt/verify/',
 					method: 'POST',
-					// body: { token: access },
+					body: { token: res.access },
 				};
 			}
 		}),
@@ -172,18 +172,7 @@ export const apiSlice = createApi({
 				};
 			},
 		}),
-		getPosts: builder.query({
-			query: () => {
-				// debugger; // Add debugger statement here
-				return {
-					url: '/posts/',
-					method: 'GET',
-					headers: {
-						'Content-Type': 'application/json',
-					},
-				};
-			},
-		}),
+		 
 		createPost: builder.mutation({
 			query: ({
 				post_type,
@@ -199,9 +188,7 @@ export const apiSlice = createApi({
 				  tags,
 				  seo_title,
 				  seo_description,
-				  post_image_1,
-				  post_image_2,
-				  post_image_3,
+
 			}) => {
 
 
@@ -218,9 +205,7 @@ export const apiSlice = createApi({
 					"tags": tags,
 					"seo_title": seo_title,
 					"seo_description": seo_description,
-					"post_image_1": post_image_1,
-					"post_image_2": post_image_2,
-					"post_image_3": post_image_3,
+
 				};
 
 				// Convert the object to JSON format
@@ -250,6 +235,7 @@ export const apiSlice = createApi({
 				 categories,
 				  tags,
 				  seo_title,
+				  status,
 				  seo_description,
 
 			}) => {
@@ -268,6 +254,7 @@ export const apiSlice = createApi({
 					"tags": tags,
 					"seo_title": seo_title,
 					"seo_description": seo_description,
+					"status": status,
 
 				};
 
@@ -293,7 +280,6 @@ export const apiSlice = createApi({
 export const {
 	useEditPostMutation,
 	useFullRegisterMutation,
-	useGetPostsQuery,
 	useCreatePostMutation,
 	useRetrieveUserQuery,
 	useSocialAuthenticateMutation,

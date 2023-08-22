@@ -2,13 +2,14 @@ import { useEffect, useRef } from 'react';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
 import { setAuth } from '@/redux/slices/authSlice';
+import { useRetrieveUserQuery } from '@/redux/slices/apiSlice';
 import { toast } from 'react-toastify';
 
 export default function useSocialAuth(authenticate: any, provider: string) {
 	const dispatch = useAppDispatch();
 	const router = useRouter();
 	const searchParams = useSearchParams();
-
+	const {retrieveUser} = useRetrieveUserQuery<any>();
 	const effectRan = useRef(false);
 
 	useEffect(() => {
@@ -20,6 +21,9 @@ export default function useSocialAuth(authenticate: any, provider: string) {
 				.unwrap()
 				.then((res) => {
 					debugger
+					retrieveUser().unwrap().then((res) => {
+						debugger
+					})
 					dispatch(setAuth(res));
 					toast.success('Logged in');
 					router.push('/dashboard');

@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
 import { BsSend } from 'react-icons/bs';
 
-import ChatMessage from '@/app/components/ChatMessage';
+import ChatMessage from '@/app/_components/ChatMessage';
 
 const ChatRoom = () => {
   const [messages, setMessages] = useState([]);

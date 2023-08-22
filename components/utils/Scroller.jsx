@@ -8,7 +8,7 @@ import {ScrollSmoother} from 'gsap/ScrollSmoother';
 
 
 // const Debug = dynamic(() => import('@/components/Debug'), {ssr: false});
-gsap.registerPlugin(ScrollSmoother );
+
 
 export default function Scroller({children}) {
   // const {debugStatus} = useDebug();
@@ -26,7 +26,7 @@ export default function Scroller({children}) {
   }
 
   useEffect(() => {
-    
+    // gsap.registerPlugin(ScrollSmoother );
   //   ScrollSmoother.create({
   //     wrapper: '#smooth-wrapper',
   //     content: '#smooth-content',

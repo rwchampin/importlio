@@ -125,6 +125,7 @@ html, body {
   -moz-osx-font-smoothing: grayscale;
   text-rendering: optimizeLegibility;
   width: 100%;
+  min-height: 100vh;
 }
 
 body {
@@ -138,17 +139,26 @@ body {
   /* transform: translateY(100px); */
   will-change: transform, opacity;
 }
-#smooth-content > *:first-child {
+
+#smooth-wrapper, #smooth-content {
+  min-height: 100vh;
+  width:100vw;
+}
+#smooth-content > div:first-child:not(header) {
   flex: auto;
   display: flex;
   justify-content: center;
+  align-items: center;
 }
  .scroll-track {
   top: 50%;
   transform: translateY(-50%);
  }
+ header {
+  z-index: 999999999 !important;
+ }
 nav {
-  z-index: 100 !important;
+
   position: fixed !important;
 }
 nav .btn {

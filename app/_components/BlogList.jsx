@@ -1,26 +1,18 @@
 import  Table  from './Table';
+import { getPosts } from '@/lib/functions';
+
 import { GrAddCircle } from 'react-icons/gr';
 export default async function BlogList() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json'
-        }
-    })
+    const posts = await getPosts();
 
-    const json = await res.json()
-
-    const data = json.results
-
-
-
-   
+    
+ 
       
      
 
     return (
         <Table
-            data={data}
+            data={posts}
             columns={[
                 {
                     header: 'Title',
