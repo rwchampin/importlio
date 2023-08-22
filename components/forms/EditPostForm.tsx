@@ -1,21 +1,16 @@
+"use client"
 import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useCreatePost } from "@/hooks";
+import { useEditPost } from "@/hooks";
 import { Form } from "@/components/forms";
 import PostPreview from "@/app/_components/PostPreview";
 
 interface Props {
   post?: any;
-  postTypes: any;
-  categories: any;
-  tags: any;
 }
 
-export default function PostForm({
+export default function EditPostForm({
   post,
-  postTypes,
-  categories,
-  tags,
 }: Props) {
   const {
     post_type,
@@ -27,14 +22,14 @@ export default function PostForm({
     excerpt,
     content,
     featured_image,
-    categories: postCategories,
-    tags: postTags,
+    categories,
+    tags,
     seo_title,
     seo_description,
     isLoading,
     onChange: hookOnChange,
     onSubmit,
-  } = useCreatePost();
+  } = useEditPost();
 
   const getInitialConfig = (initialPost?: any) => {
     const fields = [

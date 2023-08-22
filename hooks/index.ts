@@ -12,3 +12,4 @@ export {default as useCreatePost} from './use-create-post';
 export {default as useResponsive} from './useResponsive';
 export {default as useFetch} from './useFetch';
 export {default as useProfile} from './useProfile';
+export { default as useEditPost } from './useEditPost';

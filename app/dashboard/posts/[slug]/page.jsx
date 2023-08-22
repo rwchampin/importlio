@@ -3,7 +3,6 @@
 export default function Page() {
 
 	return (
-		<div></div>
-		// <EditPostForm slug={slug} />
+		<PostForm slug={slug} />
 	)
 }

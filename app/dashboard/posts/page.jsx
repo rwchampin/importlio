@@ -193,7 +193,7 @@ export default async function Page() {
                                                 {post.updated}
                                             </td>
                                             <td className="min-w-[150px] px-4 py-4 whitespace-nowrap text-center text-xs font-medium flex items-center justify-center gap-1">
-                                               <Link href={`/dashboard/posts/create?slug=${post.slug}`}>
+                                               <Link href={`/dashboard/posts/edit/${post.slug}`}>
                                                <BiPencil className="text-green-11 h-5 w-5" />
                                                   </Link>
                                                 <BiTrash className="text-red-11  h-5 w-5" />

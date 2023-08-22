@@ -26,50 +26,32 @@ const getData = async () => {
 
 export default function ComboBox({data, label, type, onChange, value, name, labelId, required, placeholder }) {
 
-	const [options, setOptions] = useState([]);
+	const [options, setOptions] = useState(data);
 	const [selected, setSelected] = useState([]);
 	const [active, setActive] = useState(false);
 	const dropdown = useRef(null);
 	const comboBoxRef = useRef(null);
 
-	const getOptions = async (labelId) => {
-		const {
-			tags,
-			categories,
-			postTypes
-		} = await getData();
+ 
 
-		if (labelId === "categories") {
-			setOptions(categories);
-		} else if (labelId === "tags") {
-			setOptions(tags);
-		}else if (labelId === "post_type") {
-			setOptions(postTypes);
+	useEffect(() => {
+		const handleClose = (e) => {
+			if (active && comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
+			  setActive(false);
+			}
+		  };
+
+		window.addEventListener('click', handleClose)
+
+		return () => {
+			window.removeEventListener('click', handleClose);
 		}
-	};
-
-	// useEffect(() => {
-	// 	const handleClose = (e) => {
-	// 		if (active && comboBoxRef.current && !comboBoxRef.current.contains(e.target)) {
-	// 		  setActive(false);
-	// 		}
-	// 	  };
-
-	// 	window.addEventListener('click', handleClose)
-
-	// 	return () => {
-	// 		window.removeEventListener('click', handleClose);
-	// 	}
-	// }, [active]);
+	}, [active]);
 	useEffect(() => {
 		onChange({ target: { name, value: selected.map(option => option.id) }});
 	}, [selected]);
 
-	useEffect(() => {
-		
-		getOptions(labelId);
-
-	}, [labelId]);
+ 
 
 	useEffect(() => {
 		const drop = dropdown.current;
@@ -88,7 +70,7 @@ export default function ComboBox({data, label, type, onChange, value, name, labe
 		}
 	};
 
-	if(!options) return null;
+
 	return (
 		<div ref={comboBoxRef} className="mt-1">
 			<div className="relative h-input">
@@ -108,7 +90,7 @@ export default function ComboBox({data, label, type, onChange, value, name, labe
 						/>
 					</div>
 				</div>
-				<div ref={dropdown} className="shadow-2xl bg-white max-h-[500px] w-full absolute top-[100%] left-0 flex flex-col overflow-hidden items-center z-[999] rounded-b-lg">
+				<div onMouseLeave={() => setActive(false)} ref={dropdown} className="shadow-2xl bg-white max-h-[500px] w-full absolute top-[100%] left-0 flex flex-col overflow-hidden items-center z-[999] rounded-b-lg">
 					{options.map((option, idx) => (
 						<Option key={idx} value={option.name} selected={selected.includes(option)} onClick={() => selectItem(option)} />
 					))}

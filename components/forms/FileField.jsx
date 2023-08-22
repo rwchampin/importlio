@@ -10,6 +10,8 @@ export default function FileField({value, type, onChange, name, required, placeh
 			multiple={false}
 			type={type}
 			value={value}
+		inputId="file"
+			buttonComponent={<button className='rounded-xl py-3 p-5 bg-button text-white text-xs'>SUBMIT</button>}
 			className="custom-file-input rounded-lg border-2 border-gray-300 dark:border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-500 focus:ring-opacity-50"
 			callbackFunction={(file_arr) => {
 

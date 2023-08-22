@@ -3,7 +3,7 @@ import { useRouter } from 'next/navigation';
 import { useEditPostMutation } from '@/redux/slices/apiSlice';
 import { toast } from 'react-toastify';
 
-export default function useEditPost(slug:any) {
+export default function useEditPost() {
   const [editPost, { isLoading }] = useEditPostMutation();
   const router = useRouter();
   const [formData, setFormData] = useState({
@@ -16,24 +16,13 @@ export default function useEditPost(slug:any) {
     post_type: '',
     title: '',
     content: '',
-
+    status:'',
     featured_image: '',
     categories: '',
     tags: '',
-    post_image_1: '',
-    post_image_2: '',
-    post_image_3: '',
-  });
 
-  const getPost = async (slug: any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`);
-    const json = await res.json();
-    const {results} = json;
-    debugger;
-  }
-  useEffect(() => {
-   const p = getPost(slug);
-  }, []);
+  });
+ 
 
   const {
     headline,
@@ -42,16 +31,14 @@ export default function useEditPost(slug:any) {
     excerpt,
     seo_title,
     seo_description,
-
+    status,
     post_type,
     title,
     content,
     featured_image,
     categories,
     tags,
-    post_image_1,
-    post_image_2,
-    post_image_3,
+  
 
   } = formData;
 
@@ -79,11 +66,11 @@ export default function useEditPost(slug:any) {
       featured_image,
       categories,
       tags,
-
+      status
     })
       .unwrap()
       .then(() => {
-        toast.success('Post created successfully');
+        toast.success('Post Updated successfully');
         router.push('/dashboard/posts/');
       })
       .catch(() => {
@@ -105,9 +92,7 @@ export default function useEditPost(slug:any) {
     featured_image,
     categories,
     tags,
-    post_image_1,
-    post_image_2,
-    post_image_3,
+    status,
 
     isLoading,
     onChange,
