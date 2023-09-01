@@ -2,7 +2,7 @@
 
 import Link from 'next/link';
 import cn from 'classnames';
-import Dropdown from '../Dropdown';
+import Dropdown from '@/app/components/Dropdown';
 import { usePathname } from 'next/navigation';
 interface Props {
 	href?: string;
@@ -38,34 +38,27 @@ export default function NavLink({
 		}
 	);
 
-	if(link.dropdownData && link.dropdownData.length > 0) {
-		return (
-			<Dropdown
-				className={className}
-				href={link.href}
-				link={link}
-				label={link.label}
-				onChange={link.onChange}
-				value={link.value}
-
-				required={link.required}
-				placeholder={link.placeholder}
-				dropdownData={link.dropdownData}
-				labelId={link.labelId}
-				{...rest}
-				solid={link.solid}
-				type={link.type}
-				border={link.border}
-				isSelected={isSelected}
-				name={link.name}
-
-			>
-				{link.pretty}
-			</Dropdown>
-		);
+	if(!link) {
+		return <div>ERROR: Issue with link</div>
 	}
+	// if(link && link.dropdownData && link.dropdownData.length > 0) {
 
-	if (!link.href) {
+	// 	const config = link.dropdownData.map((item:any) => {
+	// 		return {
+	// 			key: item.slug,
+	// 			label: item.title,
+	// 			href: `/ecommerce-tutorials/${item.slug}`,
+	// 		};
+	// 	});
+
+	// 	return (
+
+	// 			{link.pretty}
+
+	// 	);
+	// }
+
+	if (link && !link.href) {
 		return (
 			<span className={link.className} role='button'>
 				{link.pretty}
@@ -76,8 +69,8 @@ export default function NavLink({
 	
 
 	return (
-		<Link className={link.className} href={link.href}>
-			{link.pretty}
+		<Link className={link && link.className} href={link && link.href}>
+			{ link && link.pretty}
 		</Link>
 	);
 }

@@ -78,7 +78,18 @@ const Input: React.FC<Props> = ({
       case "search":
         return "Search";
       default:
-        return "";
+        return placeholder
+    }
+  };
+
+  const getAutoComplete = (type: string) => {
+    switch (type) {
+      case "email":
+        return "email";
+      case "password":
+        return "current-password";
+      default:
+        return "on";
     }
   };
 
@@ -93,7 +104,7 @@ const Input: React.FC<Props> = ({
     value,
     required,
     placeholder: placeholder || getPlaceholder(type),
-    autoComplete: "on",
+    autoComplete: getAutoComplete(type),
     className: `pl-10 w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
   };
 
@@ -104,14 +115,13 @@ const Input: React.FC<Props> = ({
         return (
           <Select
             onChange={onChange}
-            data={data}
             value={value}
-            placeholder={placeholder}
-            name={labelId}
-            type={type}
-            required={required}
             label={labelId}
-            labelId={labelId}
+            name={labelId}
+            defaultSelectedKeys={value}
+            required={required}
+            placeholder={placeholder}
+            options={data}
           />
         );
       case "posttype":

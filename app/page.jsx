@@ -1,13 +1,13 @@
 
-import { BasicPage } from "@/components/pages";
+import BasePage from "@/app/components/BasePage"
 import ImageCta from "./ImageCta";
 import FeatureHero from "./FeatureHero";
-import RecentBlogPosts from "./RecentBlogPosts";
+import RecentBlogPosts from "@/app/components/RecentBlogPosts";
 import  FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import { Spacer, LazyLoad } from "@/components/utils/";
-import { Section, Modal, JsonLd } from "@/components/common";
-
-import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
+import {  Modal, JsonLd } from "@/components/common";
+import Section from '@/app/components/Section';
+// import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 // import { useEffect } from "react";
 
 const jsonLd = {
@@ -72,7 +72,7 @@ async function getData() {
 export default async function Page() {
   const recentPosts = await getData();
   return (
-    <BasicPage
+    <BasePage
       bg={null}
       theme="light"
       headline="The Official Shopify"
@@ -118,7 +118,7 @@ export default async function Page() {
           <li>&bull; Amazon Product ASIN</li>
           <li>&bull; Amazon Product URL</li>
           </ul>`}
-          cta={<NameAndEmailForm />}
+          // cta={<NameAndEmailForm />}
         />
       </Section>
       <Spacer size={1} />
@@ -140,6 +140,6 @@ export default async function Page() {
           json={jsonLd}
         />
       
-    </BasicPage>
+    </BasePage>
   );
 }

@@ -1,7 +1,8 @@
 
 'use client';
 import {getLocalStorage, setLocalStorage} from './storageHelper';
-import {Primary} from '@/app/_components/buttons';
+import Button from '@/app/components/buttons/Button';
+
 import gsap from 'gsap';
 
 import {useState, useEffect} from 'react';
@@ -39,8 +40,8 @@ export default function CookieBanner() {
 			<p className="mt-4 text-sm text-gray-600 dark:text-gray-300">We use cookies to ensure that we give you the best experience on our website. <a href="#" className="text-blue-500 hover:underline">Read cookies policies</a>. </p>
 
 			<div className="flex items-center justify-between mt-4 gap-x-4 shrink-0">
-				<Primary  onClick={() => setCookieConsent(false)}>Decline</Primary>
-				<Primary   onClick={() => setCookieConsent(true)}>Allow Cookies</Primary>
+				<Button  onClick={() => setCookieConsent(false)}>Decline</Button>
+				<Button   onClick={() => setCookieConsent(true)}>Allow Cookies</Button>
 			</div>
 		</section>
 	)

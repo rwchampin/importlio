@@ -1,101 +1,79 @@
-import { useState, FormEvent, useEffect } from 'react';
+"use client";
+import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useEditPostMutation } from '@/redux/slices/apiSlice';
+import { useUpdatePostMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
 
-export default function useEditPost() {
-  const [editPost, { isLoading }] = useEditPostMutation();
-  const router = useRouter();
-  const [formData, setFormData] = useState({
-    headline: '',
-    subtitle: '',
-    shadow_text: '',
-    excerpt: '',
-    seo_title: '',
-    seo_description: '',
-    post_type: '',
-    title: '',
-    content: '',
-    status:'',
-    featured_image: '',
-    categories: '',
-    tags: '',
+export default function useEditPost(post: any) {
+	const router = useRouter();
+	const [updatePost, { isLoading }] = useUpdatePostMutation();
 
-  });
- 
+	const [formData, setFormData] = useState(post);
+	const [newChanges, setNewChanges] = useState({} as any);
+	const [isDirty, setIsDirty] = useState(false);
+	const [saveTimeout, setSaveTimeout] = useState<number | null>(null);
 
-  const {
-    headline,
-    subtitle,
-    shadow_text,
-    excerpt,
-    seo_title,
-    seo_description,
-    status,
-    post_type,
-    title,
-    content,
-    featured_image,
-    categories,
-    tags,
-  
+	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
+		const { name, value } = event.target;
 
-  } = formData;
+		setFormData((prevFormData) => ({
+			...prevFormData,
+			[name]: value,
+		}));
 
-  const onChange = (event: any) => {
-    const { name, value } = event.target;
-    setFormData({ ...formData, [name]: value });
-  }
+		// Track new changes
+		setNewChanges((prevChanges: any) => ({
+			...prevChanges,
+			[name]: value,
+		}));
 
+		setIsDirty(true);
 
-  const onSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+		// Clear the existing timeout and set a new one
+		if (saveTimeout) {
+			clearTimeout(saveTimeout);
+		}
+		const newTimeout = window.setTimeout(() => {
+			saveFormData();
+		}, 5000);
+		setSaveTimeout(newTimeout);
+	};
 
+	const saveFormData = () => {
+		if (isDirty) {
+			updatePost({id: post.id, updates:newChanges})
+				.unwrap()
+				.then(() => {
+					toast.success('Post Saved Successfully');
+					setIsDirty(false);
+					setNewChanges({}); // Clear new changes after saving
+				})
+				.catch(() => {
+					toast.error('Failed to save post');
+				});
+		}
+	};
 
+	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
+		event.preventDefault();
+		saveFormData(); // Save the data immediately before submitting the form
 
-    editPost({
-      headline,
-      subtitle,
-      shadow_text,
-      excerpt,
-      seo_title,
-      seo_description,
-      post_type,
-      title,
-      content,
-      featured_image,
-      categories,
-      tags,
-      status
-    })
-      .unwrap()
-      .then(() => {
-        toast.success('Post Updated successfully');
-        router.push('/dashboard/posts/');
-      })
-      .catch(() => {
-        toast.error('Failed to create Post');
-      });
-  };
+		// ... (other form submission logic)
+	};
 
-  return {
-    headline,
-    subtitle,
-    shadow_text,
-    excerpt,
-    seo_title,
-    seo_description,
+	useEffect(() => {
+		// Clear the timeout when the component unmounts
+		return () => {
+			if (saveTimeout) {
+				clearTimeout(saveTimeout);
+			}
+		};
+	}, [saveTimeout]);
 
-    title,
-    content,
-    post_type,
-    featured_image,
-    categories,
-    tags,
-    status,
-
-    isLoading,
-    onChange,
-    onSubmit,
-  };
+	return {
+		formData,
+		isLoading,
+		onChange,
+		onSubmit,
+	};
 }

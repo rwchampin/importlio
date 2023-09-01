@@ -1,18 +1,16 @@
-"use client"
+"use client";
+
 import Image from "next/image";
 import { useState, useEffect } from "react";
 import { useEditPost } from "@/hooks";
 import { Form } from "@/components/forms";
-import PostPreview from "@/app/_components/PostPreview";
+import PostPreview from "@/app/components/PostPreview";
+import { useParams } from "next/navigation";
 
-interface Props {
-  post?: any;
-}
-
-export default function EditPostForm({
-  post,
-}: Props) {
+export default function EditPostForm() {
+  const { slug } = useParams();
   const {
+
     post_type,
     headline,
     title,
@@ -29,9 +27,9 @@ export default function EditPostForm({
     isLoading,
     onChange: hookOnChange,
     onSubmit,
-  } = useEditPost();
+  } = useEditPost(slug);
 
-  const getInitialConfig = (initialPost?: any) => {
+  const getInitialConfig = () => {
     const fields = [
       "status",
       "post_type",
@@ -48,19 +46,18 @@ export default function EditPostForm({
       "seo_description",
     ];
 
-
     return fields.map((field) => ({
       labelText: field.replace("_", " ").charAt(0).toUpperCase() + field.slice(1),
       labelId: field,
       type: field.includes("image") ? "file" : "text",
-      value: initialPost ? initialPost[field] : eval(field),
+      value: post[field],
       onChange: hookOnChange,
       required: field === 'title' || field === 'content' ? true : false,
       placeholder: field.replace("_", " "),
     }));
   };
 
-  const [config, setConfig] = useState(() => getInitialConfig(post));
+  const [config, setConfig] = useState(() => getInitialConfig());
 
   const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -81,7 +78,7 @@ export default function EditPostForm({
 
   useEffect(() => {
     if (post) {
-      setConfig(getInitialConfig(post));
+      setConfig(getInitialConfig());
     }
   }, [post]);
 
@@ -102,7 +99,7 @@ export default function EditPostForm({
     <div className="flex gap-5">
       <div className="flex w-1/2 flex-col gap-y-6 bg-gray-3 rounded-xl p-5">
         <Form
-          btnText={"create Post"}
+          btnText={"Update Post"}
           config={config}
           onSubmit={onSubmit}
           isLoading={isLoading}
@@ -117,8 +114,8 @@ export default function EditPostForm({
         title={title}
         headline={headline}
         subtitle={subtitle}
-        categories={postCategories}
-        tags={postTags}
+        categories={categories}
+        tags={tags}
         shadow_text={shadow_text}
         content={content}
       />

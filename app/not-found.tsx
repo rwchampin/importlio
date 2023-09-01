@@ -1,40 +1,38 @@
 "use client";
-import Link from "next/link";
-import { Section } from "@/components/common";
+import { useRouter } from "next/navigation";
 import { BsArrowLeft } from "react-icons/bs";
-import { Primary } from "@/app/_components/buttons";
-// import { ParticleText } from "@/app/components";
-import { BasicPage } from "@/components/pages";
+import Primary  from "@/app/components/buttons/Button";
+import Back from "@/app/components/buttons/Back";
+import BasePage from "@/app/components/BasePage"
 export default function NotFound() {
-  // const customComponent = (
-  //   <ParticleText
-  //     mobile="Page\nnot\nfound"
-  //     desktop="Page not found"
-  //     colors={["#800000", "#FF0000"]}
-  //   />
-  // );
-
+  const router = useRouter();
+  const Btn = () => (<Primary
+  className="max-w-lg"
+    href="/"
+  variant="solid"
+ >
+  Home
+</Primary>)
   return ( 
-    <BasicPage
+    <BasePage
       title={"Page not found"}
       subtitle="Sorry, we couldn't find the page you're looking for."
+      topLeftPageComponent={<Back />}
       headline="Try going back home"
       shadowText="404"
+      shadowTextPosition="center"
       showButton={false}
-
+      customComponent={ <Btn />}
 		
     >
-      {/* <Section>
+
         <p className="mt-6 text-base leading-7 text-black">
           Sorry, we couldn&apos;t find the page you&apos;re looking for.
         </p>
-        <div className="mt-10 flex items-center justify-center gap-x-6">
-          <Link href="/">Go back home</Link>
-          <Primary href="/" className="text-sm font-semibold text-gray-900">
-            Contact support <BsArrowLeft />
-          </Primary>
-        </div>
-      </Section> */}
-    </BasicPage>
+          
+         
+
+
+    </BasePage>
   );
 }

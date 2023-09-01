@@ -1,17 +1,11 @@
 "use client";
-import {useEffect, useRef} from 'react';
-import {gsap} from 'gsap';
-import {ScrollSmoother} from 'gsap/ScrollSmoother';
 
-
-// import dynamic from 'next/dynamic';
-
-
-// const Debug = dynamic(() => import('@/components/Debug'), {ssr: false});
-
+import { useEffect, useRef } from 'react';
+import gsap from 'gsap';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
 export default function Scroller({children}) {
-  // const {debugStatus} = useDebug();
+
 
   const scrollTrackRef=useRef(null);
   const scrollBarRef=useRef(null);
@@ -77,8 +71,8 @@ window.addEventListener('scroll', () => {
 
 
 <>
-    <div id="smooth-wrapper" className=''>
-    <div id="smooth-content" className='flex flex-col'>
+    <div id="smooth-wrapper" className='flex w-full'>
+    <div id="smooth-content" className='flex flex-col w-full pt-[5rem]'>
 
       {children}
       </div>

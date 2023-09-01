@@ -1,88 +1,6 @@
 import * as F from "@radix-ui/colors";
-// const originalColors = {
-//   gray,
-//   red,
-//   green,
-//   yellow,
-//   blue,
-//   indigo,
-//   purple,
-//   plum,
-//   pink,
-//   violet,
-//   cyan,
-//   teal,
-//   emerald,
-//   lime,
-//   amber,
-//   orange,
-//   brown,
-//   tomato,
-// }
-
-// const originalColorsA = {
-//   blackA,
-//   whiteA,
-//   grayA,
-//   redA,
-//   greenA,
-//   yellowA,
-//   blueA,
-//   indigoA,
-//   purpleA,
-//   plumA,
-//   pinkA,
-//   violetA,
-//   cyanA,
-//   tealA,
-//   emeraldA,
-//   limeA,
-//   amberA,
-//   orangeA,
-//   brownA,
-//   tomatoA,
-// }
-// const originalColorsDark = {
-//   darkGray,
-//   darkRed,
-//   darkGreen,
-//   darkYellow,
-//   darkBlue,
-//   darkIndigo,
-//   darkPurple,
-//   darkPlum,
-//   darkPink,
-//   darkViolet,
-//   darkCyan,
-//   darkTeal,
-//   darkEmerald,
-//   darkLime,
-//   darkAmber,
-//   darkOrange,
-//   darkBrown,
-//   darkTomato,
-// }
-
-// const originalColorsDarkA = {
-//   darkGrayA,
-//   darkRedA,
-//   darkGreenA,
-//   darkYellowA,
-//   darkBlueA,
-//   darkIndigoA,
-//   darkPurpleA,
-//   darkPlumA,
-//   darkPinkA,
-//   darkVioletA,
-//   darkCyanA,
-//   darkTealA,
-//   darkEmeraldA,
-//   darkLimeA,
-//   darkAmberA,
-//   darkOrangeA,
-//   darkBrownA,
-//   darkTomatoA,
-// }
+const {nextui} = require("@nextui-org/react");
+ 
 function transformColorsToObject(inputObject) {
   const transformedObject = {};
 
@@ -125,6 +43,8 @@ module.exports = {
     "./pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./components/**/*.{js,ts,jsx,tsx,mdx}",
     "./app/**/*.{js,ts,jsx,tsx,mdx}",
+    "./node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}",
+
   ],
   theme: {
     extend: {
@@ -136,25 +56,28 @@ module.exports = {
       },
       colors,
       keyframes: {
-        hide: {
-          from: { opacity: 1 },
-          to: { opacity: 0 },
+        slideDownAndFade: {
+          from: { opacity: 0, transform: 'translateY(-2px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
         },
-        slideIn: {
-          from: {
-            transform: "translateX(calc(100% + var(--viewport-padding)))",
-          },
-          to: { transform: "translateX(0)" },
+        slideLeftAndFade: {
+          from: { opacity: 0, transform: 'translateX(2px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
         },
-        swipeOut: {
-          from: { transform: "translateX(var(--radix-toast-swipe-end-x))" },
-          to: { transform: "translateX(calc(100% + var(--viewport-padding)))" },
+        slideUpAndFade: {
+          from: { opacity: 0, transform: 'translateY(2px)' },
+          to: { opacity: 1, transform: 'translateY(0)' },
+        },
+        slideRightAndFade: {
+          from: { opacity: 0, transform: 'translateX(-2px)' },
+          to: { opacity: 1, transform: 'translateX(0)' },
         },
       },
       animation: {
-        hide: "hide 100ms ease-in",
-        slideIn: "slideIn 150ms cubic-bezier(0.16, 1, 0.3, 1)",
-        swipeOut: "swipeOut 100ms ease-out",
+        slideDownAndFade: 'slideDownAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideLeftAndFade: 'slideLeftAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideUpAndFade: 'slideUpAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
+        slideRightAndFade: 'slideRightAndFade 400ms cubic-bezier(0.16, 1, 0.3, 1)',
       },
       backgroundImage: {
         "gradient-radial": "radial-gradient(var(--tw-gradient-stops))",
@@ -211,7 +134,9 @@ module.exports = {
       },
     },
   },
+  darkMode: "class",
   plugins: [
+    nextui(),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
     // require("tailwindcss-radix-colors"),

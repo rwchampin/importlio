@@ -1,5 +1,5 @@
 import { LogoBlack } from '@/components/common/logo'
-import { SocialIcons } from '@/components/common'
+import  SocialIcons from '@/app/SocialIcons';
 import { Spacer } from '@/components/utils'
 
 export default function Footer() {

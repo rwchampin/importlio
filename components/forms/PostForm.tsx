@@ -1,132 +1,94 @@
-import Image from "next/image";
-import { useState, useEffect } from "react";
-import { useCreatePost } from "@/hooks";
-import { Form } from "@/components/forms";
-import PostPreview from "@/app/_components/PostPreview";
+"use client";
+import useEditPost from "@/hooks/useEditPost";
+import Form from "@/components/forms/Form";
+import PostPreview from "@/app/components/PostPreview";
 
 interface Props {
   post?: any;
-  postTypes: any;
-  categories: any;
-  tags: any;
 }
 
-export default function PostForm({
-  post,
-  postTypes,
-  categories,
-  tags,
-}: Props) {
-  const {
-    post_type,
-    headline,
-    title,
-    subtitle,
-    status,
-    shadow_text,
-    excerpt,
-    content,
-    featured_image,
-    categories: postCategories,
-    tags: postTags,
-    seo_title,
-    seo_description,
-    isLoading,
-    onChange: hookOnChange,
-    onSubmit,
-  } = useCreatePost();
+export default function PostForm({ post }: Props) {
+  const { formData, isLoading, onChange, onSubmit } = useEditPost(post);
 
-  const getInitialConfig = (initialPost?: any) => {
-    const fields = [
-      "status",
-      "post_type",
-      "headline",
-      "title",
-      "featured_image",
-      "subtitle",
-      "shadow_text",
-      "excerpt",
-      "tags",
-      "categories",
-      "content",
-      "seo_title",
-      "seo_description",
-    ];
-
-
-    return fields.map((field) => ({
-      labelText: field.replace("_", " ").charAt(0).toUpperCase() + field.slice(1),
-      labelId: field,
-      type: field.includes("image") ? "file" : "text",
-      value: initialPost ? initialPost[field] : eval(field),
-      onChange: hookOnChange,
-      required: field === 'title' || field === 'content' ? true : false,
-      placeholder: field.replace("_", " "),
-    }));
-  };
-
-  const [config, setConfig] = useState(() => getInitialConfig(post));
-
-  const handleOnChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-
-    // Update the config state
-    setConfig((prevConfig) =>
-      prevConfig.map((fieldConfig) => {
-        if (fieldConfig.labelId === name) {
-          return { ...fieldConfig, value };
-        }
-        return fieldConfig;
-      })
-    );
-
-    // Call the onChange handler from the hook
-    hookOnChange(e);
-  };
-
-  useEffect(() => {
-    if (post) {
-      setConfig(getInitialConfig(post));
+  const config = [
+    {
+      labelText: "Post Status",
+      labelId: "post_status",
+      type: "select",
+      value: formData.post_status,
+      onChange: onChange,
+      required: true,
+      placeholder: "Post Status",
+      defaultSelectedKeys: [formData.post_status],
+      data: [
+        { value: "draft", label: "Draft" },
+        { value: "published", label: "Published" },
+      ]
+    },
+    {
+      labelText: "Headline",
+      labelId: "headline",
+      type: "text",
+      value: formData.headline,
+      onChange: onChange,
+      required: true,
+      placeholder: "Headline"
+    },
+    {
+      labelText: "Subtitle",
+      labelId: "subtitle",
+      type: "text",
+      value: formData.subtitle,
+      onChange: onChange,
+      required: true,
+      placeholder: "Subtitle"
+    }, {
+      labelText: "Shadow Text",
+      labelId: "shadow_text",
+      type: "text",
+      value: formData.shadow_text,
+      onChange: onChange,
+      required: true,
+      placeholder: "Shadow Text"
+    }, {
+      labelText: "Content",
+      labelId: "content",
+      type: "richtext",
+      value: formData.content,
+      onChange: onChange,
+      required: true,
+      placeholder: "Content"
+    }, {
+      labelText: "SEO Title",
+      labelId: "seo_title",
+      type: "text",
+      value: formData.seo_title,
+      onChange: onChange,
+      required: true,
+      placeholder: "SEO Title"
+    }, {
+      labelText: "SEO Description",
+      labelId: "seo_description",
+      type: "textarea",
+      value: formData.seo_description,
+      onChange: onChange,
+      required: true,
+      placeholder: "SEO Description"
     }
-  }, [post]);
-
-  useEffect(() => {
-    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
-      e.preventDefault();
-      e.returnValue = "are you sure you want to leave?";
-    };
-
-    window.addEventListener("beforeunload", handleBeforeUnload);
-
-    return () => {
-      window.removeEventListener("beforeunload", handleBeforeUnload);
-    };
-  }, []);
+  ]
 
   return (
-    <div className="flex gap-5">
-      <div className="flex w-1/2 flex-col gap-y-6 bg-gray-3 rounded-xl p-5">
-        <Form
-          btnText={"create Post"}
-          config={config}
-          onSubmit={onSubmit}
-          isLoading={isLoading}
-          onChange={handleOnChange}
-        />
-      </div>
-      <PostPreview
-        seo_title={seo_title}
-        seo_description={seo_description}
-        excerpt={excerpt}
-        featured_image={featured_image}
-        title={title}
-        headline={headline}
-        subtitle={subtitle}
-        categories={postCategories}
-        tags={postTags}
-        shadow_text={shadow_text}
-        content={content}
-      />
+   <div className="flex gap-3">
+     <Form
+      config={config}
+      isLoading={isLoading}
+      btnText="Update Post"
+      onSubmit={onSubmit}
+      onChange={onChange}
+    />
+    <PostPreview
+      {...formData}
+     />
     </div>
   );
 }

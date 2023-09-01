@@ -1,17 +1,22 @@
 import { configureStore } from '@reduxjs/toolkit';
-import { apiSlice } from './slices/apiSlice';
-import uiReducer  from './slices/ui';
-import authReducer from './slices/authSlice';
+
+import { api } from './services/api';
+
+import authReducer from './features/authSlice';
+import coreSlice from './features/core/coreSlice';
+
+import modalSlice from './features/modal/modalSlice';
+
 
 export const store = configureStore({
 	reducer: {
-		[apiSlice.reducerPath]: apiSlice.reducer,
+		[api.reducerPath]: api.reducer,
 		auth: authReducer,
-		ui: uiReducer,
-
+		core: coreSlice,
+		modal: modalSlice,
 	},
 	middleware: getDefaultMiddleware =>
-		getDefaultMiddleware().concat(apiSlice.middleware),
+		getDefaultMiddleware().concat(api.middleware),
 	devTools: process.env.NODE_ENV !== 'production',
 });
 

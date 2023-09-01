@@ -1,6 +1,6 @@
 "use client";
 import React, { useEffect, useState, useRef } from 'react';
-import { getTags, getCategories, getPostTypes } from '@/lib/functions';
+import { getTags, getCategories, getPostTypes } from '@/lib/api';
 import { BsCheckCircle } from 'react-icons/bs';
 import gsap from 'gsap';
 import Badge from '@/components/common/Badge';

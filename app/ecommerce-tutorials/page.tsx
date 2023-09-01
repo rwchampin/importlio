@@ -1,8 +1,10 @@
 
-import { getPosts } from "@/lib/functions";
-import { BasicPage } from "@/components/pages";
-import { Section } from "@/components/common";
-import { FullImageCard, Sidebar } from "@/components/blog";
+import { getPosts } from "@/lib/api";
+
+import BasePage from '@/app/components/BasePage';
+
+import Section from "@/app/components/Section";
+import { FullImageCard } from "@/components/blog";
 
 
 
@@ -44,7 +46,7 @@ export default async function Page() {
 
   return (
     <>
-      <BasicPage
+      <BasePage
         title="Ecommerce Dropshipping Tutorials"
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
@@ -56,7 +58,7 @@ export default async function Page() {
       >
         <Section className="p-5 flex flex-col gap-5 lg:flex-row">
           <div className="flex flex-col md:flex-row flex-wrap gap-5">
-            {posts.map((post:any, idx:number) => {
+            {posts.results.map((post:any, idx:number) => {
               return (
 
 
@@ -77,7 +79,7 @@ export default async function Page() {
         <JsonLd
           json={json}
           />
-      </BasicPage>
+      </BasePage>
     </>
   );
 }

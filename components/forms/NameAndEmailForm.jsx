@@ -1,17 +1,17 @@
 'use client';
-import  useFullRegistration from '@/hooks/useFullRegistration';
+// import  useFullRegistration from '@/hooks/useFullRegistration';
 import { Form } from '@/components/forms';
 
 
 export default function EmailForm() {
-	const { 
-		email,
-        first_name,
-        last_name,
-		isLoading,
-		onChange,
-		onSubmit
-	 } = useFullRegistration();
+	// const { 
+	// 	email,
+    //     first_name,
+    //     last_name,
+	// 	isLoading,
+	// 	onChange,
+	// 	onSubmit
+	//  } = useFullRegistration();
 
 	const config = [
         {
@@ -19,7 +19,7 @@ export default function EmailForm() {
 			labelText: 'First Name',
 			labelId: 'first_name',
 			type: 'text',
-			value: first_name,
+			// value: first_name,
 			required: true,
 			placeholder: 'First Name',
 		
@@ -29,7 +29,7 @@ export default function EmailForm() {
 			labelText: 'Last Name',
 			labelId: 'last_name',
 			type: 'text',
-			value: last_name,
+			// value: last_name,
 			required: true,
 			placeholder: 'Last Name',
 		
@@ -39,7 +39,7 @@ export default function EmailForm() {
 			labelText: 'Email address',
 			labelId: 'email',
 			type: 'email',
-			value: email,
+			// value: email,
 			required: true,
 			placeholder: 'Email address',
 		
@@ -50,11 +50,11 @@ export default function EmailForm() {
    
 return <Form
 			config={config}
-			isLoading={isLoading}
+			// isLoading={isLoading}
 			btnText='Preregister'
-			onChange={onChange}
-			onSubmit={onSubmit}
-			value={email}
+			// onChange={onChange}
+			// onSubmit={onSubmit}
+			// value={email}
 			postFormText="Early access to the world's first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
 		/>
 

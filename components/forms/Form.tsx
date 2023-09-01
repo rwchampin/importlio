@@ -1,6 +1,7 @@
 import { ChangeEvent, FormEvent } from 'react';
 import { Input } from '@/components/forms';
-import { Primary,Spinner } from '@/app/_components';
+import Button from '@/app/components/buttons/Button';
+import Spinner from '@/app/components/Spinner';
 
 interface Config {
 	labelText: string;
@@ -8,6 +9,7 @@ interface Config {
 	type: string;
 	value: string;
 	data?: any;
+	defaultSelectedKeys?: any;
 	placeholder?: string;
 	link?: {
 		linkText: string;
@@ -59,6 +61,7 @@ export default function Form({
           type={input.type}
           onChange={onChange}
           value={input.value}
+		  defaultSelectedKeys={input.defaultSelectedKeys}
 		  data={input.data}
           link={input.link}
           required={input.required}
@@ -70,9 +73,9 @@ export default function Form({
 		)
 		})}
 
-      <Primary className="w-full max-w-full" variant="solid" type="submit">
+      <Button className="w-full max-w-full" variant="solid" type="submit">
         {isLoading ? <Spinner /> : btnText}
-      </Primary>
+      </Button>
 
       <div className="text-xs mt-2">{postFormText}</div>
     </form>

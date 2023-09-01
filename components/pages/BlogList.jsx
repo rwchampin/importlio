@@ -1,5 +1,5 @@
 import { Hero } from "../common";
-import { EmailForm } from "../forms";
+// import { EmailForm } from "../forms";
 import Image from 'next/image';
 export default function BlogList({ posts }) {
 
@@ -10,7 +10,8 @@ export default function BlogList({ posts }) {
         title="Ecommerce Dropshipping Tutorials"
         subtitle="Learn about the latest in Ecommerce & Dropshipping"
         eyebrow="Amazon & Shopify"
-        cta={<EmailForm />}
+        // cta={<EmailForm />}
+        cta={null}
         />
         <section className="bg-white dark:bg-gray-300 rounded-lg">
     <div className="container px-6 py-10 mx-auto">

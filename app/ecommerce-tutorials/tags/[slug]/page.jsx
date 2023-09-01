@@ -1,7 +1,7 @@
 "use client"
 
 import { TagCloud } from "@/components/common";
-import { unslugify } from "@/utils/string";
+import { unslugify } from "@/old/utils/string";
 import { FullImageCard, Sidebar } from "@/components/blog";
 import { BasicPage } from "@/components/pages";
 export default async function Page({ params }) {

@@ -1,10 +1,10 @@
 import Link from "next/link";
 
-import useTheme from "@/hooks/useTheme";
+// import useTheme from "@/hooks/useTheme";
 import { TagCloud } from "@/components/common";
 import LazyLoad from "@/components/utils/LazyLoad";
 export default function FullImageCard({ post }) {
-  const { getAlt } = useTheme()
+  // const { getAlt } = useTheme()
   const { title, slug, featured_image, excerpt,shadow_text,subtitle, headline, published, tags, categories, post_type } = post;
 
   return (
@@ -15,7 +15,7 @@ export default function FullImageCard({ post }) {
         <Link href={`/ecommerce-tutorials/${slug}`}>
          <LazyLoad
           type="img"
-          alt={getAlt()}
+          // alt={getAlt()}
           src={featured_image}
           data-src={'https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/img/placeholder.jpg'}
           className="object-cover absolute top-0 bottom-0 inset-0 h-full w-full   m-0 p-0"

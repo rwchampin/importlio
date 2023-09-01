@@ -108,7 +108,9 @@
 *:focus {
   -webkit-tap-highlight-color: transparent !important;
 }
-
+body {
+  scrollbar-width: none;
+}
  
  /* p, div, section,main,nav,ul,li,button, input {
   font-size: calc(15px + 0.390625vw);
@@ -139,11 +141,8 @@ body {
   /* transform: translateY(100px); */
   will-change: transform, opacity;
 }
-
-#smooth-wrapper, #smooth-content {
-  min-height: 100vh;
-  width:100vw;
-}
+ 
+ 
 #smooth-content > div:first-child:not(header) {
   flex: auto;
   display: flex;
@@ -157,10 +156,7 @@ body {
  header {
   z-index: 999999999 !important;
  }
-nav {
-
-  position: fixed !important;
-}
+ 
 nav .btn {
   min-width:80px;
   text-align: center;
@@ -181,10 +177,7 @@ footer {
   color: var(--color-primary);
 }
  
-nav {
-  z-index: 100 !important;
-  position: fixed !important;
-}
+ 
 
 .animated {
   -webkit-animation-duration: 1s;
@@ -250,19 +243,14 @@ input[type="file"] {
 
   */
  
-input:focus {
-  background: #323232 !important;
-  color: white !important;
-}
-
-path.focus {
-  stroke: white !important;
-}
-
+ 
+ h1{
+  font-family: "Montserrat";
+ }
 
 .RETICOOL {
   position:fixed;
-  z-index: 9999;
+  z-index: 9999999999;
   height: 40px;
   width: 40px;
 }
@@ -290,27 +278,8 @@ path.focus {
 .home .hero {
     background: unset !important;
 }
-.cubic-elastic {
-  transition: all 250ms cubic-bezier(0.25, 0.25, 0.5, 1.9);
-}
-.shadow-text{
-    position: fixed;
-	top: 0px;
-    /* transform: translate3d(0%,0,0); */
-    /* transform: translate(-10%,0); */
-	width: auto;
-	height: auto;
-	text-align: left;
-	
-    writing-mode: tb;
-	font-size: 30vh;
-	/* line-height: 100%; */
-    @apply font-montserrat font-black bg-gradient-to-r from-transparent from-20% to-gray-300 bg-clip-text text-transparent;
-  word-break: break-word;
-
-	white-space: nowrap;
-	z-index: 1;
-}
+ 
+ 
 .shadow-text.small {
   font-size: 20vh;
   position: absolute !important;
@@ -420,10 +389,9 @@ table, tbody {
   flex: 1;
 }
 h1 {
-  font-family: "Montserrat-Black" !important;
+  font-family: var(--font-montserrat) !important;
   word-break: break-word;
   white-space: preline;
-  font-wrap: break-word;
 }
 .modal {
   height: 100vh;

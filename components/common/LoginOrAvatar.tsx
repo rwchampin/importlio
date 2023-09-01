@@ -1,72 +1,66 @@
 "use client";
-import { Spinner } from "@/app/_components";
-import {useAppSelector, useAppDispatch} from "@/redux/hooks";
+import Spinner from "@/app/components/Spinner";
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
-const AvatarDropdown: any = dynamic(() => import("@/components/common/Avatar"));
-const Primary: any = dynamic(() => import("@/app/_components/buttons/Primary"));
 
 
+import { logout } from "@/redux/features/authSlice";
+
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
+
+const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
+
+
+import { useEffect,useState } from "react";
+
+interface User {
+  name: string;
+  email: string;
+}
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 export default function LoginOrAvatar() {
-  const {isAuthenticated, isLoading, user} = useAppSelector((state) => state);
+  const [user, setUser] = useState<any>();
   const pathname = usePathname();
+  const dispatch = useAppDispatch();
 
+	const { data:profile, isLoading, isFetching } = useRetrieveUserQuery();
+  const { isAuthenticated } = useAppSelector((state: any) => state.auth);
 
-  
-  const authLinks = [
-    {
-      name: "Dashboard",
-      href: "/dashboard",
-    },
-    {
-      name: "Logout",
-      // onClick: handleLogout,
-    },
-  ];
+  useEffect(() => {
+    if (isAuthenticated && profile) {
+      debugger
+      setUser(profile);
+    }
+  }, [isAuthenticated, profile]);
 
-  const guestLinks = [
-    {
-      name: "Login",
-      href: "/auth/login",
-    },
-    {
-      name: "Register",
-      href: "/auth/register",
-    },
-  ];
+  const handleLogout = () => {
+    dispatch(logout());
+  };
 
-  if(isLoading){
-    return <>TITS<Spinner />TITS</>
+  if(isLoading || isFetching) {
+  	return (
+  			<Spinner lg />
+  	);
   }
- 
-  if(user){
-    return (
-         <AvatarDropdown 
-          user={user}
-         />
-    )
-  }
- 
 
+  if (user) {
+    return <Avatar user={user} handleLogout={handleLogout} />;
+  }
 
   return (
     <>
-
       {pathname !== "/auth/login" && (
-        <Primary 
-        href="/auth/login"
-       variant="solid">
+        <a href="/auth/login" variant="solid">
           Login
-        </Primary>
+        </a>
       )}
       {pathname !== "/auth/register" && (
-        <Primary href="/auth/register" target="_blank" variant="outline">
+        <a href="/auth/register" target="_blank" variant="bordered">
           Register
-        </Primary>
+        </a>
       )}
-     
     </>
   );
 }

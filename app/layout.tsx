@@ -1,35 +1,32 @@
-
 import "@/assets/styles/cursor.css";
 import "@/assets/styles/typography.css";
 
 import "@/assets/styles/globals.css";
 
 import CookieBanner from "@/components/utils/CookieBanner";
-import { Montserrat } from "next/font/google";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import { GA, Scroller } from "@/components/utils/";
-import CustomProvider from "@/redux/provider";
+import AppProvider from "@/components/utils/AppProvider";
 import { Setup } from "@/components/utils";
 import { Header, Footer, Cursor } from "@/components/common";
 import NextTopLoader from "nextjs-toploader";
-import { getRecentPosts } from "@/lib/functions";
+import { getRecentPosts } from "@/lib/api";
 
 
-const montserrat = Montserrat({
-  weight: [ '500', '900'],
-  subsets: ["latin"],
+const montserrat = localFont({
+  src: "../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
   variable: "--font-montserrat",
   preload: true,
 });
 
 const apercu = localFont({
   src: [
-    // {
-    //   path: "../assets/fonts/apercu-bold-pro.woff2",
-    //   weight: "500",
-    //   style: "normal",
-    // },
+    {
+      path: "../assets/fonts/apercu-bold-pro.woff2",
+      weight: "500",
+      style: "normal",
+    },
     {
       path: "../assets/fonts/apercu-bold-pro.woff2",
       weight: "800",
@@ -47,48 +44,78 @@ export const metadata: Metadata = {
     "Bulk import Amazon Dropshipping Products into Shopify E-Commerce Stores. Source and Sell Profitable Dropshipping Products from Amazon",
   applicationName: "Importlio",
   referrer: "origin-when-cross-origin",
-  keywords: ["Amazon dropshipping", "Product importer", "Shopify store integration", "Amazon affiliates", "Amazon associates", "Dropshipping automation", "E-commerce management", "Product synchronization", "CSV import", "Amazon URL import", "Affiliate marketing", "Shopify app", "Inventory management", "Product catalog", "Automated updates", "Affiliate commissions", "Shopifystore integration", "E-commerce growth", "Affiliate sales", "Streamlined importing", "Multi-channel selling", "Product syncing", "Inventory tracking", "Sales optimization", "Affiliate partnerships", "E-commerce tools", "Affiliate income", "Order fulfillment", "Profit margins", "Product sourcing"],
+  keywords: [
+    "Amazon dropshipping",
+    "Product importer",
+    "Shopify store integration",
+    "Amazon affiliates",
+    "Amazon associates",
+    "Dropshipping automation",
+    "E-commerce management",
+    "Product synchronization",
+    "CSV import",
+    "Amazon URL import",
+    "Affiliate marketing",
+    "Shopify app",
+    "Inventory management",
+    "Product catalog",
+    "Automated updates",
+    "Affiliate commissions",
+    "Shopifystore integration",
+    "E-commerce growth",
+    "Affiliate sales",
+    "Streamlined importing",
+    "Multi-channel selling",
+    "Product syncing",
+    "Inventory tracking",
+    "Sales optimization",
+    "Affiliate partnerships",
+    "E-commerce tools",
+    "Affiliate income",
+    "Order fulfillment",
+    "Profit margins",
+    "Product sourcing",
+  ],
   colorScheme: "dark",
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://www.importlio.com'),
+  metadataBase: new URL("https://www.importlio.com"),
   alternates: {
-    canonical: '/',
+    canonical: "/",
     languages: {
-      'en-US': '/en-US',
+      "en-US": "/en-US",
     },
   },
   openGraph: {
-    images: '@/assets/img/jpg/og-image.jpg',
+    images: "@/assets/img/jpg/og-image.jpg",
   },
 };
-
- 
- 
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
   const posts = await getRecentPosts();
 
   return (
-   
-      <html lang="en" className={`${apercu.variable} ${montserrat.variable}`} suppressHydrationWarning>
-        <head>
-          <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
-        </head>
+    <html
+      lang="en"
+      className={`${apercu.variable} ${montserrat.variable}`}
+      suppressHydrationWarning
+    >
+      <head>
+        <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
+      </head>
 
-        <body suppressHydrationWarning> <Scroller>
-          <CustomProvider>
-            
-           
+      <body suppressHydrationWarning>
+        <AppProvider>
+          <Scroller>
             <Header posts={posts} />
-                {children}
-               
-               
-         
-         
+            {children}
+            <Setup />
+
+            <Footer />
+          </Scroller>
           <Cursor />
           <CookieBanner />
           <NextTopLoader
@@ -96,14 +123,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             height={4}
             // showSpinner={true}
           />
-          <Setup />
-          </CustomProvider>
-          <Footer />
-          </Scroller>
-        
-        </body>
-      </html>
-    
+        </AppProvider>
+      </body>
+    </html>
   );
 };
 

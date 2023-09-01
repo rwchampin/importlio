@@ -1,0 +1,155 @@
+
+import { ChangeEvent } from 'react'
+
+export const badgeTypes = {
+    CATEGORY: 'category',
+    TAG: 'tag',
+    POST_TYPE: 'post_type',
+}
+
+export interface InputProps {
+    name: string
+    label: string
+    type: string
+    placeholder?: string
+    value?: string
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    required?: boolean
+    error?: string
+    disabled?: boolean
+    className?: string
+    autoComplete?: string
+    autoFocus?: boolean
+    autoCorrect?: string
+}
+
+export interface ImageProps {
+    src: string;
+    alt: string;
+}
+
+
+export interface PopOverProps {
+    children: React.ReactNode;
+    className?: string;
+    content: string;
+    placement: string;
+    isHovered: boolean;
+}
+
+
+export interface BasePageProps {
+    bg?: string | null | undefined;
+    title: string | React.ReactNode;
+    subtitle: string | React.ReactNode;
+    belowSubtitle?: string | null | undefined;
+    headline: string | React.ReactNode;
+    shadowText: string | React.ReactNode;
+    showButton?: boolean | null | undefined;
+    customComponent?: React.ReactNode | null | undefined;
+    children: React.ReactNode | null | undefined;
+    topLeftPageComponent?: React.ReactNode | null | undefined;
+    topRightPageComponent?: React.ReactNode | null | undefined;
+    shadowTextPosition?: "center" | "top";
+} 
+
+export interface ShadowTextProps {
+    children: React.ReactNode | string;
+    size?: string;
+    position?: string;
+}
+
+
+interface Tag {
+    id: string
+    name: string
+    slug: string
+}
+
+export interface Categories {
+    id: string
+    name: string
+    slug: string
+}
+
+export interface PostType {
+    id: string
+    name: string
+    slug: string
+}
+export interface Post {
+  id: string
+    title: string
+    content: string
+    published: string
+    updated: string
+    headline: string
+    slug: string
+    featured_image: string
+    subtitle: string
+    shadow_text: string
+    tags: Tag[]
+    categories: Categories[]
+    post_type: PostType
+    seo_title: string
+    seo_description: string
+    seo_keywords: string
+    seo_image: string
+    likes: number
+    dislikes: number
+    readtime: number
+}
+
+
+export interface TooltipProps {
+    children: React.ReactNode;
+    showArrow?: boolean;
+    content: React.ReactNode | string;
+    placement?: "top" | "bottom" | "left" | "right";
+}
+
+export interface User {
+    first_name: string;
+    last_name: string;
+    email: string;
+    avatar?: string;
+    id: string;
+    address?: string;
+    city?: string;
+    state?: string;
+    is_admin?: boolean;
+    is_staff?: boolean;
+    is_active?: boolean;
+    is_superuser?: boolean;
+}
+
+export interface AvatarProps {
+    src?: string;
+    user: User
+}
+
+export interface ButtonProps {
+    children: React.ReactNode | string;
+    href?: string;
+    className?: string;
+    variant?: 'solid' | 'bordered' | 'light' | 'flat' | 'faded' | 'shadow' | 'ghost';
+    size?: 'sm' | 'md' | 'lg';
+    color?: 'primary' | 'secondary' | 'success' | 'danger' | 'warning';
+    radius?: 'sm' | 'md' | 'lg' | 'none' | 'full';
+    spinner?: boolean;
+    startContent?: React.ReactNode;
+    endContent?: React.ReactNode;
+    spinnerPlacement?: 'start' | 'end';
+    isIconOnly?: boolean;
+    isDisabled?: boolean;
+    isLoading?: boolean;
+    onPress?: () => void;
+    onPressStart?: () => void;
+    onPressEnd?: () => void;
+    onPressChange?: () => void;
+    onPressUp?: () => void;
+    onKeyDown?: () => void;
+    onKeyUp?: () => void;
+    onClick?: () => void;
+    fullWidth?: boolean;
+}

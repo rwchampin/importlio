@@ -1,5 +1,5 @@
 import cn from 'classnames';
-import { Primary } from '@/app/_components/buttons';
+import Button from '@/app/components/buttons/Button';
 interface Props {
 	provider: 'google' | 'facebook';
 	children: React.ReactNode;
@@ -16,8 +16,8 @@ export default function SocialButton({ provider, children, ...rest }: Props) {
   );
 
 	return (
-		<Primary className={className} {...rest}>
+		<Button className={className} {...rest}>
 			<span className='flex justify-start items-center'>{children}</span>
-		</Primary>
+		</Button>
 	);
 }

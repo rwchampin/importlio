@@ -1,4 +1,4 @@
-import { Spinner } from '@/app/_components';
+import { Spinner } from '@/app/components';
 
 interface Config {
 	label: string;

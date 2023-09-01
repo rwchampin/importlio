@@ -1,6 +1,6 @@
 
 
-import { EmailForm } from '../forms/'
+// import { EmailForm } from '../forms'
 export default function FadingBackgroundCta() {
   
     return (
@@ -16,7 +16,7 @@ export default function FadingBackgroundCta() {
         </div>
       <p className="mx-auto mt-4 max-w-xl text-xl text-white">Preregister today to get a free trial of our membership program. We&apos;ll send you a discount code when we launch our program.</p>
      <div className='mt-4 max-w-lg mx-auto w-full group group-text-white' style={{color: 'white !important'}}>
-        <EmailForm className="text-white text-sm"  />
+        {/* <EmailForm className="text-white text-sm"  /> */}
      </div>
     </div>
   </section>
