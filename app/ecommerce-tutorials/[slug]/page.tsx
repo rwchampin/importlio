@@ -1,33 +1,10 @@
 "use client";
-// import Link from "next/link";
-import dynamic from "next/dynamic";
-import {   TagCloud } from "@/components/common";
-import { BasicPage } from "@/components/pages";
-import { Sidebar } from "@/components/blog";
- 
-import JsonLd from "@/app/components/JsonLd";
-
-// gsap.registerPlugin(ScrollTrigger)
-
-const TagCategoryListPage:any = dynamic(() => import("@/app/components/TagCategoryListPage"));
-
-export default function Page({ params }: any) {
-  const { slug }:any = params;
-
-  
-  if(slug === "tags" || slug === "categories") {
-    return <TagCategoryListPage type={slug} />
-  }
+import TagCloud from "@/app/components/TagCloud";
+import BasePage from "@/app/components/BasePage";
 
 
-  // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${slug}`, {
-  //   method: "GET",
-  //   headers: {
-  //     "Content-Type": "application/json",
-  //   },
-  // });
-  // const post = await res.json();
 
+export default function Page() {
   
   // const json = {
   //   "@context": "http://schema.org",
@@ -65,7 +42,6 @@ export default function Page({ params }: any) {
   //   }
   // }
 
-  
   // gsap.to(".fi", {
   // 	scrollTrigger: {
   // 		trigger: ".fi",
@@ -113,33 +89,29 @@ export default function Page({ params }: any) {
 
   // })
 
-    return <div >tite</div>
+  return (
+    <BasePage
+      title={post.title}
+      subtitle={post.title}
+      headline={post.published + " | " + post.readtime}
+      shadowText={post.title}
+      bg={post.featured_image}
+    >
+      <div className="flex p-5">
+        <TagCloud data={post.tags} type="tags" />
 
-//   return (
-//     <BasicPage
-//       title={post.title}
-//       subtitle={post.title}
-//       headline={post.published + " | " + post.readtime}
-//       shadowText={post.title}
-//       bg={post.featured_image}
-//     >
+        <TagCloud data={post.categories} type="categories" />
+      </div>
 
+      <div className="flex flex-col md:flex-row gap-5 w-full p-5">
+        <article
+          className="flex-auto"
+          dangerouslySetInnerHTML={{ __html: post.content }}
+        />
+        <aside className="w-full lg:w-1/4">{/* <Sidebar /> */}</aside>
+      </div>
 
-//       <div className="flex p-5">
-//       <TagCloud data={post.tags} type="tags" />
-
-// <TagCloud data={post.categories} type="categories" /> 
-//       </div>
-
-//       <div className="flex flex-col md:flex-row gap-5 w-full p-5">
-
-//         <article className="flex-auto" dangerouslySetInnerHTML={{ __html: post.content }} />
-//         <aside className="w-full lg:w-1/4">
-//           <Sidebar />
-//         </aside>
-//       </div>
-
-//       <JsonLd json={json} />
-//     </BasicPage>
-//   );
+      <JsonLd json={json} />
+    </BasePage>
+  );
 }

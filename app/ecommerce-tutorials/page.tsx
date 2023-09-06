@@ -1,15 +1,15 @@
-
+"use client"
 import { getPosts } from "@/lib/api";
-
+import { unSlugify } from "@/lib/functions";
+import { useSearchParams } from 'next/navigation'
 import BasePage from '@/app/components/BasePage';
 
 import Section from "@/app/components/Section";
 import Card from '@/app/components/Card';
 
 
-
 import JsonLd from "@/app/components/JsonLd";
-// import { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 interface Post {
   title: string;
   slug: string;
@@ -38,31 +38,63 @@ const json = {
     "url": "https://www.importlio.com"
   }
 }
-export default async function Page() {
- const posts = await getPosts();
 
+const getPostsByQueryParams = async (type:string, name:string) => {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${type}/${name}`, {
+    method: 'GET',
+    headers: {
+      'Content-Type': 'application/json'
+    }
+  })
+  const data = await res.json()
+  const r = data.results;
+  return r;
+}
+const getAllPosts = async () => {
+  const res = await getPosts();
+  const posts = res.results;
+  return posts;
+}
+export default function Page() {
+  const [posts, setPosts] = useState([])
+  const searchParams = useSearchParams()
+  const type = searchParams.get('type')
+  const name = searchParams.get('name')
   
+  useEffect(() => {
+    const getData = async () => {
+      let data;
+      if (type && name) {
+        data = await getPostsByQueryParams(type, name)
+      } else {
+        data = await getAllPosts()
+      }
+      return data;
+    }
+
+    getData().then((data:any) => {
+      setPosts(data)
+    })
+  }, [type, name])
+
 
 
   return (
     <>
       <BasePage
-        title="Ecommerce Dropshipping Tutorials"
+        title={`Ecommerce Dropshipping Tutorials${name && type ? ` - ${unSlugify(name)}` : ''}`}
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
         shadowText={"Amazon Dropshipping Tutorials"}
       >
         <Section className="p-5 flex flex-col gap-5 lg:flex-row">
           <div className="flex flex-col md:flex-row flex-wrap gap-5">
-            {posts.results.map((post:any, idx:number) => {
+            {posts.map((post:any, idx:number) => {
+              debugger
               return (
 
-
-                  <div 
-                  key={idx}
-                  className="overflow-hidden rounded-lg w-full flex-1 basis-full md:basis-[calc(50%-1rem)] xl:basis-[calc(33.33%-1rem)] 2xl:basis-[calc(25%-1rem)]">
                      <Card key={idx} post={post} />
-                  </div>
+
 
 
               );

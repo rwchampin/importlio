@@ -7,14 +7,15 @@ export default function Badge({
     children,
     startContent,
     endContent,
-    variant = "filled",
-    color = "success",
-    size = "medium",
+    variant = "faded",
+    color = "warning",
+    size = "small",
     radius = "medium",
     avatar = false,
     isDisabled = false,
     classNames, 
     href,
+    type
 }) {
 
     const el = (
@@ -26,7 +27,7 @@ export default function Badge({
         radius={radius}
         avatar={avatar}
         isDisabled={isDisabled}
-        classNames={classNames}
+        className={`text-xxs whitespace-nowrap overflow-x-scroll ${classNames}`}
         endContent={endContent}
 
       >
@@ -37,7 +38,7 @@ export default function Badge({
     if (href) {
         return (
             <Link
-                href={href}
+                href={`/ecommerce-tutorials/?type=${type}&name=${href}`}
                 >
                     {el}
                 </Link>

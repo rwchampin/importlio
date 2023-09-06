@@ -1,15 +1,17 @@
 import Badge from '@/app/components/Badge'
-export default function TagCloud({data, type }) {
+import ScrollShadow from './ScrollShadow'
+export default function TagCloud({ data, type }) {
 
 	return (
-
-		<div className='flex flex-wrap gap-1'>
+		
+<ScrollShadow hideScrollBar orientation="horiontal" className="flex gap-1 bg-red-500 w-full">
 			{data.map((obj, i) => (
-				<Badge key={i} href={obj.slug}>
+				<Badge key={i} href={obj.slug} type={type}>
 					{obj.name}
 				</Badge>
 			))}
-		</div>
+
+		</ScrollShadow>
 
 	)
 }
