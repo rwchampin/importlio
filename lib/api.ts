@@ -32,7 +32,7 @@ export const getPosts = async () => {
      *
      * @see https://nextjs.org/docs/app/building-your-application/data-fetching/caching#graphql-and-cache
      */ 
-        export const getRecentPosts = cache(async () => {
+        export const getRecentPosts = async () => {
             try {
               const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`, {
                 method: 'GET',
@@ -55,7 +55,7 @@ export const getPosts = async () => {
             } catch (error) {
               console.error(error)
             }
-          })
+          }
 
 
     /**
@@ -164,9 +164,34 @@ export const getPosts = async () => {
       }
     })
 
-    export const createNewPost = cache(async () => {
+    export const getPostStatuses = cache(async () => {
       try {
-        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/create/`, {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/post-status/list`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+    
+        if (!response.ok) {
+          throw new Error(response.statusText)
+        }
+    
+        const postStatus = await response.json()
+        if (postStatus === null) {
+          throw new Error('Post not found!')
+        }
+    
+        return postStatus.results
+        
+      } catch (error) {
+        console.error(error)
+      }
+    })
+
+    export const createNewPost = async () => {
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/simple/create/`, {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
@@ -187,4 +212,31 @@ export const getPosts = async () => {
       } catch (error) {
         console.error(error)
       }
-    })
+    }
+
+
+    export const deletePost = async (id: string) => {
+
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${id}/delete`, {
+          method: 'DELETE',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+
+       if (!response.ok) {
+          throw new Error(response.statusText)
+        } 
+    
+        // const post = await response.json()
+        // if (post === null) {
+        //   throw new Error('Post not found!')
+        // }
+    
+        return response.status === 204;
+        
+      } catch (error) {
+        console.error(error)
+      }
+    }

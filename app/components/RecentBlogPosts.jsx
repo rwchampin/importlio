@@ -1,6 +1,6 @@
 import { getRecentPosts } from '@/lib/api';
 import { FullImageCard } from '@/components/blog/';
-
+import Card from './Card'
 export default async function RecentBlogPosts() {
 
     const posts = await getRecentPosts();
@@ -8,7 +8,7 @@ export default async function RecentBlogPosts() {
     return (
 
             <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center  ">
-                {posts.map((post, idx) => <FullImageCard key={idx} post={post} />)}
+                {posts.map((post, idx) => <Card key={idx} post={post} />)}
             </div>
 
     );

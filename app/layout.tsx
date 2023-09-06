@@ -103,11 +103,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       className={`${apercu.variable} ${montserrat.variable}`}
       suppressHydrationWarning
     >
-      <head>
-        <GA GA_MEASUREMENT_ID={process.env.GOOGLE_TRACKING_ID} />
-      </head>
-
+       <GA GA_MEASUREMENT_ID={'G-V8X4P8V5SZ'} />
       <body suppressHydrationWarning>
+     
+
         <AppProvider>
           <Scroller>
             <Header posts={posts} />

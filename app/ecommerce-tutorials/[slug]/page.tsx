@@ -5,7 +5,7 @@ import {   TagCloud } from "@/components/common";
 import { BasicPage } from "@/components/pages";
 import { Sidebar } from "@/components/blog";
  
-import JsonLd from "@/components/common/JsonLd";
+import JsonLd from "@/app/components/JsonLd";
 
 // gsap.registerPlugin(ScrollTrigger)
 

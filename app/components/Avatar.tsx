@@ -10,8 +10,8 @@ export default function Avatar({
         name?: string;
     } = {};
   
-    if (user && user.avatar && isValidURL(user.avatar)) {
-      avatarProps.src = user.avatar;
+    if (user && user.avatar) {
+      avatarProps.src = `${process.env.NEXT_PUBLIC_HOST}/${user.avatar}`;
     } else if (!user.avatar && (user.first_name && user.last_name)) {
       const initials = getInitialsFromName(`${user.first_name} ${user.last_name}`);
       avatarProps.name = initials;

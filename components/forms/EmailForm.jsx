@@ -1,20 +1,23 @@
 'use client';
-import { usePreregister } from '@/hooks';
+import  usePreregister  from '@/hooks/use-preregister';
 import { Form } from '@/components/forms';
 
-export default function EmailForm({ className }) {
+export default function EmailForm({ className, isOpen, setIsOpen }) {
 	const { 
 		email,
 		isLoading,
 		onChange,
 		onSubmit
-	 } = usePreregister();
+	 } = usePreregister({
+		setIsOpen,
+		isOpen
+	 });
 
 	const config = [
 		{
-			
-			labelText: 'Email address',
-			labelId: 'email',
+			onChange,
+			label: 'Email address',
+			name: 'email',
 			type: 'email',
 			value: email,
 			required: true,

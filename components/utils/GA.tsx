@@ -6,7 +6,7 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { pageview } from "./GtagHelper";
 
-export default function GoogleAnalytics({
+export default function GA({
   GA_MEASUREMENT_ID,
 }: {
   GA_MEASUREMENT_ID: any;
@@ -25,6 +25,7 @@ export default function GoogleAnalytics({
   if(process.env.NODE_ENV === "development") return null;
   return (
     <>
+      <div fuck="true" />
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}

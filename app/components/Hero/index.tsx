@@ -3,7 +3,6 @@ import Title from "@/app/components/typography/Title";
 import Subtitle from "@/app/components/typography/Subtitle";
 import ShadowText from "@/app/components/typography/ShadowText";
 import { Spacer } from "@/components/utils";
-import { Modal } from "@/components/common/";
 import HeroHeader from "@/app/components/Hero/HeroHeader";
 import Image from "next/image";
 
@@ -16,7 +15,6 @@ interface Props {
   headline?: string | React.ReactNode;
   shadowText?: string | React.ReactNode;
   shadowTextPosition?: "top" | "center";
-  showButton?: boolean | null | undefined;
   customComponent?: React.ReactNode | null | undefined;
 }
 export default function ({
@@ -26,7 +24,6 @@ export default function ({
   belowSubtitle,
   headline,
   shadowText,
-  showButton,
   customComponent,
   shadowTextPosition
 }: Props) {
@@ -65,14 +62,7 @@ export default function ({
               <Spacer size={2} />
             </>
           )}
-   <Spacer size={2} />
-
-          {showButton && (
-            <>
-              <Spacer size={2} />
-              <Modal  />
-            </>
-          )}
+   
           <Spacer size={2} />
           {customComponent}
         </div>

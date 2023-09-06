@@ -11,41 +11,25 @@ import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
-
-import { useEffect,useState } from "react";
-
-interface User {
-  name: string;
-  email: string;
-}
-import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
-
 export default function LoginOrAvatar() {
-  const [user, setUser] = useState<any>();
-  const pathname = usePathname();
+  const { user, isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
   const dispatch = useAppDispatch();
+  const pathname = usePathname();
 
-	const { data:profile, isLoading, isFetching } = useRetrieveUserQuery();
-  const { isAuthenticated } = useAppSelector((state: any) => state.auth);
 
-  useEffect(() => {
-    if (isAuthenticated && profile) {
-      debugger
-      setUser(profile);
-    }
-  }, [isAuthenticated, profile]);
+ 
 
   const handleLogout = () => {
     dispatch(logout());
   };
 
-  if(isLoading || isFetching) {
+  if(isLoading) {
   	return (
   			<Spinner lg />
   	);
   }
 
-  if (user) {
+  if (user && isAuthenticated) {
     return <Avatar user={user} handleLogout={handleLogout} />;
   }
 

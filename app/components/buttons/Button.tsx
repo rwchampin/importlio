@@ -1,7 +1,8 @@
-
+"use client";
 import {Button as BB} from "@nextui-org/react";
 import { ButtonProps } from "@/lib/constants";
 import Link from "next/link";
+import { color } from "framer-motion";
 
 // Button Props
 // https://nextui.org/components/button
@@ -31,14 +32,11 @@ import Link from "next/link";
   @prop onClick?: () => void;
   @prop fullWidth?: boolean;
 **/
-
-
 export default function Button({
   children,
   variant="solid",
-  radius="xl",
-  size="md",
-  color="primary",
+  radius="sm",
+  size="lg",
   spinner=false,
   spinnerPlacement="end",
   isDisabled,
@@ -52,14 +50,20 @@ export default function Button({
   onPressEnd,
   onPressChange,
   onPressUp,
-  fullWidth,
+  fullWidth=false,
+  type = "button",
   href,
   ...props
 }:ButtonProps) {
-
+  let clickOrHref = {};
+  if(onClick) {
+    clickOrHref = {onClick};
+  } else if(href) {
+    clickOrHref = {href};
+  }
   const elem = (
     <BB 
-    variant={variant}
+    // variant={variant}
     radius={radius}
     size={size}
     spinner={spinner}
@@ -67,9 +71,10 @@ export default function Button({
     isDisabled={isDisabled}
     isLoading={isLoading}
     isIconOnly={isIconOnly}
-    onClick={onClick}
     fullWidth={fullWidth}
-    href={href}
+    className="bg-button text-white radius-xl"
+    type={type}
+    {...clickOrHref}
     {...props}
   >
     {children}

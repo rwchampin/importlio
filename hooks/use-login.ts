@@ -1,3 +1,5 @@
+
+"use client";
 import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
@@ -11,8 +13,8 @@ export default function useLogin() {
 	const [login, { isLoading }] = useLoginMutation();
 
 	const [formData, setFormData] = useState({
-		email: '',
-		password: '',
+		email: 'rwchampin@gmail.com',
+		password: 'imagine2',
 	});
 
 	const { email, password } = formData;
@@ -28,9 +30,13 @@ export default function useLogin() {
 
 		login({ email, password })
 			.unwrap()
-			.then(() => {
-
-				dispatch(setAuth());
+			.then((res) => {
+				const { refresh, access, user } = res;
+				dispatch(setAuth({
+					refresh,
+					access,
+					user,
+				}));
 				toast.success('Logged in');
 				router.push('/dashboard');
 			})

@@ -1,7 +1,7 @@
 import Link from "next/link";
 
 // import useTheme from "@/hooks/useTheme";
-import { TagCloud } from "@/components/common";
+import TagCloud from "@/app/components/TagCloud";
 import LazyLoad from "@/components/utils/LazyLoad";
 export default function FullImageCard({ post }) {
   // const { getAlt } = useTheme()

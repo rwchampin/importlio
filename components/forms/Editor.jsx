@@ -62,7 +62,7 @@ const Editor=({
 			onChange={handleChange}
 
 				modules={modules}
-
+				value={value}
 				formats={formats}
 				bounds={'form'}
 				placeholder={placeholder}

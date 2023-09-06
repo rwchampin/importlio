@@ -1,27 +1,26 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { openModal, closeModal } from '@/redux/features/modal/modalSlice';
+import { openModal, closeModal, toggleModal } from '@/redux/features/modal/modalSlice';
 
 interface ModalState {
     isOpen: boolean;
-    content: string | React.ReactNode | null | undefined;
 }
 
  
 const useModal = () => {
   const dispatch = useDispatch();
-    const { isOpen, content } = useSelector((state: ModalState) => state);
-    // const store = useAppSelector((state) => state);
+    const { isOpen } = useSelector((state: ModalState) => state);
 
-  const openModalWithContent = (content:any) => {
-    dispatch(openModal(content));
-  };
+  const showModal = () => dispatch(openModal());
+  const hideModal = () => dispatch(closeModal());
+  const toggleModal:any = (bool:boolean) => dispatch(toggleModal(bool));
 
-  const closeCurrentModal = () => {
-    dispatch(closeModal());
-  };
-
-  return {isOpen, content, openModalWithContent, closeCurrentModal };
+  return {
+    isOpen,
+    showModal,
+    hideModal,
+    toggleModal,
+  }
 };
 
 export default useModal;

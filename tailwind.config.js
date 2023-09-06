@@ -29,7 +29,7 @@ function transformColorsToObject(inputObject) {
   offwhite: "#f8f8f8",
   offgray: "#1f2029",
   backdrop: "rgba(0, 0, 0, 0.7)",
-
+  
   // Radix Colors
   ...transformColorsToObject(F)
 

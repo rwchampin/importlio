@@ -1,12 +1,15 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
-import { useModal } from '@/store';
-import {usePreregisterMutation} from '@/old/utils/redux/features/authApiSlice';
+
+import {usePreregisterMutation} from '@/redux/features/authApiSlice';
 
 // import { useModal } from '@/store';
 import { toast } from 'react-toastify';
+import { set } from 'cypress/types/lodash';
 
-export default function usePreRegister() {
-	const { toggleModal,hideModal, isOpen } = useModal();
+export default function usePreRegister({
+	isOpen,
+	setIsOpen,
+}) {
 
 	const [preregister, { isLoading }] = usePreregisterMutation();
 
@@ -29,12 +32,13 @@ export default function usePreRegister() {
 		preregister({ email })
 			.unwrap()
 			.then(() => {
-				hideModal()
+				setIsOpen(false);
 				setFormData({ "email": '' });
 				toast.success('Thanks for registering!');
 
 			})
-			.catch(() => {
+			.catch((e) => {
+				debugger
 				toast.error('Failed to register account');
 
 			});

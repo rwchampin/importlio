@@ -1,32 +1,47 @@
 "use client"
-import { getPosts,createNewPost } from '@/lib/api';
+import { 
+    createNewPost,
+    getPosts
+} from '@/lib/api';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
 
-
-import { useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 
 
-import BlogList from '@/app/components/BlogList';
+import Table from '@/app/components/Table';
+import { useEffect,useState } from 'react';
+
 
 
 export default function Page() {
+
     const router = useRouter();
+    const [posts, setPosts] = useState(null);
 
-  
-
-    const handleClick =   () => {
-        const post =  createNewPost().then((post) => {
-
-        if (post && post.slug) {
-            router.push(`/dashboard/posts/${post.slug}`);
+    useEffect(() => {
+        async function fetchData() {
+          const response = await getPosts();
+          console.log(response);
+            setPosts(response.results);
         }
-        }).catch((error) => {
+        if (!posts) {
+            fetchData();
+        }
+      }, []);
 
-
-            throw new Error(error + 'Post not created check Dashboard Posts Page');
-        });
-    };
+ const handleClick = async () => {
+    try {
+      const post = await createNewPost();
+        debugger
+      if (post && post.slug) {
+        router.push(`/dashboard/posts/${post.slug}`);
+      }
+    } catch (error) {
+      throw new Error(
+        error + 'Post not created. Check Dashboard Posts Page'
+      );
+    }
+  };
 
     const columns = [
         {
@@ -116,7 +131,7 @@ export default function Page() {
                     <BiPlusCircle className="ml-2 h-5 w-5 text-lime-11" />
                 </button>
             </div>
-           <BlogList />
+        {posts && <Table data={posts} />}
         </section>
     );
 }

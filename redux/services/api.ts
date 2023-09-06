@@ -33,7 +33,12 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
-					api.dispatch(setAuth());
+					const { access, refresh, user }:any = refreshResult.data;
+					api.dispatch(setAuth({
+						access,
+						refresh,
+						user,
+					}));
 
 					result = await baseQuery(args, api, extraOptions);
 				} else {

@@ -1,11 +1,12 @@
-
+"use client";
 import dynamic from "next/dynamic";
 import { Disclosure } from "@headlessui/react";
 import SocialIcons from "@/app/SocialIcons"
 import { LogoBlack, LoginOrAvatar } from "@/components/common";
 import NavLink from "./NavLink";
-
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import useResponsive from "@/hooks/useResponsive";
+import { useEffect } from "react";
 const RiMenu5FillDynamic: any = dynamic(() =>
   import("react-icons/ri").then((mod) => mod.RiMenu5Fill)
 );
@@ -26,7 +27,7 @@ export default function Navbar({ posts }:any) {
 
   const responsive: any = useResponsive();
 
-
+ 
  
   const links: any = [
     {

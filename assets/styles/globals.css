@@ -82,7 +82,9 @@
         @apply bg-button hover:bg-button-hover text-white focus:text-white hover:cursor-pointer hover:text-white rounded-lg !important;
     } */
 
-   
+   button {
+    @apply bg-button text-offwhite !important;
+   }
    
     a, button, input[type="submit"] {
         @apply cursor-pointer;
@@ -426,7 +428,7 @@ textarea {
  
 
 .quill {
-  @apply shadow-xl h-[500px] rounded-lg bg-input;
+  @apply shadow-xl h-[500px] rounded-lg bg-input flex flex-col;
 }
 .ql-container {
   @apply h-full overflow-y-auto;

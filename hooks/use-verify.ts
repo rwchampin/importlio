@@ -11,8 +11,11 @@ export default function useVerify() {
 	useEffect(() => {
 		verify(undefined)
 			.unwrap()
-			.then(() => {
-				dispatch(setAuth());
+			.then(({access, refresh}) => {
+				dispatch(setAuth({
+					access,
+					refresh,
+				}));
 			})
 			.finally(() => {
 				dispatch(finishInitialLoad());

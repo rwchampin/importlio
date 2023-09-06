@@ -4,11 +4,11 @@ import { getPosts } from "@/lib/api";
 import BasePage from '@/app/components/BasePage';
 
 import Section from "@/app/components/Section";
-import { FullImageCard } from "@/components/blog";
+import Card from '@/app/components/Card';
 
 
 
-import JsonLd from "@/components/common/JsonLd";
+import JsonLd from "@/app/components/JsonLd";
 // import { useEffect, useState } from "react";
 interface Post {
   title: string;
@@ -51,10 +51,6 @@ export default async function Page() {
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
         shadowText={"Amazon Dropshipping Tutorials"}
-        belowSubtitle={null}
-        bg={null}
-        customComponent={null}
-        showButton={true}
       >
         <Section className="p-5 flex flex-col gap-5 lg:flex-row">
           <div className="flex flex-col md:flex-row flex-wrap gap-5">
@@ -65,7 +61,7 @@ export default async function Page() {
                   <div 
                   key={idx}
                   className="overflow-hidden rounded-lg w-full flex-1 basis-full md:basis-[calc(50%-1rem)] xl:basis-[calc(33.33%-1rem)] 2xl:basis-[calc(25%-1rem)]">
-                     <FullImageCard key={idx} post={post} />
+                     <Card key={idx} post={post} />
                   </div>
 
 

@@ -1,7 +1,7 @@
 import {BasicPage} from "@/components/pages";
 
 import { TopFeatures } from "@/components/heros";
-import  JsonLd  from '@/components/common/JsonLd'
+import  JsonLd  from '@/app/components/JsonLd'
 
 export default function Page() {
 

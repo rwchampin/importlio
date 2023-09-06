@@ -1,33 +1,13 @@
 import { ChangeEvent, FormEvent } from 'react';
-import { Input } from '@/components/forms';
+import  Input  from '@/components/forms/input/Input';
 import Button from '@/app/components/buttons/Button';
 import Spinner from '@/app/components/Spinner';
-
-interface Config {
-	labelText: string;
-	labelId: string;
-	type: string;
-	value: string;
-	data?: any;
-	defaultSelectedKeys?: any;
-	placeholder?: string;
-	link?: {
-		linkText: string;
-		linkUrl: string;
-	};
-	required?: boolean;
-}	
-
-interface Props {
-	config: Config[];
-	isLoading: boolean;
-
-	btnText: string;
-	postFormText?: string;
-	onChange: (event: ChangeEvent<HTMLInputElement>) => void;
-	onSubmit: (event: FormEvent<HTMLFormElement>) => void;
-}
-
+import {
+	FormProps,
+	InputProps
+} from '@/lib/constants';
+ 
+ 
 
 export default function Form({
 	config,
@@ -37,7 +17,7 @@ export default function Form({
 	onSubmit,
 	postFormText,
 
-}: Props) {
+}: FormProps) {
 
  
 
@@ -52,28 +32,28 @@ export default function Form({
       onSubmit={onSubmit}
     >
       {/* <input name="sub-input-info" value="" /> */}
-      {config.map((input) => {
+      {config.map((input:InputProps) => {
 
 		return (
         <Input
-          key={input.labelId}
-          labelId={input.labelId}
+		  key={input.name}
+		  name={input.name}
+		  label={input.label}
           type={input.type}
           onChange={onChange}
           value={input.value}
-		  defaultSelectedKeys={input.defaultSelectedKeys}
 		  data={input.data}
           link={input.link}
           required={input.required}
 		  placeholder={input.placeholder}
-          // {...getFormFieldAttrsByType(input.type)}
-        >
-          {input.labelText}
-        </Input>
+		/>
 		)
 		})}
 
-      <Button className="w-full max-w-full" variant="solid" type="submit">
+      <Button
+	  	fullWidth={true}
+	    type="submit"
+		>
         {isLoading ? <Spinner /> : btnText}
       </Button>
 

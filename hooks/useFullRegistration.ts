@@ -1,13 +1,13 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
-import {useFullRegisterMutation} from '@/old/utils/redux/features/authApiSlice';
+import {useFullRegistrationMutation} from '@/redux/features/authApiSlice';
 
 import { toast } from 'react-toastify';
 
 export default function useFullRegistration() {
 
 
-	const [fullRegister, { isLoading }] = useFullRegisterMutation();
+	const [fullRegister, { isLoading }] = useFullRegistrationMutation();
 
 	const [formData, setFormData] = useState({
 		email: '',
@@ -40,7 +40,8 @@ export default function useFullRegistration() {
 				toast.success('Thanks for registering!');
 
 			})
-			.catch(() => {
+			.catch((e) => {
+				debugger
 				toast.error('Failed to register account');
 
 			});

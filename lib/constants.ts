@@ -7,6 +7,24 @@ export const badgeTypes = {
     POST_TYPE: 'post_type',
 }
 
+export interface FormItemProps {
+    label: string;
+    name: string;
+    type: string;
+    placeholder?: string;
+    value?: string;
+    onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
+    required?: boolean;
+    error?: string;
+}
+export interface FormProps {
+    config: FormItemProps[];
+    onSubmit: (event: any) => void;
+    onChange: (event: any) => void;
+	isLoading?: boolean;
+	btnText?: string,
+	postFormText?: string,
+}
 export interface InputProps {
     name: string
     label: string
@@ -16,11 +34,17 @@ export interface InputProps {
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     required?: boolean
     error?: string
+    children?: React.ReactNode
     disabled?: boolean
     className?: string
     autoComplete?: string
     autoFocus?: boolean
     autoCorrect?: string
+    link?: {
+		linkText: string;
+		linkUrl: string;
+	}
+    data: any
 }
 
 export interface ImageProps {
@@ -45,7 +69,6 @@ export interface BasePageProps {
     belowSubtitle?: string | null | undefined;
     headline: string | React.ReactNode;
     shadowText: string | React.ReactNode;
-    showButton?: boolean | null | undefined;
     customComponent?: React.ReactNode | null | undefined;
     children: React.ReactNode | null | undefined;
     topLeftPageComponent?: React.ReactNode | null | undefined;
@@ -152,4 +175,25 @@ export interface ButtonProps {
     onKeyUp?: () => void;
     onClick?: () => void;
     fullWidth?: boolean;
+    type?: 'button' | 'submit' | 'reset';
 }
+
+export const POST_COLUMNS_NO_CONTENT = [
+    "id",
+    "status",
+    "title",
+    "excerpt",
+    "published",
+    "updated",
+    "headline",
+    "slug",
+    "featured_image",
+    "subtitle",
+    "shadow_text",
+    "tags",
+    "categories",
+    "post_type",
+    "seo_title",
+    "seo_description",
+
+]

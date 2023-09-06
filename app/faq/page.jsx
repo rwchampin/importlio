@@ -1,6 +1,6 @@
 import {BasicPage} from '@/components/pages'
 import {Section} from '@/components/common'
-import  JsonLd  from '@/components/common/JsonLd'
+import  JsonLd  from '@/app/components/JsonLd'
 export default function Page() {
 	const jsonLd = {
 		"@context": "http://schema.org",

@@ -11,7 +11,6 @@ export default function BasePage({
   shadowText,
   shadowTextPosition,
   children,
-  showButton,
   customComponent,
   topLeftPageComponent,
   topRightPageComponent,
@@ -23,7 +22,6 @@ export default function BasePage({
         {topRightPageComponent}
       </Section>
       <Hero
-        showButton={showButton}
         bg={bg}
         title={title}
         subtitle={subtitle}

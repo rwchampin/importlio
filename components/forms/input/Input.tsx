@@ -1,67 +1,36 @@
 "use client";
 import {  useState } from "react";
 import Link from "next/link";
-import FileField from "./FileField";
-import { HiOutlineMail } from "react-icons/hi";
-import Combobox from "./ComboBox";
-import Select from '@/components/forms/Select'
-import PostTypeSelect from "@/components/forms/PostTypeSelect";
-import { IoLockClosedOutline as PasswordIcon } from "react-icons/io5";
-import { AiOutlineSearch as SearchIcon } from "react-icons/ai";
+import FileField from "../FileField";
+import { InputProps } from "@/lib/constants";
+import InputIcon from "./InputIcon";
 import dynamic from "next/dynamic";
-import TextArea from "./TextArea";
+
 
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
   ssr: false,
 });
 
-interface Props {
-  labelId: any;
-  type?: any;
-  data?: any;
-  onChange:  any
-  setInitialValue?: any;
-  value: any;
-  children?: any;
-  placeholder?: any;
-  link?: any
-  required?: any;
-  className?: any;
-}
+const Select: any = dynamic(() => import("@/components/forms/Select"), {
+  ssr: false,
+});
 
-const InputIcon: React.FC<{ type: string; isFocused: boolean }> = ({
-  type,
-  isFocused,
-}) => {
-  let iconClassName = `input-svg z-[99999] h-5 w-5 absolute top-1/2 left-3 transform -translate-y-1/2 ${
-    isFocused ? "stroke-gray-1" : "stroke-gray-dark-8"
-  }`;
+const TextArea: any = dynamic(() => import("@/components/forms/TextArea"), {
+  ssr: false,
+});
 
-  switch (type) {
-    case "email":
-      return <HiOutlineMail className={iconClassName} />;
-    case "password":
-      return <PasswordIcon className={iconClassName} />;
-    case "search":
-      return <SearchIcon className={iconClassName} />;
-    default:
-      return null;
-  }
-};
-
-const Input: React.FC<Props> = ({
-  labelId,
+const Input = ({
+  name,
   type,
   onChange,
-  setInitialValue,
   data,
-  value,
   children,
+  value,
   placeholder,
   className,
   link,
   required = false,
-}) => {
+}:InputProps) => {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
@@ -96,9 +65,8 @@ const Input: React.FC<Props> = ({
   let inputElementProps = {
     onFocus: handleFocus,
     onBlur: handleBlur,
-    id: labelId,
     data,
-    name: labelId,
+    name,
     type,
     onChange,
     value,
@@ -114,42 +82,21 @@ const Input: React.FC<Props> = ({
       case "select":
         return (
           <Select
-            onChange={onChange}
-            value={value}
-            label={labelId}
-            name={labelId}
-            defaultSelectedKeys={value}
-            required={required}
-            placeholder={placeholder}
-            options={data}
+            {...inputElementProps}
           />
         );
-      case "posttype":
+      case "multiselect":
         return (
-          <PostTypeSelect
-            onChange={onChange}
-            data={data}
-            value={value}
-            placeholder={placeholder}
-            name={labelId}
-            type={type}
-            required={required}
-            label={labelId}
-            labelId={labelId}
+          <Select
+          {...inputElementProps}
+            selectionMode="multiple"
           />
         );
-        break;
+      break;
       case "richtext":
         return (
           <Editor
-            onChange={onChange}
-            value={value}
-            placeholder={placeholder}
-            name={labelId}
-            type={type}
-            required={required}
-            label={labelId}
-            labelId={labelId}
+          {...inputElementProps}
           />
         );
         break;
@@ -157,34 +104,25 @@ const Input: React.FC<Props> = ({
       case "textarea":
         return (
           <TextArea
-            onChange={onChange}
-            value={value}
-            placeholder={''}
-            label={labelId}
-            name={labelId}
-            type={type}
-            labelId={labelId}
-            className=""
-
-
-            required={required}
+          {...inputElementProps}
           ></TextArea>
         );
         break;
 
       case "multiselect":
         return (
-          <Combobox
-            onChange={onChange}
-            value={value}
-            data={data}
-            placeholder={placeholder}
-            name={labelId}
-            type={type}
-            required={required}
-            label={labelId}
-            labelId={labelId}
-          />
+          <Select
+          {...inputElementProps}
+          selectionMode="multiple"
+            options={data.map((item) => {
+
+              return {
+                label: item.name,
+                value: item.id,
+              }
+            }
+            )}
+            />
         );
         break;
       case "file":
@@ -220,7 +158,7 @@ const Input: React.FC<Props> = ({
     <div>
       <div className="flex justify-between align-center">
         <label
-          htmlFor={labelId}
+          htmlFor={name}
           className="block text-sm font-bold font-apercu leading-6 text-offgray"
         >
           {children}

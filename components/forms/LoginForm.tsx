@@ -2,23 +2,26 @@
 
 import { useLogin } from '@/hooks';
 import { Form } from '@/components/forms';
+import { useEffect } from 'react';
 
 export default function LoginForm() {
 	const { email, password, isLoading, onChange, onSubmit } = useLogin();
 
 	const config = [
 		{
-			labelText: 'Email address',
-			labelId: 'email',
+			label: 'Email address',
+			name: 'email',
 			type: 'email',
 			value: email,
 			required: true,
+			onChange: onChange,
 		},
 		{
-			labelText: 'Password',
-			labelId: 'password',
+			label: 'Password',
+			name: 'password',
 			type: 'password',
 			value: password,
+			onChange: onChange,
 			link: {
 				linkText: 'Forgot password?',
 				linkUrl: '/password-reset',
@@ -26,6 +29,7 @@ export default function LoginForm() {
 			required: true,
 		},
 	];
+
 
 	return (
 		<Form

@@ -1,5 +1,5 @@
 
-import { getPosts } from '@/lib/functions';
+import { getRecentPosts } from '@/lib/api';
 import {Suspense} from 'react';
 import {TagCloud} from '@/components/common';
 import {Spacer} from '@/components/utils';
@@ -11,7 +11,7 @@ const SidebarPostCard=dynamic(() => import("@/components/blog/SidebarPostCard"))
 
 
 export default async function Sidebar() {
-	const posts = await getPosts();
+	const posts = await getRecentPosts();
 
 	return (
 		<div className="sidebar bg-gray-2 p-3   shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col   sticky top-[5rem]">
