@@ -25,7 +25,6 @@ export default function GA({
   if(process.env.NODE_ENV === "development") return null;
   return (
     <>
-      <div fuck="true" />
       <Script
         strategy="afterInteractive"
         src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}
