@@ -68,7 +68,7 @@ export default function Navbar({ posts }:any) {
             <motion.div
               initial={{ 
                 opacity: 0,
-                x: -window.innerWidth,
+                x: '-100%'
                }}
               animate={{ 
                 opacity: 1,

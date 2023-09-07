@@ -10,8 +10,8 @@ export default function EmailForm({ className, isOpen, setIsOpen }) {
 		onChange,
 		onSubmit
 	 } = usePreregister({
-		setIsOpen,
-		isOpen
+		isOpen,
+		setIsOpen
 	 });
 
 	const config = [

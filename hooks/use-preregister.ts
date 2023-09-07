@@ -3,7 +3,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 
 import {usePreregisterMutation} from '@/redux/features/authApiSlice';
 
-// import { useModal } from '@/store';
+
 import { toast } from 'react-toastify';
 
 
@@ -38,7 +38,6 @@ export default function usePreRegister({
 
 			})
 			.catch((e) => {
-				debugger
 				toast.error('Failed to register account');
 
 			});
