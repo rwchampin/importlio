@@ -1,15 +1,15 @@
+"use client";
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 import {usePreregisterMutation} from '@/redux/features/authApiSlice';
 
 // import { useModal } from '@/store';
 import { toast } from 'react-toastify';
-import { set } from 'cypress/types/lodash';
+
 
 export default function usePreRegister({
-	isOpen,
 	setIsOpen,
-}) {
+}:any) {
 
 	const [preregister, { isLoading }] = usePreregisterMutation();
 

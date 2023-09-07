@@ -6,7 +6,6 @@ import {
   getTags,
 } from '@/lib/api';
 import TagCloud from '@/app/components/TagCloud';
-import { Spacer } from '@/components/utils';
 import SidebarCard from './SidebarCard';
 
 function Sidebar() {
@@ -38,7 +37,7 @@ function Sidebar() {
         {posts.map((post, idx) => (
           <SidebarCard key={idx} post={post} />
         ))}
-        <Spacer size={2} />
+
         <TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />
         <TagCloud
           data={categories}

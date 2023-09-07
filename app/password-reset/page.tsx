@@ -1,4 +1,5 @@
-import { PasswordResetForm } from '@/components/forms';
+
+import PasswordResetForm from '@/components/forms/PasswordResetForm';
 import type { Metadata } from 'next';
 
 import LogoBlack from '@/components/common/LogoBlack';

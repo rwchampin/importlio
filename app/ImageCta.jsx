@@ -1,5 +1,5 @@
 
-import { LazyLoad } from "@/components/utils"
+import LazyLoad from "@/components/utils/LazyLoad";
 
 import Panel from "@/components/common/Panel"
 export default function ImageCta({ title, description, image, cta }) {

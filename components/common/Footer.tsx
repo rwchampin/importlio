@@ -1,6 +1,6 @@
 import LogoBlack from '@/components/common/LogoBlack'
 import  SocialIcons from '@/app/SocialIcons';
-import { Spacer } from '@/components/utils'
+
 
 export default function Footer() {
   return (
@@ -14,9 +14,7 @@ export default function Footer() {
               The world&apos;s first Amazon Dropshipping Bulk Product Importer &
               management plugin.
             </p>
-            <Spacer size={2} />
             <SocialIcons />
-            <Spacer size={4} />
           </div>
         </div>
 

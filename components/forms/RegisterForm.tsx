@@ -1,7 +1,8 @@
 'use client';
 
 import { useRegister } from '@/hooks';
-import { Form } from '@/components/forms';
+
+import Form from '@/components/forms/Form';
 
 export default function RegisterForm() {
 	const {

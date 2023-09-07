@@ -1,7 +1,8 @@
 'use client';
 
-import { useLogin } from '@/hooks';
-import { Form } from '@/components/forms';
+import useLogin from '@/hooks/use-login';
+import Form from '@/components/forms/Form';
+
 import { useEffect } from 'react';
 
 export default function LoginForm() {

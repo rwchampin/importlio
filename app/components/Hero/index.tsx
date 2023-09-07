@@ -2,7 +2,7 @@ import Headline from "@/app/components/typography/Headline";
 import Title from "@/app/components/typography/Title";
 import Subtitle from "@/app/components/typography/Subtitle";
 import ShadowText from "@/app/components/typography/ShadowText";
-import { Spacer } from "@/components/utils";
+
 import HeroHeader from "@/app/components/Hero/HeroHeader";
 import Image from "next/image";
 
@@ -50,23 +50,22 @@ export default function ({
           <Title>
             {title}
           </Title>
-          <Spacer size={1} />
+
           <Subtitle>
             {subtitle}
           </Subtitle>
 
-          <Spacer size={2} />
+
           {belowSubtitle && (
             <>
               {belowSubtitle}
-              <Spacer size={2} />
             </>
           )}
    
-          <Spacer size={2} />
+
           {customComponent}
         </div>
-        <Spacer size={2} />
+
 
       </section>
       <ShadowText

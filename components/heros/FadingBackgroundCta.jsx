@@ -1,7 +1,4 @@
-
-
-
-import { EmailForm } from "../forms"
+import EmailForm from '@/components/forms/EmailForm';
 export default function FadingBackgroundCta() {
   
     return (

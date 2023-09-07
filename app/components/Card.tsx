@@ -17,10 +17,12 @@ export default function Card({ post }: any) {
           className="w-full h-full"
           href={`/ecommerce-tutorials/${post.slug}`}
           >
+
           <Image
-            alt="Woman listing to music"
+            alt={post.title}
             className="z-0 w-full h-full object-cover"
             removeWrapper
+            fallbackSrc="https://via.placeholder.com/300x200"
             src={post.featured_image}
           />
            <time dateTime={post.updated}>{post.updated}</time>

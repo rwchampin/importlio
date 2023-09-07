@@ -1,8 +1,22 @@
+"use client";
 import { getRecentPosts } from '@/lib/api';
+import { useState, useEffect } from 'react';
 import Card from '@/app/components/Card';
-export default async function RecentBlogPosts() {
 
-    const posts = await getRecentPosts();
+export default function RecentBlogPosts() {
+    const [posts, setPosts] = useState([]);
+
+    useEffect(() => {
+        const fetchPosts = async () => {
+            const posts = await getRecentPosts();
+            setPosts(posts);
+        };
+
+        if(posts.length === 0){
+            fetchPosts();
+        }
+
+    }, []);
     
     return (
 

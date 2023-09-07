@@ -1,6 +1,7 @@
 'use client';
 import  usePreregister  from '@/hooks/use-preregister';
-import { Form } from '@/components/forms';
+
+import Form from '@/components/forms/Form';
 
 export default function EmailForm({ className, isOpen, setIsOpen }) {
 	const { 

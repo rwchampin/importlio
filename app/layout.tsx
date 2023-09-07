@@ -6,9 +6,12 @@ import "@/assets/styles/globals.css";
 import CookieBanner from "@/components/utils/CookieBanner";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
-import { GA, Scroller } from "@/components/utils/";
+
+import Scroller from "@/components/utils/Scroller";
+import GA from "@/components/utils/GA";
 import AppProvider from "@/components/utils/AppProvider";
-import { Setup } from "@/components/utils";
+
+import Setup from "@/components/utils/Setup";
 
 import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";

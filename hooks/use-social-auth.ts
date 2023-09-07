@@ -18,8 +18,11 @@ export default function useSocialAuth(authenticate: any, provider: string) {
 		if (state && code && !effectRan.current) {
 			authenticate({ provider, state, code })
 				.unwrap()
-				.then(() => {
-					dispatch(setAuth());
+				.then((res:any) => {
+					dispatch(setAuth({
+						access: res.access,
+						refresh: res.refresh,
+					}));
 					toast.success('Logged in');
 					router.push('/dashboard');
 				})

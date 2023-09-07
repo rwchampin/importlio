@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import { RegisterForm } from '@/components/forms';
+
+import RegisterForm from '@/components/forms/RegisterForm';
 
 import LogoBlack from '@/components/common/LogoBlack';
 import SocialButtons from '@/components/common/SocialButtons';

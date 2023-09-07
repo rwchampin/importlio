@@ -39,27 +39,27 @@ export default function Scroller({children}) {
   //   });
     function setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight) {
   // Calculate the maximum scroll distance
-  const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
-  gsap.to(scrollBarRef.current, {
-    height: scrollBarHeight * (scrollY / (document.body.clientHeight - windowHeight)),
-    duration: 0.1,
-    ease: 'power2.out'
-  });
-}
+      // const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
+      // gsap.to(scrollBarRef.current, {
+      //   height: scrollBarHeight * (scrollY / (document.body.clientHeight - windowHeight)),
+      //   duration: 0.1,
+      //   ease: 'power2.out'
+      // });
+    }
 
-// Example usage inside a window.scroll event listener
-window.addEventListener('scroll', () => {
-  const scrollY = window.scrollY;
-  const windowHeight = window.innerHeight;
-  const scrollTrackHeight = windowHeight * 0.9; // Assuming the scroll track is 90% of the window height
+    // Example usage inside a window.scroll event listener
+    window.addEventListener('scroll', () => {
+      const scrollY = window.scrollY;
+      const windowHeight = window.innerHeight;
+      const scrollTrackHeight = windowHeight * 0.9; // Assuming the scroll track is 90% of the window height
 
-  const scrollbarHeight = setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight);
+      const scrollbarHeight = setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight);
 
-  // Set the calculated height to your custom scrollbar indicator element
+      // Set the calculated height to your custom scrollbar indicator element
 
 
-  scrollBarRef.current.style.height = `${scrollbarHeight}px`;
-});
+      scrollBarRef.current.style.height = `${scrollbarHeight}px`;
+    });
     
   }, []);
 

@@ -1,7 +1,8 @@
 "use client";
 import { useState, useEffect } from "react";
 import useEditPost from "@/hooks/useEditPost";
-import { Form } from "@/components/forms";
+import Form from '@/components/forms/Form';
+
 import PostPreview from "@/app/components/PostPreview";
 import { useParams } from "next/navigation";
 

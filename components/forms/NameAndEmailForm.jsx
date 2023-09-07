@@ -1,6 +1,6 @@
 'use client';
 import  useFullRegistration from '@/hooks/useFullRegistration';
-import { Form } from '@/components/forms';
+import Form from '@/components/forms/Form';
 
 
 export default function NameAndEmailForm() {
