@@ -1,5 +1,5 @@
-import {BasicPage} from '@/components/pages'
-import {Section} from '@/components/common'
+import BasePage from '@/app/components/BasePage';
+import Section from '@/app/components/Section';
 import  JsonLd  from '@/app/components/JsonLd'
 export default function Page() {
 	const jsonLd = {
@@ -155,18 +155,14 @@ export default function Page() {
 		},
 	];
 	return (
-		<BasicPage
-			theme="light"
+		<BasePage
 			title="Amazon Dropshipping Product Importer FAQs"
 			subtitle="Frequently Asked Questions"
 			headline="Learn More"
 			shadowText="FAQ"
 			belowSubtitle={null}
-			showButton={false}
 			customComponent={null}
-			xPos="100"
-			yPos="50"
-			bg={null}
+
 			
 		>
 
@@ -197,6 +193,6 @@ export default function Page() {
 				</div>
 			</Section>
 			<JsonLd json={jsonLd} />
-		</BasicPage>
+		</BasePage>
 	)
 }

@@ -1,6 +1,7 @@
 import { PasswordResetForm } from '@/components/forms';
 import type { Metadata } from 'next';
-import { LogoBlack } from '@/components/common';
+
+import LogoBlack from '@/components/common/LogoBlack';
 export const metadata: Metadata = {
 	title: 'Amazon Dropshipping Product Importer App | Password Reset',
 	description: 'Amazon Dropshipping Product Importer App password reset page',

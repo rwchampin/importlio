@@ -8,7 +8,6 @@ export default function Page() {
         subtitle="The ultimate solution for efficiently importing and managing your products on Amazon."
         headline="Learn More"
         shadowText="THE COMPANY"
-        showButton={true}
       >
 
       <Section

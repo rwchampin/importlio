@@ -1,8 +1,6 @@
 "use client";
-
-import Image from "next/image";
 import { useState, useEffect } from "react";
-import { useEditPost } from "@/hooks";
+import useEditPost from "@/hooks/useEditPost";
 import { Form } from "@/components/forms";
 import PostPreview from "@/app/components/PostPreview";
 import { useParams } from "next/navigation";
@@ -10,20 +8,7 @@ import { useParams } from "next/navigation";
 export default function EditPostForm() {
   const { slug } = useParams();
   const {
-
-    post_type,
-    headline,
-    title,
-    subtitle,
-    status,
-    shadow_text,
-    excerpt,
-    content,
-    featured_image,
-    categories,
-    tags,
-    seo_title,
-    seo_description,
+    formData,
     isLoading,
     onChange: hookOnChange,
     onSubmit,
@@ -47,10 +32,10 @@ export default function EditPostForm() {
     ];
 
     return fields.map((field) => ({
-      labelText: field.replace("_", " ").charAt(0).toUpperCase() + field.slice(1),
-      labelId: field,
+      label: field.replace("_", " ").charAt(0).toUpperCase() + field.slice(1),
+      name: field,
       type: field.includes("image") ? "file" : "text",
-      value: post[field],
+      value: formData[field],
       onChange: hookOnChange,
       required: field === 'title' || field === 'content' ? true : false,
       placeholder: field.replace("_", " "),
@@ -65,7 +50,7 @@ export default function EditPostForm() {
     // Update the config state
     setConfig((prevConfig) =>
       prevConfig.map((fieldConfig) => {
-        if (fieldConfig.labelId === name) {
+        if (fieldConfig.name === name) {
           return { ...fieldConfig, value };
         }
         return fieldConfig;
@@ -77,10 +62,10 @@ export default function EditPostForm() {
   };
 
   useEffect(() => {
-    if (post) {
+    if (formData) {
       setConfig(getInitialConfig());
     }
-  }, [post]);
+  }, [formData]);
 
   useEffect(() => {
     const handleBeforeUnload = (e: BeforeUnloadEvent) => {
@@ -107,17 +92,7 @@ export default function EditPostForm() {
         />
       </div>
       <PostPreview
-        seo_title={seo_title}
-        seo_description={seo_description}
-        excerpt={excerpt}
-        featured_image={featured_image}
-        title={title}
-        headline={headline}
-        subtitle={subtitle}
-        categories={categories}
-        tags={tags}
-        shadow_text={shadow_text}
-        content={content}
+        {...formData}
       />
     </div>
   );

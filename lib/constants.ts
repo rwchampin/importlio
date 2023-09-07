@@ -129,6 +129,7 @@ export interface TooltipProps {
     showArrow?: boolean;
     content: React.ReactNode | string;
     placement?: "top" | "bottom" | "left" | "right";
+    isOpen?: boolean;
 }
 
 export interface User {

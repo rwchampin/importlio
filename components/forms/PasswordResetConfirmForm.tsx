@@ -14,16 +14,16 @@ export default function PasswordResetConfirmForm({ uid, token }: Props) {
 
 	const config = [
 		{
-			labelText: 'New password',
-			labelId: 'new_password',
+			label: 'New password',
+			name: 'new_password',
 			type: 'password',
 			onChange,
 			value: new_password,
 			required: true,
 		},
 		{
-			labelText: 'Confirm new password',
-			labelId: 're_new_password',
+			label: 'Confirm new password',
+			name: 're_new_password',
 			type: 'password',
 			onChange,
 			value: re_new_password,

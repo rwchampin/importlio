@@ -1,6 +1,4 @@
-"use client"
-
-import { Section } from '@/components/common'
+import Section from '@/app/components/Section';
 export default function TopFeatures() {
     
 

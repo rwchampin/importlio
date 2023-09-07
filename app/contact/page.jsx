@@ -1,8 +1,12 @@
-import { BasicPage } from "@/components/pages"
-import { Section } from "@/components/common"
+
+
+import BasePage from "@/app/components/BasePage"
+
+import Section from "@/app/components/Section";
+
 export default function Page() {
   return (
-    <BasicPage
+    <BasePage
         title="Contact Us"
         subtitle="We're here to help! Contact us with any questions or concerns."
         headline="Don&apos;t be shy, we&apos;d love to hear from you!"
@@ -18,6 +22,6 @@ export default function Page() {
       
       </Section>
  
-    </BasicPage>
+    </BasePage>
   );
 }

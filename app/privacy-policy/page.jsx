@@ -1,22 +1,14 @@
-import { BasicPage } from "@/components/pages";
-import {Section} from '@/components/common'
+import BasePage from "@/app/components/BasePage";
+
 export default function Page() {
   const date = new Date().toDateString();
   const company = "Importlio";
   return (
-     <BasicPage
-        theme="light"
+     <BasePage
       title="Privacy Policy"
       subtitle="Our Policy on the Collection, Use, and Disclosure of Your Information"
       headline="Your Privacy Matters"
       shadowText={"secrets"}
-      belowSubtitle={null}
-
-      showButton={false}
-      customComponent={null}
-      xPos="100"
-      yPos="50"
-      
       >
       <p>
         Effective Date: {date}
@@ -88,6 +80,6 @@ export default function Page() {
         Privacy Policy and agree to the collection, use, and disclosure of your
         personal information as described herein.
       </p>
-    </BasicPage>
+    </BasePage>
   );
 }

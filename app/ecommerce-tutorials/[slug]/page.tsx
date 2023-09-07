@@ -10,8 +10,11 @@ import { getPost } from "@/lib/api";
 
 export default function Page() {
   const [post, setPost] = useState({} as any);
-  const { slug } = useParams();
-debugger
+  const params = useParams();
+
+
+  const slug:string = params.slug[0];
+
   useEffect(() => {
     const fetchPost = async () => {
       const post = await getPost(slug);

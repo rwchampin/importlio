@@ -22,6 +22,7 @@ const TextArea: any = dynamic(() => import("@/components/forms/TextArea"), {
 const Input = ({
   name,
   type,
+  label,
   onChange,
   data,
   children,
@@ -114,7 +115,7 @@ const Input = ({
           <Select
           {...inputElementProps}
           selectionMode="multiple"
-            options={data.map((item) => {
+            options={data.map((item:any) => {
 
               return {
                 label: item.name,
@@ -131,12 +132,10 @@ const Input = ({
             onChange={onChange}
             value={value}
             placeholder={placeholder}
-            name={labelId}
+            name={name}
             type={type}
             required={required}
-            label={labelId}
-            labelId={labelId}
-            labelText={"Upload Image"}
+            label={label}
           />
         );
         break;

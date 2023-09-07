@@ -2,7 +2,7 @@
 
 import { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
-import { useActivationMutation } from '@/old/utils/redux/services/apiSlice';
+import { useActivationMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
 
 interface Props {

@@ -1,40 +1,53 @@
-
-import { 
-	getRecentPosts,
-	getCategories,
-	getTags,
-
+"use client"
+import React, { useEffect, useState } from 'react';
+import {
+  getRecentPosts,
+  getCategories,
+  getTags,
 } from '@/lib/api';
-// import {Suspense} from 'react';
 import TagCloud from '@/app/components/TagCloud';
-import {Spacer} from '@/components/utils';
+import { Spacer } from '@/components/utils';
 import SidebarCard from './SidebarCard';
-import Card from './Card';
 
+function Sidebar() {
+  const [posts, setPosts] = useState([]);
+  const [categories, setCategories] = useState([]);
+  const [tags, setTags] = useState([]);
 
-export default async function Sidebar() {
-	const postsRes = getRecentPosts();
-	const categoriesRes = getCategories();
-	const tagsRes = getTags();
+  useEffect(() => {
+    async function fetchData() {
+      try {
+        const postsRes = await getRecentPosts();
+        const categoriesRes = await getCategories();
+        const tagsRes = await getTags();
 
-	const [posts, categories, tags] = await Promise.all([postsRes, categoriesRes, tagsRes]);
-	debugger
-	return (
-		<div className="sidebar bg-gray-2 p-3 overflow-y-scroll   shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col   sticky top-[5rem]">
+        setPosts(postsRes);
+        setCategories(categoriesRes);
+        setTags(tagsRes);
+      } catch (error) {
+        console.error('Error fetching data:', error);
+      }
+    }
 
-			<div className="flex-auto flex flex-col gap-3">
-			  {posts.map((post, idx) => {
-				return (
-					<SidebarCard key={idx} post={post} />
-				)
-			})}  
-			<Spacer size={2} />
+    fetchData();
+  }, []);
 
-
-			 <TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />
-
-			<TagCloud data={categories} type="categories" className="bg-gray-300 shadow-xl" /> 
-			</div> 
-		</div>
-	)
+  return (
+    <div className="sidebar bg-gray-2 p-3 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
+      <div className="flex-auto flex flex-col gap-3">
+        {posts.map((post, idx) => (
+          <SidebarCard key={idx} post={post} />
+        ))}
+        <Spacer size={2} />
+        <TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />
+        <TagCloud
+          data={categories}
+          type="categories"
+          className="bg-gray-300 shadow-xl"
+        />
+      </div>
+    </div>
+  );
 }
+
+export default Sidebar;

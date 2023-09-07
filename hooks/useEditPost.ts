@@ -16,7 +16,7 @@ export default function useEditPost(post: any) {
 	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
 		const { name, value } = event.target;
 
-		setFormData((prevFormData) => ({
+		setFormData((prevFormData:any) => ({
 			...prevFormData,
 			[name]: value,
 		}));

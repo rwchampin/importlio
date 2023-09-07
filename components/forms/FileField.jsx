@@ -1,7 +1,7 @@
 import FileInputComponent from 'react-file-input-previews-base64'
 
 
-export default function FileField({value, type, onChange, name, required, placeholder, labelId, labelText, label }) {
+export default function FileField({value, type, onChange, name, required, placeholder, label }) {
 	 
 	return (
 		<FileInputComponent

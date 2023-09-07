@@ -20,7 +20,7 @@ interface Props {
     [key: string]: string;
   }[];
 }
-function classNames(...classes) {
+function classNames(...classes:any) {
   return classes.filter(Boolean).join(" ");
 }
 export default function Table({ data,columns }: any) {
@@ -80,7 +80,7 @@ export default function Table({ data,columns }: any) {
                   </tr>
                 </thead>
                 <tbody className="bg-white">
-                  {data.map((post, rowIndex) => (
+                  {data.map((post:any, rowIndex:any) => (
                     <tr 
                     id={post.id}
                     key={rowIndex}

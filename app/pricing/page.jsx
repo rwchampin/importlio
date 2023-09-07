@@ -1,23 +1,15 @@
-
-import { BasicPage } from "@/components/pages";
-import {Section} from '@/components/common'
+import BasePage from "@/app/components/BasePage";
+import Section from "@/app/components/Section";
 import  Prices from "@/components/heros/Prices";
 export default function Page() {
 
     return (
 
-         <BasicPage
-            theme="light"
+         <BasePage
                 title="Subscription Pricing"
                 subtitle="The ultimate solution for efficiently importing and managing your dropshipping products on Amazon into your shopify store."
                 headline="Pricing & Plans"
                 shadowText="Plans & Pricing"
-        belowSubtitle={null}
-        showButton={false}
-        customComponent={null}
-        xPos="100"
-        yPos="50"
-
 
         >
             <Section className="p-5">
@@ -33,6 +25,6 @@ export default function Page() {
 
                 </Section>   
           
-        </BasicPage>
+        </BasePage>
     )
 }

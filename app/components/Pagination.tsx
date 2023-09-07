@@ -1,7 +1,7 @@
 import React from "react";
 import { Pagination as PP } from "@nextui-org/react";
 
-const getPaginatedPosts = async (page) => {
+const getPaginatedPosts = async (page:any) => {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?page=${page}`, {
         method: "GET",
         headers: {
@@ -18,7 +18,7 @@ const getPaginatedPosts = async (page) => {
     return data;
 }
 
-export default function Pagination({ data }) {
+export default function Pagination({ data }:any) {
     const [currentPage, setCurrentPage] = React.useState(1);
 
   const total_pages = Math.ceil(data.count / data.results.length); // Assuming 10 items per page

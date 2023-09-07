@@ -1,19 +1,14 @@
-import { BasicPage } from "@/components/pages";
-import { Section } from '@/components/common'
+import BasePage from "@/app/components/BasePage";
+import Section from "@/app/components/Section";
+
 export default function Page() {
 
   return (
-    <BasicPage
-      theme="light"
+    <BasePage
       title="Terms of Service"
       subtitle="Learn more aboutour Terms & Conditions"
       headline="how we serve you"
       shadowText="Service"
-      showButton={false}
-      customComponent={null}
-      xPos="0"
-      yPos="50"
-      belowSubtitle={null}
 
     >
       <Section className="p-5 text-left">
@@ -54,6 +49,6 @@ export default function Page() {
           <li>2.4.4 Performing any act related to the design, source code, or elements of our website or application that could disrupt or interfere with the normal functioning of our Services.</li>
         </ul>
       </Section>
-    </BasicPage>
+    </BasePage>
   )
 }

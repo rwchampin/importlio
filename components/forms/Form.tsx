@@ -32,7 +32,7 @@ export default function Form({
       onSubmit={onSubmit}
     >
       {/* <input name="sub-input-info" value="" /> */}
-      {config.map((input:InputProps) => {
+      {config.map((input:any) => {
 
 		return (
         <Input

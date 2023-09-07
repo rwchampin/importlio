@@ -8,8 +8,8 @@ export default function PasswordResetForm() {
 
 	const config = [
 		{
-			labelText: 'Email address',
-			labelId: 'email',
+			label: 'Email address',
+			name: 'email',
 			type: 'email',
 			onChange,
 			value: email,

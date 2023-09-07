@@ -1,6 +1,6 @@
-import {BasicPage} from "@/components/pages";
+import BasePage from '../components/BasePage';
+import TopFeatures from '@/components/heros/TopFeatures';
 
-import { TopFeatures } from "@/components/heros";
 import  JsonLd  from '@/app/components/JsonLd'
 
 export default function Page() {
@@ -60,21 +60,15 @@ export default function Page() {
            
 
     return (
-        <BasicPage
-            theme="light"
+        <BasePage
             title="Use Amazon Results & Keyword Pages to fill your Shopify Store with Products"
             subtitle="CSV, Amazon URL, or Keyword Search Importer"
             headline="Ecommerce Dropshipping"
             shadowText="Features"
-        belowSubtitle={null}
-        showButton={false}
-        customComponent={null}
-        xPos="100"
-        yPos="50"
-        
+
         >
            <TopFeatures />
               <JsonLd json={json} />
-        </BasicPage>
+        </BasePage>
     )
 }
