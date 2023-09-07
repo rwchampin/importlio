@@ -47,8 +47,8 @@ const Prereg = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="mb-5 font-montserrat text-md leading-relaxed" style={{ fontWeight: 300 }}>
-        Pre-register today and secure a FREE month&apos;s membership when we launch. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
+      <div className="mb-5 font-montserrat text-md leading-relaxed" style={{ fontWeight: 500 }}>
+        Pre-register today and secure a FREE month&apos;s membership. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
       </div>
 
       <Modal
@@ -70,7 +70,7 @@ export default function Page() {
     <BasePage
       headline="The Official Shopify"
       title="Amazon Dropshipping Product Importer"
-      subtitle={`Official Shopify Bulk Product Importer App`}
+      subtitle={`Import Amazon Products to Shopify in Bulk with Amazon Result Pages, Category Pages, Keywords, ASINs, and more!`}
       shadowText={`Amazon Products`}
       customComponent={<Prereg />}
     >
