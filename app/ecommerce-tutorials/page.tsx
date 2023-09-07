@@ -6,10 +6,10 @@ import BasePage from '@/app/components/BasePage';
 
 import Section from "@/app/components/Section";
 import Card from '@/app/components/Card';
-
-
+import Sidebar from "@/app/components/Sidebar";
+import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
 import JsonLd from "@/app/components/JsonLd";
-import { useEffect, useState } from "react";
+import { Suspense, useEffect, useState } from "react";
 interface Post {
   title: string;
   slug: string;
@@ -39,6 +39,15 @@ const json = {
   }
 }
 
+const Loader = () => (
+  <div className="flex flex-col items-center justify-center w-full h-full">
+    <PostCardSkeleton />
+    <PostCardSkeleton />
+    <PostCardSkeleton />
+    <PostCardSkeleton />
+    <PostCardSkeleton />
+    </div>
+)
 const getPostsByQueryParams = async (type:string, name:string) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${type}/${name}`, {
     method: 'GET',
@@ -100,9 +109,11 @@ export default function Page() {
               );
             })}
           </div>
-          {/* <div className="w-full lg:w-1/4">
+          <div className="w-full lg:w-1/4">
+            <Suspense fallback={<Loader />}>
             <Sidebar />
-          </div> */}
+            </Suspense>
+          </div>
         </Section>
         <JsonLd
           json={json}

@@ -1,7 +1,9 @@
 'use client';
 import { ImGoogle, ImFacebook } from 'react-icons/im';
-import { SocialButton } from '@/components/common';
-import { continueWithGoogle, continueWithFacebook } from '@/old/utils';
+
+import SocialButton from '@/components/common/SocialButton';
+
+import { continueWithGoogle, continueWithFacebook } from '@/utils';
 
 export default function SocialButtons() {
 	return (

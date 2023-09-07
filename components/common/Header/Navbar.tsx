@@ -2,11 +2,13 @@
 import dynamic from "next/dynamic";
 import { Disclosure } from "@headlessui/react";
 import SocialIcons from "@/app/SocialIcons"
-import { LogoBlack, LoginOrAvatar } from "@/components/common";
+import { motion } from "framer-motion";
+import LoginOrAvatar from "@/components/common/LoginOrAvatar";
+import LogoBlack from "@/components/common/LogoBlack";
 import NavLink from "./NavLink";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+
 import useResponsive from "@/hooks/useResponsive";
-import { useEffect } from "react";
+
 const RiMenu5FillDynamic: any = dynamic(() =>
   import("react-icons/ri").then((mod) => mod.RiMenu5Fill)
 );
@@ -53,7 +55,7 @@ export default function Navbar({ posts }:any) {
     {
       pretty: "E-commerce Tutorials",
       href: "/ecommerce-tutorials",
-      dropdownData: posts,
+      dropdownData: [],
     },
   ];
  
@@ -62,6 +64,27 @@ export default function Navbar({ posts }:any) {
     <Disclosure as="nav" className="w-full absolute">
       {({ open }) => (
         <div key={0}>
+           <Disclosure.Panel  className="sm:hidden">
+            <motion.div
+              initial={{ 
+                opacity: 0,
+                x: -window.innerWidth,
+               }}
+              animate={{ 
+                opacity: 1,
+                x: 0,
+               }}
+              transition={{ duration: 0.5 }}
+             className="pussy fuck mobile-text space-y-1 px-2 pb-3 pt-2 top-0 fixed h-screen w-screen bg-offwhite text-xxl flex flex-col items-center justify-center text-center">
+               {links.map((link: LinkProps) => {
+                return (
+                  <NavLink key={link.name} link={link}>
+                    {link.name}
+                  </NavLink>
+                );
+              })} 
+            </motion.div>
+          </Disclosure.Panel>
           <div className="ccc mx-auto max-w-[90vw]">
             <div className="relative flex h-16 items-center justify-between w-full">
               <div className="w-full flex flex-1 items-center justify-center md:justify-center sm:items-center sm:justify-center gap-5">
@@ -92,7 +115,7 @@ export default function Navbar({ posts }:any) {
                 {responsive.lg === true && <SocialIcons />}
 
                {responsive.lg === false && (
-                  <div className="inset-y-0 right-0 flex items-center md:hidden">
+                  <div className="inset-y-0 right-0 flex items-center md:hidden z-[9999999]">
                     <Disclosure.Button className="inline-flex aspect-square items-center justify-center rounded-md p-2 text-black focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
                       <span className="sr-only">Open main menu</span>
                       {open ? (
@@ -118,17 +141,7 @@ export default function Navbar({ posts }:any) {
             /> */}
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
-            <div className="mobile-text space-y-1 px-2 pb-3 pt-2 fixed h-full w-full bg-offwhite text-xxl flex flex-col items-center justify-center text-center">
-              {/* {links.map((link: LinkProps) => {
-                return (
-                  <NavLink key={link.name} link={link}>
-                    {link.name}
-                  </NavLink>
-                );
-              })} */}
-            </div>
-          </Disclosure.Panel>
+         
         </div>
       )}
     </Disclosure>

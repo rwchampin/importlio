@@ -1,6 +1,9 @@
 import Link from 'next/link';
 import { RegisterForm } from '@/components/forms';
-import { SocialButtons, LogoBlack } from '@/components/common';
+
+import LogoBlack from '@/components/common/LogoBlack';
+import SocialButtons from '@/components/common/SocialButtons';
+
 import type { Metadata } from 'next';
 
 export const metadata: Metadata = {

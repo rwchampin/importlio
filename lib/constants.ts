@@ -176,6 +176,7 @@ export interface ButtonProps {
     onClick?: () => void;
     fullWidth?: boolean;
     type?: 'button' | 'submit' | 'reset';
+    target?: string;
 }
 
 export const POST_COLUMNS_NO_CONTENT = [

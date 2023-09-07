@@ -1,18 +1,16 @@
 "use client";
-import { useRouter } from "next/navigation";
-import { BsArrowLeft } from "react-icons/bs";
-import Primary  from "@/app/components/buttons/Button";
+import Button from '@/app/components/buttons/Button'
+
 import Back from "@/app/components/buttons/Back";
 import BasePage from "@/app/components/BasePage"
 export default function NotFound() {
-  const router = useRouter();
-  const Btn = () => (<Primary
+  const Btn = () => (<Button
   className="max-w-lg"
     href="/"
   variant="solid"
  >
   Home
-</Primary>)
+</Button>)
   return ( 
     <BasePage
       title={"Page not found"}
@@ -21,7 +19,6 @@ export default function NotFound() {
       headline="Try going back home"
       shadowText="404"
       shadowTextPosition="center"
-      showButton={false}
       customComponent={ <Btn />}
 		
     >

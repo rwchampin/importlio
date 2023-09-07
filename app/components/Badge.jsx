@@ -8,8 +8,8 @@ export default function Badge({
     startContent,
     endContent,
     variant = "faded",
-    color = "warning",
-    size = "small",
+    color = "default",
+    size = "sm",
     radius = "medium",
     avatar = false,
     isDisabled = false,
@@ -25,9 +25,7 @@ export default function Badge({
         color={color}
         size={size}
         radius={radius}
-        avatar={avatar}
-        isDisabled={isDisabled}
-        className={`text-xxs whitespace-nowrap overflow-x-scroll ${classNames}`}
+        className={`text-[.6rem] whitespace-nowrap overflow-x-scroll ${classNames}`}
         endContent={endContent}
 
       >

@@ -32,11 +32,11 @@ export default function BasePage({
         shadowTextPosition={shadowTextPosition}
       />
       {/* this must be 100% width, no margin, no padding for the full width sections */}
-      <Section>
+
         <div className="flex flex-col min-h-screen z-10 relative">
           {children}
         </div>
-      </Section>
+
     </>
   );
 }

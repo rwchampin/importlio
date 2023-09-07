@@ -9,7 +9,10 @@ import type { Metadata } from "next";
 import { GA, Scroller } from "@/components/utils/";
 import AppProvider from "@/components/utils/AppProvider";
 import { Setup } from "@/components/utils";
-import { Header, Footer, Cursor } from "@/components/common";
+
+import Header from "@/components/common/Header";
+import Footer from "@/components/common/Footer";
+import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
 import { getRecentPosts } from "@/lib/api";
 
@@ -90,7 +93,7 @@ export const metadata: Metadata = {
     },
   },
   openGraph: {
-    images: "@/assets/img/jpg/og-image.jpg",
+    images: "/og-image.jpg",
   },
 };
 

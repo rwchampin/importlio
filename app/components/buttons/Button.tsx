@@ -53,6 +53,7 @@ export default function Button({
   fullWidth=false,
   type = "button",
   href,
+  target,
   ...props
 }:ButtonProps) {
   let clickOrHref = {};
@@ -63,7 +64,7 @@ export default function Button({
   }
   const elem = (
     <BB 
-    // variant={variant}
+    variant={variant}
     radius={radius}
     size={size}
     spinner={spinner}

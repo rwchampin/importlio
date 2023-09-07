@@ -5,6 +5,8 @@ import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
 
 
+import Button from "@/app/components/buttons/Button";
+
 import { logout } from "@/redux/features/authSlice";
 
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
@@ -36,14 +38,14 @@ export default function LoginOrAvatar() {
   return (
     <>
       {pathname !== "/auth/login" && (
-        <a href="/auth/login" variant="solid">
+        <Button href="/auth/login" variant="solid">
           Login
-        </a>
+        </Button>
       )}
       {pathname !== "/auth/register" && (
-        <a href="/auth/register" target="_blank" variant="bordered">
+        <Button href="/auth/register" target="_blank" variant="bordered">
           Register
-        </a>
+        </Button>
       )}
     </>
   );

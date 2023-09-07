@@ -1,4 +1,4 @@
-import { LogoBlack } from '@/components/common/logo'
+import LogoBlack from '@/components/common/LogoBlack'
 import  SocialIcons from '@/app/SocialIcons';
 import { Spacer } from '@/components/utils'
 

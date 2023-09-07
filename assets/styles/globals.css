@@ -85,7 +85,11 @@
    button {
     @apply bg-button text-offwhite !important;
    }
-   
+   button.border-default {
+    background-color: transparent !important;
+    border: 3px solid var(--color-button) !important;
+    color: var(--color-button) !important;
+   }
     a, button, input[type="submit"] {
         @apply cursor-pointer;
     }
@@ -94,7 +98,7 @@
   border: 3px solid var(--color-button);
     }
 
-    
+ 
 *,
 *:before,
 *:after {

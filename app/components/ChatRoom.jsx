@@ -24,7 +24,7 @@ const ChatRoom = () => {
 
   const handleSendMessage = async () => {
     if (inputText.trim() !== '') {
-      const newMessage = { text: inputText, sender: 'user' };
+      const newMessage = { content: inputText, role: 'user' };
       setMessages([...messages, newMessage]);
       setInputText('');
 

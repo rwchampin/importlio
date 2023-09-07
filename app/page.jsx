@@ -83,9 +83,7 @@ export default function Page() {
       customComponent={<Prereg />}
     >
      
-       <Section
-        full
-      > 
+       
          <LazyLoad
           type="video"
           dataSrc={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4`}
@@ -93,7 +91,7 @@ export default function Page() {
           width={"100%"}
           height={"100%"}
         /> 
-       </Section> 
+       
 
        <Spacer size={1} />
 

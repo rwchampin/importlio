@@ -1,6 +1,5 @@
 import { getRecentPosts } from '@/lib/api';
-import { FullImageCard } from '@/components/blog/';
-import Card from './Card'
+import Card from '@/app/components/Card';
 export default async function RecentBlogPosts() {
 
     const posts = await getRecentPosts();
