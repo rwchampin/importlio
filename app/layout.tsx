@@ -17,7 +17,6 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
-import { getRecentPosts } from "@/lib/api";
 
 
 const montserrat = localFont({
@@ -100,8 +99,8 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-  const posts = await getRecentPosts();
+const RootLayout = ({ children }: { children: React.ReactNode }) => {
+
 
   return (
     <html
@@ -114,10 +113,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
      
 
         <AppProvider>
+        <Setup />
           <Scroller>
-            <Header posts={posts} />
+            <Header />
             {children}
-            <Setup />
+            
 
             <Footer />
           </Scroller>
@@ -128,6 +128,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             height={4}
             // showSpinner={true}
           />
+         
         </AppProvider>
       </body>
     </html>

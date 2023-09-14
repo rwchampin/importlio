@@ -34,27 +34,27 @@ export default function NavLink({ link, ...rest }: Props) {
   if (!link) {
     return <div>ERROR: Issue with link</div>;
   }
-  if (link && link.dropdownData && link.dropdownData.length > 0) {
-    const config = link.dropdownData.map((item: any) => {
-		debugger
-      return {
-        key: item.slug,
-        label: item.title,
-        href: `/ecommerce-tutorials/${item.slug}`,
-		image: item.featured_image,
-		updated: item.updated,
-		readtime: item.readtime,
-		postType: item.post_type.name,
-		excerpt: item.excerpt,
-      };
-    });
+  // if (link && link.dropdownData && link.dropdownData.length > 0) {
+  //   const config = link.dropdownData.map((item: any) => {
+	// 	debugger
+  //     return {
+  //       key: item.slug,
+  //       label: item.title,
+  //       href: `/ecommerce-tutorials/${item.slug}`,
+	// 	image: item.featured_image,
+	// 	updated: item.updated,
+	// 	readtime: item.readtime,
+	// 	postType: item.post_type.name,
+	// 	excerpt: item.excerpt,
+  //     };
+  //   });
 
-    return (
-      <Dropdown config={config}>
-        {link.pretty}
-      </Dropdown>
-    );
-  }
+  //   return (
+  //     <Dropdown config={config}>
+  //       {link.pretty}
+  //     </Dropdown>
+  //   );
+  // }
 
   if (link && !link.href) {
     return (

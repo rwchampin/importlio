@@ -31,21 +31,10 @@ export default function Form({
       onSubmit={onSubmit}
     >
       {/* <input name="sub-input-info" value="" /> */}
-      {config.map((input:any) => {
+      {config.map((input:any, i:number) => {
 
 		return (
-        <Input
-		  key={input.name}
-		  name={input.name}
-		  label={input.label}
-          type={input.type}
-          onChange={onChange}
-          value={input.value}
-		  data={input.data}
-          link={input.link}
-          required={input.required}
-		  placeholder={input.placeholder}
-		/>
+        <Input key={i} {...input} onChange={onChange} items={null} />
 		)
 		})}
 
@@ -53,7 +42,7 @@ export default function Form({
 	  	fullWidth={true}
 	    type="submit"
 		>
-        {isLoading ? <Spinner /> : btnText}
+      {btnText || "Submit"}
       </Button>
 
       <div className="text-xs mt-2">{postFormText}</div>

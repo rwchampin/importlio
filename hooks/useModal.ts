@@ -1,25 +1,20 @@
-import { useDispatch, useSelector } from 'react-redux';
+
 import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import { openModal, closeModal, toggleModal } from '@/redux/features/modal/modalSlice';
-
-interface ModalState {
-    isOpen: boolean;
-}
-
+import {   toggleModal } from '@/redux/features/modal/modalSlice';
+ 
  
 const useModal = () => {
-  const dispatch = useDispatch();
-    const { isOpen } = useSelector((state: ModalState) => state);
+  const dispatch = useAppDispatch();
 
-  const showModal = () => dispatch(openModal());
-  const hideModal = () => dispatch(closeModal());
-  const toggleModal:any = (bool:boolean) => dispatch(toggleModal(bool));
+  const { isOpen } = useAppSelector(state => state.modal);
+
+  const setModal = () => {
+    dispatch(toggleModal());
+  }
 
   return {
     isOpen,
-    showModal,
-    hideModal,
-    toggleModal,
+    setModal,
   }
 };
 

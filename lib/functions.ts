@@ -1,4 +1,7 @@
 
+
+import { toggleModal } from "../redux/features/modal/modalSlice";
+
 export const matchURL = (url:string, pathname:string) => {
   return pathname === url
 };
@@ -38,3 +41,9 @@ export const matchURL = (url:string, pathname:string) => {
         .map((s) => s.charAt(0).toUpperCase() + s.substring(1))
         .join(" ");
     }
+
+export const setModal = (dispatch:()=> {}) => {
+
+  dispatch(toggleModal());
+}
+

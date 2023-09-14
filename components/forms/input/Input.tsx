@@ -1,7 +1,8 @@
 "use client";
-import {  useState } from "react";
+import { useEffect,  useState } from "react";
 import Link from "next/link";
 import FileField from "../FileField";
+
 import { InputProps } from "@/lib/constants";
 import InputIcon from "./InputIcon";
 import dynamic from "next/dynamic";
@@ -12,6 +13,10 @@ const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
 });
 
 const Select: any = dynamic(() => import("@/components/forms/Select"), {
+  ssr: false,
+});
+
+const MultiSelect: any = dynamic(() => import("@/components/forms/MultiSelect"), {
   ssr: false,
 });
 
@@ -32,12 +37,25 @@ const Input = ({
   link,
   required = false,
 }:InputProps) => {
+  const [options, setOptions] = useState<any[]>([]);
   const [isFocused, setIsFocused] = useState(false);
 
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
- 
+  useEffect(() => {
+    if(options.length === 0 && data && typeof data === "function") {
+      data().then((res:any) => {
+        const f = res.map((item:any) => {
+          return {
+            label: item.name,
+            value: item.id
+          }
+        })
+        setOptions(f);
+      })
+    }
+  }, [data, options.length]);
 
   const getPlaceholder = (type: string) => {
     switch (type) {
@@ -66,12 +84,12 @@ const Input = ({
   let inputElementProps = {
     onFocus: handleFocus,
     onBlur: handleBlur,
-    data,
     name,
     type,
     onChange,
     value,
     required,
+    label,
     placeholder: placeholder || getPlaceholder(type),
     autoComplete: getAutoComplete(type),
     className: `pl-10 w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
@@ -84,13 +102,14 @@ const Input = ({
         return (
           <Select
             {...inputElementProps}
+            options={options}
           />
         );
       case "multiselect":
         return (
-          <Select
+          <MultiSelect
           {...inputElementProps}
-            selectionMode="multiple"
+            options={options}
           />
         );
       break;
@@ -107,23 +126,6 @@ const Input = ({
           <TextArea
           {...inputElementProps}
           ></TextArea>
-        );
-        break;
-
-      case "multiselect":
-        return (
-          <Select
-          {...inputElementProps}
-          selectionMode="multiple"
-            options={data.map((item:any) => {
-
-              return {
-                label: item.name,
-                value: item.id,
-              }
-            }
-            )}
-            />
         );
         break;
       case "file":

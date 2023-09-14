@@ -11,6 +11,8 @@ import JsonLd from "@/app/components/JsonLd";
 import Section from '@/app/components/Section';
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 import EmailForm from "@/components/forms/EmailForm";
+
+import Search from "@/app/components/Search";
 const jsonLd = {
   "@context": "http://schema.org",
   "@type": "WebSite",
@@ -72,7 +74,7 @@ export default function Page() {
       title="Amazon Dropshipping Product Importer"
       subtitle={`Import Amazon Products to Shopify in Bulk with Amazon Result Pages, Category Pages, Keywords, ASINs, and more!`}
       shadowText={`Amazon Products`}
-      customComponent={<Prereg />}
+      customComponent={<Search />}
     >
       <LazyLoad
         type="video"

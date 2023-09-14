@@ -9,7 +9,7 @@ interface UsersState {
 const coreSlice = createSlice({
   name: 'core',
   initialState: {
-    isLoading: 'idle',
+    isLoading: false,
     errors: null,
   },
   reducers: {

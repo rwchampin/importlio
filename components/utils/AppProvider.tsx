@@ -3,6 +3,7 @@
 import { store } from "@/redux/store";
 import { Provider } from "react-redux";
 import { NextUIProvider } from "@nextui-org/react";
+
 interface Props {
   children: React.ReactNode;
 }

@@ -7,7 +7,6 @@ import { toast } from 'react-toastify';
 export default function useEditPost(post: any) {
 	const router = useRouter();
 	const [updatePost, { isLoading }] = useUpdatePostMutation();
-
 	const [formData, setFormData] = useState(post);
 	const [newChanges, setNewChanges] = useState({} as any);
 	const [isDirty, setIsDirty] = useState(false);

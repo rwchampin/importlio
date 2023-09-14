@@ -1,12 +1,5 @@
 "use client";
-import { useEffect, useState } from "react";
 import { Select as SS, SelectItem } from "@nextui-org/react";
-import {
-  getPostTypes,
-  getTags,
-  getCategories,
-  getPostStatuses,
-} from "@/lib/api";
 
 export default function Select({
   label,
@@ -14,57 +7,32 @@ export default function Select({
   placeholder,
   required,
   name,
+  options,
   value,
   onChange,
-  selectionMode = "single",
 }) {
-  const [options, setOptions] = useState([]);
 
-  useEffect(() => {
-    async function fetchData() {
-      let data;
-      switch (name) {
-        case "post_type":
-          data = await getPostTypes();
-          break;
-        case "tag":
-          data = await getTags();
-          break;
-        case "category":
-          data = await getCategories();
-          break;
-        case "post_status":
-          data = await getPostStatuses();
-          break;
-        default:
-          break;
-      }
+  const optionsWithashedValue = [{value: -1, label: '-----------'}, ...options]
 
-      const formattedOptions = data.map((obj) => ({
-        label: obj.name,
-        value: obj.id,
-      }));
-      debugger
-      setOptions(formattedOptions);
-    }
-
-    fetchData();
-  }, [type]);
 
   return (
     <SS
       label={label}
       placeholder={placeholder}
       className="max-w-xs"
-      required={required}
+      isRequired={required}
       name={name}
       value={value}
-      onChange={onChange}
-      defaultSelectedKeys={[value]}
-      selectionMode={selectionMode}
-      items={options}
+      onChange={(e) => onChange({ 
+        target: {
+          value: e.target.value,
+          name  
+        }
+       })}
+      defaultSelectedKeys={[`${value.id}`]}
+      selectionMode="single"
     >
-        {(option) => <SelectItem key={option.value}>{option.label}</SelectItem>}
+        {optionsWithashedValue.map((option) => <SelectItem key={option.value} value={value}>{option.label}</SelectItem>)}
     </SS>
   );
 }

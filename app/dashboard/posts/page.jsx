@@ -1,6 +1,6 @@
 "use client"
 import { 
-    createNewPost,
+    createBlankPost,
     getPosts
 } from '@/lib/api';
 import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
@@ -16,23 +16,21 @@ import { useEffect,useState } from 'react';
 export default function Page() {
 
     const router = useRouter();
-    const [posts, setPosts] = useState(null);
+    const [posts, setPosts] = useState([]);
 
     useEffect(() => {
         async function fetchData() {
-          const response = await getPosts();
-          console.log(response);
-            setPosts(response.results);
+          const { results } = await getPosts();
+            setPosts(results);
         }
-        if (!posts) {
+        if (posts.length === 0 || !posts || posts === null) {
             fetchData();
         }
       }, []);
 
  const handleClick = async () => {
     try {
-      const post = await createNewPost();
-        debugger
+      const post = await createBlankPost();
       if (post && post.slug) {
         router.push(`/dashboard/posts/${post.slug}`);
       }

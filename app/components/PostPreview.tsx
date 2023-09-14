@@ -29,8 +29,8 @@ const PostPreview: React.FC<PostPreviewProps> = ({
   content,
 }) => {
   return (
-    <div className="flex w-1/2 flex-col gap-y-6 bg-gray-3 rounded-xl p-5">
-      <section>
+    <div className="flex w-1/2 flex-col gap-y-6 bg-gray-100 rounded-xl p-5">
+      <section className="p-3 bg-gray-400 rounded-xl">
         <h2>Preview</h2>
         <h4>{seo_title}</h4>
         <p>{seo_description}</p>
@@ -53,10 +53,10 @@ const PostPreview: React.FC<PostPreviewProps> = ({
         <h2>{subtitle}</h2>
         {categories.length > 0 &&
           categories.map((category, index) => (
-            <span key={index}>{category}</span>
+            <span key={index}>{category.name}</span>
           ))}
         {tags.length > 0 &&
-          tags.map((tag, index) => <span key={index}>{tag}</span>)}
+          tags.map((tag, index) => <span key={index}>{tag.name}</span>)}
         <h3>{shadow_text}</h3>
         <p dangerouslySetInnerHTML={{ __html: content }}></p>
       </section>

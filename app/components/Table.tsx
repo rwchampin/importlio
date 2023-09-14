@@ -2,7 +2,7 @@
 import Link from "next/link";
 import {BsFillPencilFill as EditIcon} from 'react-icons/bs'
 import { RiDeleteBin6Line as DeleteIcon } from "react-icons/ri";
-// import Image from "next/image";
+import { BiErrorCircle as ErrorIcon } from "react-icons/bi";
 
 import { deletePost } from "@/lib/api";
 interface Props {
@@ -23,7 +23,7 @@ interface Props {
 function classNames(...classes:any) {
   return classes.filter(Boolean).join(" ");
 }
-export default function Table({ data,columns }: any) {
+export default function Table({ data }: any) {
 
   const generateColumns = (data: any) => {
     return Object.keys(data[0]).map((key) => {
@@ -44,6 +44,18 @@ export default function Table({ data,columns }: any) {
   };
 
   const trStyle = `px-3 py-4 whitespace-nowrap text-xs font-medium text-gray-900 max-w-[150px] overflow-hidden overflow-ellipsis`
+
+  if(!data || !data.length) {
+    return (
+      <button
+      type="button"
+      className="relative block w-full rounded-lg border-2 border-dashed border-gray-300 p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+    >
+       <ErrorIcon className="mx-auto h-12 w-12 text-gray-400" aria-hidden="true" />
+      <span className="mt-2 block text-sm font-medium text-gray-100">Create a new database</span>
+    </button>
+    )
+  }
   return (
 
  
