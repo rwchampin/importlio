@@ -5,27 +5,27 @@ import BasePage from "@/app/components/BasePage";
 
 import JsonLd from "@/app/components/JsonLd";
 import { useEffect, useState } from "react";
-import { useParams } from "next/navigation";
+
 import { getPost } from "@/lib/api";
+import Spinner from "@/app/components/Spinner";
 
-export default function Page() {
-  const [post, setPost] = useState({} as any);
-  const params = useParams();
-
-
-  const slug:string = params.slug[0];
+export default function Page({ params }: { params: { slug: string } }) {
+  const { slug } = params;
+  
+  const [post, setPost] = useState<any>(null);
 
   useEffect(() => {
     const fetchPost = async () => {
       const post = await getPost(slug);
-      debugger
+      
       setPost(post);
     };
 
-    fetchPost();
+    if(!post) fetchPost();
   }, [slug]);
 
-  debugger
+if(!post) return <Spinner />
+
   const json = {
     "@context": "http://schema.org",
     "@type": "BlogPosting",
@@ -59,58 +59,62 @@ export default function Page() {
       "@type": "Blog",
       "name": "Importlio ecommerce tutorials",
       "url": "https://www.importlio.com/ecommerce-tutorials"
+    },
+    "breadcrumb": {
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        {
+          "@type": "ListItem",
+          "position": 1,
+          "name": "Importlio",
+          "item": "https://www.importlio.com"
+        },
+        {
+          "@type": "ListItem",
+          "position": 2,
+          "name": "Ecommerce Tutorials",
+          "item": "https://www.importlio.com/ecommerce-tutorials"
+        },
+        {
+          "@type": "ListItem",
+          "position": 3,
+          "name": post.title,
+          "item": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+          "image": post.featured_image,
+          "description": post.excerpt || post.content,
+          "datePublished": post.published,
+          "dateModified": post.updated,
+          "author": {
+            "@type": "Importlio Inc.",
+            "name": "Importlio Inc."
+          },
+          "mainEntityOfPage": {
+            "@type": "WebPage",
+            "@id": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+          },
+          "publisher": {
+            "@type": "Organization",
+            "name": "Importlio Inc.",
+            "logo": {
+              "@type": "ImageObject",
+              "url": "https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/logo-black.svg",
+            }
+          },
+          "inLanguage": "en-US",
+          "isPartOf": {
+            "@type": "Blog",
+            "name": "Importlio ecommerce tutorials",
+            "url": "https://www.importlio.com/ecommerce-tutorials"
+          },
+
+        }
+      ]
     }
   }
-
-  // gsap.to(".fi", {
-  // 	scrollTrigger: {
-  // 		trigger: ".fi",
-  // 		start: "top top",
-  // 		end: "bottom top",
-  // 		scrub: true,
-  // 		pin: true,
-  // 		// markers: true
-  // 		pinSpacing: false
-  // 	},
-  // 	backgroundPosition: "0% -100%",
-  // 	ease: "none"
-  // })
-
-  // const t:any = post.tags.map((tag:any, idx:number) => {
-  //   debugger
-  //   return (
-  //     <span
-  //       key={idx}
-  //     >
-  //       <Link
-  //         href={`/ecommerce-tutorials/tags/${tag.slug}`}
-  //         className='text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}
-  //       >
-  //         {tag.name}
-  //       </Link>
-  //     </span>
-  //   );
-
-  // })
-
-  // const c:any = post.categories.map((cat:any, idx:number) => {
-  //   debugger
-  //   return (
-  //     <span
-  //       key={idx}
-  //     >
-  //       <Link
-  //         href={`/ecommerce-tutorials/tags/${cat.slug}`}
-  //         className='inline-block text-xs rounded-full bg-blue-3 text-blue-11 px-3 py-2' key={idx}>
-  //         {cat.name}
-  //       </Link>
-  //     </span>
-  //   );
-
-  // })
-
+ 
   return (
     <BasePage
+      theme={post.theme}
       title={post.title}
       subtitle={post.title}
       headline={post.headline}
@@ -119,9 +123,9 @@ export default function Page() {
     >
       <div className="flex p-5">
         {/* {post.post_type.name} */}
- {/* <TagCloud data={post.tags} type="tags" /> 
+ <TagCloud data={post.tags} type="tags" /> 
 
-        <TagCloud data={post.categories} type="categories" />  */}
+        <TagCloud data={post.categories} type="categories" /> 
       </div>
 
       <div className="flex flex-col md:flex-row gap-5 w-full p-5">

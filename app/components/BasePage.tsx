@@ -3,6 +3,7 @@ import { BasePageProps } from "@/lib/constants";
 import Section from "@/app/components/Section";
 
 export default function BasePage({
+  theme,
   bg,
   title,
   subtitle,
@@ -22,6 +23,7 @@ export default function BasePage({
         {topRightPageComponent}
       </Section>
       <Hero
+        theme={theme}
         bg={bg}
         title={title}
         subtitle={subtitle}

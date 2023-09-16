@@ -11,9 +11,7 @@
 
 const nextConfig = {
   // i18n,
-  experimental: {
-    mdxRs: true,
-  },
+
   // reactStrictMode: process.env.NODE_ENV !== 'production',
   images: {
     remotePatterns: [
@@ -34,6 +32,6 @@ const nextConfig = {
   
 };
 
-const withMDX = require('@next/mdx')()
-module.exports = withMDX(nextConfig)
+
+module.exports = nextConfig;
 // module.exports = withPWA(nextConfig);

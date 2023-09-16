@@ -24,7 +24,7 @@ interface LinkProps {
   name?: string;
 }
 
-export default function Navbar({ posts }:any) {
+export default function Navbar() {
 
 
   const responsive: any = useResponsive();

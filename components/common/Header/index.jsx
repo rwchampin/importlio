@@ -1,7 +1,9 @@
+
 import Navbar from './Navbar'
-export default function Header({
-	posts,
-}) {
+
+ 
+export default function Header( ) {
+
 
 	return (
 		<header
@@ -9,7 +11,7 @@ export default function Header({
 			className="header fixed top-0 shadow-xl w-full bg-white drop-shadow-lg"
 		>
 			<Navbar
-				posts={posts}
+				// posts={posts}
 			/>
 			
 		</header>

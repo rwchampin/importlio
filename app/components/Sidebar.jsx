@@ -16,19 +16,23 @@ function Sidebar() {
   useEffect(() => {
     async function fetchData() {
       try {
-        const postsRes = await getRecentPosts();
-        const categoriesRes = await getCategories();
-        const tagsRes = await getTags();
+        const postsRes =  getRecentPosts();
+        const categoriesRes =  getCategories();
+        const tagsRes =  getTags();
 
-        setPosts(postsRes);
-        setCategories(categoriesRes);
-        setTags(tagsRes);
+        const [posts, categories, tags] = await Promise.all([postsRes,tagsRes, categoriesRes])
+
+        setPosts(posts);
+        setCategories(categories);
+        setTags(tags);
       } catch (error) {
         console.error('Error fetching data:', error);
       }
     }
 
-    fetchData();
+    if(posts.length === 0 && categories.length === 0 && tags.length === 0){
+      fetchData();
+    }
   }, []);
 
   return (
@@ -38,12 +42,12 @@ function Sidebar() {
           <SidebarCard key={idx} post={post} />
         ))}
 
-        <TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />
-        <TagCloud
+        {tags && <TagCloud data={tags} type="tags" className="bg-gray-300 shadow-xl" />}
+       {categories &&<TagCloud
           data={categories}
           type="categories"
           className="bg-gray-300 shadow-xl"
-        />
+        />}
       </div>
     </div>
   );

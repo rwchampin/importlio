@@ -1,9 +1,9 @@
 
 'use client';
-import React, { forwardRef, useEffect } from 'react';
+import React, { useEffect } from 'react';
 import gsap from 'gsap';
 
-export const ResultDropdown = ({ show }) => {
+export const ResultDropdown = ({ show }:any) => {
 
 
     useEffect(() => {console.log(show)

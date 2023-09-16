@@ -62,7 +62,7 @@ const MyInput = forwardRef((props, ref) => {
     getDescriptionProps,
     getErrorMessageProps,
     getClearButtonProps,
-  } = useInput({
+  } = useInput>({
     ...props,
     ref,
     // this is just for the example, the props bellow should be passed by the parent component
@@ -84,7 +84,7 @@ const MyInput = forwardRef((props, ref) => {
     },
   });
 
-  const labelContent = <label {...getLabelProps()}>{label}</label>;
+  // const labelContent = <label {...getLabelProps()}>{label}</label>;
 
   const end = React.useMemo(() => {
     if (isClearable) {
@@ -114,7 +114,7 @@ const MyInput = forwardRef((props, ref) => {
 
   return (
     <Component {...getBaseProps()}>
-      {shouldLabelBeOutside ? labelContent : null}
+      {/* {shouldLabelBeOutside ? labelContent : null} */}
       <div
         {...getInputWrapperProps()}
         role="button"
@@ -122,7 +122,7 @@ const MyInput = forwardRef((props, ref) => {
           domRef.current?.focus();
         }}
       >
-        {shouldLabelBeInside ? labelContent : null}
+        {/* {shouldLabelBeInside ? labelContent : null} */}
         {innerWrapper}
         <ResultDropdown show={isFocused} />
       </div>

@@ -61,7 +61,7 @@ const getPosts = async () => {
 
     const postsData = await posts.json();
 
-    return postsData.results;
+    return postsData;
   } catch (error) {
     console.error('Error fetching posts:', error.message);
     return [];
@@ -70,7 +70,7 @@ const getPosts = async () => {
 
 const getTags = async () => {
   try {
-    const tags = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/tags/list`, {
+    const tags = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/tags/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -79,7 +79,7 @@ const getTags = async () => {
 
     const tagsData = await tags.json();
 
-    return tagsData.results;
+    return tagsData;
 
 
   } catch (error) {
@@ -90,7 +90,7 @@ const getTags = async () => {
 
 const getCategories = async () => {
   try {
-    const caegories = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/list`, {
+    const caegories = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/categories/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -99,7 +99,7 @@ const getCategories = async () => {
 
     const caegoriesData = await caegories.json();
 
-    return caegoriesData.results;
+    return caegoriesData;
 
 
   } catch (error) {
@@ -109,7 +109,7 @@ const getCategories = async () => {
 };
 const getPostTypes = async () => {
   try {
-    const postTypes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post-types/list`, {
+    const postTypes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post-types/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
@@ -118,7 +118,7 @@ const getPostTypes = async () => {
 
     const postTypeData = await postTypes.json();
 
-    return postTypeData.results;
+    return postTypeData;
 
 
   } catch (error) {

@@ -1,18 +1,18 @@
 "use client";
 import BasePage from "@/app/components/BasePage"
-import { useState } from "react";
+// import { useState } from "react";
 import ImageCta from "./ImageCta";
 import FeatureHero from "./FeatureHero";
 import RecentBlogPosts from "@/app/components/RecentBlogPosts";
 import FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import LazyLoad from "@/components/utils/LazyLoad";
-import Modal from "@/components/common/Modal";
+// import Modal from "@/components/common/Modal";
 import JsonLd from "@/app/components/JsonLd";
 import Section from '@/app/components/Section';
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
-import EmailForm from "@/components/forms/EmailForm";
+// import EmailForm from "@/components/forms/EmailForm";
+// import Search from "@/app/components/Search";
 
-import Search from "@/app/components/Search";
 const jsonLd = {
   "@context": "http://schema.org",
   "@type": "WebSite",
@@ -45,36 +45,37 @@ const jsonLd = {
   }
 }
 
-const Prereg = () => {
-  const [isOpen, setIsOpen] = useState(false);
-  return (
-    <>
-      <div className="mb-5 font-montserrat text-md leading-relaxed" style={{ fontWeight: 500 }}>
-        Pre-register today and secure a FREE month&apos;s membership. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
-      </div>
+// const Prereg = () => {
+//   const [isOpen, setIsOpen] = useState(false);
+//   return (
+//     <>
+//       <div className="mb-5 font-montserrat text-md leading-relaxed" style={{ fontWeight: 500 }}>
+//         Pre-register today and secure a FREE month&apos;s membership. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
+//       </div>
 
-      <Modal
-        buttonText="Pre-register"
-        buttonSize="sm"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      >
-        <EmailForm
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
-      </Modal>
-    </>
-  )
-}
+//       <Modal
+//         buttonText="Pre-register"
+//         buttonSize="sm"
+//         isOpen={isOpen}
+//         setIsOpen={setIsOpen}
+//       >
+//         <EmailForm
+//           isOpen={isOpen}
+//           setIsOpen={setIsOpen}
+//         />
+//       </Modal>
+//     </>
+//   )
+// }
 export default function Page() {
   return (
     <BasePage
+    theme="dark"
       headline="The Official Shopify"
       title="Amazon Dropshipping Product Importer"
       subtitle={`Import Amazon Products to Shopify in Bulk with Amazon Result Pages, Category Pages, Keywords, ASINs, and more!`}
       shadowText={`Amazon Products`}
-      customComponent={<Search />}
+      // customComponent={<Search />}
     >
       <LazyLoad
         type="video"

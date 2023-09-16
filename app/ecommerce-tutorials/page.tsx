@@ -39,15 +39,7 @@ const json = {
   }
 }
 
-const Loader = () => (
-  <div className="flex flex-col items-center justify-center w-full h-full">
-    <PostCardSkeleton />
-    <PostCardSkeleton />
-    <PostCardSkeleton />
-    <PostCardSkeleton />
-    <PostCardSkeleton />
-    </div>
-)
+ 
 const getPostsByQueryParams = async (type:string, name:string) => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${type}/${name}`, {
     method: 'GET',
@@ -55,14 +47,22 @@ const getPostsByQueryParams = async (type:string, name:string) => {
       'Content-Type': 'application/json'
     }
   })
-  const data = await res.json()
-  const r = data.results;
-  return r;
+  const data = await res.json();
+  return data;
 }
-const getAllPosts = async () => {
-  const res = await getPosts();
-  const posts = res.results;
-  return posts;
+ 
+const Loader = () => {
+
+  return (
+    <div className="flex flex-col gap-5">
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+      <PostCardSkeleton />
+    </div>
+  )
 }
 export default function Page() {
   const [posts, setPosts] = useState([])
@@ -76,7 +76,7 @@ export default function Page() {
       if (type && name) {
         data = await getPostsByQueryParams(type, name)
       } else {
-        data = await getAllPosts()
+        data = await getPosts()
       }
       return data;
     }
@@ -99,11 +99,10 @@ export default function Page() {
         <Section className="p-5 flex flex-col gap-5 lg:flex-row">
           <div className="flex flex-col md:flex-row flex-wrap gap-5">
             {posts.map((post:any, idx:number) => {
-              debugger
               return (
-
+                    <Suspense fallback={<PostCardSkeleton />}>
                      <Card key={idx} post={post} />
-
+                    </Suspense>
 
 
               );

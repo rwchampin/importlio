@@ -16,6 +16,7 @@ interface Props {
   shadowText?: string | React.ReactNode;
   shadowTextPosition?: "top" | "center";
   customComponent?: React.ReactNode | null | undefined;
+  theme?: "light" | "dark";
 }
 export default function ({
   bg,
@@ -25,9 +26,13 @@ export default function ({
   headline,
   shadowText,
   customComponent,
-  shadowTextPosition
+  shadowTextPosition,
+  theme,
 }: Props) {
 
+  const titleColor = theme === "light" ? "text-gray-900" : "text-black";
+  const subtitleColor = theme === "light" ? "text-gray-900" : "text-black";
+  const headlineColor = theme === "light" ? "text-gray-400" : "text-gray-400";
   return (
     <>
       <section
@@ -45,13 +50,21 @@ export default function ({
           />
         )}
         <div className="flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
-          <Headline >{headline}</Headline>
+          <Headline 
+            className={headlineColor}
+          >
+            {headline}
+          </Headline>
           {/* <Spacer size={.5} /> */}
-          <Title>
+          <Title
+            className={titleColor}
+          >
             {title}
           </Title>
 
-          <Subtitle>
+          <Subtitle
+            className={subtitleColor}
+          >
             {subtitle}
           </Subtitle>
 

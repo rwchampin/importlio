@@ -3,6 +3,8 @@ import { useEffect,  useState } from "react";
 import Link from "next/link";
 import FileField from "../FileField";
 
+import {Input as NextUiInput} from "@nextui-org/react";
+
 import { InputProps } from "@/lib/constants";
 import InputIcon from "./InputIcon";
 import dynamic from "next/dynamic";
@@ -44,8 +46,13 @@ const Input = ({
   const handleBlur = () => setIsFocused(false);
 
   useEffect(() => {
-    if(options.length === 0 && data && typeof data === "function") {
+    // if(data.length > 0 && typeof data[0] === "object") {
+    //   setOptions(data);
+    //   return
+    // }
+    if(options.length === 0 && data && data !== null && typeof data === "function") {
       data().then((res:any) => {
+        debugger
         const f = res.map((item:any) => {
           return {
             label: item.name,
@@ -55,7 +62,7 @@ const Input = ({
         setOptions(f);
       })
     }
-  }, [data, options.length]);
+  }, [data, options]);
 
   const getPlaceholder = (type: string) => {
     switch (type) {
@@ -147,7 +154,13 @@ const Input = ({
         return (
           <div className="relative overflow-hidden  hover:bg-offgray rounded-lg h-input hover:shadow-lg flex items-center justify-start bg-input w-full">
             <InputIcon type={type} isFocused={isFocused} />
-            <input {...inputElementProps} value={value} onChange={onChange} />
+            <NextUiInput
+              isClearable={true}
+              isRequired={required}
+             {...inputElementProps} 
+             value={value}
+              onChange={onChange} 
+              />
           </div>
         );
     }

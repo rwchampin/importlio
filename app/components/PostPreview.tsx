@@ -52,11 +52,11 @@ const PostPreview: React.FC<PostPreviewProps> = ({
         <h1>{title}</h1>
         <h2>{subtitle}</h2>
         {categories.length > 0 &&
-          categories.map((category, index) => (
+          categories.map((category:any, index:any) => (
             <span key={index}>{category.name}</span>
           ))}
         {tags.length > 0 &&
-          tags.map((tag, index) => <span key={index}>{tag.name}</span>)}
+          tags.map((tag:any, index:number) => <span key={index}>{tag.name}</span>)}
         <h3>{shadow_text}</h3>
         <p dangerouslySetInnerHTML={{ __html: content }}></p>
       </section>

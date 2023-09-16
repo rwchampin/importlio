@@ -20,8 +20,9 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchData() {
-          const { results } = await getPosts();
-            setPosts(results);
+          const res = await getPosts();
+          debugger
+            setPosts(res);
         }
         if (posts.length === 0 || !posts || posts === null) {
             fetchData();
@@ -32,7 +33,7 @@ export default function Page() {
     try {
       const post = await createBlankPost();
       if (post && post.slug) {
-        router.push(`/dashboard/posts/${post.slug}`);
+        router.push(`/dashboard/posts/${post.id}`);
       }
     } catch (error) {
       throw new Error(

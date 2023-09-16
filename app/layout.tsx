@@ -17,6 +17,7 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
+import { getRecentPosts } from "@/lib/api";
 
 
 const montserrat = localFont({
@@ -99,7 +100,11 @@ export const metadata: Metadata = {
   },
 };
 
-const RootLayout = ({ children }: { children: React.ReactNode }) => {
+
+const preload:any = async () => {
+  void getRecentPosts();
+}
+const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 
 
   return (

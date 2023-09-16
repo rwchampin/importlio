@@ -29,7 +29,7 @@ export default function Select({
           name  
         }
        })}
-      defaultSelectedKeys={[`${value.id}`]}
+      defaultSelectedKeys={[`${value}`]}
       selectionMode="single"
     >
         {optionsWithashedValue.map((option) => <SelectItem key={option.value} value={value}>{option.label}</SelectItem>)}

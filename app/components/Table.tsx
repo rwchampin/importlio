@@ -123,7 +123,7 @@ export default function Table({ data }: any) {
                           <EditIcon className="text-xs text-gray-500 hover:text-gray-900 cursor-pointer" />
                         </Link>
 
-                        <button onClick={() => handleDelete(post.id)}>
+                        <button onClick={() => handleDelete(post.slug)}>
                           <DeleteIcon className="text-xs text-gray-500 hover:text-gray-900 cursor-pointer" />
                         </button>
                       </td>

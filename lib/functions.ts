@@ -1,6 +1,6 @@
 
 
-import { toggleModal } from "../redux/features/modal/modalSlice";
+
 
 export const matchURL = (url:string, pathname:string) => {
   return pathname === url
@@ -42,8 +42,4 @@ export const matchURL = (url:string, pathname:string) => {
         .join(" ");
     }
 
-export const setModal = (dispatch:()=> {}) => {
-
-  dispatch(toggleModal());
-}
-
+ 

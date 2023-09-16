@@ -5,6 +5,7 @@ import { useUpdatePostMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-toastify';
 
 export default function useEditPost(post: any) {
+	debugger
 	const router = useRouter();
 	const [updatePost, { isLoading }] = useUpdatePostMutation();
 	const [formData, setFormData] = useState(post);
@@ -40,7 +41,7 @@ export default function useEditPost(post: any) {
 
 	const saveFormData = () => {
 		if (isDirty) {
-			updatePost({id: post.id, updates:newChanges})
+			updatePost({slug: post.slug, updates:newChanges})
 				.unwrap()
 				.then(() => {
 					toast.success('Post Saved Successfully');

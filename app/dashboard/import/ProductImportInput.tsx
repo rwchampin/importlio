@@ -1,9 +1,9 @@
 "use client";
 import { useState } from "react";
-import { scrapeUrl } from '@/lib/api';
+// import { scrapeUrl } from '@/lib/api';
 import { BsQuestionCircleFill } from "react-icons/bs";
 export default function ProductImportInput() {
-  const [results, setResults] = useState([
+  const [results, setResults] = useState<any>([
     {
         "title": `ANMESC Laptop, Windows 11 Traditional Computer, 15.6" 1080P Full HD Display, Intel Celeron N5095 Processors, 12GB DDR4 512GB SSD, 2.4G/5G WiFi, Bluetooth 4.2`,
         "price": "$359.99",
@@ -40,7 +40,7 @@ export default function ProductImportInput() {
         "image_url": "https://m.media-amazon.com/images/I/81xW62KXNhL._AC_UY218_.jpg"
     }
 ])
-  const [formValues, setFormValues] = useState('')
+  const [formValues, setFormValues] = useState<any>('')
   const isString = (value: any) => {
     if (typeof value === "string") {
       return true;
@@ -147,7 +147,7 @@ export default function ProductImportInput() {
         Enter a single product url or an entire list of product urls separated
         by a comma. You can also drop a csv file with product urls.
       </div>
-      {results.length > 0 && results.map((result, i) => (
+      {results.length > 0 && results.map((result:any, i:any) => (
         <div key={i} className="p-5 mb-5 w-full h-full bg-offwhite shadow-xl rounded-xl flex flex-col items-center justify-start gap-5">
         <div className="w-full h-full flex items-center justify-start">
         <img src={result.image_url} alt={result.title} className='rounded-xl shadow-xl mr-3'/>
@@ -155,7 +155,7 @@ export default function ProductImportInput() {
           <h3>{result.title}</h3>
           <p className='text-sm text-gray-500'>{result.price}</p>
           <p className='text-sm text-gray-500'>{result.rating}</p>
-          <p className='text-sm text-gray-500'>{result.review}</p>
+          <p className='text-sm text-gray-500'>{result.reviews}</p>
           </div>
           </div>
           

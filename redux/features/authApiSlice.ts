@@ -24,7 +24,7 @@ interface CreateUserResponse {
 const authApiSlice = api.injectEndpoints({
 	endpoints: builder => ({
 		retrieveUser: builder.query<User, void>({
-			query: ({ token }) => ({
+			query: ({ token }:any) => ({
 				url: '/users/me/',
 				method: 'GET',
 				headers: {
@@ -38,7 +38,7 @@ const authApiSlice = api.injectEndpoints({
 			CreateUserResponse,
 			SocialAuthArgs
 		>({
-			query: ({ provider, state, code }) => ({
+			query: ({ provider, state, code }:any) => ({
 				url: `/o/${provider}/?state=${encodeURIComponent(
 					state
 				)}&code=${encodeURIComponent(code)}`,
@@ -50,7 +50,7 @@ const authApiSlice = api.injectEndpoints({
 			}),
 		}),
 		login: builder.mutation({
-			query: ({ email, password }) => ({
+			query: ({ email, password }:any) => ({
 				url: '/jwt/create/',
 				method: 'POST',
 				body: { email, password },
@@ -64,7 +64,7 @@ const authApiSlice = api.injectEndpoints({
 				avatar,
 				password,
 				re_password,
-			}) => ({
+			}:any) => ({
 				url: '/users/',
 				method: 'POST',
 				body: { first_name, last_name, email, password, re_password, avatar },
@@ -83,7 +83,7 @@ const authApiSlice = api.injectEndpoints({
 			}),
 		}),
 		activation: builder.mutation({
-			query: ({ uid, token }) => ({
+			query: ({ uid, token }:any) => ({
 				url: '/users/activation/',
 				method: 'POST',
 				body: { uid, token },
@@ -104,9 +104,9 @@ const authApiSlice = api.injectEndpoints({
 			}),
 		}),
 		updatePost: builder.mutation({
-			query: ({ id, updates}) => ({
-				url: `/posts/${id}/update/`,
-				method: 'PUT',
+			query: ({ slug, updates}) => ({
+				url: `/posts/update/${slug}/`,
+				method: 'PATCH',
 				body: updates,
 			}),
 
