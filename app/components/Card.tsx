@@ -35,7 +35,7 @@ export default function Card({ post }: any) {
           <p className="text-xs">{post.readtime} readtime</p>
         </div>
        
-        {(post.tags.length || post.categories.length) &&<div className="card-footer-tag-cloud-wrapper p-3 rounded-xl flex flex-row gap-1 overflow-x-auto">
+        {(post.tags.length || post.categories.length) &&<div className="card-footer-tag-cloud-wrapper p-3 rounded-xl flex flex-row gap-1 overflow-x-auto fade-right">
           <TagCloud data={post.tags} type="tag" />
           <TagCloud data={post.categories} type="category" />
         </div>}

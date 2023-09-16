@@ -1,7 +1,7 @@
 "use client";
 import dynamic from "next/dynamic";
 import { Disclosure } from "@headlessui/react";
-import SocialIcons from "@/app/SocialIcons"
+import SocialIcons from "@/app/components/SocialIcons"
 import { motion } from "framer-motion";
 import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 import LogoBlack from "@/components/common/LogoBlack";

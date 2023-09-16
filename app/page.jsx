@@ -1,9 +1,9 @@
 "use client";
 import BasePage from "@/app/components/BasePage"
 import { useState } from "react";
-import ImageCta from "./ImageCta";
-import FeatureHero from "./FeatureHero";
-import RecentBlogPosts from "@/app/components/RecentBlogPosts";
+import ImageCta from "@/app/components/ImageCta";
+import FeatureHero from "@/app/components/FeatureHero";
+
 import FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import LazyLoad from "@/components/utils/LazyLoad";
 import Modal from "@/components/common/Modal";
@@ -105,9 +105,7 @@ export default function Page() {
       <Section full>
         <FadingBackgroundCta />
       </Section>
-      <Section>
-        <RecentBlogPosts />
-      </Section>
+     
       <JsonLd
         json={jsonLd}
       />
