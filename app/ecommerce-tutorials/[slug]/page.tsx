@@ -8,6 +8,7 @@ import { useEffect, useState } from "react";
 
 import { getPost } from "@/lib/api";
 import Spinner from "@/app/components/Spinner";
+import AdminBar from "@/app/components/AdminBar";
 
 export default function Page({ params }: { params: { slug: string } }) {
   const { slug } = params;
@@ -137,6 +138,7 @@ if(!post) return <Spinner />
       </div>
 
       <JsonLd json={json} />
+      <AdminBar />
     </BasePage>
   );
 }

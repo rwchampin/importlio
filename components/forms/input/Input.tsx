@@ -8,6 +8,7 @@ import {Input as NextUiInput} from "@nextui-org/react";
 import { InputProps } from "@/lib/constants";
 import InputIcon from "./InputIcon";
 import dynamic from "next/dynamic";
+import { on } from "events";
 
 
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
@@ -37,11 +38,15 @@ const Input = ({
   placeholder,
   className,
   link,
+  description,
+  validationState,
+  errorMessage = '',
   required = false,
 }:InputProps) => {
   const [options, setOptions] = useState<any[]>([]);
   const [isFocused, setIsFocused] = useState(false);
-
+  const [updatedValidationState, setValidationState] = useState<"valid" | "invalid">(validationState || "valid");
+  const [updatedErrorMessage, setErrorMessage] = useState<string>(errorMessage || "")
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
@@ -99,8 +104,36 @@ const Input = ({
     label,
     placeholder: placeholder || getPlaceholder(type),
     autoComplete: getAutoComplete(type),
-    className: `pl-10 w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
+    // className: `w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
   };
+
+  // const handleChange = (e: any) => {
+
+  //   onChange(e);
+
+  //   if (e.target.value.length > 0 && required) {
+  //     setValidationState("valid");
+  //     setErrorMessage(null);
+  //   } else {
+  //     setValidationState("invalid");
+  //     setErrorMessage("This field is required");
+  //   }
+
+  //   // if (type === "email") {
+
+  //   if(type === "email") {
+  //     const emailRegex = /\S+@\S+\.\S+/;
+  //     if (!emailRegex.test(e.target.value)) {
+  //       setValidationState("invalid");
+  //       setErrorMessage("Please enter a valid email address");
+  //     } else {
+  //       setValidationState("valid");
+  //       setErrorMessage(null);
+  //     }
+  //   }
+
+  // }
+
 
 
   const getInput = (type: string) => {
@@ -152,16 +185,27 @@ const Input = ({
 
       default:
         return (
-          <div className="relative overflow-hidden  hover:bg-offgray rounded-lg h-input hover:shadow-lg flex items-center justify-start bg-input w-full">
-            <InputIcon type={type} isFocused={isFocused} />
+
+
             <NextUiInput
-              isClearable={true}
-              isRequired={required}
-             {...inputElementProps} 
-             value={value}
-              onChange={onChange} 
+            //   label={label}
+            // labelPlacement="inside"
+            //   startContent={<InputIcon type={type} isFocused={isFocused} />}
+            //  variant="bordered"
+            //   isClearable={true}
+            //   isRequired={required}
+            //   defaultValue={placeholder}
+            //   description={description}
+            //   // validationState={updatedValidationState}
+            //   // errorMessage={updatedErrorMessage}
+            // //  {...inputElementProps} 
+            // type={type}
+            //  value={value}
+            //   onChange={onChange} 
+
+            {...inputElementProps}
               />
-          </div>
+
         );
     }
   };

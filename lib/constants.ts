@@ -40,6 +40,9 @@ export interface InputProps {
     autoComplete?: string
     autoFocus?: boolean
     autoCorrect?: string
+    description?: string
+    errorMessage?: string | null
+    validationState?: 'valid' | 'invalid' | null
     link?: {
 		linkText: string;
 		linkUrl: string;

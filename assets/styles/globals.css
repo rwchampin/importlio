@@ -2,7 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-
+Account number538798062
+Routing number021202337
 
 :root {
   --font-1: var(--font-apercu);
@@ -82,7 +83,7 @@
         @apply bg-button hover:bg-button-hover text-white focus:text-white hover:cursor-pointer hover:text-white rounded-lg !important;
     } */
 
-   button {
+   button:not(.ql-toolbar button) {
     @apply bg-button text-offwhite !important;
    }
    button.border-default {
@@ -684,3 +685,24 @@ textarea {
   flex-direction: column;
 }
  
+.ql-toolbar {
+  z-index: 1;;
+}
+
+.ql-toolbar span {
+  color: black;
+}
+
+.ql-container {
+  flex: 1;
+  overflow-y: auto;
+}
+
+.quill {
+  padding-left: 0;
+}
+
+.quill:hover {
+  background-color: rgb(210, 210, 210) !important;
+  color: black !important;
+}
