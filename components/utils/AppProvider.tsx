@@ -10,8 +10,8 @@ interface Props {
 
 export default function AppProvider({ children }: Props) {
   return (
-    <NextUIProvider>
+
       <Provider store={store}>{children}</Provider>
-    </NextUIProvider>
+
   );
 }

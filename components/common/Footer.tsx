@@ -1,15 +1,25 @@
+"use client";
 import LogoBlack from "@/components/common/LogoBlack";
 import SocialIcons from "@/app/components/SocialIcons";
 import Spinner from "@/app/components/Spinner";
-import { Suspense } from "react";
-import RecentBlogPosts from "@/app/components/RecentBlogPosts";
+import { Suspense, useState, useEffect } from "react";
+
+import dynamic from "next/dynamic";
+
+import { usePathname } from "next/navigation";
+const RecentBlogPosts:any = dynamic(() => import("@/app/components/RecentBlogPosts"));
+
+
 
 export default function Footer() {
+  const pathname = usePathname();
+ let showRecentPosts = true;
+  showRecentPosts = pathname === "/ecommerce-tutorials" || pathname === "/ecommerce-tutorials/" || pathname.indexOf('dashboard') > -1 ? false : true;
   return (
     <>
-      <Suspense fallback={<Spinner />}>
+     {showRecentPosts && <Suspense fallback={<Spinner />}>
         <RecentBlogPosts />
-      </Suspense>
+      </Suspense>}
       <footer className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">

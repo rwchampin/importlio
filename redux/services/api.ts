@@ -4,7 +4,7 @@ import type {
 	FetchArgs,
 	FetchBaseQueryError,
 } from '@reduxjs/toolkit/query';
-import { setAuth, logout } from '../features/authSlice';
+import { setTokens, logout } from '@/redux/features/authSlice';
 import { Mutex } from 'async-mutex';
 
 const mutex = new Mutex();
@@ -18,13 +18,13 @@ const baseQueryWithReauth: BaseQueryFn<
 	FetchBaseQueryError
 > = async (args, api, extraOptions) => {
 	await mutex.waitForUnlock();
-	let result = await baseQuery(args, api, extraOptions);
+	let result:any = await baseQuery(args, api, extraOptions);
 
 	if (result.error && result.error.status === 401) {
 		if (!mutex.isLocked()) {
-			const release = await mutex.acquire();
+			const release:any = await mutex.acquire();
 			try {
-				const refreshResult = await baseQuery(
+				const refreshResult:any = await baseQuery(
 					{
 						url: '/jwt/refresh/',
 						method: 'POST',
@@ -33,12 +33,12 @@ const baseQueryWithReauth: BaseQueryFn<
 					extraOptions
 				);
 				if (refreshResult.data) {
-					const { access, refresh, user }:any = refreshResult.data;
-					api.dispatch(setAuth({
-						access,
-						refresh,
-						user,
-					}));
+					debugger
+					const el:any = {
+						access: refreshResult.data.access,
+						refresh: refreshResult.data.refresh,
+				}
+					api.dispatch(setTokens(el));
 
 					result = await baseQuery(args, api, extraOptions);
 				} else {

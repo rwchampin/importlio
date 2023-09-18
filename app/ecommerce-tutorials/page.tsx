@@ -3,11 +3,11 @@ import { getPosts } from "@/lib/api";
 import { unSlugify } from "@/lib/functions";
 import { useSearchParams } from 'next/navigation'
 import BasePage from '@/app/components/BasePage';
-
+import { useAppDispatch } from "@/redux/hooks";
+import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
+import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
 import Section from "@/app/components/Section";
 import Card from '@/app/components/Card';
-import Sidebar from "@/app/components/Sidebar";
-import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
 import JsonLd from "@/app/components/JsonLd";
 import { Suspense, useEffect, useState } from "react";
 interface Post {
@@ -21,9 +21,7 @@ interface Post {
   categories: string[];
 }
 
-interface Posts {
-  posts: Post[];
-}
+ 
 
 const json = {
   "@context": "http://schema.org",
@@ -51,20 +49,10 @@ const getPostsByQueryParams = async (type:string, name:string) => {
   return data;
 }
  
-const Loader = () => {
 
-  return (
-    <div className="flex flex-col gap-5">
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-    </div>
-  )
-}
 export default function Page() {
+  const dispatch = useAppDispatch()
+  dispatch(setShowRecentPostsInFooter(false))
   const [posts, setPosts] = useState([])
   const searchParams = useSearchParams()
   const type = searchParams.get('type')
@@ -95,9 +83,11 @@ export default function Page() {
         subtitle="The Official Amazon Dropshipping Handbook & Product Importer App Tutorials"
         headline="Amazon & Shopify"
         shadowText={"Amazon Dropshipping Tutorials"}
+        contentStyles="flex flex-col md:flex-row flex-wrap gap-5 px-5"
+        contentParentStyles="flex flex-col md:flex-row flex-wrap gap-5"
       >
-        <Section className="p-5 flex flex-col gap-5 lg:flex-row">
-          <div className="flex flex-col md:flex-row flex-wrap gap-5">
+        {/* <Section className="p-5 flex flex-col gap-5 lg:flex-row"> */}
+
             {posts.map((post:any, idx:number) => {
               return (
                     <Suspense fallback={<PostCardSkeleton />}>
@@ -107,13 +97,9 @@ export default function Page() {
 
               );
             })}
-          </div>
-          <div className="w-full lg:w-1/4">
-            <Suspense fallback={<Loader />}>
-            <Sidebar />
-            </Suspense>
-          </div>
-        </Section>
+
+ 
+        {/* </Section> */}
         <JsonLd
           json={json}
           />

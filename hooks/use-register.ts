@@ -9,6 +9,7 @@ export default function useRegister() {
 	const [register, { isLoading }] = useRegisterMutation();
 
 	const [formData, setFormData] = useState({
+		'avatar': '',
 		first_name: '',
 		last_name: '',
 		email: '',

@@ -1,4 +1,5 @@
 
+import useFetch from '@/hooks/useFetch'
 import {cache} from 'react'
 // import 'server-only'
 
@@ -35,29 +36,21 @@ export const getPosts = async () => {
      * @see https://nextjs.org/docs/app/building-your-application/data-fetching/caching#graphql-and-cache
      */ 
         export const getRecentPosts = async () => {
-            try {
-              const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`, {
-                method: 'GET',
-                headers: {
-                  'Content-Type': 'application/json'
-                },
-              })
+          try {
+            const posts = await useFetch({
+              endpoint: `/posts/recent/`,
+              method: 'GET',
+            })
 
-              if (!response.ok) {
-                throw new Error(response.statusText)
-              }
-              
-                const posts = await response.json()
-
-              if (posts === null || posts === undefined || !posts) {
-                throw new Error('Post not found!')
-              }
-
-              return posts
-            } catch (error) {
-              console.error(error)
+            if (posts === null) {
+              throw new Error('Post not found')
             }
+
+            return posts
+          } catch (error) {
+            console.error(error)
           }
+        }
 
 
     /**
@@ -434,3 +427,82 @@ export const getPosts = async () => {
     }
 
  
+    export const getRegistrants = async () => {
+
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/registrants/`, {
+          method: 'GET',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+        })
+
+       if (!response.ok) {
+          throw new Error(response.statusText)
+        } 
+    
+        const registrants = await response.json()
+        if (registrants === null) {
+          throw new Error('Post not found!')
+        }
+    
+        return registrants
+        
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+
+    export const saveChatRoom = async ( body: any) => {
+
+      try {
+        const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/chat-rooms/`, {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify(body)
+        })
+
+       if (!response.ok) {
+          throw new Error(response.statusText)
+        } 
+    
+        const chatRoom = await response.json()
+        if (chatRoom === null) {
+          throw new Error('Post not found!')
+        }
+    
+        return chatRoom
+        
+      } catch (error) {
+        console.error(error)
+      }
+    }
+
+
+    export const getUser = async (access: string) => {
+
+      const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/users/me/`, {
+        method: 'GET',
+        headers: {
+          'Authorization': `Bearer ${access}`,
+          'Content-Type': 'application/json'
+        },
+      })
+
+      if (!response.ok) {
+        throw new Error(response.statusText)
+      }
+
+      const user = await response.json()
+
+      if (user === null) {
+        throw new Error('Post not found!')
+      }
+
+      return user
+
+    }
+

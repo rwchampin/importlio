@@ -75,7 +75,7 @@ export default function Button({
     fullWidth={fullWidth}
     className="bg-button text-white radius-xl"
     type={type}
-    {...clickOrHref}
+    // {...clickOrHref}
     {...props}
   >
     {children}

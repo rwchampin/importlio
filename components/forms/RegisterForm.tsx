@@ -10,19 +10,29 @@ export default function RegisterForm() {
 		last_name,
 		email,
 		password,
+		avatar,
 		re_password,
 		isLoading,
 		onChange,
 		onSubmit,
-	} = useRegister();
+	}:any = useRegister();
 
 	const config = [
+		{
+			label: 'Avatar',
+			name: 'avatar',
+			type: 'file',
+			value: avatar,
+			required: true,
+			description: 'Upload a profile picture',
+		},
 		{
 			label: 'First name',
 			name: 'first_name',
 			type: 'text',
 			value: first_name,
 			required: true,
+			errorMessage: 'First name is required',
 		},
 		{
 			label: 'Last name',
@@ -37,6 +47,7 @@ export default function RegisterForm() {
 			type: 'email',
 			value: email,
 			required: true,
+			errorMessage: 'Email is required',
 		},
 		{
 			label: 'Password',

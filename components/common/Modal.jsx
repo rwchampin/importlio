@@ -2,7 +2,8 @@
 import { Fragment, useRef, useState } from 'react'
 import { Dialog, Transition } from '@headlessui/react'
 
-import Button from '@/app/components/buttons/Button'
+import {Button} from "@nextui-org/react";
+
 
 export default function Modal({ children, buttonText, buttonSize, isOpen, setIsOpen }) {
 
@@ -11,9 +12,11 @@ export default function Modal({ children, buttonText, buttonSize, isOpen, setIsO
   return (
     <>
     <Button
-      className='w-full max-w-md'
+      className='w-full max-w-md bg-button text-white text-xs'
       variant='primary'
       onClick={() => setIsOpen(true)}
+      size="lg"
+      radius="sm"
     >
       {buttonText}
     </Button>

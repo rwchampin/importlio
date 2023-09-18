@@ -1,30 +1,35 @@
 import { useEffect } from 'react';
 import { useAppDispatch, useAppSelector } from '@/redux/hooks';
 
+
 import { setAuth, finishInitialLoad } from '@/redux/features/authSlice';
 import { useVerifyMutation } from '@/redux/features/authApiSlice';
+import { getUser } from '@/lib/api';
 
 export default function useVerify() {
 	const dispatch = useAppDispatch();
-	const {isAuthenticated} = useAppSelector(state => state.auth);
+	const { access, isLoading } = useAppSelector(state => state.auth);
 
 	const [verify] = useVerifyMutation();
 
 	useEffect(() => {
-		// if (isAuthenticated) {
-		verify(undefined)
-			.unwrap()
-			.then(({access, refresh}) => {
-				dispatch(setAuth({
-					access,
-					refresh,
-				}));
-			})
-			.finally(() => {
+		if (access) {
+			verify(undefined)
+				.unwrap()
+				.then(() => {
+
+					const user = getUser(access).then((res) => {
+						dispatch(setAuth());
+
+					})
+						.finally(() => {
+							dispatch(finishInitialLoad());
+						});
+				})
+		} else {
+			if (isLoading) {
 				dispatch(finishInitialLoad());
-			});
-		// } else {
-		// 	dispatch(finishInitialLoad());
-		// }
+			}
+		}
 	}, []);
 }

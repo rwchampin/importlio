@@ -7,12 +7,15 @@ export const badgeTypes = {
     POST_TYPE: 'post_type',
 }
 
+interface formFieldType {
+    type: 'text' | 'file' | 'richtext' | 'select' | 'multiselect' | 'email' | 'password' | 're_password' | any
+}
 export interface FormItemProps {
     label: string;
     name: string;
-    type: string;
+    type: formFieldType | any;
     placeholder?: string;
-    value?: string;
+    value?: object | string | number | boolean | ''
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void;
     required?: boolean;
     error?: string;
@@ -26,28 +29,41 @@ export interface FormProps {
 	postFormText?: string,
 }
 export interface InputProps {
+    onFocus?: () => void
+    onBlur?: () => void
     name: string
     label: string
+    labelPlacement?: 'inside' | 'outside' | 'outside-left' | undefined
     type: string
-    placeholder?: string
-    value?: string
+    placeholder?: any
+    defaultValue?: any
+    isRequired?: boolean
+    isDisabled?: boolean
+    isReadOnly?: boolean
+    isInvalid?: boolean
+    isFullWidth?: boolean
+    value?: any
     onChange?: (event: ChangeEvent<HTMLInputElement>) => void
     required?: boolean
-    error?: string
     children?: React.ReactNode
     disabled?: boolean
+    classNames?: any
+    id?: string
     className?: string
     autoComplete?: string
     autoFocus?: boolean
     autoCorrect?: string
     description?: string
     errorMessage?: string | null
-    validationState?: 'valid' | 'invalid' | null
+    startContent?: React.ReactNode | null | undefined;
+    endContent?: React.ReactNode | null | undefined;
+    validationState?: 'valid' | 'invalid' | null | undefined | any;
     link?: {
 		linkText: string;
 		linkUrl: string;
 	}
-    data: any
+    data?: any
+    options?: any
 }
 
 export interface ImageProps {
@@ -74,10 +90,12 @@ export interface BasePageProps {
     headline: string | React.ReactNode;
     shadowText: string | React.ReactNode;
     customComponent?: React.ReactNode | null | undefined;
-    children: React.ReactNode | null | undefined;
+    children?: React.ReactNode | null | undefined;
     topLeftPageComponent?: React.ReactNode | null | undefined;
     topRightPageComponent?: React.ReactNode | null | undefined;
     shadowTextPosition?: "center" | "top";
+    contentStyles?: string;
+    contentParentStyles?: string;
 } 
 
 export interface ShadowTextProps {
@@ -142,13 +160,21 @@ export interface User {
     email: string;
     avatar?: string;
     id: string;
-    address?: string;
-    city?: string;
-    state?: string;
     is_admin?: boolean;
     is_staff?: boolean;
     is_active?: boolean;
     is_superuser?: boolean;
+
+ 
+
+    amazon_associate_id?: string;
+    
+    address?: string;
+    city?: string;
+    state?: string;
+    country?: string;
+    tz?: string;
+
 }
 
 export interface AvatarProps {

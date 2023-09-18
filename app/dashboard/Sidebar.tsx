@@ -1,16 +1,6 @@
 "use client";
-import { motion, AnimatePresence } from "framer-motion";
 
-
-import { TbPackageImport } from "react-icons/tb";
-import { AiOutlineDashboard } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
-import { RiFileList2Line } from "react-icons/ri";
-import { BsCart4, BsPencil } from "react-icons/bs";
-import { FaBook } from "react-icons/fa";
-import {BiSolidCog} from "react-icons/bi";
-
-import { SiOpenai } from "react-icons/si";
+import Icon from "@/components/Icon";
 import SidebarLink from "./SidebarLink";
 
 export default function Sidebar() {
@@ -20,52 +10,52 @@ export default function Sidebar() {
     {
       name: "Dashboard",
       href: "/dashboard",
-      icon: <AiOutlineDashboard size={size} />,
+      icon: 'dashboard',
     },
     {
       name: "AI",
       href: "/dashboard/ai",
-      icon: <SiOpenai size={size} />,
+      icon: 'openai',
       protected: true,
     },
     {
       name: "Posts List",
       href: "/dashboard/posts",
-      icon: <FaBook size={size} />,
+      icon: 'book',
       protected: true,
     },
     {
       name: "Create Posts",
       href: "/dashboard/posts/create",
-      icon: <BsPencil size={size} />,
+      icon: 'pencil',
       protected: true,
     },
     {
       name: "Import Products",
       href: "/dashboard/import",
-      icon: <TbPackageImport size={size} />,
+      icon: 'package'
     },
      
 
     {
       name: "Products",
       href: "/dashboard/products",
-      icon: <BsCart4 size={size} />,
+      icon: 'cart'
     },
     {
       name: "Profile",
       href: "/dashboard/profile",
-      icon: <CgProfile size={size} />,
+      icon: 'profile'
     },
     {
       name: "Lists",
       href: "/dashboard/lists",
-      icon: <RiFileList2Line size={size} />,
+      icon: 'file'
     },
     {
       name: "Settings",
       href: "/dashboard/settings",
-      icon: <BiSolidCog size={size} />,
+      icon: 'cog'
     },
   ];
 

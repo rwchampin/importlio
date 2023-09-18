@@ -108,6 +108,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 
 
   return (
+    <AppProvider>
     <html
       lang="en"
       className={`${apercu.variable} ${montserrat.variable}`}
@@ -117,7 +118,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body suppressHydrationWarning>
      
 
-        <AppProvider>
+       
         <Setup />
           <Scroller>
             <Header />
@@ -134,9 +135,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             // showSpinner={true}
           />
          
-        </AppProvider>
+       
       </body>
     </html>
+    </AppProvider>
   );
 };
 

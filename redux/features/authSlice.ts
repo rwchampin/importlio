@@ -4,9 +4,9 @@ import { User} from '@/lib/constants';
 interface AuthState {
 	isAuthenticated: boolean;
 	isLoading: boolean;
-	user: User | null;
-	refresh: string | null;
-	access: string | null;
+	user: any | null | undefined;
+	refresh: any
+	access: any
 }
 
 const initialState = {
@@ -21,11 +21,23 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setAuth: (state, action) => {
+		setAuth: (state) => {
 			state.isAuthenticated = true;
-			state.refresh = action.payload.refresh;
-			state.access = action.payload.access;
-			state.user = action.payload.user;
+		},
+		setTokens: (state:any, payload:any):any => {
+			if(payload.refresh)
+				state.refresh = payload.refresh;
+			if(payload.access)
+				state.access = payload.access;
+		},
+		setFullAuth: (state, payload:any) => {
+			state.isAuthenticated = true;
+			state.refresh = payload.refresh;
+			state.access = payload.access;
+			state.user = payload.user;
+		},
+		setUser: (state, payload:any) => {
+			state.user = payload.payload;
 		},
 		logout: state => {
 			state.isAuthenticated = false;
@@ -39,5 +51,5 @@ const authSlice = createSlice({
 	},
 });
 
-export const { setAuth, logout, finishInitialLoad } = authSlice.actions;
+export const { setAuth,setUser, logout, finishInitialLoad,setFullAuth, setTokens } = authSlice.actions;
 export default authSlice.reducer;

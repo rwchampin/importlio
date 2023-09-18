@@ -2,25 +2,20 @@
 import { createSlice } from '@reduxjs/toolkit';
 
 interface UsersState {
-    entities: []
-    loading: 'idle' | 'pending' | 'succeeded' | 'failed'
+    showRecentPostsInFooter: boolean;
   }
   
 const coreSlice = createSlice({
   name: 'core',
   initialState: {
-    isLoading: false,
-    errors: null,
+    showRecentPostsInFooter: true,
   },
   reducers: {
-    setLoading: (state, action) => {
-      state.isLoading = action.payload;
-    },
-    setErrors: (state, action) => {
-      state.errors = action.payload;
-    },
+    setShowRecentPostsInFooter: (state, action) => {
+      state.showRecentPostsInFooter = action.payload;
+    }
   },
 });
 
-export const { setLoading, setErrors } = coreSlice.actions;
+export const { setShowRecentPostsInFooter } = coreSlice.actions;
 export default coreSlice.reducer;

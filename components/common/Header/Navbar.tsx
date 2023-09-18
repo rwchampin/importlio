@@ -7,7 +7,9 @@ import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 import LogoBlack from "@/components/common/LogoBlack";
 import NavLink from "./NavLink";
 
+import { useAppSelector } from "@/redux/hooks";
 import useResponsive from "@/hooks/useResponsive";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 const RiMenu5FillDynamic: any = dynamic(() =>
   import("react-icons/ri").then((mod) => mod.RiMenu5Fill)
@@ -25,6 +27,8 @@ interface LinkProps {
 }
 
 export default function Navbar() {
+
+  
 
 
   const responsive: any = useResponsive();

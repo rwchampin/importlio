@@ -1,6 +1,4 @@
-
 import RequireAuth from "@/components/utils/RequireAuth";
-
 
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
@@ -12,17 +10,14 @@ interface Props {
 }
 
 export default function DashboardLayout({ children }: Props) {
-
-
-
-
   return (
+    // <RequireAuth>
       <AppProvider>
         <div className="bg-gray-300 p-5 flex flex-col-reverse md:flex-row gap-5 w-full h-[calc(100vh-4rem)] z-100 relative">
-         
-         <Sidebar data-enter />
-          <Dashboard data-enter>{children}</Dashboard> 
+          <Sidebar data-enter />
+          <Dashboard data-enter>{children}</Dashboard>
         </div>
       </AppProvider>
+    // </RequireAuth>
   );
 }

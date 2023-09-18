@@ -7,8 +7,11 @@ import {
 } from '@/lib/api';
 import TagCloud from '@/app/components/TagCloud';
 import SidebarCard from './SidebarCard';
+import { usePathname } from 'next/navigation';
 
 function Sidebar() {
+  const pathname = usePathname();
+  const [showSidebar, setShowSidebar] = useState(false);
   const [posts, setPosts] = useState([]);
   const [categories, setCategories] = useState([]);
   const [tags, setTags] = useState([]);
@@ -35,8 +38,18 @@ function Sidebar() {
     }
   }, []);
 
+  useEffect(() => {
+    const show =(pathname === '/' || pathname === '') ? false : true;
+    if(show !== showSidebar) {
+      setShowSidebar(show);
+    }
+  }, [pathname]);
+
+  if(!showSidebar){
+    return null;
+  }
   return (
-    <div className="sidebar bg-gray-2 p-3 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
+    <div className="sidebar w-full lg:max-w-[400px] bg-gray-2 p-3 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
       <div className="flex-auto flex flex-col gap-3">
         {posts.map((post, idx) => (
           <SidebarCard key={idx} post={post} />

@@ -1,7 +1,8 @@
 
 import  Input  from '@/components/forms/input/Input';
-import Button from '@/app/components/buttons/Button';
-import Spinner from '@/app/components/Spinner';
+
+import {Button} from '@nextui-org/react'
+
 import {
 	FormProps,
 } from '@/lib/constants';
@@ -19,9 +20,6 @@ export default function Form({
 }: FormProps) {
 
  
-
-
-
 	return (
     <form
       autoComplete="on"
@@ -34,13 +32,13 @@ export default function Form({
       {config.map((input:any, i:number) => {
 
 		return (
-        <Input key={i} {...input} onChange={onChange} items={null} />
+        <Input key={i} {...input} />
 		)
 		})}
 
       <Button
-	  	fullWidth={true}
-	    type="submit"
+        type="submit"
+        className='bg-button text-offwhite w-full h-input rounded-lg flex items-center justify-center'
 		>
       {btnText || "Submit"}
       </Button>

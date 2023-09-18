@@ -11,6 +11,8 @@ import JsonLd from "@/app/components/JsonLd";
 import Section from '@/app/components/Section';
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 import EmailForm from "@/components/forms/EmailForm";
+import { useAppDispatch } from "@/redux/hooks";
+import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
 // import Search from "@/app/components/Search";
 
 const jsonLd = {
@@ -68,6 +70,8 @@ const Prereg = () => {
   )
 }
 export default function Page() {
+  const dispatch = useAppDispatch();
+  dispatch(setShowRecentPostsInFooter(false));
   return (
     <BasePage
     theme="dark"

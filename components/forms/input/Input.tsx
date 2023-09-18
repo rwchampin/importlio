@@ -1,15 +1,14 @@
 "use client";
 import { useEffect,  useState } from "react";
-import Link from "next/link";
-import FileField from "../FileField";
-
-import {Input as NextUiInput} from "@nextui-org/react";
 
 import { InputProps } from "@/lib/constants";
-import InputIcon from "./InputIcon";
-import dynamic from "next/dynamic";
-import { on } from "events";
 
+import { Textarea, Input as NextUiInput } from "@nextui-org/react";
+
+import dynamic from "next/dynamic";
+
+
+ 
 
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
   ssr: false,
@@ -23,9 +22,23 @@ const MultiSelect: any = dynamic(() => import("@/components/forms/MultiSelect"),
   ssr: false,
 });
 
-const TextArea: any = dynamic(() => import("@/components/forms/TextArea"), {
+const PasswordInput:any = dynamic(() => import("@/components/forms/input/PasswordInput"), {
   ssr: false,
 });
+
+ 
+ 
+ 
+ 
+const FileField: any = dynamic(() => import("@/components/forms/FileField"), {
+  ssr: false,
+});
+
+ 
+const Icon:any = dynamic(() => import("@/components/Icon"), {
+  ssr: false,
+});
+ 
 
 const Input = ({
   name,
@@ -36,12 +49,15 @@ const Input = ({
   children,
   value,
   placeholder,
-  className,
+  classNames,
   link,
   description,
   validationState,
+  isInvalid,  
   errorMessage = '',
   required = false,
+  startContent,
+  endContent
 }:InputProps) => {
   const [options, setOptions] = useState<any[]>([]);
   const [isFocused, setIsFocused] = useState(false);
@@ -93,19 +109,42 @@ const Input = ({
     }
   };
 
-  let inputElementProps = {
+  let commonInputProps = {
     onFocus: handleFocus,
     onBlur: handleBlur,
     name,
     type,
     onChange,
     value,
-    required,
+    startContent: <Icon type={startContent} className="text-gray-500" />,
+
+    endContent:isInvalid && <Icon type="error" className="text-red-500" />,
+    isRequired: required,
     label,
-    placeholder: placeholder || getPlaceholder(type),
-    autoComplete: getAutoComplete(type),
-    // className: `w-full h-input bg-input hover:bg-input-hover hover:text-offwhite hover:cursor-pointer text-offgray text-sm h-full font-bold font-apercu-bold outline-none focus:outline-none hover:outline-none ${className}`,
+    defaultValue: placeholder || getPlaceholder(type),
+    errorMessage,
+    description,
+    validationState: updatedValidationState,
+    
   };
+
+  let selectInputProps = {
+    ...commonInputProps,
+    options,
+  };
+
+  let richTextProps = {
+    ...commonInputProps,
+  };
+
+  let textAreaProps = { 
+    ...commonInputProps,
+  }
+
+  let inputElementProps = {
+    autoComplete: getAutoComplete(type),
+    ...commonInputProps,
+  }
 
   // const handleChange = (e: any) => {
 
@@ -141,14 +180,14 @@ const Input = ({
       case "select":
         return (
           <Select
-            {...inputElementProps}
+            {...selectInputProps}
             options={options}
           />
         );
       case "multiselect":
         return (
           <MultiSelect
-          {...inputElementProps}
+          {...selectInputProps}
             options={options}
           />
         );
@@ -156,28 +195,28 @@ const Input = ({
       case "richtext":
         return (
           <Editor
-          {...inputElementProps}
+          {...richTextProps}
           />
         );
         break;
 
       case "textarea":
         return (
-          <TextArea
-          {...inputElementProps}
-          ></TextArea>
+          <Textarea
+            {...textAreaProps}
+          />
         );
         break;
+      case 'password':
+        return (
+          <PasswordInput
+            {...inputElementProps}
+          />
+        );
       case "file":
         return (
           <FileField
-            onChange={onChange}
-            value={value}
-            placeholder={placeholder}
-            name={name}
-            type={type}
-            required={required}
-            label={label}
+            {...inputElementProps}
           />
         );
         break;
@@ -188,21 +227,6 @@ const Input = ({
 
 
             <NextUiInput
-            //   label={label}
-            // labelPlacement="inside"
-            //   startContent={<InputIcon type={type} isFocused={isFocused} />}
-            //  variant="bordered"
-            //   isClearable={true}
-            //   isRequired={required}
-            //   defaultValue={placeholder}
-            //   description={description}
-            //   // validationState={updatedValidationState}
-            //   // errorMessage={updatedErrorMessage}
-            // //  {...inputElementProps} 
-            // type={type}
-            //  value={value}
-            //   onChange={onChange} 
-
             {...inputElementProps}
               />
 
@@ -213,28 +237,11 @@ const Input = ({
 
 
   return (
-    <div>
-      <div className="flex justify-between align-center">
-        <label
-          htmlFor={name}
-          className="block text-sm font-bold font-apercu leading-6 text-offgray"
-        >
-          {children}
-        </label>
-        {link && (
-          <div className="text-sm">
-            <Link
-              className="font-semibold text-button hover:text-button-hover"
-              href={link.linkUrl}
-            >
-              {link.linkText}
-            </Link>
-          </div>
-        )}
-      </div>
+   
+ 
 
-      <div className="mt-1 relative">{getInput(type)}</div>
-    </div>
+      <>{getInput(type)}</>
+     
   );
 };
 

@@ -24,13 +24,11 @@ interface CreateUserResponse {
 const authApiSlice = api.injectEndpoints({
 	endpoints: builder => ({
 		retrieveUser: builder.query<User, void>({
-			query: ({ token }:any) => ({
+			query: () => ({
 				url: '/users/me/',
 				method: 'GET',
 				headers: {
 					Accept: 'application/json',
-					'Content-Type': 'application/json',
-					Authorization: `Bearer ${token}`,
 				},
 			}),
 		}),
@@ -50,7 +48,7 @@ const authApiSlice = api.injectEndpoints({
 			}),
 		}),
 		login: builder.mutation({
-			query: ({ email, password }:any) => ({
+			query: ({ email, password }:any):any => ({
 				url: '/jwt/create/',
 				method: 'POST',
 				body: { email, password },
@@ -64,7 +62,7 @@ const authApiSlice = api.injectEndpoints({
 				avatar,
 				password,
 				re_password,
-			}:any) => ({
+			}) => ({
 				url: '/users/',
 				method: 'POST',
 				body: { first_name, last_name, email, password, re_password, avatar },
@@ -83,7 +81,7 @@ const authApiSlice = api.injectEndpoints({
 			}),
 		}),
 		activation: builder.mutation({
-			query: ({ uid, token }:any) => ({
+			query: ({ uid, token }) => ({
 				url: '/users/activation/',
 				method: 'POST',
 				body: { uid, token },

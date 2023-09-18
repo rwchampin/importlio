@@ -12,7 +12,7 @@
 const nextConfig = {
   // i18n,
 
-  // reactStrictMode: process.env.NODE_ENV !== 'production',
+  reactStrictMode: process.env.NODE_ENV !== 'production',
   images: {
     remotePatterns: [
       {
@@ -29,7 +29,16 @@ const nextConfig = {
       }
     ],
   },
-  
+  async redirects() {
+    return [
+        {
+            source: "/:path*",
+            has: [{ type: "host", value: "importlio.com" }],
+            destination: "https://www.importlio.com/:path*",
+            permanent: true,
+        },
+    ];
+},
 };
 
 

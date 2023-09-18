@@ -3,8 +3,6 @@
 import useLogin from '@/hooks/use-login';
 import Form from '@/components/forms/Form';
 
-import { useEffect } from 'react';
-
 export default function LoginForm() {
 	const { email, password, isLoading, onChange, onSubmit } = useLogin();
 

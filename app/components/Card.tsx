@@ -1,5 +1,5 @@
 "use client";
-import { Card as CC, CardFooter, Image, Button } from "@nextui-org/react";
+import { Card as CC, CardFooter, Image } from "@nextui-org/react";
 import TagCloud from "./TagCloud";
 import Link from "next/link";
 export default function Card({ post }: any) {
@@ -15,6 +15,7 @@ export default function Card({ post }: any) {
         <Link
           className="w-full h-full absolute"
           href={`/ecommerce-tutorials/${post.slug}`}
+          
         >
           <Image
             alt={post.title}

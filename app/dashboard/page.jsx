@@ -1,12 +1,12 @@
 'use client';
 // import Spinner from '@/app/components/Spinner';
 import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
+import { useAppSelector } from '@/redux/hooks';
 
 import { useEffect, useState } from 'react';
 export default function Page() {
 	const [ useracount , setUseracount ] = useState(null)
-	const { data: user, isLoading } = useRetrieveUserQuery();
-
+	const { user } = useAppSelector((state) => state.auth);
 
 	useEffect(() => {
 		if (!useracount && user) {

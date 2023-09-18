@@ -143,7 +143,7 @@ export default function PostForm({ post }: Props) {
         onSubmit={onSubmit}
         onChange={onChange}
       />
-      {/* <PostPreview {...formData} /> */}
+      <PostPreview {...formData} />
     </div>
   );
 }

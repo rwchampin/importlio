@@ -46,6 +46,7 @@ Routing number021202337
   --sf-bg: var(--bg-3rd);
   --hf-bg: var(--bg-primary)
    --tw-bg-opacity: .45 !important;
+   --tw-ring-color: transparent !important;
 }
 
 @layer base {
@@ -61,6 +62,8 @@ Routing number021202337
         font-family: var(--font-apercu);
         font-weight: bold;
     }
+
+   
     a:hover, button:hover, .btn:hover {
         cursor: pointer;
     }
@@ -82,8 +85,8 @@ Routing number021202337
     button {
         @apply bg-button hover:bg-button-hover text-white focus:text-white hover:cursor-pointer hover:text-white rounded-lg !important;
     } */
-
-   button:not(.ql-toolbar button) {
+button::after
+   button:not(.ql-toolbar button, button svg) {
     @apply bg-button text-offwhite !important;
    }
    button.border-default {
@@ -156,6 +159,10 @@ body {
   justify-content: center;
   align-items: center;
 }
+
+#smooth-content {
+  height: -webkit-fill-available;
+}
  .scroll-track {
   top: 50%;
   transform: translateY(-50%);
@@ -227,6 +234,10 @@ input[type="url"] {
   width: 100%;
   background: var(--input-bg);
 }  
+
+label {
+  @apply my-3 !important; 
+}
 
 input[type="text"],
 input[type="email"],
@@ -720,3 +731,15 @@ textarea {
   background: -webkit-linear-gradient(right,#fff,#fff 0,hsla(0,0%,100%,0));
   background: linear-gradient(270deg,#fff,#fff 0,hsla(0,0%,100%,0));
 }
+
+
+input[type="text"] {
+  outline: none !important;
+  border: none !important;
+  border: none !important;
+  box-shadow: none !important;
+}
+
+
+
+ 
