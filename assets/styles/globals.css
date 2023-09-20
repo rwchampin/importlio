@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 
-Account number538798062
-Routing number021202337
+/* Account number538798062
+Routing number021202337 */
 
 :root {
   --font-1: var(--font-apercu);
@@ -350,20 +350,23 @@ form {
     position: fixed;
     left: 0;
     width: 100%;
-    height:200px;
+    height:400px;
     z-index: 10;
     pointer-events: none;
 }
 .fade::after {
-    background: linear-gradient(0deg, rgba(248,248,248,1) 0%, transparent 85%);
+  background: rgb(2,0,36);
+  background: linear-gradient(transparent, rgba(0,0,0,0.8));
     bottom: 0;
-
-    /* background: linear-gradient(270deg,#202124,#202124 0,rgba(32,33,36,0)); */
+    transform: translateY(50%);
 
 }
 .fade::before {
-    background: linear-gradient(180deg, rgba(248,248,248,1) 0%, transparent 85%);
+  background: rgb(2,0,36);
+  background: linear-gradient( rgba(0,0,0,0.8), transparent);
     top: 0;
+    transform: translateY(-50%);
+
 }
 table, tr, tbody, thead {
     width: 100%;
@@ -711,21 +714,7 @@ textarea {
   color: black !important;
 }
 
- 
-
-.fade-right::before {
-  content: "";
-  height: 100%;
-  position: absolute;
-  right: 0;
-  z-index: 20;
-  width: 80px;;
-  background: -webkit-gradient(linear,right top,left top,color-stop(0,#fff),color-stop(0,#fff),to(hsla(0,0%,100%,0)));
-  background: -webkit-linear-gradient(right,#fff,#fff 0,hsla(0,0%,100%,0));
-  background: linear-gradient(270deg,#fff,#fff 0,hsla(0,0%,100%,0));
-}
-
-
+  
 input[type="text"] {
   outline: none !important;
   border: none !important;

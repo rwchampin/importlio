@@ -1,5 +1,5 @@
 import './chatgpt.css';
-import ChatRoom from "@/app/components/ai/ChatRoom";
+import ChatRoom from "@/app/components/ai-components/ChatRoom";
 
 
 export default function Page() {

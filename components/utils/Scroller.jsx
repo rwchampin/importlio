@@ -65,7 +65,7 @@ export default function Scroller({children}) {
   return (
 
 
-<ScrollGradient>
+< >
     <div id="smooth-wrapper" className='h-screen'>
     <div id="smooth-content" className='min-h-screen flex flex-col'>
 
@@ -76,7 +76,7 @@ export default function Scroller({children}) {
       <div className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999]" ref={scrollTrackRef}>
         <div className="scroll-bar absolute top-0 bg-black w-full" ref={scrollBarRef}></div>
       </div>
-      </ScrollGradient>
+      </ >
      
     
 

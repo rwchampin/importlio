@@ -2,6 +2,7 @@
 import TagCloud from "@/app/components/TagCloud";
 import BasePage from "@/app/components/BasePage";
 
+import Sidebar from "@/app/components/Sidebar";
 
 import JsonLd from "@/app/components/JsonLd";
 import Spinner from "@/app/components/Spinner";
@@ -41,7 +42,7 @@ if(!post) return <Spinner />
           className="flex-auto"
           dangerouslySetInnerHTML={{ __html: post.content }}
         />
-        <aside className="w-full lg:w-1/4">{/* <Sidebar /> */}</aside>
+        <aside className="w-full lg:w-1/4"><Sidebar /></aside>
       </div>
 
       <JsonLd json={json} />

@@ -65,7 +65,7 @@ export default function NavLink({ link, ...rest }: Props) {
   }
 
   return (
-    <Link className={link && link.className} href={link && link.href}>
+    <Link className={link && link.className} href={link && link.href} aria-label={link.pretty}>
       {link && link.pretty}
     </Link>
   );

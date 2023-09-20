@@ -2,17 +2,17 @@
 import React from "react";
 import  useFetch  from "@/hooks/useFetch";
 export default async function Sidebar() {
-    const rooms = await useFetch({
-        endpoint: "/rooms",
-        method: "GET",
-    })
+    // const rooms = await useFetch({
+    //     endpoint: "/rooms",
+    //     method: "GET",
+    // })
     return (
         <div className="sidebar">
-            {rooms.map((room:any) => (
+            {/* {rooms.map((room:any) => (
                 <div className="sidebar__room">
-            {room.name}
-            </div>
-            ))}
+            {room.name} */}
+            {/* </div> */}
+            {/* ))} */}
         </div>
     )
 }

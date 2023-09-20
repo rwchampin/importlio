@@ -21,7 +21,12 @@
     --primary-padding: 2rem 1rem;
 }
 
- 
+body {
+    height: 100vh;
+    background-color: var(--primary-bg);
+    color: var(--primary-text);
+}
+
 .chat-container {
     height: 100%;
     display: flex;

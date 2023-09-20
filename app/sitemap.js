@@ -39,7 +39,7 @@ const transformFilePaths = (filePaths) => {
   const currentDate = new Date().toISOString();
 
   const urlObjects = filteredPaths.map((url) => ({
-    url: `https://importlio.com/${url}`,
+    url: `https://www.importlio.com/${url}`,
     lastModified: currentDate,
   }));
 
@@ -140,20 +140,20 @@ const generateURLs = async () => {
   const urlList = [
       ...transformFilePaths(pages),
       ...postTypes.map((postType) => ({
-        url: `https://importlio.com/ecommerce-tutorials/post-types/${postType.slug}`,
+        url: `https://www.importlio.com/ecommerce-tutorials/post-types/${postType.slug}`,
         lastModified: currentDate,
     })),
       ...tags.map((tag) => ({
-        url: `https://importlio.com/ecommerce-tutorials/tags/${tag.slug}`,
+        url: `https://www.importlio.com/ecommerce-tutorials/tags/${tag.slug}`,
         lastModified: currentDate,
     })),
     ...categories.map((cat) => ({
-      url: `https://importlio.com/ecommerce-tutorials/categories/${cat.slug}`,
+      url: `https://www.importlio.com/ecommerce-tutorials/categories/${cat.slug}`,
       lastModified: currentDate,
   })),
       ...posts.map((post) => ({
-          url: `https://importlio.com/ecommerce-tutorials/${post.slug}`,
-          lastModified: currentDate,
+          url: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+          lastModified: post.updated,
       })),
   ];
 

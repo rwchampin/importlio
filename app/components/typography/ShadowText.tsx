@@ -20,10 +20,10 @@ export default function ShadowText({
 	)
  
 	return (
-		    <div 
+		    <h3 
 			className={classes}>
 				{children}
-			</div>
+			</h3>
 	)
 }
 

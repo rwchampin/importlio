@@ -7,12 +7,12 @@ export default function Page() {
 	const [ useracount , setUseracount ] = useState(null)
 	const { user } = useAppSelector((state) => state.auth);
 
-	useEffect(() => {
-		if (!useracount && user) {
-			setUseracount(user)
-			debugger
-		}
-	}, [user]);
+	// useEffect(() => {
+	// 	if (!useracount && user) {
+	// 		setUseracount(user)
+	// 		debugger
+	// 	}
+	// }, [user]);
 
 	// if (isLoading || isFetching) {
 	// 	return (

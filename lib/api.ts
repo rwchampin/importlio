@@ -83,6 +83,7 @@ export const getPostsByQueryParams = async (type:string, name:string) => {
     }
   })
   const data = await res.json();
+  debugger
   return data;
 }
 
@@ -163,26 +164,26 @@ export const getCategories = async () => {
   }
 }
  
-export const createPost = async () => {
+export const createPost = async (post:any) => {
   try {
     const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json'
       },
-      body: JSON.stringify({ })
+      body: JSON.stringify(post)
     })
     debugger
     if (!response.ok) {
       throw new Error(response.statusText)
     }
 
-    const post = await response.json()
-    if (post === null) {
+    const createdPost = await response.json()
+    if (createdPost === null) {
       throw new Error('Post not found!')
     }
     debugger
-    return post
+    return createdPost
     
   } catch (error) {
     console.error(error)

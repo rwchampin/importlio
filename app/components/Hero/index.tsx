@@ -57,7 +57,7 @@ export default function ({
           </Headline>
           {/* <Spacer size={.5} /> */}
           <Title
-            className={titleColor}
+            className={`${titleColor} pb-[2rem]`}
           >
             {title}
           </Title>

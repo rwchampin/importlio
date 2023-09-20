@@ -43,10 +43,13 @@ export default async function Page({ params }: { params: { slug: string } }) {
     url: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
     datePublished: post.published,
     dateModified: post.updated,
-    author: {
-      "@type": "Importlio Inc.",
-      name: "Importlio Inc.",
-    },
+    author: [
+      {
+        "url": "https://www.importlio.com",
+        "@type": "Organization",
+        name: "Importlio Inc.",
+      }
+    ],
     mainEntityOfPage: {
       "@type": "WebPage",
       "@id": `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
