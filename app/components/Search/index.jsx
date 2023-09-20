@@ -1,6 +1,6 @@
 "use client";
 import React, { forwardRef } from "react";
-import { useInput } from "@nextui-org/react";
+import { Input } from "@nextui-org/react";
 import useModal from "@/hooks/useModal";
 
 import { SearchIcon } from "./SearchIcon";
@@ -42,93 +42,20 @@ const MyInput = forwardRef((props, ref) => {
     setIsFocused(true);
 
   };
-
-  const {
-    Component,
-    label,
-    domRef,
-    description,
-    isClearable,
-    startContent,
-    endContent,
-    shouldLabelBeOutside,
-    shouldLabelBeInside,
-    errorMessage,
-    getBaseProps,
-    getLabelProps,
-    getInputProps,
-    getInnerWrapperProps,
-    getInputWrapperProps,
-    getDescriptionProps,
-    getErrorMessageProps,
-    getClearButtonProps,
-  } = useInput>({
-    ...props,
-    ref,
-    // this is just for the example, the props bellow should be passed by the parent component
-    // label: "Search",
-    type: "search",
-    placeholder: "Type to search...",
-
-    onFocus: handleFocus,
-    onBlur: () => {
-      setIsFocused(false);
-      console.log("blur");
-    },
-    startContent: (
-      <SearchIcon className="text-black/50 dark:text-white/90 text-slate-400 pointer-events-none flex-shrink-0" />
-    ),
-    // custom styles
-    classNames: {
-      ...styles,
-    },
-  });
-
+ 
   // const labelContent = <label {...getLabelProps()}>{label}</label>;
 
-  const end = React.useMemo(() => {
-    if (isClearable) {
-      return (
-        <span {...getClearButtonProps()}>
-          {endContent || <CloseFilledIcon />}
-        </span>
-      );
-    }
-
-    return endContent;
-  }, [isClearable, getClearButtonProps]);
-
-  const innerWrapper = React.useMemo(() => {
-    if (startContent || end) {
-      return (
-        <div {...getInnerWrapperProps()}>
-          {startContent}
-          <input {...getInputProps()} />
-          {end}
-        </div>
-      );
-    }
-
-    return <input {...getInputProps()} />;
-  }, [startContent, end, getInputProps, getInnerWrapperProps]);
-
+ 
+ 
   return (
-    <Component {...getBaseProps()}>
-      {/* {shouldLabelBeOutside ? labelContent : null} */}
-      <div
-        {...getInputWrapperProps()}
-        role="button"
-        onClick={() => {
-          domRef.current?.focus();
-        }}
-      >
-        {/* {shouldLabelBeInside ? labelContent : null} */}
-        {innerWrapper}
-        <ResultDropdown show={isFocused} />
-      </div>
-      {description && <div {...getDescriptionProps()}>{description}</div>}
-      {errorMessage && <div {...getErrorMessageProps()}>{errorMessage}</div>}
-    </Component>
+    <Input
+    size="lg"
+    isClearable
+    type="text"
+    placeholder="Enter product sources"
+    onClear={() => console.log("input cleared")}
+    className="core-input max-w-2xl bg-input mt-5 mx-auto rounded-lg"
+  />
   );
 });
 

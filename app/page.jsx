@@ -13,7 +13,7 @@ import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 import EmailForm from "@/components/forms/EmailForm";
 import { useAppDispatch } from "@/redux/hooks";
 import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
-// import Search from "@/app/components/Search";
+import Search from "@/app/components/Search";
 
 const jsonLd = {
   "@context": "http://schema.org",
@@ -51,11 +51,13 @@ const Prereg = () => {
   const [isOpen, setIsOpen] = useState(false);
   return (
     <>
-      <div className="mb-5 font-montserrat text-md leading-relaxed" style={{ fontWeight: 500 }}>
+     <Search />
+      <div className="max-w-2xl mx-auto text-center mb-5 font-montserrat text-xxs leading-relaxed" style={{ fontWeight: 500 }}>
         Pre-register today and secure a FREE month&apos;s membership. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
       </div>
 
-      <Modal
+     <div className="flex flex-col items-center justify-center">
+     <Modal
         buttonText="Pre-register"
         buttonSize="sm"
         isOpen={isOpen}
@@ -66,6 +68,8 @@ const Prereg = () => {
           setIsOpen={setIsOpen}
         />
       </Modal>
+      </div>
+     
     </>
   )
 }

@@ -736,3 +736,7 @@ input[type="text"] {
   transition: transform 0.5s ease-in-out;
   transform-origin: 0 0;
  }
+
+ .core-input > div, .core-input > div > div, .core-input > input {
+  background-color: transparent !important;
+ }
