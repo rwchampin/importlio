@@ -1,19 +1,18 @@
 import Link from 'next/link'
-import { BsInstagram, BsTwitter, BsFacebook } from 'react-icons/bs'
-// import {TfiYoutube} from 'react-icons/tfi'
+import Icon from './Icon'
 export default function SocialIcons() {
     const socials = [{
         name: 'Instagram',
-        url: 'www.instagram.com/importlio',
-        icon: <BsInstagram className="font-gray-300 hover:font-black text-lg" />
+        url: 'https://www.instagram.com/importlio',
+        icon: <Icon type="instagram" />
     }, {
         name: 'Twitter',
-        url: 'www.twitter.com/importlio',
-        icon: <BsTwitter className="font-gray-300 hover:font-black text-lg" />
+        url: 'https://www.twitter.com/importlio',
+        icon: <Icon type="twitter" />
     }, {
         name: 'Facebook',
-        url: 'www.facebook.com/importlio',
-        icon: <BsFacebook className="font-gray-300 hover:font-black text-lg" />
+        url: 'https://www.facebook.com/importlio',
+        icon: <Icon type="facebook" />
     }]
     return (
         <div className="flex gap-5">

@@ -1,6 +1,5 @@
 'use client';
 // import Spinner from '@/app/components/Spinner';
-import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 import { useAppSelector } from '@/redux/hooks';
 
 import { useEffect, useState } from 'react';

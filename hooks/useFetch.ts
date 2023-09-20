@@ -10,7 +10,10 @@ export default async function useFetch({
     endpoint = '',
     method = 'GET',
     body = {},
-    headers:object = {},
+    headers:object = {
+        'Content-Type': 'application/json',
+
+    },
     onSuccess = (data: any) => { },
     onError = (error: any) => { },
     onFinally = () => { },
@@ -33,21 +36,23 @@ export default async function useFetch({
         try {
             const response = await fetch(
                 `${process.env.NEXT_PUBLIC_HOST}/api${endpoint}`, 
-                ...options
+                {...options}
             );
-
+                // debugger;
             if (response.ok) {
+                // debugger
                 const data = await response.json();
                 return data;
                 // setData(data);
                 // onSuccess(data);
-            } else {
+            } else { 
                 // createError(response);
             throw new Error('Error fetching data');
 
             }
 
         } catch (error) {
+            debugger
             // createError(error);
             throw new Error('Error fetching data');
         }

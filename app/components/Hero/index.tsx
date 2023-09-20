@@ -37,7 +37,7 @@ export default function ({
     <>
       <section
         style={{ zIndex: 100 }}
-        className={`z-100 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
+        className={`z-100 py-10 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
       >
         <HeroHeader />
         {bg && (

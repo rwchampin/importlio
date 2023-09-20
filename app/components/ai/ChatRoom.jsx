@@ -5,6 +5,7 @@ import Icon from '@/app/components/Icon';
 import ChatMessage from '@/app/components/ai/ChatMessage';
 import Spinner from '@/app/components/Spinner'; // Import a spinner component
 import Sidebar from '@/app/components/ai/Sidebar';
+import Action from './Action';
  
  
  
@@ -68,6 +69,17 @@ const ChatRoom = () => {
 
   }, [messages]);
 
+  const actions = [
+    {
+      name: 'Create a blog post',
+      description: 'Create a blog post',
+      callback: () => {
+        setInputText('write me a blog post about starting a business');
+        handleSendMessage();
+      }
+    }
+  ]
+
   return (
     <div className="flex flex-row h-screen bg-gray-100">
       <Sidebar />
@@ -93,6 +105,7 @@ const ChatRoom = () => {
             <Icon type="send" className="inline-block w-6 h-6 align-middle" />
           </button>
         </div>
+        {actions.map((action, index) => <Action key={index} action={action} />)}
       </div>
     </div>
     </div>

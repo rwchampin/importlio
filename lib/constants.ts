@@ -102,6 +102,8 @@ export interface ShadowTextProps {
     children: React.ReactNode | string;
     size?: string;
     position?: string;
+    type?: string;
+    theme?: string;
 }
 
 
@@ -229,3 +231,19 @@ export const POST_COLUMNS_NO_CONTENT = [
     "seo_description",
 
 ]
+
+
+export const userProfileFields = {
+    'avatar': '',
+    first_name: '',
+    last_name: '',
+    email: '',
+    amazon_associate_id: '',
+    address: '',
+    city: '',
+    state: '',
+    zip: '',
+    tz: '',
+    password: '',
+    re_password: '',
+}

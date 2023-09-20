@@ -2,7 +2,7 @@ import EmailForm from '@/components/forms/EmailForm';
 export default function FadingBackgroundCta() {
   
     return (
-        <div className="relative overflow-hidden bg-gray-dark-1 min-h-[500px] py-10 text-center">
+        <div className="relative overflow-hidden bg-gray-dark-1 min-h-[500px] my-10 py-10 text-center">
 
    
 

@@ -16,6 +16,9 @@ const Profile: any = dynamic(() => import("@/app/components/Icon/profile"));
 const Send: any = dynamic(() => import("@/app/components/Icon/send"));
 const OpenAi: any = dynamic(() => import("@/app/components/Icon/openai"));
 const ClosedEye: any = dynamic(() => import("@/app/components/Icon/closed-eye"));
+const Instagram: any = dynamic(() => import("@/app/components/Icon/instagram"));
+const Twitter: any = dynamic(() => import("@/app/components/Icon/twitter"));
+const Facebook: any = dynamic(() => import("@/app/components/Icon/facebook"));
 interface IconProps {
   type: string;
   size?: number;
@@ -37,6 +40,9 @@ export default function Icon({ type, className, size = 54 }: IconProps) {
     send: <Send className={className} size={size} />,
     openai: <OpenAi className={className} size={size} />,
     "closed-eye": <ClosedEye className={className} size={size} />,
+    instagram: <Instagram className={className} size={size} />,
+    twitter: <Twitter className={className} size={size} />,
+    facebook: <Facebook className={className} size={size} />,
   };
   return (
     <>

@@ -2,7 +2,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 
 import {useFullRegistrationMutation} from '@/redux/features/authApiSlice';
 
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function useFullRegistration() {
 

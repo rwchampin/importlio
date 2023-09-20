@@ -45,13 +45,13 @@ function Sidebar() {
     }
   }, [pathname]);
 
-  if(!showSidebar){
+  if(!showSidebar || !posts){
     return null;
   }
   return (
     <div className="sidebar w-full lg:max-w-[400px] bg-gray-2 p-3 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
       <div className="flex-auto flex flex-col gap-3">
-        {posts.map((post, idx) => (
+        {posts && posts.map((post, idx) => (
           <SidebarCard key={idx} post={post} />
         ))}
 

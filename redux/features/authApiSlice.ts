@@ -68,6 +68,20 @@ const authApiSlice = api.injectEndpoints({
 				body: { first_name, last_name, email, password, re_password, avatar },
 			}),
 		}),
+		editProfile: builder.mutation({
+			query: ({
+				first_name,
+				last_name,
+				email,
+				avatar,
+				password,
+				re_password,
+			}) => ({
+				url: '/users/',
+				method: 'POST',
+				body: { first_name, last_name, email, password, re_password, avatar },
+			}),
+		}),
 		verify: builder.mutation({
 			query: () => ({
 				url: '/jwt/verify/',

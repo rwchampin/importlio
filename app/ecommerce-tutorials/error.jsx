@@ -4,12 +4,15 @@
 import Button from '@/app/components/buttons/Button';
 
 
+import {ScrollShadow} from "@nextui-org/react";
+
 export default function Error({error, reset}) {
  
 
 
 	return (
-		<div className='flex-auto flex flex-col items-center justify-center'>
+		<ScrollShadow className="w-[100vw] h-[400px]">
+		<div className='flex-auto flex flex-col items-center justify-center'>fuck
 			<div className='text-heading-1'>Something went wrong!</div>
 			<p>{error.error}</p>
 
@@ -24,5 +27,6 @@ export default function Error({error, reset}) {
 				Try again
 			</Button>
 		</div>
+		</ScrollShadow>
 	)
 }

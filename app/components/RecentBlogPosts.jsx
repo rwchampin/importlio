@@ -10,7 +10,6 @@ export default function RecentBlogPosts() {
     useEffect(() => {
         const fetchPosts = async () => {
             const posts = await getRecentPosts();
-            debugger
             setPosts(posts);
         };
 
@@ -21,14 +20,14 @@ export default function RecentBlogPosts() {
     }, []);
 
 
-    if(posts && posts.length === 0){
+    if(!posts || posts.length === 0){
         return <Spinner lg />
     }
 
     return (
 
-            <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center  ">
-                {posts.map((post, idx) => <Card key={idx} post={post} />)}
+            <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center py-10 ">
+                {posts && posts.map((post, idx) => <Card key={idx} post={post} />)}
             </div>
 
     );

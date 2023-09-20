@@ -4,7 +4,7 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import {usePreregisterMutation} from '@/redux/features/authApiSlice';
 
 
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 
 export default function usePreRegister({

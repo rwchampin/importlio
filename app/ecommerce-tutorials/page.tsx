@@ -1,14 +1,17 @@
 "use client"
-import { getPosts } from "@/lib/api";
+import { getPosts, getPostsByQueryParams } from "@/lib/api";
 import { unSlugify } from "@/lib/functions";
 import { useSearchParams } from 'next/navigation'
 import BasePage from '@/app/components/BasePage';
 import { useAppDispatch } from "@/redux/hooks";
 import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
 import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
-import Section from "@/app/components/Section";
+// import Section from "@/app/components/Section";
 import Card from '@/app/components/Card';
 import JsonLd from "@/app/components/JsonLd";
+// import {ScrollShadow} from "@nextui-org/react";
+
+import Spinner from "@/app/components/Spinner";
 import { Suspense, useEffect, useState } from "react";
 interface Post {
   title: string;
@@ -38,22 +41,15 @@ const json = {
 }
 
  
-const getPostsByQueryParams = async (type:string, name:string) => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${type}/${name}`, {
-    method: 'GET',
-    headers: {
-      'Content-Type': 'application/json'
-    }
-  })
-  const data = await res.json();
-  return data;
-}
+ 
+
  
 
 export default function Page() {
   const dispatch = useAppDispatch()
   dispatch(setShowRecentPostsInFooter(false))
   const [posts, setPosts] = useState([])
+  const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
   const type = searchParams.get('type')
   const name = searchParams.get('name')
@@ -66,15 +62,21 @@ export default function Page() {
       } else {
         data = await getPosts()
       }
-      return data;
+      setPosts(data)
+      setLoading(false)
     }
 
-    getData().then((data:any) => {
-      setPosts(data)
-    })
+    if(posts.length === 0) {
+      getData()
+    }
   }, [type, name])
 
+  if(loading) {
 
+    return (
+      <Spinner lg />
+    )
+  }
 
   return (
     <>
@@ -88,7 +90,7 @@ export default function Page() {
       >
         {/* <Section className="p-5 flex flex-col gap-5 lg:flex-row"> */}
 
-            {posts.map((post:any, idx:number) => {
+            {posts && posts.map((post:any, idx:number) => {
               return (
                     <Suspense fallback={<PostCardSkeleton />}>
                      <Card key={idx} post={post} />
@@ -98,6 +100,7 @@ export default function Page() {
               );
             })}
 
+            {!posts || posts.length === 0 && (<><div className="text-heading-2">Hmm, seems there was an issue loading the posts!</div><div className="text-heading-5">Try again later or reload the page.</div></>)}
  
         {/* </Section> */}
         <JsonLd

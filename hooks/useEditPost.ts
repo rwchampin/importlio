@@ -2,7 +2,7 @@
 import { useState, ChangeEvent, FormEvent, useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import { useUpdatePostMutation } from '@/redux/features/authApiSlice';
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default function useEditPost(post: any) {
 	debugger

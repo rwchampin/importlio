@@ -1,8 +1,8 @@
 "use client"
 import { useRef, useEffect } from 'react'
 import gsap from 'gsap/all' 
-import ScrollTrigger from 'gsap/ScrollTrigger' // Import ScrollTrigger separately
-gsap.registerPlugin(ScrollTrigger)
+// import ScrollTrigger from 'gsap/ScrollTrigger' // Import ScrollTrigger separately
+// gsap.registerPlugin(ScrollTrigger)
 
 export default function Feature(feature) {
   const p = useRef(null)
@@ -15,11 +15,11 @@ export default function Feature(feature) {
       y: 50,
       stagger: 0.05,
       ease: 'expo.out',
-      scrollTrigger: {
-        scrub: true,
-        trigger: p.current,
-        // markers: true
-      }
+      // scrollTrigger: {
+      //   scrub: true,
+      //   trigger: p.current,
+      //   // markers: true
+      // }
     })
   }, []) // Add iconRef to the dependency array
 

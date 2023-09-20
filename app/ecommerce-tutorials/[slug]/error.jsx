@@ -9,7 +9,9 @@ export default function Error({error, reset}) {
 	}, [ error ])
 
 	return (
-		<div>
+		<div 
+			className='flex flex-col items-center justify-center h-full bg-blue-400'
+		>
 			<div className='text-heading-1'>Something went wrong!</div>
 			<p>ERRORL:{error.error}</p>
 

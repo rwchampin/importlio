@@ -1,9 +1,11 @@
 "use client";
 
-import { useEffect, useRef } from 'react';
+import { useLayoutEffect, useRef } from 'react';
 import gsap from 'gsap';
 import { ScrollSmoother } from 'gsap/ScrollSmoother';
 
+import ScrollGradient from '@/app/components/ScrollGradient';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 export default function Scroller({children}) {
 
 
@@ -19,46 +21,39 @@ export default function Scroller({children}) {
     });
   }
 
-  useEffect(() => {
-    // gsap.registerPlugin(ScrollSmoother );
-  //   ScrollSmoother.create({
-  //     wrapper: '#smooth-wrapper',
-  //     content: '#smooth-content',
-  //     smooth: 1,
-  //     effects: true,
-  //     onUpdate: self => {
-  //       // update scrollbar with scroll progress
-  //       const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
-  //       gsap.to(scrollBarRef.current, {
-  //         height: scrollBarHeight * self.progress,
-  //         duration: 0.1,
-  //         ease: 'power2.out'
-  //       });
-
-  //     }
-  //   });
-    function setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight) {
-  // Calculate the maximum scroll distance
-      // const scrollBarHeight = scrollTrackRef.current.clientHeight * (scrollTrackRef.current.clientHeight / scrollTrackRef.current.scrollHeight);
-      // gsap.to(scrollBarRef.current, {
-      //   height: scrollBarHeight * (scrollY / (document.body.clientHeight - windowHeight)),
-      //   duration: 0.1,
-      //   ease: 'power2.out'
-      // });
+  useLayoutEffect(() => {
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    const track = scrollTrackRef.current;
+    const bar = scrollBarRef.current;
+    const trackHeight = track.clientHeight;
+    
+    const setScrollBar = () => {
+      
+      const scrollBarHeight = (window.scrollY / (document.documentElement.scrollHeight - window.innerHeight)) * trackHeight;
+      gsap.to(scrollBarRef.current, {
+        height: scrollBarHeight,
+        duration: 0.1,
+        ease: 'power2.out'
+      });
+      ;
     }
+    // Set the scrollbar height
+    // ScrollSmoother.create({
+    //   smooth: 1,
+    //   effects: true,
+    //   onStart: self => {
+    //     setScrollBar();
+    //   },
+    //   onUpdate: self => {
+    //     setScrollBar()
+    //   }
+    // });
+    
 
     // Example usage inside a window.scroll event listener
     window.addEventListener('scroll', () => {
-      const scrollY = window.scrollY;
-      const windowHeight = window.innerHeight;
-      const scrollTrackHeight = windowHeight * 0.9; // Assuming the scroll track is 90% of the window height
 
-      const scrollbarHeight = setScrollbarHeight(scrollY, windowHeight, scrollTrackHeight);
-
-      // Set the calculated height to your custom scrollbar indicator element
-
-
-      scrollBarRef.current.style.height = `${scrollbarHeight}px`;
+      setScrollBar()
     });
     
   }, []);
@@ -70,9 +65,9 @@ export default function Scroller({children}) {
   return (
 
 
-<>
-    <div id="smooth-wrapper" className='flex w-full'>
-    <div id="smooth-content" className='flex flex-col w-full pt-[5rem]'>
+<ScrollGradient>
+    <div id="smooth-wrapper" className='h-screen'>
+    <div id="smooth-content" className='min-h-screen flex flex-col'>
 
       {children}
       </div>
@@ -81,7 +76,7 @@ export default function Scroller({children}) {
       <div className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999]" ref={scrollTrackRef}>
         <div className="scroll-bar absolute top-0 bg-black w-full" ref={scrollBarRef}></div>
       </div>
-      </>
+      </ScrollGradient>
      
     
 

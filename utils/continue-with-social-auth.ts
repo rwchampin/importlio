@@ -1,4 +1,4 @@
-import { toast } from 'react-toastify';
+import { toast } from 'react-hot-toast';
 
 export default async function continueWithSocialAuth(
 	provider: string,

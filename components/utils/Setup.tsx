@@ -1,19 +1,12 @@
-'use client';
+"use client";
 
-import { useVerify } from '@/hooks';
-import { ToastContainer } from 'react-toastify';
-import {onLCP, onFID, onCLS} from 'web-vitals/attribution';
+import { useVerify } from "@/hooks";
 
-import Alert from '@/components/common/Alert';
-import 'react-toastify/dist/ReactToastify.css';
+
+import { Toaster } from "react-hot-toast";
 
 export default function Setup() {
-	useVerify();
- 
-	return (
-		<>
-			<ToastContainer />
-			<Alert />
-		</>
-	)
+  useVerify();
+
+  return <Toaster />;
 }

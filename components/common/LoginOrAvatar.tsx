@@ -6,15 +6,13 @@ import { usePathname } from "next/navigation";
 
 import Button from "@/app/components/buttons/Button";
 
-import { logout } from "@/redux/features/authSlice";
 
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { useEffect, useState } from "react";
+
+import {  useAppSelector } from "@/redux/hooks";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
 export default function LoginOrAvatar() {
-  const dispatch = useAppDispatch();
   const { user, isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
   // const [userAccount, setUserAccount] = useState<any>(null);
 
@@ -27,16 +25,14 @@ export default function LoginOrAvatar() {
   //   }
   // }, [user]);
 
-  const handleLogout = () => {
-    dispatch(logout());
-  };
+ 
 
   if (isLoading) {
     return <Spinner lg />;
   }
 
   if (user && isAuthenticated) {
-    return <Avatar user={user} handleLogout={handleLogout} />;
+    return <Avatar user={user}  />;
   }
 
   return (

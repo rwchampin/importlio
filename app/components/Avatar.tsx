@@ -1,10 +1,12 @@
 import {Avatar as AA} from "@nextui-org/react";
-import { getInitialsFromName, isValidURL } from "@/lib/functions";
 import { AvatarProps } from "@/lib/constants";
 import Dropdown from "./Dropdown";
+import { logout } from "@/redux/features/authSlice";
+import { useAppDispatch } from "@/redux/hooks";
 export default function Avatar({
     user,
   }:AvatarProps) {
+    const dispatch = useAppDispatch();
     const avatarProps:{
         src?: string;
         name?: string;
@@ -12,11 +14,10 @@ export default function Avatar({
   
     if (user && user.avatar) {
       avatarProps.src = `${process.env.NEXT_PUBLIC_HOST}/${user.avatar}`;
-    } else if (!user.avatar && (user.first_name && user.last_name)) {
-      const initials = getInitialsFromName(`${user.first_name} ${user.last_name}`);
-      avatarProps.name = initials;
     }
-    
+    const handleLogout = () => {
+        dispatch(logout());
+      };
     const config = [
         {
             key: 'profile',
@@ -25,9 +26,11 @@ export default function Avatar({
         },{
             key: 'logout',
             label: 'Logout',
-            href: '/auth/logout'
+            onClick: handleLogout
         }
     ]
+
+    
     return (
         <Dropdown
             config={config}
