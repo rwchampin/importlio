@@ -8,7 +8,7 @@ export default function Card({ post }: any) {
     <CC
       isFooterBlurred
       radius="lg"
-      className="border-none w-full lg:w-1/3 xl:w-1/4 relative aspect-square p-0 m-1"
+      className="border-none w-full lg:w-1/3 xl:w-1/4 relative aspect-square p-0 m-1 card"
       shadow="lg"
       fullWidth={true}
     >

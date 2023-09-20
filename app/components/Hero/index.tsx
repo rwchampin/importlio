@@ -42,7 +42,7 @@ export default function ({
         <HeroHeader />
         {bg && (
           <Image
-            src={bg}
+            src={`https://importlio-bucket.nyc3.digitaloceanspaces.com/${bg}`}
             alt="background"
             priority
             fill
