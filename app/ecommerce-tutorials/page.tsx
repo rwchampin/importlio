@@ -31,7 +31,7 @@ const json = {
   "@type": "Blog",
   "name": "Importlio Ecommerce Tutorials",
   "description": "Read our latest ecommerce tutorials & articles about Amazon dropshipping, Shopify, ecommerce, Amazon Dropshipping product importing, and more.",
-  "url": "https://www.importlio.com/blog",
+  "url": "https://www.importlio.com/ecommerce-tutorials",
   "inLanguage": "en-US",
   "isPartOf": {
     "@type": "WebSite",

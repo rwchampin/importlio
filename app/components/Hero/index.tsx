@@ -6,7 +6,6 @@ import ShadowText from "@/app/components/typography/ShadowText";
 import HeroHeader from "@/app/components/Hero/HeroHeader";
 import Image from "next/image";
 
-
 interface Props {
   bg?: string | null | undefined;
   title: string | React.ReactNode;
@@ -36,8 +35,7 @@ export default function ({
   return (
     <>
       <section
-        style={{ zIndex: 100 }}
-        className={`z-100 py-10 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
+        className={`py-10 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
       >
         <HeroHeader />
         {bg && (
@@ -86,6 +84,8 @@ export default function ({
       >
         {shadowText}
         </ShadowText>
+
+        
     </>
   );
 }

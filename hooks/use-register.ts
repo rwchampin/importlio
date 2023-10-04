@@ -21,7 +21,6 @@ export default function useRegister() {
 
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-
 		register({ first_name, last_name, email, password, re_password })
 			.unwrap()
 			.then(() => {

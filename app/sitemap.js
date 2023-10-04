@@ -1,3 +1,4 @@
+
 import { globby } from 'globby';
 
 const excludedPaths = [
@@ -25,8 +26,7 @@ const transformFilePaths = (filePaths) => {
     // Remove 'page' if it's at the end
     modifiedPath = modifiedPath.replace(/\/page$/, '');
 
-    // Replace slashes with hyphens
-    modifiedPath = modifiedPath.replace(/\//g, '-');
+    // Replace 
 
     return modifiedPath;
   });
@@ -50,18 +50,36 @@ const transformFilePaths = (filePaths) => {
   return urlObjects;
 };
 
-const getPosts = async () => {
+const getEmailLists = async () => {
   try {
-    const posts = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/lists`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    const postsData = await posts.json();
+    const { results } = await res.json();
 
-    return postsData;
+    return results;
+  } catch (error) {
+    console.error('Error fetching posts:', error.message);
+    return [];
+  }
+};
+
+const getPosts = async () => {
+  try {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const { results } = await res.json();
+
+    return results;
   } catch (error) {
     console.error('Error fetching posts:', error.message);
     return [];
@@ -70,16 +88,16 @@ const getPosts = async () => {
 
 const getTags = async () => {
   try {
-    const tags = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/tags/`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/tags/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    const tagsData = await tags.json();
+    const { results } = await res.json();
 
-    return tagsData;
+    return results;
 
 
   } catch (error) {
@@ -90,16 +108,16 @@ const getTags = async () => {
 
 const getCategories = async () => {
   try {
-    const caegories = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/categories/`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/categories/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    const caegoriesData = await caegories.json();
+    const { results } = await res.json();
 
-    return caegoriesData;
+    return results;
 
 
   } catch (error) {
@@ -109,16 +127,16 @@ const getCategories = async () => {
 };
 const getPostTypes = async () => {
   try {
-    const postTypes = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post-types/`, {
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post-types/`, {
       method: 'GET',
       headers: {
         'Content-Type': 'application/json',
       },
     });
 
-    const postTypeData = await postTypes.json();
+    const { results } = await res.json();
 
-    return postTypeData;
+    return results;
 
 
   } catch (error) {
@@ -137,6 +155,7 @@ const generateURLs = async () => {
   const tags = await getTags(); // Await the result of getTags()
   const categories = await getCategories(); // Await the result of getCategories()
   const postTypes = await getPostTypes(); // Await the result of getPostTypes()
+  const emailLists = await getEmailLists(); // Await the result of getEmailLists()
   const urlList = [
       ...transformFilePaths(pages),
       ...postTypes.map((postType) => ({
@@ -155,6 +174,10 @@ const generateURLs = async () => {
           url: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
           lastModified: post.updated,
       })),
+      ...emailLists.map((emailList) => ({
+        url: `https://www.importlio.com/email-lists/${emailList.slug}`,
+        lastModified: emailList.updated_at,
+    })),
   ];
 
   return urlList;

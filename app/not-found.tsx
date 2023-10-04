@@ -22,6 +22,8 @@ export default function NotFound() {
       headline="Try going back home"
       shadowText="404"
       customComponent={<CustomComponent />}
-    ></BasePage>
+    >
+
+    </BasePage>
   );
 }

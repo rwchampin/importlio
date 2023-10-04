@@ -8,7 +8,7 @@ export default function ImageCta({ title, description, image, cta }) {
     <Panel round>
       <div className="overflow-hidden bg-white dark:bg-gray-400 lg:flex lg:w-full lg:shadow-md lg:rounded-xl">
         <div className="lg:w-1/2">
-          <div className="h-64 object-fill lg:h-full bg-green-600">
+          <div className="h-64 object-fill lg:h-full">
             <LazyLoad
               type="video"
               className="m-0 p-0 overflow-hidden object-cover w-full h-full"

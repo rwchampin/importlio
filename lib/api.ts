@@ -1,5 +1,4 @@
 
-import useFetch from '@/hooks/useFetch'
 import {cache} from 'react'
 // import 'server-only'
 
@@ -11,7 +10,7 @@ export const getPosts = async () => {
             'Content-Type': 'application/json'
           },
         })
-        debugger
+        
         if (!response.ok) {
           throw new Error(response.statusText)
         }
@@ -31,19 +30,26 @@ export const getPosts = async () => {
     
  
 export const getRecentPosts = async () => {
+
   try {
-    const posts = await useFetch({
-      endpoint: `/posts/recent/`,
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`, {
       method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
     })
 
-    
-
-    if (posts === null) {
-      throw new Error('Post not found')
+    if (!response.ok) {
+      throw new Error(response.statusText)
     }
 
-    return posts
+    const { results } = await response.json()
+    if (results === null) {
+      throw new Error('Post not found!')
+    }
+
+    return results
+    
   } catch (error) {
     console.error(error)
   }
@@ -58,7 +64,7 @@ export const getPost = async (slug: string) => {
         'Content-Type': 'application/json'
       },
     })
-    debugger
+    
     if (!response.ok) {
       throw new Error(response.statusText)
     }
@@ -83,7 +89,7 @@ export const getPostsByQueryParams = async (type:string, name:string) => {
     }
   })
   const data = await res.json();
-  debugger
+  
   return data;
 }
 
@@ -126,12 +132,12 @@ export const getTags =  async () => {
       throw new Error(response.statusText)
     }
 
-    const tags = await response.json()
-    if (tags === null) {
+    const { results } = await response.json()
+    if (results === null) {
       throw new Error('Post not found!')
     }
 
-    return tags
+    return results
     
   } catch (error) {
     console.error(error)
@@ -152,12 +158,12 @@ export const getCategories = async () => {
       throw new Error(response.statusText)
     }
 
-    const categories = await response.json()
-    if (categories === null) {
+    const {results} = await response.json()
+    if (results === null) {
       throw new Error('Post not found!')
     }
 
-    return categories
+    return results
     
   } catch (error) {
     console.error(error)
@@ -173,7 +179,7 @@ export const createPost = async (post:any) => {
       },
       body: JSON.stringify(post)
     })
-    debugger
+    
     if (!response.ok) {
       throw new Error(response.statusText)
     }
@@ -182,7 +188,7 @@ export const createPost = async (post:any) => {
     if (createdPost === null) {
       throw new Error('Post not found!')
     }
-    debugger
+    
     return createdPost
     
   } catch (error) {
@@ -239,7 +245,7 @@ export const createBlankPost = async () => {
     if (post === null) {
       throw new Error('Post not found!')
     }
-    debugger
+    
     return post
     
   } catch (error) {
@@ -389,27 +395,106 @@ export const saveChatRoom = async ( body: any) => {
 }
 
 
-export const getUser = async (access: string) => {
+ 
+export const getNiches = async () => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/niches/`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
 
-  const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/users/me/`, {
-    method: 'GET',
-    headers: {
-      'Authorization': `Bearer ${access}`,
-      'Content-Type': 'application/json'
-    },
-  })
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
 
-  if (!response.ok) {
-    throw new Error(response.statusText)
+    const {results} = await response.json()
+    if (results === null) {
+      throw new Error('Post not found!')
+    }
+
+    return results
+    
+  } catch (error) {
+    console.error(error)
   }
-
-  const user = await response.json()
-
-  if (user === null) {
-    throw new Error('Post not found!')
-  }
-
-  return user
-
 }
 
+
+export const downloadList = async (niche:string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/emails/download/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({niche})
+    })
+
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    const emails = await response.json()
+    if (emails === null) {
+      throw new Error('Post not found!')
+    }
+
+    return emails
+    
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const getEmailsByNiche = async (niche: string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/emails/?niche=${niche}`, {
+      method: 'GET',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+    })
+
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    const emails = await response.json()
+    if (emails === null) {
+      throw new Error('Post not found!')
+    }
+
+    return emails
+    
+  } catch (error) {
+    console.error(error)
+  }
+}
+
+export const validateEmail = async (email: string) => {
+  try {
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/emails/validate/`, {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({email})
+    })
+
+    if (!response.ok) {
+      throw new Error(response.statusText)
+    }
+
+    const data = await response.json()
+    if (data === null) {
+      throw new Error('Post not found!')
+    }
+
+    return data
+    
+  } catch (error) {
+    console.error(error)
+  }
+}

@@ -2,17 +2,16 @@
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 import {usePreregisterMutation} from '@/redux/features/authApiSlice';
-
+import useModal from '@/hooks/useModal';
+ 
 
 import { toast } from 'react-hot-toast';
 
 
-export default function usePreRegister({
-	setIsOpen,
-}:any) {
-
+export default function usePreRegister() {
+	 const { isOpen, close } = useModal();
 	const [preregister, { isLoading }] = usePreregisterMutation();
-
+	const [errors, setErrors] = useState<any>([]);
 	const [formData, setFormData] = useState({
 		email: '',
 	});
@@ -24,22 +23,29 @@ export default function usePreRegister({
 		setFormData({ "email": value });
 	};
 
+	const onSuccess = () => {
+		setErrors([]);
+		setFormData({ "email": '' });
+				toast.success('Thanks for registering!');
+			 if(isOpen){
+				 close()
+			 }
+	}
 	 
-
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
 		const email = formData.email;
+
 		preregister({ email })
 			.unwrap()
 			.then(() => {
-				setIsOpen(false);
-				setFormData({ "email": '' });
-				toast.success('Thanks for registering!');
-
+				
+				onSuccess()
+				
 			})
 			.catch((e) => {
 				toast.error('Failed to register account');
-
+				setErrors(e.data);
 			});
 	};
 
@@ -48,5 +54,6 @@ export default function usePreRegister({
 		isLoading,
 		onChange,
 		onSubmit,
+		errors,
 	};
 }

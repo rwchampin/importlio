@@ -1,18 +1,14 @@
 "use client";
 import BasePage from "@/app/components/BasePage"
-import { useState } from "react";
 import ImageCta from "@/app/components/ImageCta";
 import FeatureHero from "@/app/components/FeatureHero";
 
 import FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 import LazyLoad from "@/components/utils/LazyLoad";
-import Modal from "@/components/common/Modal";
+
 import JsonLd from "@/app/components/JsonLd";
 import Section from '@/app/components/Section';
 import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
-import EmailForm from "@/components/forms/EmailForm";
-import { useAppDispatch } from "@/redux/hooks";
-import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
 import Search from "@/app/components/Search";
 
 const jsonLd = {
@@ -48,34 +44,23 @@ const jsonLd = {
 }
 
 const Prereg = () => {
-  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
      <Search />
-      <div className="max-w-2xl mx-auto text-center mb-5 font-montserrat text-xxs leading-relaxed" style={{ fontWeight: 500 }}>
+      <div className="max-w-2xl mb-3 mt-3  font-montserrat text-xxs leading-tight" style={{ fontWeight: 500 }}>
         Pre-register today and secure a FREE month&apos;s membership. Join now to import products in BULK from the best-sellers on Amazon.  Use Amazon search results pages, Category pages and more!  Don&apos;t miss out - be part of the elite Shopify Store Owners with shops FILLED with products!
       </div>
+      </>
 
-     <div className="flex flex-col items-center justify-center">
-     <Modal
-        buttonText="Pre-register"
-        buttonSize="sm"
-        isOpen={isOpen}
-        setIsOpen={setIsOpen}
-      >
-        <EmailForm
-          isOpen={isOpen}
-          setIsOpen={setIsOpen}
-        />
-      </Modal>
-      </div>
+    
+
      
-    </>
+
   )
 }
 export default function Page() {
-  const dispatch = useAppDispatch();
-  dispatch(setShowRecentPostsInFooter(false));
+  
   return (
     <BasePage
     theme="dark"
@@ -85,7 +70,9 @@ export default function Page() {
       shadowText={`Amazon Products`}
       // customComponent={<Search />}
       customComponent={<Prereg />}
+      showSidebar={false}
     >
+      <>
       <LazyLoad
         type="video"
         dataSrc={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4`}
@@ -93,6 +80,7 @@ export default function Page() {
         width={"100%"}
         height={"100%"}
       />
+      </>
       <Section>
         <FeatureHero />
       </Section>

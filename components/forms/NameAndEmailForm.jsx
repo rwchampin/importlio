@@ -10,30 +10,12 @@ export default function NameAndEmailForm() {
         last_name,
 		isLoading,
 		onChange,
-		onSubmit
+		onSubmit,
+		errors
 	 } = useFullRegistration();
 
 	const config = [
-        {
-			
-			label: 'First Name',
-			name: 'first_name',
-			type: 'text',
-			value: first_name,
-			required: true,
-			placeholder: 'First Name',
-			onChange,
-		},
-        {
-			
-			label: 'Last Name',
-			name: 'last_name',
-			type: 'text',
-			value: last_name,
-			required: true,
-			placeholder: 'Last Name',
-			onChange,
-		},
+        
 		{
 			
 			label: 'Email address',
@@ -42,9 +24,30 @@ export default function NameAndEmailForm() {
 			value: email,
 			required: true,
 			placeholder: 'Email address',
+
 			onChange,
 		},
-		 
+		{
+			
+			label: 'First Name',
+			name: 'first_name',
+			type: 'text',
+			value: first_name,
+			required: false,
+			placeholder: 'First Name',
+
+			onChange,
+		},
+        {
+			
+			label: 'Last Name',
+			name: 'last_name',
+			type: 'text',
+			value: last_name,
+			required: false,
+			placeholder: 'Last Name',
+			onChange,
+		},
 	];
 
    
@@ -56,6 +59,7 @@ return <Form
 			onSubmit={onSubmit}
 			value={email}
 			postFormText="Early access to the world's first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!"
+			errors={errors}
 		/>
 
 }

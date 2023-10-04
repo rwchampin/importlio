@@ -9,11 +9,14 @@ const dev = process.env.NODE_ENV !== 'production';
 const app = next({ dev });
 const handle = app.getRequestHandler();
 
+// const httpsOptions = {
+//     key: fs.readFileSync('./certs/127.0.0.1-key.pem'),
+//     cert: fs.readFileSync('./certs/127.0.0.1.pem')
+// };
 const httpsOptions = {
-    key: fs.readFileSync('./certs/127.0.0.1-key.pem'),
-    cert: fs.readFileSync('./certs/127.0.0.1.pem')
+    key: fs.readFileSync('./certs/localhost-key.pem'),
+    cert: fs.readFileSync('./certs/localhost.pem')
 };
-
 const startServer = () => {
     app.prepare().then(() => {
         createServer(httpsOptions, async (req, res) => {

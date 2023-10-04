@@ -4,7 +4,7 @@ import RequireAuth from "@/components/utils/RequireAuth";
 import Sidebar from "./Sidebar";
 import Dashboard from "./Dashboard";
 
-import AppProvider from "@/components/utils/AppProvider";
+import AppProvider from "@/components/utils/provider";
 
 interface Props {
   children: React.ReactNode;

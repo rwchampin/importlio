@@ -5,7 +5,6 @@ import { useUpdatePostMutation } from '@/redux/features/authApiSlice';
 import { toast } from 'react-hot-toast';
 
 export default function useEditPost(post: any) {
-	debugger
 	const router = useRouter();
 	const [updatePost, { isLoading }] = useUpdatePostMutation();
 	const [formData, setFormData] = useState(post);

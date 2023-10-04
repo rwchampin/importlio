@@ -1,6 +1,4 @@
 
-import React from "react";
-import  useFetch  from "@/hooks/useFetch";
 export default async function Sidebar() {
     // const rooms = await useFetch({
     //     endpoint: "/rooms",

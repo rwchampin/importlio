@@ -9,7 +9,7 @@ import type { Metadata } from "next";
 
 import Scroller from "@/components/utils/Scroller";
 import GA from "@/components/utils/GA";
-import AppProvider from "@/components/utils/AppProvider";
+import Provider from '@/components/utils/provider';
 
 import Setup from "@/components/utils/Setup";
 
@@ -17,8 +17,8 @@ import Header from "@/components/common/Header";
 import Footer from "@/components/common/Footer";
 import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
-import { getRecentPosts } from "@/lib/api";
-
+import Modal from "@/components/common/Modal";
+import EmailForm from "@/components/forms/EmailForm";
 
 const montserrat = localFont({
   src: "../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
@@ -101,14 +101,11 @@ export const metadata: Metadata = {
 };
 
 
-const preload:any = async () => {
-  void getRecentPosts();
-}
+
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 
-
   return (
-    <AppProvider>
+   
     <html
       lang="en"
       className={`${apercu.variable} ${montserrat.variable}`}
@@ -116,11 +113,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     >
        <GA GA_MEASUREMENT_ID={'G-V8X4P8V5SZ'} />
       <body suppressHydrationWarning>
-     
+      <Provider>
 
        
         <Setup />
-          <Scroller>
+           <Scroller>
             <Header />
             {children}
             
@@ -135,10 +132,13 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             // showSpinner={true}
           />
          
-       
+         <Modal>
+    <EmailForm />
+  </Modal>
+      </Provider>
       </body>
     </html>
-    </AppProvider>
+   
   );
 };
 

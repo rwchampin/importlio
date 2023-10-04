@@ -126,7 +126,7 @@ module.exports = {
         "5xl": "2.75rem",
       },
       height: {
-        input: "50px",
+        input: "55px",
       },
       fontFamily: {
         montserrat: ["var(--font-montserrat)"],
@@ -139,8 +139,6 @@ module.exports = {
     nextui(),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
-    // require("tailwindcss-radix-colors"),
-    // require("tailwindcss-gradients"),
   ],
 };
 

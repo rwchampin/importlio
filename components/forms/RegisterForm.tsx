@@ -1,7 +1,7 @@
 'use client';
 
 import { useRegister } from '@/hooks';
-
+import { CgProfile } from 'react-icons/cg';
 import Form from '@/components/forms/Form';
 
 export default function RegisterForm() {
@@ -24,7 +24,9 @@ export default function RegisterForm() {
 			type: 'file',
 			value: avatar,
 			required: true,
+			placeholder: 'Upload a profile picture',
 			description: 'Upload a profile picture',
+			beforeContent: <CgProfile className='h-20 w-20 font-thin mx-auto' />,
 		},
 		{
 			label: 'First name',
@@ -32,6 +34,7 @@ export default function RegisterForm() {
 			type: 'text',
 			value: first_name,
 			required: true,
+			placeholder: 'John',
 			errorMessage: 'First name is required',
 		},
 		{
@@ -39,6 +42,7 @@ export default function RegisterForm() {
 			name: 'last_name',
 			type: 'text',
 			value: last_name,
+			placeholder: 'Smith',
 			required: true,
 		},
 		{

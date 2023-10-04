@@ -1,32 +1,33 @@
-// src/features/modal/modalSlice.js
+// src/features/core/coreSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-import React from 'react';
-import type { PayloadAction } from '@reduxjs/toolkit'
 
-interface ModalProps {
-    isOpen: boolean;
-    children?: React.ReactNode | null | undefined;
-}
-
-const initialState: ModalProps = {
-    isOpen: false,
-    children: null,
-}
+ 
+  
 const modalSlice = createSlice({
   name: 'modal',
-initialState,
+  initialState: {
+ 
+    modalOpen: false,
+  },
   reducers: {
-    openModal(state) {
-        state.isOpen = true;
-        },
-    closeModal(state) {
-        state.isOpen = false;
+   
+    toggleModal: (state) => {
+      state.modalOpen = !state.modalOpen;
     },
-    toggleModal(state) {
-        state.isOpen = !state.isOpen;
+    closeModal: (state) => {
+      state.modalOpen = false;
+    },
+    openModal: (state) => {
+      state.modalOpen = true;
     }
   },
 });
 
-export const { openModal, closeModal, toggleModal } = modalSlice.actions;
+
+export const { 
+ 
+  toggleModal,
+  closeModal,
+  openModal,
+} = modalSlice.actions;
 export default modalSlice.reducer;

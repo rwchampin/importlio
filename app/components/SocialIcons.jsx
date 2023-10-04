@@ -13,6 +13,10 @@ export default function SocialIcons() {
         name: 'Facebook',
         url: 'https://www.facebook.com/importlio',
         icon: <Icon type="facebook" />
+    },{
+        name: 'Youtube',
+        url: 'https://www.youtube.com/importlio',
+        icon: <Icon type="youtube" />
     }]
     return (
         <div className="flex gap-5">

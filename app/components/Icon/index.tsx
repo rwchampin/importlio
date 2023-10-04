@@ -19,6 +19,10 @@ const ClosedEye: any = dynamic(() => import("@/app/components/Icon/closed-eye"))
 const Instagram: any = dynamic(() => import("@/app/components/Icon/instagram"));
 const Twitter: any = dynamic(() => import("@/app/components/Icon/twitter"));
 const Facebook: any = dynamic(() => import("@/app/components/Icon/facebook"));
+const Youtube: any = dynamic(() => import("@/app/components/Icon/youtube"));
+const Shopify: any = dynamic(() => import("@/app/components/Icon/shopify"));
+const Close: any = dynamic(() => import("@/app/components/Icon/close"));
+
 interface IconProps {
   type: string;
   size?: number;
@@ -43,6 +47,9 @@ export default function Icon({ type, className, size = 54 }: IconProps) {
     instagram: <Instagram className={className} size={size} />,
     twitter: <Twitter className={className} size={size} />,
     facebook: <Facebook className={className} size={size} />,
+    youtube: <Youtube className={className} size={size} />,
+    shopify: <Shopify className={className} size={size} />,
+    close: <Close className={className} size={size} />,
   };
   return (
     <>

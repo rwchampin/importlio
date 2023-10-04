@@ -1,5 +1,4 @@
 "use client";
-import Spinner from "@/app/components/Spinner";
 
 import dynamic from "next/dynamic";
 import { usePathname } from "next/navigation";
@@ -13,7 +12,7 @@ import {  useAppSelector } from "@/redux/hooks";
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
 export default function LoginOrAvatar() {
-  const { user, isAuthenticated, isLoading } = useAppSelector((state) => state.auth);
+  const { user } = useAppSelector((state) => state.auth);
   // const [userAccount, setUserAccount] = useState<any>(null);
 
   // const dispatch = useAppDispatch();
@@ -27,11 +26,9 @@ export default function LoginOrAvatar() {
 
  
 
-  if (isLoading) {
-    return <Spinner lg />;
-  }
+  
 
-  if (user && isAuthenticated) {
+  if (user) {
     return <Avatar user={user}  />;
   }
 
@@ -44,7 +41,7 @@ export default function LoginOrAvatar() {
       )}
       {pathname !== "/auth/register" && (
         <Button href="/auth/register" target="_blank" variant="bordered">
-          Register
+          Try for free
         </Button>
       )}
     </>

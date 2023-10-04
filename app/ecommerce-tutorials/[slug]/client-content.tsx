@@ -2,7 +2,7 @@
 import TagCloud from "@/app/components/TagCloud";
 import BasePage from "@/app/components/BasePage";
 
-import Sidebar from "@/app/components/Sidebar";
+import Sidebar from "@/app/components/BlogSidebar/Sidebar";
 
 import JsonLd from "@/app/components/JsonLd";
 import Spinner from "@/app/components/Spinner";

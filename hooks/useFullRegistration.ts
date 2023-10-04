@@ -1,3 +1,4 @@
+"use client"
 import { useState, ChangeEvent, FormEvent } from 'react';
 
 import {useFullRegistrationMutation} from '@/redux/features/authApiSlice';
@@ -8,17 +9,19 @@ export default function useFullRegistration() {
 
 
 	const [fullRegister, { isLoading }] = useFullRegistrationMutation();
-
+	const [errors, setErrors] = useState<any>([]);
 	const [formData, setFormData] = useState({
 		email: '',
         first_name: '',
         last_name: '',
+		message: '',
 	});
 
 	const {
 		email,
 		first_name,
 		last_name,
+		message
 	} = formData;
 
 	const onChange = (event: ChangeEvent<HTMLInputElement>) => {
@@ -31,12 +34,12 @@ export default function useFullRegistration() {
 
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		const { email, first_name, last_name } = formData;
-		fullRegister({ email, first_name, last_name })
+		const { email, first_name, last_name, message } = formData;
+		fullRegister({ email, first_name, last_name, message })
 			.unwrap()
-			.then(() => {
-
-				setFormData({ "email": '', "first_name": '', "last_name": '' });
+			.then((res) => {
+				debugger
+				setFormData({ "email": '', "first_name": '', "last_name": '', message: '' });
 				toast.success('Thanks for registering!');
 
 			})
@@ -48,9 +51,7 @@ export default function useFullRegistration() {
 	};
 
 	return {
-		email,
-		first_name,
-		last_name,
+		formData,
 		isLoading,
 		onChange,
 		onSubmit,

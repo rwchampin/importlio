@@ -4,16 +4,16 @@ import { useState, ChangeEvent, FormEvent } from 'react';
 import { useRouter } from 'next/navigation';
 import { useAppDispatch } from '@/redux/hooks';
 import { useLoginMutation } from '@/redux/features/authApiSlice';
-import { setAuth, setUser } from '@/redux/features/authSlice';
+import { setAuth, setUser, setUserEmail } from '@/redux/features/authSlice';
 import { toast } from 'react-hot-toast';
-
-import { getUser } from '@/lib/api';
+import useUser from '@/hooks/useUser';
+import { useRetrieveUserQuery } from '@/redux/features/authApiSlice';
 
 export default function useLogin() {
 	const router = useRouter();
 	const dispatch = useAppDispatch();
 	const [login, { isLoading }] = useLoginMutation<any>();
-
+	const { data: user } = useRetrieveUserQuery();
 	const [formData, setFormData] = useState({
 		email: 'rwchampin@gmail.com',
 		password: '1',
@@ -33,11 +33,9 @@ export default function useLogin() {
 		login({ email, password })
 			.unwrap()
 			.then((res):any => {
-				const { access, refresh } = res;
-				dispatch(setAuth(res));
-				getUser(res.access).then((user) => {
-						dispatch(setUser(user));
-					})
+				dispatch(setAuth());
+				dispatch(setUserEmail(email));
+				dispatch(setUser(res.user));
 
 
 				toast.success('Logged in');

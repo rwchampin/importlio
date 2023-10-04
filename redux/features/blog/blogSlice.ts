@@ -1,16 +1,20 @@
 // src/features/core/coreSlice.js
-import { createSlice } from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
+// import { getPosts } from '@/lib/api';
+const initialState = {
+    posts: [],
+    status: 'idle',
+    tags: [],
+    postTypes: [],
+    categories: [],
+    postStatuses: [],
+}
 
+// export const fetchPosts = createAsyncThunk('posts/fetchPosts', getPosts);
 
 const blogSlice = createSlice({
     name: 'blog',
-    initialState: {
-        posts: [],
-        tags: [],
-        postTypes: [],
-        categories: [],
-        postStatuses: [],
-    },
+    initialState,
     reducers: {
         setPosts: (state, action) => {
             state.posts = action.payload;

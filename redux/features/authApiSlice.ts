@@ -1,4 +1,4 @@
-import { api } from '../services/api';
+import { apiSlice } from '../services/api';
 
 interface User {
 	first_name: string;
@@ -21,16 +21,10 @@ interface CreateUserResponse {
 	user: User;
 }
 
-const authApiSlice = api.injectEndpoints({
+const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		retrieveUser: builder.query<User, void>({
-			query: () => ({
-				url: '/users/me/',
-				method: 'GET',
-				headers: {
-					Accept: 'application/json',
-				},
-			}),
+			query: () => '/users/me/',
 		}),
 		socialAuthenticate: builder.mutation<
 			CreateUserResponse,
@@ -133,13 +127,14 @@ const authApiSlice = api.injectEndpoints({
 
 		}),
 		fullRegistration: builder.mutation({
-			query: ({ email, first_name, last_name }) => ({
+			query: ({ email, first_name, last_name, message }) => ({
 				url: '/registrants/',
 				method: 'POST',
 				body: {
 					email,
 					first_name,
 					last_name,
+					message
 				},
 			}),
 

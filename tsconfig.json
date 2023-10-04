@@ -43,8 +43,16 @@
     "**/*.tsx",
     "**/*.js",
     "**/*.jsx"
-  ],
+, "app/components/CustomTable"  ],
   "exclude": [
-    "node_modules"
+    "node_modules",
+    "email-templates",
+    "email-templates/**/*",
+    "tailwindui",
+    "./tailwindui",
+    "tailwindui/**/*",
+    "./.history",
+    ".history",
+
   ]
 }

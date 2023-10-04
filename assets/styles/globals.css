@@ -78,10 +78,13 @@ Routing number021202337 */
     .shadow-top {
       box-shadow: 0 -5px 5px -5px #333;
     }
+    .overlay {
+      z-index: 9999999 !important;
+    }
     /* button, input[type="submit"] {
         @apply bg-button hover:bg-button-hover text-white focus:text-white hover:cursor-pointer hover:text-white !important;
     } 
-    
+    .o
     button {
         @apply bg-button hover:bg-button-hover text-white focus:text-white hover:cursor-pointer hover:text-white rounded-lg !important;
     } */
@@ -210,7 +213,11 @@ form {
   width: 100%;
 
 }
+* {
+  border: none !important;
+  outline: none !important;
 
+}
 input[type="submit"],
 input[type="text"],
 input[type="email"],
@@ -218,11 +225,12 @@ input[type="password"],
 input[type="number"],
 input[type="tel"],
 input[type="url"] {
-  border: 1px solid var(--input-border);
+  border:  none !important;
+  outline: none !important;
   border-radius: 8px; 
   font-family: var(--font-apercu);
   color: var(--input-color);
-  filter: brightness(90%);
+  /* filter: brightness(90%); */
   height: var(--sf-height);
   width: 100%;
   background: var(--input-bg);
@@ -253,7 +261,17 @@ input[type="file"] {
  
 
   */
- 
+  ::placeholder {
+    opacity: .4 !important;
+  }
+  div::focus-visible, div:focus, div:focus-within, div:focus-visible {
+    border: none !important;
+    outline: none !important;
+
+  }
+ a {
+  cursor: pointer;
+ }
  
  h1{
   font-family: "Montserrat";
@@ -290,14 +308,14 @@ input[type="file"] {
     background: unset !important;
 }
  
- 
+/*  
 .shadow-text.small {
   font-size: 20vh;
   position: absolute !important;
   @apply font-montserrat font-black bg-gradient-to-r from-transparent from-30% to-gray-300 bg-clip-text text-transparent;
   left: -50px;;
-}
-.writing-tb {
+} */
+/* .writing-tb {
   writing-mode: tb;
 
 }
@@ -308,8 +326,8 @@ input[type="file"] {
     font-weight: 900;
 
     /* opacity: 0; */
-    @apply font-montserrat font-black bg-gradient-to-r from-transparent from-20% to-gray-300 bg-clip-text text-transparent;
-}
+    /* @apply font-montserrat font-black bg-gradient-to-r from-transparent from-20% to-gray-300 bg-clip-text text-transparent; */
+/* } */ 
 
  
 form {
@@ -716,9 +734,6 @@ textarea {
 
   
 input[type="text"] {
-  outline: none !important;
-  border: none !important;
-  border: none !important;
   box-shadow: none !important;
 }
 
@@ -739,4 +754,30 @@ input[type="text"] {
 
  .core-input > div, .core-input > div > div, .core-input > input {
   background-color: transparent !important;
+ }
+
+
+
+ .list-table tr {
+  display: flex;
+ }
+
+ .list-table tr th, .list-table tr td {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;;
+ } 
+
+ .list-table tr:nth-child(odd) {
+  background-color: var(--color-odd-rows);
+ }
+
+ .core-search .main-inner-wrapper {
+  margin-top: 10px;
+
+ }
+
+ .debug-panel {
+  transform: translate3d(-50%, 0, 0);
  }

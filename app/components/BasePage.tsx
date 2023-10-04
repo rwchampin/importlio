@@ -2,22 +2,12 @@
 import Hero from "@/app/components/Hero";
 import { BasePageProps } from "@/lib/constants";
 import Section from "@/app/components/Section";
-import Sidebar from "@/app/components/Sidebar";
-import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
+import dynamic from "next/dynamic";
 
-import { Suspense } from "react";
-const Loader = () => {
-  return (
-    <div className="flex flex-col gap-5">
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-      <PostCardSkeleton />
-    </div>
-  );
-};
+const Sidebar: any = dynamic(() => import("@/app/components/BlogSidebar/Sidebar"), {
+  ssr: false,
+});
+
 export default function BasePage({
   theme,
   bg,
@@ -33,6 +23,7 @@ export default function BasePage({
   topRightPageComponent,
   contentStyles,
   contentParentStyles,
+  showSidebar,
 }: BasePageProps) {
   return (
     <>
@@ -53,13 +44,13 @@ export default function BasePage({
       />
       {/* this must be 100% width, no margin, no padding for the full width sections */}
 
-      <div className={`flex flex-col  w-full min-h-screen z-10 relative ${contentParentStyles}`}>
-        <div className={`flex-auto flex-col md:flex-row ${contentStyles}`}>
+      <div className={`flex flex-col  w-full min-h-screen z-10 relative ${contentParentStyles} lg:flex-row`}>
+        <div className={`flex-auto flex-col md:flex-row w-full lg:w-3/4 ${contentStyles}`}>
           {children}
         </div>
-        <Suspense fallback={<Loader />}>
-          <Sidebar />
-        </Suspense>
+
+          {showSidebar && <Sidebar />}
+          
       </div>
     </>
   );

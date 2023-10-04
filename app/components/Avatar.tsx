@@ -1,6 +1,6 @@
 import {Avatar as AA} from "@nextui-org/react";
 import { AvatarProps } from "@/lib/constants";
-import Dropdown from "./Dropdown";
+import Dropdown from "./Dropdown/Index";
 import { logout } from "@/redux/features/authSlice";
 import { useAppDispatch } from "@/redux/hooks";
 export default function Avatar({
@@ -12,13 +12,18 @@ export default function Avatar({
         name?: string;
     } = {};
   
-    if (user && user.avatar) {
-      avatarProps.src = `${process.env.NEXT_PUBLIC_HOST}/${user.avatar}`;
-    }
+    avatarProps.src = user?.avatar;
+    avatarProps.name = `${user?.first_name} ${user?.last_name}`;
+
     const handleLogout = () => {
         dispatch(logout());
       };
     const config = [
+        {
+            key: 'dashboard',
+            label: 'Dashboard',
+            href: '/dashboard'
+        },
         {
             key: 'profile',
             label: 'Profile',
@@ -30,12 +35,15 @@ export default function Avatar({
         }
     ]
 
-    
     return (
         <Dropdown
             config={config}
         >
-            <AA isBordered={true} {...avatarProps} />
+            <AA
+             isBordered={true}
+                {...avatarProps}
+                showFallback
+              />
         </Dropdown>
     );
   }

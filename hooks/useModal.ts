@@ -1,21 +1,23 @@
+"use client";
+import { useAppDispatch,useAppSelector } from "@/redux/hooks";
+import {
+    openModal,
+    toggleModal,
+    closeModal,
+} from "@/redux/features/modal/modalSlice";
 
-import { useAppSelector, useAppDispatch } from '@/redux/hooks';
-import {   toggleModal } from '@/redux/features/modal/modalSlice';
- 
- 
-const useModal = () => {
-  const dispatch = useAppDispatch();
+export default function useModal() {
+    const { modalOpen } = useAppSelector((state: any) => state.modal);
+    const dispatch = useAppDispatch();
 
-  const { isOpen } = useAppSelector(state => state.modal);
+    const open = () => dispatch(openModal());
+    const close = () => dispatch(closeModal());
+    const toggle = () => dispatch(toggleModal());
 
-  const setModal = () => {
-    dispatch(toggleModal());
-  }
-
-  return {
-    isOpen,
-    setModal,
-  }
-};
-
-export default useModal;
+    return {
+        isOpen: modalOpen,
+        open,
+        close,
+        toggle,
+    };
+}

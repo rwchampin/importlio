@@ -1,5 +1,5 @@
 
-import { ChangeEvent } from 'react'
+import React, { ChangeEvent } from 'react'
 
 export const badgeTypes = {
     CATEGORY: 'category',
@@ -26,7 +26,11 @@ export interface FormProps {
     onChange: (event: any) => void;
 	isLoading?: boolean;
 	btnText?: string,
-	postFormText?: string,
+    preFormText?: string | React.ReactNode;
+	postFormText?: string | React.ReactNode;
+    onSuccess?: () => void;
+    onError?: () => void;
+    errors?: any;
 }
 export interface InputProps {
     onFocus?: () => void
@@ -43,7 +47,7 @@ export interface InputProps {
     isInvalid?: boolean
     isFullWidth?: boolean
     value?: any
-    onChange?: (event: ChangeEvent<HTMLInputElement>) => void
+    onChange?: (event: any) => void
     required?: boolean
     children?: React.ReactNode
     disabled?: boolean
@@ -54,9 +58,11 @@ export interface InputProps {
     autoFocus?: boolean
     autoCorrect?: string
     description?: string
-    errorMessage?: string | null
+    errors?: any
     startContent?: React.ReactNode | null | undefined;
     endContent?: React.ReactNode | null | undefined;
+    beforeContent?: React.ReactNode | null | undefined;
+    afterContent?: React.ReactNode | null | undefined;
     validationState?: 'valid' | 'invalid' | null | undefined | any;
     link?: {
 		linkText: string;
@@ -86,7 +92,7 @@ export interface BasePageProps {
     bg?: string | null | undefined;
     title: string | React.ReactNode;
     subtitle: string | React.ReactNode;
-    belowSubtitle?: string | null | undefined;
+    belowSubtitle?: any;
     headline: string | React.ReactNode;
     shadowText: string | React.ReactNode;
     customComponent?: React.ReactNode | null | undefined;
@@ -96,6 +102,7 @@ export interface BasePageProps {
     shadowTextPosition?: "center" | "top";
     contentStyles?: string;
     contentParentStyles?: string;
+    showSidebar?: boolean
 } 
 
 export interface ShadowTextProps {
@@ -104,6 +111,7 @@ export interface ShadowTextProps {
     position?: string;
     type?: string;
     theme?: string;
+    className?: string;
 }
 
 
@@ -247,3 +255,11 @@ export const userProfileFields = {
     password: '',
     re_password: '',
 }
+
+
+export interface LinkProps {
+    href?: string;
+    pretty: string;
+    dropdownData: any;
+    name?: string;
+  }

@@ -1,5 +1,7 @@
 
-
+export function classNames(...classes:any) {
+  return classes.filter(Boolean).join(' ')
+}
 
 
 export const matchURL = (url:string, pathname:string) => {
@@ -43,3 +45,18 @@ export const matchURL = (url:string, pathname:string) => {
     }
 
  
+    export function downloadCSV(emails:any) {
+      // Convert the array of emails to a CSV string
+      const csvContent = "data:text/csv;charset=utf-8," + emails.join("\n");
+    
+      // Create a data URI for the CSV content
+      const encodedUri = encodeURI(csvContent);
+    
+      // Create an anchor element for downloading
+      const link = document.createElement("a");
+      link.setAttribute("href", encodedUri);
+      link.setAttribute("download", "emails.csv");
+    
+      // Simulate a click on the anchor element to trigger the download
+      link.click();
+    }

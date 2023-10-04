@@ -52,17 +52,16 @@ const Input = ({
   classNames,
   link,
   description,
-  validationState,
-  isInvalid,  
-  errorMessage = '',
+  errors = [],
   required = false,
   startContent,
-  endContent
+  endContent,
+  beforeContent,
+  afterContent,
 }:InputProps) => {
+  const [initial, setInitial] = useState<any>(true);
   const [options, setOptions] = useState<any[]>([]);
   const [isFocused, setIsFocused] = useState(false);
-  const [updatedValidationState, setValidationState] = useState<"valid" | "invalid">(validationState || "valid");
-  const [updatedErrorMessage, setErrorMessage] = useState<string>(errorMessage || "")
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
@@ -73,7 +72,6 @@ const Input = ({
     // }
     if(options.length === 0 && data && data !== null && typeof data === "function") {
       data().then((res:any) => {
-        debugger
         const f = res.map((item:any) => {
           return {
             label: item.name,
@@ -85,18 +83,7 @@ const Input = ({
     }
   }, [data, options]);
 
-  const getPlaceholder = (type: string) => {
-    switch (type) {
-      case "email":
-        return "john@gmail.com";
-      case "password":
-        return "********";
-      case "search":
-        return "Search";
-      default:
-        return placeholder
-    }
-  };
+ 
 
   const getAutoComplete = (type: string) => {
     switch (type) {
@@ -109,22 +96,26 @@ const Input = ({
     }
   };
 
+ 
+ 
+
   let commonInputProps = {
-    onFocus: handleFocus,
-    onBlur: handleBlur,
+    // onFocus: handleFocus,
+    // onBlur: handleBlur,
     name,
     type,
     onChange,
     value,
-    startContent: <Icon type={startContent} className="text-gray-500" />,
+    // startContent: <Icon type={startContent} className="text-gray-500" />,
 
-    endContent:isInvalid && <Icon type="error" className="text-red-500" />,
+    // endContent:invalid && <Icon type="error" className="text-red-500" />,
     isRequired: required,
     label,
-    defaultValue: placeholder || getPlaceholder(type),
-    errorMessage,
+
     description,
-    validationState: updatedValidationState,
+    isInvalid: errors.length > 0 ? true : false,
+    // color:invalid === true ? "danger" : "success",
+    // errorMessage: invalid === true ? "Please enter a value.  This field is required." : '',
     
   };
 
@@ -146,32 +137,7 @@ const Input = ({
     ...commonInputProps,
   }
 
-  // const handleChange = (e: any) => {
-
-  //   onChange(e);
-
-  //   if (e.target.value.length > 0 && required) {
-  //     setValidationState("valid");
-  //     setErrorMessage(null);
-  //   } else {
-  //     setValidationState("invalid");
-  //     setErrorMessage("This field is required");
-  //   }
-
-  //   // if (type === "email") {
-
-  //   if(type === "email") {
-  //     const emailRegex = /\S+@\S+\.\S+/;
-  //     if (!emailRegex.test(e.target.value)) {
-  //       setValidationState("invalid");
-  //       setErrorMessage("Please enter a valid email address");
-  //     } else {
-  //       setValidationState("valid");
-  //       setErrorMessage(null);
-  //     }
-  //   }
-
-  // }
+ 
 
 
 
@@ -227,6 +193,35 @@ const Input = ({
 
 
             <NextUiInput
+              isClearable={true}
+              onClear={() => {
+                if(onChange){
+                onChange( {target: {value: ''}})
+                }
+              }}
+              size="lg"
+              classNames={{
+                label: "text-black/50 dark:text-white/90",
+                input: [
+                  "bg-transparent",
+                  "text-black/90 dark:text-white/90",
+                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+                ],
+                innerWrapper: "bg-transparent",
+                inputWrapper: [
+                  "shadow-xl",
+                  "bg-default-200/50",
+                  "dark:bg-default/60",
+                  "backdrop-blur-xl",
+                  "backdrop-saturate-200",
+                  "hover:bg-default-200/70",
+                  "dark:hover:bg-default/70",
+                  "focus:ring-0 focus:border-none focus:outline-none",
+                  "group-data-[focused=true]:bg-default-200/50",
+                  "dark:group-data-[focused=true]:bg-default/60",
+                  "!cursor-text",
+                ],
+              }}
             {...inputElementProps}
               />
 
@@ -240,7 +235,17 @@ const Input = ({
    
  
 
-      <>{getInput(type)}</>
+      <>
+      {beforeContent}
+      {getInput(type)}
+      {afterContent}
+      {errors && errors.map((error:any, i:number) => {
+        return (
+          <div key={i} className="text-xs mt-2 text-red-500">{error}</div>
+        )
+      }
+      )}
+      </>
      
   );
 };
