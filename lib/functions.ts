@@ -126,7 +126,6 @@ export const matchURL = (url:string, pathname:string) => {
             "@type": "WebSite",
             "@id": "https://www.importlio.com/#website",
             "url": "https://www.importlio.com",
-            "legalName": "Importlio",
             "alternateName": "Importlio Shopify App",
             "name": "Importlio",
             "description": description,
