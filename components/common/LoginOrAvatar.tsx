@@ -35,12 +35,12 @@ export default function LoginOrAvatar() {
   return (
     <>
       {pathname !== "/auth/login" && (
-        <Button href="/auth/login" variant="solid">
+        <Button href="/auth/login" variant="solid" className="md:text-xs lg:text-sm">
           Login
         </Button>
       )}
       {pathname !== "/auth/register" && (
-        <Button href="/auth/register" target="_blank" variant="bordered">
+        <Button href="/auth/register" target="_blank" variant="bordered" className="md:text-xs lg:text-sm">
           Try for free
         </Button>
       )}

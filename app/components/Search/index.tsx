@@ -7,7 +7,6 @@ import { CloseFilledIcon } from "./CloseFilledIcon";
 import Link from "next/link";
 import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { openModal } from "@/redux/features/modal/modalSlice";
-
 const styles = {
   label: "text-black/50 dark:text-white/90 hidden",
   input: [

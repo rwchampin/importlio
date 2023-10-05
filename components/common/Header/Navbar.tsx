@@ -2,26 +2,24 @@
 
 import dynamic from "next/dynamic";
 import { Disclosure } from "@headlessui/react";
-import SocialIcons from "@/app/components/SocialIcons";
+
 // import { motion } from "framer-motion";
 import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 import LogoBlack from "@/components/common/LogoBlack";
 import NavLink from "./NavLink";
 import { LinkProps } from "@/lib/constants";
-import { Button } from "@nextui-org/react";
-import { BiDollarCircle } from 'react-icons/bi'
-import { AiOutlineLineChart, AiOutlineStar } from 'react-icons/ai'
-
 import useResponsive from "@/hooks/useResponsive";
-// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
-// import MegaMenu from "./MegaMenu";
 
+
+const SocialIcons: any = dynamic(() => import("@/app/components/SocialIcons"));
+const EmailListsDropdown: any = dynamic(() => import("./EmailListsDropdown"));
+const BlogDropdown: any = dynamic(() => import("./BlogDropdown"));
 const DesktopNavigation: any = dynamic(() => import("./DesktopNavigation"));
 
 const MobileToggle: any = dynamic(() => import("./MobileToggle"));
 
 export default function Navbar() {
-  // const [openMegaMenu, setOpenMegaMenu] = useState(false);
+
 
   const responsive: any = useResponsive();
 
@@ -29,57 +27,38 @@ export default function Navbar() {
     {
       pretty: "About",
       href: "/about",
-      dropdownData: [],
+      dropdown: null
     },
     {
       pretty: "Features",
       href: "/features",
-      dropdownData: [],
+      dropdown: null
     },
   
     {
       pretty: "Email Lists",
       href: "/email-lists",
-      dropdownData: [{
-        pretty: "Free Trial",
-        href: "/email-lists/free-trial",
-        description: "Get a free trial of our email lists. No credit card required.",
-        icon: BiDollarCircle,
-        cta: () => <Button className="bg-button text-offwhite px-5 text-xs min-w-[110px]">Start Free Trial</Button>
-      },
-      {
-        pretty: "Niche Email Marketing",
-        href: "/email-lists/niche-email-marketing",
-        description: "Choose from our 100+ niche email lists.",
-        icon: AiOutlineLineChart,
-        cta: () => <Button className="bg-button text-offwhite px-5 text-xs min-w-[110px]">Choose a list</Button>
-      },{
-        pretty: "Custom Email Lists",
-        href: "/email-lists/custom-email-lists",
-        description: "Use our custom email list builder to create your own email list.",
-        icon: AiOutlineStar,
-        cta: () => <Button className="bg-button text-offwhite px-5 text-xs min-w-[110px]">Join Today!</Button>
-      }],
+      dropdown: <EmailListsDropdown />,
     },
     {
       pretty: "FAQ",
       href: "/faq",
-      dropdownData: [],
+     dropdown: null
     },
     {
       pretty: "Pricing",
       href: "/pricing",
-      dropdownData: [],
+     dropdown: null
     },
     {
       pretty: "Ecommerce Tutorials",
       href: "/ecommerce-tutorials",
-      dropdownData: [],
+      dropdown: <BlogDropdown />,
     },
     {
       pretty: "Contact",
       href: "/contact",
-      dropdownData: [],
+     dropdown: null
     }
   ];
 
@@ -116,12 +95,10 @@ export default function Navbar() {
                   />
                 </div>
                 <div className="hidden sm:ml-6 md:flex   gap-3">
-                  {/* <div className="flex h-full items-center justify-center space-x-4"> */}
                   <LoginOrAvatar />
-                  {/* </div> */}
                 </div>
 
-                {responsive.lg === true && <SocialIcons />}
+                <SocialIcons />
 
                 {responsive.lg === false && <MobileToggle open={open} />}
               </div>

@@ -21,7 +21,6 @@
     "types": [
       "next",
       "@types/node",
-      "cypress"
     ],
     "plugins": [
       {
@@ -52,7 +51,10 @@
     "./tailwindui",
     "tailwindui/**/*",
     "./.history",
-    ".history",
+    "/.history",
+    "./.history",
+    "./certs",
+    "certs",
 
   ]
 }

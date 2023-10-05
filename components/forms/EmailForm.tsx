@@ -1,8 +1,23 @@
 'use client';
-import  usePreregister  from '@/hooks/use-preregister';
+import  usePreRegister  from '@/hooks/use-preregister';
 
+import Ul from '@/app/components/Ul';
 import Form from '@/components/forms/Form';
 
+
+const List = () => {
+	const l = [
+		'free marketing tools',
+		'Milions of email marketing lists to send advertisements to via email',
+		'our Shopify Dropshipping Product Importer & Manager'
+	]
+	return (
+		<Ul
+			title='Gain access to Millions of Amazon Dropshipping Products, Unlimited Email Marketing Lists & More!'
+		 listItems={l}
+		  />
+	)
+}
 export default function EmailForm({ className }:any) {
 	const { 
 		email,
@@ -10,7 +25,7 @@ export default function EmailForm({ className }:any) {
 		onChange,
 		onSubmit,
 		errors
-	 } = usePreregister();
+	 } = usePreRegister();
 
 	const config = [
 		{
@@ -32,7 +47,7 @@ return <Form
 			btnText='Start free trial'
 			onChange={onChange}
 			onSubmit={onSubmit}
-			preFormText={<><div className='text-[30px] text-center mt-2'>Subscribe</div><div><div className='text-xl'>Gain access to:</div> <ul className='list-disc mt-0'><li className="ml-3">free marketing tools</li><li className="ml-3">Milions of email marketing lists to send advertisements to via email</li><li className="ml-3">our Shopify Dropshipping Product Importer & Manager</li></ul></div></>}
+			preFormText={<List />}
 			postFormText={<div className={className}>Register today for a free trial of the world&apos;s first AI powered Amazon Dropshipping product importer app.  Fill your shopify store with products from amazon category pages, results pages and more!  Instantly offer thousands of products to your customers with the power of Importlio!  By entering your email address above, we will use it for promotional purposes only.</div>}
 			errors={errors}
 		/>

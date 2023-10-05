@@ -1,34 +1,14 @@
 "use client";
 import BasePage from "@/app/components/BasePage";
+import ListGrid from "@/app/components/email-lists/ListGrid";
+import dynamic from "next/dynamic";
 
-import EmailList from "@/app/components/email-lists/EmailList";
- 
-import { useEffect, useState } from "react";
+import { Suspense } from "react";
 
 
+// const ListGrid:any = dynamic(() => import("@/app/components/email-lists/ListGrid"))
 export default function Page() {
-  const [lists, setLists] = useState([]);
-
-
-  useEffect(() => {
-    const getData = async () => {
-      let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/list-previews/`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      const { results } = await res.json();
-
-      setLists(results);
-      }
-
-      if(lists.length === 0) {
-        getData();
-      }
-
-  }, []);
+  
 
   return (
     <BasePage
@@ -47,11 +27,9 @@ export default function Page() {
         niche.
       </p>
 
-      <section className="bg-gray-200 rounded-lg p-5 shadow-lg gap-3 flex flex-wrap">
-        {lists.map((list: any) => (
-          <EmailList key={list.id} list={list} />
-        ))}
-      </section>
+    <Suspense fallback={<div>Loading...</div>}>
+      <ListGrid />
+    </Suspense>
       
       <section className="bg-gray-200 rounded-lg p-5 shadow-lg">
         <h4>Get a FREE Email list</h4>

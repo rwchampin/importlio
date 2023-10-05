@@ -36,7 +36,7 @@ export default function Badge({
     if (href) {
         return (
             <Link
-                href={`/ecommerce-tutorials/?type=${type}&name=${href}`}
+                href={`/ecommerce-tutorials/${type}/${href}`}
                 >
                     {el}
                 </Link>

@@ -110,7 +110,7 @@ module.exports = {
         "subtitle-5": "clamp(13px, -0.3164556962px + 2.5316455696px, 29px)",
         "subtitle-6": "clamp(12px, -0.3164556962px + 2.5316455696px, 28px)",
 
-        headline: "clamp(12px, -0.3164556962px + 2.5316455696px, 29px)",
+        headline: "clamp(14px, -0.3164556962px + 2.5316455696px, 29px)",
 
         "jumbo-xs": "10vw",
         "jumbo-sm": "15vw",
@@ -135,10 +135,14 @@ module.exports = {
     },
   },
   darkMode: "class",
+  corePlugins: {
+    aspectRatio: false,
+  },
   plugins: [
     nextui(),
     require("@tailwindcss/forms"),
     require("@tailwindcss/typography"),
+    require('@tailwindcss/aspect-ratio'),
   ],
 };
 

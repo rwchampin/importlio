@@ -1,26 +1,16 @@
-import { useEffect, useState } from "react";
+"use client";
+import { useLayoutEffect, useState } from "react";
+import { screens } from '@/lib/constants';
+import { debounce } from '@/lib/functions';
+const useResponsive = () => {
+ 
 
-const useTailwindBreakpoints = () => {
-  const getTailwindBreakpoints = () => {
-    const tailwindConfig = require("tailwindcss/defaultConfig");
-    return tailwindConfig.theme.screens;
-  };
+  const [activeBreakpoints, setActiveBreakpoints] = useState(screens);
 
-  const [activeBreakpoints, setActiveBreakpoints] = useState(() => {
-    const breakpoints = getTailwindBreakpoints();
-    const initialActiveBreakpoints = {};
-
-    for (const breakpoint in breakpoints) {
-      initialActiveBreakpoints[breakpoint] = false;
-    }
-
-    return initialActiveBreakpoints;
-  });
-
-  useEffect(() => {
+  useLayoutEffect(() => {
     const handleResize = () => {
       const currentWidth = window.innerWidth;
-      const breakpoints = getTailwindBreakpoints();
+      const breakpoints = screens;
       const updatedBreakpoints = {};
 
       for (const breakpoint in breakpoints) {
@@ -30,7 +20,7 @@ const useTailwindBreakpoints = () => {
           updatedBreakpoints[breakpoint] = false;
         }
       }
-
+      console.log(updatedBreakpoints);
       setActiveBreakpoints(updatedBreakpoints);
     };
 
@@ -38,15 +28,15 @@ const useTailwindBreakpoints = () => {
     handleResize();
 
     // Attach event listener to window resize to update breakpoints on resize
-    window.addEventListener("resize", handleResize);
+    window.addEventListener("resize",debounce(handleResize));
 
     // Cleanup the event listener on unmount
     return () => {
-      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("resize", debounce(handleResize));
     };
   }, []);
 
   return activeBreakpoints;
 };
 
-export default useTailwindBreakpoints;
+export default useResponsive;

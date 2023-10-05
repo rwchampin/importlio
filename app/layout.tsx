@@ -7,6 +7,8 @@ import CookieBanner from "@/components/utils/CookieBanner";
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 
+import { generatePageStructuredMarkup } from "@/lib/functions";
+import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
 import GA from "@/components/utils/GA";
 import Provider from '@/components/utils/provider';
@@ -43,13 +45,13 @@ const apercu = localFont({
   display: "swap",
   preload: true,
 });
+const title =  "Amazon Dropshipping Bulk Product Importer App for Shopify"
+const description = "Fill your Shopify store with products from the best dropshipping suppliers around the world. Bulk import Amazon dropshipping products into Shopify with Importlio."
 
 export const metadata: Metadata = {
-  title: "Amazon Dropshipping Bulk Product Importer App for Shopify",
-  description:
-    "Bulk import Amazon Dropshipping Products into Shopify E-Commerce Stores. Source and Sell Profitable Dropshipping Products from Amazon",
-  applicationName: "Importlio",
-  referrer: "origin-when-cross-origin",
+  title: title,
+  description: description,
+  referrer: "origin",
   keywords: [
     "Amazon dropshipping",
     "Product importer",
@@ -83,20 +85,17 @@ export const metadata: Metadata = {
     "Product sourcing",
   ],
   colorScheme: "dark",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+ 
   metadataBase: new URL("https://www.importlio.com"),
   alternates: {
     canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
   },
   openGraph: {
-    images: "/og-image.jpg",
+    title: title,
+    description: description,
+    url: "https://www.importlio.com",
+
+    images: "https://www.importlio.com/og-image.jpg",
   },
 };
 
@@ -136,6 +135,11 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     <EmailForm />
   </Modal>
       </Provider>
+      <JsonLd
+        json={generatePageStructuredMarkup({
+          description
+        })}
+      />
       </body>
     </html>
    
@@ -143,3 +147,5 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
 };
 
 export default RootLayout;
+
+

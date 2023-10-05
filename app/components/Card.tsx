@@ -42,7 +42,7 @@ export default function Card({ post }: any) {
           } font-bold`}
         >
           {" "}
-          <time dateTime={post.updated}>{post.updated}</time>
+          <time dateTime={post.updated}>{post.updated_pretty}</time>
         </small>
         <Link href={`/ecommerce-tutorials/${post.slug}`}>
           <h3
@@ -64,8 +64,8 @@ export default function Card({ post }: any) {
 
       {(post.tags.length || post.categories.length) && (
         <div className="card-footer-tag-cloud-wrapper p-3 rounded-xl flex flex-row gap-1 overflow-x-auto fade-right">
-          <TagCloud data={post.tags} type="tag" />
-          <TagCloud data={post.categories} type="category" />
+          <TagCloud data={post.tags} type="tags" />
+          <TagCloud data={post.categories} type="categories" />
         </div>
       )}
 

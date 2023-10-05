@@ -1,9 +1,8 @@
 "use client"
-import { getPosts, getPostsByQueryParams } from "@/lib/api";
 import { unSlugify } from "@/lib/functions";
 import { useSearchParams } from 'next/navigation'
 import BasePage from '@/app/components/BasePage';
-import { useAppDispatch } from "@/redux/hooks";
+import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
 import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
 // import Section from "@/app/components/Section";
@@ -42,42 +41,40 @@ const json = {
 
  
  
+const findBlogPostsByPropertyAndName = (blogPosts:any, type:any, name:any) => {
+  // Filter the blog posts based on the specified type and name
+  const filteredBlogPosts = blogPosts.filter((post:any) => {
+    if (post[type] instanceof Array) {
+      // Handle properties that are arrays (e.g., 'tags', 'categories')
+      const items = post[type].map((item:any) => item.name.toLowerCase());
+      return items.includes(name.toLowerCase());
+    } else if (typeof post[type] === 'string') {
+      // Handle properties that are strings (e.g., 'title', 'excerpt')
+      return post[type].toLowerCase().includes(name.toLowerCase());
+    } else {
+      // Handle other property types (e.g., 'read_time', 'published')
+      return false; // Modify this based on your specific requirements
+    }
+  });
+
+  return filteredBlogPosts;
+};
+
+ 
 
  
 
 export default function Page() {
+  let { posts } = useAppSelector((state) => state.blog);
   const dispatch = useAppDispatch()
   dispatch(setShowRecentPostsInFooter(false))
-  const [posts, setPosts] = useState([])
-  const [loading, setLoading] = useState(true)
   const searchParams = useSearchParams()
   const type = searchParams.get('type')
   const name = searchParams.get('name')
   
-  useEffect(() => {
-    const getData = async () => {
-      let data;
-      if (type && name) {
-        data = await getPostsByQueryParams(type, name)
-      } else {
-        data = await getPosts()
-      }
-      setPosts(data)
-      setLoading(false)
-    }
-
-    if(posts.length === 0) {
-      getData()
-    }
-  }, [type, name])
-
-  if(loading) {
-
-    return (
-      <Spinner lg />
-    )
+  if(name && type) {
+    posts = findBlogPostsByPropertyAndName(posts, type, name);
   }
-
   return (
     <>
       <BasePage
@@ -88,21 +85,14 @@ export default function Page() {
         contentStyles="flex flex-col md:flex-row flex-wrap gap-5 px-5"
         contentParentStyles="flex flex-col md:flex-row flex-wrap gap-5"
       >
-        {/* <Section className="p-5 flex flex-col gap-5 lg:flex-row"> */}
 
-            {posts && posts.map((post:any, idx:number) => {
-              return (
-                    <Suspense fallback={<PostCardSkeleton />}>
-                     <Card key={idx} post={post} />
-                    </Suspense>
+          {posts && posts.map((post:any, idx:number) => {
+            return (
+                  <Suspense fallback={<PostCardSkeleton />}>
+                   <Card key={idx} post={post} />
+                  </Suspense>
+            )})}
 
-
-              );
-            })}
-
-            {!posts || posts.length === 0 && (<><div className="text-heading-2">Hmm, seems there was an issue loading the posts!</div><div className="text-heading-5">Try again later or reload the page.</div></>)}
- 
-        {/* </Section> */}
         <JsonLd
           json={json}
           />

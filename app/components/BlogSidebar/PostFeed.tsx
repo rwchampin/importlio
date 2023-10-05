@@ -1,15 +1,12 @@
-// import SidebarCard from '../SidebarCard';
-
-import { getRecentPosts } from '@/lib/api';
- 
-export default async function PostFeed() {
-    const posts = await getRecentPosts();
-
+"use client";
+import { useAppSelector } from "@/redux/hooks";
+import BlogCardSmall from "@/app/components/BlogCardSmall";
+export default function PostFeed() {
+  const { posts } = useAppSelector((state) => state.blog);
   return (
     <>
-    {posts.map((post:any) => (
-        <h3 key={post.id}>{post.title}</h3>
-        // <SidebarCard key={post.id} post={post} />
+    {posts.slice(0,5).map((post:any) => (
+        <BlogCardSmall key={post.id} post={post} />
     ))}
     </>
     )

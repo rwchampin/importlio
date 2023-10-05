@@ -22,6 +22,7 @@ const Facebook: any = dynamic(() => import("@/app/components/Icon/facebook"));
 const Youtube: any = dynamic(() => import("@/app/components/Icon/youtube"));
 const Shopify: any = dynamic(() => import("@/app/components/Icon/shopify"));
 const Close: any = dynamic(() => import("@/app/components/Icon/close"));
+const ChevronDown: any = dynamic(() => import("@/app/components/Icon/chevron-down"));
 
 interface IconProps {
   type: string;
@@ -50,6 +51,7 @@ export default function Icon({ type, className, size = 54 }: IconProps) {
     youtube: <Youtube className={className} size={size} />,
     shopify: <Shopify className={className} size={size} />,
     close: <Close className={className} size={size} />,
+    "chevron-down": <ChevronDown className={className} size={size} />,
   };
   return (
     <>

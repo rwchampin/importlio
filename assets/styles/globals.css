@@ -58,10 +58,10 @@ Routing number021202337 */
         font-weight: 900;
     }
 
-    a, button, .btn, .button, input, ::placeholder {
+    /* a, button, .btn, .button, input, ::placeholder {
         font-family: var(--font-apercu);
         font-weight: bold;
-    }
+    } */
 
    
     a:hover, button:hover, .btn:hover {
@@ -170,6 +170,10 @@ body {
 nav .btn {
   min-width:80px;
   text-align: center;
+}
+
+nav a {
+  @apply whitespace-nowrap
 }
 /* main {
   min-height: 100vh;

@@ -8,7 +8,7 @@ import Dropdown from "@/app/components/Dropdown/Index";
 
 interface Props {
   href?: string;
-  dropdownData?: any;
+  dropdown?: any;
   setOpenMegaMenu?: any;
   solid?: boolean;
   type?: string | boolean;
@@ -25,14 +25,12 @@ interface Props {
 
 export default function NavLink({
   link,
-  // setOpenMegaMenu,
-  // openMegaMenu,
 }: Props) {
   const segment = useSelectedLayoutSegment();
   const isActive = link.href.replace("/", "") === segment;
 
   const className = classNames(
-    "font-apercu font-bold text-sm hover:pointer-cursor flex items-center justify-center whitespace-nowrap",
+    "font-apercu font-bold text-sm hover:pointer-cursor flex flex-row items-center justify-center whitespace-nowrap",
     {
       "gap-3 text-black font-apercu font-bold underline": isActive,
       // 'bg-black text-white text-xs rounded-md px-4 py-2 outline-2 outline-black no-underline focus:text-white focus:bg-black active:bg-black active:text-white active:no-underline': link.solid,
@@ -54,7 +52,7 @@ export default function NavLink({
     curentLinkProps["aria-current"] = "page";
   }
 
-  if (link.dropdownData.length > 0) {
+  if (link.dropdown) {
     curentLinkProps["aria-haspopup"] = "true";
     curentLinkProps["aria-expanded"] = "false";
 
@@ -63,26 +61,24 @@ export default function NavLink({
     // curentLinkProps["onMouseLeave"] = () => setOpenMegaMenu(false);
   }
 
-  if(link.dropdownData.length > 0) {
+  if(link.dropdown) {
 
     return (
       <Dropdown
-        menuItems={link.dropdownData}
-        // setOpenMegaMenu={setOpenMegaMenu}
-        // open={openMegaMenu}
+        menu={link.dropdown}
       >
-      <Link 
-        href={link.href}
-      {...curentLinkProps}
-      >
-        {link && link.pretty}
-      </Link>
+        <Link
+        {...curentLinkProps}
+        >
+          {link && link.pretty}
+        </Link>
       </Dropdown>
     )
   }
 
   return (
-    <Link {...curentLinkProps}
+    <Link
+    {...curentLinkProps}
     >
       {link && link.pretty}
     </Link>

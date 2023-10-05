@@ -602,7 +602,7 @@ class MouseFollower {
         this.container.removeEventListener('mouseover', this.event.mouseover);
         this.container.removeEventListener('mouseout', this.event.mouseout);
         if (this.el) {
-            // this.container.removeChild(this.el);
+            this.container.removeChild(this.el);
             this.el = null;
             this.mediaImg = null;
             this.mediaVideo = null;
@@ -618,9 +618,9 @@ export default function Cursor() {
         const cursor = new MouseFollower({
             skewing: 0.5,
         })
-        // return () => {
-        //     cursor.destroy()
-        // }
+        return () => {
+            cursor.destroy()
+        }
     }, [])
 
     return  null;

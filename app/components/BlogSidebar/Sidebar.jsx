@@ -4,7 +4,7 @@ import { Suspense } from "react";
 import PostFeed from "./PostFeed";
 import TagFeed from "./TagFeed";
 import CategoryFeed from "./CategoryFeed";
-// import RecentPostsSkeleton from "@/app/components/skeletons/RecentPostsSkeleton";
+import RecentPostsSkeleton from "@/app/components/skeletons/RecentPostsSkeleton";
 
 // import TagCloud from '@/app/components/TagCloud';
 // import SidebarCard from './SidebarCard';
@@ -37,9 +37,9 @@ function Sidebar() {
       {/* <PostSearchBar /> */}
       <div className="flex-auto flex flex-col gap-3">
 
-        {/* <Suspense fallback={<RecentPostsSkeleton />}>
+        <Suspense fallback={<RecentPostsSkeleton />}>
           <PostFeed />
-        </Suspense> */}
+        </Suspense>  
         <Suspense fallback={<div>Loading...</div>}>
           <TagFeed />
         </Suspense>

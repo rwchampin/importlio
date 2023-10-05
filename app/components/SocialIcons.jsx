@@ -1,32 +1,44 @@
 import Link from 'next/link'
-import Icon from './Icon'
+
+import {
+    BsInstagram,
+    BsTwitter,
+    BsFacebook,
+    BsYoutube,
+} from 'react-icons/bs'
+import { BiLogoShopify } from 'react-icons/bi'
 export default function SocialIcons() {
+    const style = "text-sm lg:text-base xl:text-lg"
     const socials = [{
         name: 'Instagram',
         url: 'https://www.instagram.com/importlio',
-        icon: <Icon type="instagram" />
+        icon: <BsInstagram className={style} />
     }, {
         name: 'Twitter',
         url: 'https://www.twitter.com/importlio',
-        icon: <Icon type="twitter" />
+        icon: <BsTwitter className={style} />
     }, {
         name: 'Facebook',
         url: 'https://www.facebook.com/importlio',
-        icon: <Icon type="facebook" />
+        icon: <BsFacebook className={style} />
     },{
         name: 'Youtube',
         url: 'https://www.youtube.com/importlio',
-        icon: <Icon type="youtube" />
+        icon: <BsYoutube className={style} />
+    }, {
+        name: 'Shopify',
+        url: 'https://apps.shopify.com/importlio',
+        icon: <BiLogoShopify className={style} />
     }]
     return (
-        <div className="flex gap-5">
+        <div className="social-icons hidden lg:inline-flex gap-2 md:gap-3 lg:gap-4">
             {socials.map((social, idx) => (
                 <Link 
                 key={idx}
                 target="_blank" 
                 href={social.url} 
                 className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" 
-                aria-label={social.name}
+                aria-label={`Importlio's ${social.name} page about Amazon Dropshipping`}
                 >
                     {social.icon}
                 </Link>
