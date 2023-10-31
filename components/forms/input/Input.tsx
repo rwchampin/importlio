@@ -7,8 +7,15 @@ import { Textarea, Input as NextUiInput } from "@nextui-org/react";
 
 import dynamic from "next/dynamic";
 
-
+import {
+  BsLockFill,
+  BsPersonFill,
+  BsEnvelopeFill,
+} from 'react-icons/bs'
  
+const PasswordIcon:any = dynamic(() => import("@/components/forms/input/PasswordIcon"), {
+  ssr: false,
+});
 
 const Editor: any = dynamic(() => import("@/components/forms/Editor"), {
   ssr: false,
@@ -47,7 +54,7 @@ const Input = ({
   onChange,
   data,
   children,
-  value,
+  // value,
   placeholder,
   classNames,
   link,
@@ -59,9 +66,10 @@ const Input = ({
   beforeContent,
   afterContent,
 }:InputProps) => {
-  const [initial, setInitial] = useState<any>(true);
+  const [value, setValue] = useState<any>(true);
   const [options, setOptions] = useState<any[]>([]);
   const [isFocused, setIsFocused] = useState(false);
+  const [passwordVisible, setPasswordVisible] = useState(false);
   const handleFocus = () => setIsFocused(true);
   const handleBlur = () => setIsFocused(false);
 
@@ -96,7 +104,35 @@ const Input = ({
     }
   };
 
- 
+  const inputStyle = {
+    label: "text-black/50 dark:text-white/90",
+    input: [
+      "bg-transparent border-none outline-none",
+      "text-black/90 dark:text-white/90",
+      "placeholder:text-default-700/50 dark:placeholder:text-white/60",
+    ],
+    innerWrapper: "bg-transparent",
+    inputWrapper: [
+      "shadow-xl",
+      "bg-input",
+      "hover:bg-input",
+      "!cursor-text",
+    ],
+  }
+
+
+  const getStartContent = (type: string) => {
+
+    switch (type) {
+      case "email":
+        return <BsEnvelopeFill className="text-black/50 dark:text-white/90" />;
+      case "password":
+      case "re_password":
+        return <BsLockFill className="text-black/50 dark:text-white/90" />;
+      default:
+        return null;
+    }
+  }
  
 
   let commonInputProps = {
@@ -105,7 +141,7 @@ const Input = ({
     name,
     type,
     onChange,
-    value,
+    // value,
     // startContent: <Icon type={startContent} className="text-gray-500" />,
 
     // endContent:invalid && <Icon type="error" className="text-red-500" />,
@@ -114,9 +150,9 @@ const Input = ({
 
     description,
     isInvalid: errors.length > 0 ? true : false,
+    startContent: getStartContent(type),
     // color:invalid === true ? "danger" : "success",
     // errorMessage: invalid === true ? "Please enter a value.  This field is required." : '',
-    
   };
 
   let selectInputProps = {
@@ -175,9 +211,15 @@ const Input = ({
         break;
       case 'password':
         return (
-          <PasswordInput
+          <NextUiInput
+              isClearable
+              size="lg"
+              classNames={inputStyle}
             {...inputElementProps}
-          />
+              type={passwordVisible ? "text" : "password"}
+              endContent={<PasswordIcon isVisible={passwordVisible} toggleVisibility={() => setPasswordVisible(!passwordVisible)} />}
+              startContent={<BsLockFill className="text-black/50 dark:text-white/90" />}
+              />
         );
       case "file":
         return (
@@ -190,38 +232,10 @@ const Input = ({
 
       default:
         return (
-
-
             <NextUiInput
-              isClearable={true}
-              onClear={() => {
-                if(onChange){
-                onChange( {target: {value: ''}})
-                }
-              }}
+              isClearable
               size="lg"
-              classNames={{
-                label: "text-black/50 dark:text-white/90",
-                input: [
-                  "bg-transparent",
-                  "text-black/90 dark:text-white/90",
-                  "placeholder:text-default-700/50 dark:placeholder:text-white/60",
-                ],
-                innerWrapper: "bg-transparent",
-                inputWrapper: [
-                  "shadow-xl",
-                  "bg-default-200/50",
-                  "dark:bg-default/60",
-                  "backdrop-blur-xl",
-                  "backdrop-saturate-200",
-                  "hover:bg-default-200/70",
-                  "dark:hover:bg-default/70",
-                  "focus:ring-0 focus:border-none focus:outline-none",
-                  "group-data-[focused=true]:bg-default-200/50",
-                  "dark:group-data-[focused=true]:bg-default/60",
-                  "!cursor-text",
-                ],
-              }}
+              classNames={inputStyle}
             {...inputElementProps}
               />
 

@@ -1,7 +1,7 @@
 // "use client"
 import BasePage from "@/app/components/BasePage";
 import ListGrid from "@/app/components/email-lists/ListGrid";
-import ClientContent from "./ClientContent";
+import EmailListClientContent from "@/app/free-email-lists/ClientContent";
 // import { Button } from "@nextui-org/react"
 // import { 
 //   toggleModal
@@ -30,7 +30,7 @@ export default function Page() {
         // belowSubtitle={belowSubtitle}
   >
 
-      <ClientContent  />
+      <EmailListClientContent  />
   
 
         </BasePage>

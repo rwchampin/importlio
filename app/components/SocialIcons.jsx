@@ -8,7 +8,7 @@ import {
 } from 'react-icons/bs'
 import { BiLogoShopify } from 'react-icons/bi'
 export default function SocialIcons() {
-    const style = "text-sm lg:text-base xl:text-lg"
+    const style = "text-sm lg:text-md xl:text-lg"
     const socials = [{
         name: 'Instagram',
         url: 'https://www.instagram.com/importlio',
@@ -31,13 +31,13 @@ export default function SocialIcons() {
         icon: <BiLogoShopify className={style} />
     }]
     return (
-        <div className="social-icons hidden lg:inline-flex gap-2 md:gap-3 lg:gap-4">
+        <div className="gap-3 flex text-2xl">
             {socials.map((social, idx) => (
                 <Link 
                 key={idx}
                 target="_blank" 
                 href={social.url} 
-                className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black" 
+                className="text-black transition-colors duration-300 transform dark:text-black hover:text-gray-500 dark:hover:text-black text-4xl" 
                 aria-label={`Importlio's ${social.name} page about Amazon Dropshipping`}
                 >
                     {social.icon}

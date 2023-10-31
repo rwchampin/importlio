@@ -61,13 +61,13 @@ export default function Scroller({ children }) {
   return (
 
 
-    < >
-      <div id="smooth-wrapper" className='h-screen'>
-        <div id="smooth-content" className='min-h-screen flex flex-col overflow-hidden'>
+    <>
+      {/* <div id="smooth-wrapper" className='h-screen'>
+        <div id="smooth-content" className='min-h-screen flex flex-col overflow-hidden'> */}
 
           {children}
-        </div>
-      </div>
+        {/* </div>
+      </div> */}
 
       <div
         // role="scrollbar"

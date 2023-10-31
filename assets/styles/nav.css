@@ -1,0 +1,18 @@
+
+header {
+    z-index: 999999999 !important;
+   }
+   
+  .nav-btn {
+    min-width:150px !important;
+    flex-shrink: 0 !important;
+    text-align: center;
+  }
+  
+  nav a {
+    @apply whitespace-nowrap
+  }
+
+  nav ul {
+    /* flex-grow: unset !important; */
+  }

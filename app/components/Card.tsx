@@ -1,40 +1,84 @@
 "use client";
-import { Card as CC, CardFooter, Image } from "@nextui-org/react";
+import { Image } from "@nextui-org/react";
 import TagCloud from "./TagCloud";
 import Link from "next/link";
 import ShadowText from "./typography/ShadowText";
+
+const CardHeader = ({ post }: any) => {
+  return (
+    <div className="flex gap-2">
+      <time dateTime={post.updated}>{post.updated_pretty}</time>
+      <span className="font-[50px]">&bull;</span>
+      {post.post_type && (
+        <Link
+          href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`}
+          className="font-bold"
+        >
+          {post.post_type.name}
+        </Link>
+      )}
+
+      {!post.post_type && 'Blog Post'}
+    </div>
+  );
+};
+
+const CardMainContent = ({ post }: any) => {
+  return (
+    <>
+      <h3 className="text-heading-4">{post.title}</h3>
+      <h4 className="text-heading-5 text-gray-500">{post.subtitle}</h4>
+      <div className="h-[1px] w-full max-w-[500px] bg-black my-3" />
+      <p>
+        {post.excerpt}
+      </p>
+    </>
+  );
+};
+
+const CardImage = ({ post }: any) => {
+  return (
+    <Link
+      href={`/ecommerce-tutorials/${post.slug}`}
+      className="relative w-full h-full aspect-square lg:w-[200px] lg:h-[200px] rounded-lg shadow-xl overflow-hidden"
+    >
+      <Image
+        src={post.featured_image}
+        isZoomed
+        isBlurred
+        loading="lazy"
+        className="object-cover object-center w-full h-full"
+        alt="Picture of the author"
+      />
+    </Link>
+  );
+};
+
+const CardFooter = ({ post }: any) => {
+  return (
+    <div className="flex flex-row gap-1 overflow-x-auto  relative z-[9999999]">
+      <TagCloud data={post.tags} type="tags" />
+      <TagCloud data={post.categories} type="categories" />
+    </div>
+  );
+};
 export default function Card({ post }: any) {
   return (
-    <CC
-      isFooterBlurred
-      radius="lg"
-      className="border-none w-full lg:w-1/3 xl:w-1/4 relative aspect-square p-0 m-1 card"
-      shadow="lg"
-      fullWidth={true}
-    >
-      <Link
-        className="w-full h-full absolute"
-        href={`/ecommerce-tutorials/${post.slug}`}
-      >
-        {post.featured_image && (
-          <Image
-            alt={post.title}
-            className="z-0 w-full h-full object-cover"
-            removeWrapper
-            fallbackSrc="https://via.placeholder.com/300x200"
-            src={post.featured_image}
-          />
-        )}
-      </Link>
-
+    <article className="relative w-full shadow-xl rounded-xl overflow-hidden bg-offwhite p-3 flex ">
       <ShadowText type="card" theme={post.shadow_text_theme}>
         {post.shadowText}
       </ShadowText>
+      <CardImage post={post} />
+      <div className="p-3">
+        <CardHeader post={post} />
+        <CardMainContent post={post} />
+        <CardFooter post={post} />
+      </div>
 
-      <div
+      {/* <div
         className={` ${
           !post.featured_image ? "text-black" : "text-white"
-        } w-full absolute top-1/2 translate-y-[-50%]   flex-col justify-between items-center p-3 z-10`}
+        } w-full top-1/2 translate-y-[-50%]   flex-col justify-between items-center p-3 z-10`}
       >
         <small
           className={`text-[10px] text-${
@@ -60,24 +104,22 @@ export default function Card({ post }: any) {
         >
           {post.subtitle}
         </h4>
-      </div>
+      </div> */}
 
-      {(post.tags.length || post.categories.length) && (
-        <div className="card-footer-tag-cloud-wrapper p-3 rounded-xl flex flex-row gap-1 overflow-x-auto fade-right">
+      {/* {(post.tags.length && post.categories.length) && (
+        <div className="card-footer-tag-cloud-wrapper p-3 rounded-xl flex flex-row gap-1 overflow-x-auto  relative z-[9999999]">
           <TagCloud data={post.tags} type="tags" />
           <TagCloud data={post.categories} type="categories" />
         </div>
-      )}
+      )} */}
 
-      <CardFooter className="absolute flex flex-col justify-between before:bg-white/10 border-white/20 border-1 overflow-hidden  before:rounded-xl rounded-large bottom-1 w-[calc(100%_-_8px)] shadow-small ml-1 z-10">
-        <Link
+      {/* <Link
           className="w-full text-center bg-button text-offwhite rounded-xl h-input flex items-center justify-center"
           color="primary"
           href={`/ecommerce-tutorials/${post.slug}`}
         >
           Read full article
-        </Link>
-      </CardFooter>
-    </CC>
+        </Link> */}
+    </article>
   );
 }

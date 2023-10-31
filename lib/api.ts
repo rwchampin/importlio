@@ -1,5 +1,5 @@
 
-import {cache} from 'react'
+// import {cache} from 'react'
 // import 'server-only'
 
 export const getPosts = async () => {
@@ -44,6 +44,7 @@ export const getRecentPosts = async () => {
     }
 
     const { results } = await response.json()
+
     if (results === null) {
       throw new Error('Post not found!')
     }
@@ -133,6 +134,7 @@ export const getTags =  async () => {
     }
 
     const { results } = await response.json()
+   
     if (results === null) {
       throw new Error('Post not found!')
     }
@@ -473,20 +475,19 @@ export const getEmailsByNiche = async (niche: string) => {
   }
 }
 
-export const validateEmail = async (email: string) => {
+export const getUserInfo = async (email: string) => {
   try {
-    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/emails/validate/`, {
-      method: 'POST',
+    const response = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/auth/users/${email}/`, {
+      method: 'GET',
       headers: {
         'Content-Type': 'application/json'
-      },
-      body: JSON.stringify({email})
+      }
     })
 
     if (!response.ok) {
       throw new Error(response.statusText)
     }
-
+    debugger
     const data = await response.json()
     if (data === null) {
       throw new Error('Post not found!')

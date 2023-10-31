@@ -1,3 +1,4 @@
+"use client";
 import Link from 'next/link';
 
 import RegisterForm from '@/components/forms/RegisterForm';
@@ -5,12 +6,7 @@ import RegisterForm from '@/components/forms/RegisterForm';
 import LogoBlack from '@/components/common/LogoBlack';
 import SocialButtons from '@/components/common/SocialButtons';
 
-import type { Metadata } from 'next';
-
-export const metadata: Metadata = {
-	title: 'Amazon Dropshipping Product Importer App | Register',
-	description: 'Amazon Dropshipping Product Importer App register page',
-};
+ 
 
 export default function Page() {
 	return (

@@ -1,7 +1,6 @@
+// "use client";
 import Link from "next/link";
-import { Image } from "@nextui-org/react";
-import NextImage from "next/image";
-import { Divider } from "@nextui-org/react";
+import { Divider, Image } from "@nextui-org/react";
 
 const TagsAndCategories = ({ post }: any) => {
   return (
@@ -32,25 +31,24 @@ const TagsAndCategories = ({ post }: any) => {
   );
 };
 export default function BlogCardSmall({ post }: any) {
-
-  if(!post) return null;
+  const img_src = post.tablet_image || post.featured_image
+  // if(!post) return null;
   return (
-    <Link
-      href={`/ecommerce-tutorials/${post.slug}`}
-      className="flex gap-1 items-center justify-between w-full"
-    >
-      <Image
-        isZoomed
-        as={NextImage}
-        src={post.featured_image}
-        width={50}
-        radius="sm"
-        height={50}
-        fallbackSrc={"/fallback/50-logo-black.png"}
-        className="rounded-xl shadow-md"
-        alt={`Shopify Dropshipping Blog: ${post.title} | Importlio`}
-      />
 
+    <div className="flex gap-1 relative items-center justify-between  ">
+      <div className="w-100 h-100 bg-gray-400">
+      {img_src && <Image
+        loading="eager"
+        isZoomed
+        src={img_src}
+        width={100}
+        height={100}
+        radius="lg"
+        className="shadow-md"
+        fallbackSrc="https://nextui-docs-v2.vercel.app/images/hero-card-complete.jpeg"
+        alt={`Shopify Dropshipping Blog: ${post.title} | Importlio`}
+      />}
+</div>
 <div
         className="flex flex-col gap-1 w-full"
         style={{ maxWidth: "calc(100% - 50px)" }}
@@ -79,8 +77,8 @@ export default function BlogCardSmall({ post }: any) {
           {post.excerpt}
         </p>
         <Divider />
-        <TagsAndCategories post={post} />
+        {/* <TagsAndCategories post={post} /> */}
         </div>
-    </Link>
+        </div>
   );
 }

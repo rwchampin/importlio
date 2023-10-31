@@ -42,18 +42,8 @@ export const metadata: Metadata = {
     "Product sourcing",
   ],
   colorScheme: "dark",
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
-  },
+ 
   metadataBase: new URL("https://www.importlio.com"),
-  alternates: {
-    canonical: "/",
-    languages: {
-      "en-US": "/en-US",
-    },
-  },
   openGraph: {
     images: "/og-image.jpg",
   },

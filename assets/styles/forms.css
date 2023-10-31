@@ -1,0 +1,78 @@
+
+  
+form {
+    width: 100%;
+  
+  }
+  
+  input[type="submit"],
+  input[type="text"],
+  input[type="email"],
+  input[type="password"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"] {
+    /* border:  none !important;
+    outline: none !important; */
+    border-radius: 8px; 
+    font-family: var(--font-apercu);
+    color: var(--input-color);
+    /* filter: brightness(90%); */
+    height: var(--sf-height);
+    width: 100%;
+    background: #f0f1fa;
+  }  
+  
+  label {
+    @apply my-3 !important; 
+  }
+  
+  input[type="text"],
+  input[type="email"],
+  input[type="number"],
+  input[type="tel"],
+  input[type="url"],
+  textarea {
+      @apply bg-input;
+  }  
+  
+  input[type="file"] {
+    background: none;
+    height: unset;
+    width: unset;
+  
+  }
+
+
+form {
+    position: relative;
+} 
+  /* :not(.tox) form path:not(.tox-icon svg path) {
+    stroke: var(--color-primary);
+  }
+   
+  
+    */
+    ::placeholder {
+      opacity: .4 !important;
+    }
+    div::focus-visible, div:focus, div:focus-within, div:focus-visible {
+      border: none !important;
+      outline: none !important;
+  
+    }
+
+
+
+textarea {
+  width: 100%;
+  height: 400px;
+  @apply bg-input rounded-lg p-5 shadow-lg;
+}
+ 
+ 
+.input-svg path {
+  stroke: inherit !important;
+}
+
+

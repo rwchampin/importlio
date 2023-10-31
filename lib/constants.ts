@@ -112,6 +112,8 @@ export interface BasePageProps {
     contentStyles?: string;
     contentParentStyles?: string;
     showSidebar?: boolean
+    showPostsInFooter?: boolean
+    images?: any
 } 
 
 export interface ShadowTextProps {

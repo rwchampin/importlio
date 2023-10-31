@@ -2,6 +2,7 @@ import BasePage from '@/app/components/BasePage'
 import Card from '@/app/components/Card'
 export default async function Page({ params }: any) {
   const { slug } = params
+  debugger
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/${slug}`, {
     method: 'GET',
     headers: {

@@ -1,5 +1,5 @@
 import { apiSlice } from '../services/api';
-
+import { generatePassword } from '@/lib/functions';
 interface User {
 	first_name: string;
 	last_name: string;
@@ -23,6 +23,7 @@ interface CreateUserResponse {
 
 const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
+		
 		retrieveUser: builder.query<User, void>({
 			query: () => '/users/me/',
 		}),
@@ -53,13 +54,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 				first_name,
 				last_name,
 				email,
-				avatar,
 				password,
 				re_password,
 			}) => ({
 				url: '/users/',
 				method: 'POST',
-				body: { first_name, last_name, email, password, re_password, avatar },
+				body: { first_name, last_name, email, password, re_password },
 			}),
 		}),
 		editProfile: builder.mutation({
@@ -117,28 +117,8 @@ const authApiSlice = apiSlice.injectEndpoints({
 			}),
 
 		}),
-		preregister: builder.mutation({
-			query: ({ email }) => ({
-				url: '/registrants/',
-				method: 'POST',
-				body: { email },
-
-			}),
-
-		}),
-		fullRegistration: builder.mutation({
-			query: ({ email, first_name, last_name, message }) => ({
-				url: '/registrants/',
-				method: 'POST',
-				body: {
-					email,
-					first_name,
-					last_name,
-					message
-				},
-			}),
-
-		}),
+		 
+		 
 	}),
 });
 
@@ -153,6 +133,4 @@ export const {
 	useResetPasswordMutation,
 	useResetPasswordConfirmMutation,
 	useUpdatePostMutation,
-	usePreregisterMutation,
-	useFullRegistrationMutation
 } = authApiSlice;

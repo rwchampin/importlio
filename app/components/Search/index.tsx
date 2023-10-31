@@ -4,37 +4,46 @@ import { useInput } from "@nextui-org/react";
 import { SearchIcon } from "./SearchIcon";
 import { CloseFilledIcon } from "./CloseFilledIcon";
 
+import { useRouter } from "next/navigation";
 import Link from "next/link";
-import { useAppDispatch, useAppSelector } from "@/redux/hooks";
-import { openModal } from "@/redux/features/modal/modalSlice";
+import DropWrapper from "./DropWrapper";
+
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+
 const styles = {
   label: "text-black/50 dark:text-white/90 hidden",
   input: [
-    "h-input p-2",
+    "h-input p-2 ring-0 border-none outline-none",
     "focus:bg-transparent focus:border-none focus:outline-none focus:ring-0",
-    // "placeholder:text-gray-800",
-    "group-hover:placeholder:text-white",
+    "placeholder:text-gray-400",
+    "group-hover:placeholder:text-gray-500",
     // "h-input",
   ],
   innerWrapper: ["flex gap-2 justify-around rounded-lg p-1"],
   inputWrapper: ["main-inner-wrapper bg-input", "mt-10"],
 };
 
-const Search = forwardRef((props:any, ref:any) => {
-  // const { validateUser } = useValidateUser();
-  const { modalOpen } = useAppSelector((state) => state.modal);
-  const dispatch = useAppDispatch();
-  const onBlur = (e:any) => {
+const Search = forwardRef((props: any, ref: any) => {
+  const router = useRouter();
+  const { data: user } = useRetrieveUserQuery();
+  // const { isAuthen } = useAppSelector((state) => state.auth);
+  // const dispatch = useAppDispatch();
+  const s = 'bg-button text-sm text-white rounded-md flex flex-1 items-center justify-center h-input'
+  const onBlur = (e: any) => {
+    e.preventDefault();
+    console.log(user)
+    // if(!user) {
+    //    router.push("/auth/login");
+    //   return false;
+    // }
+    
     // const isCurrentUser = validateUser();
 
     // if (isCurrentUser) {
     //   return;
     // }
-    if (modalOpen === false) {
-      dispatch(openModal());
-    }
+   
   };
-  
 
   const {
     Component,
@@ -96,12 +105,12 @@ const Search = forwardRef((props:any, ref:any) => {
         <div {...getInnerWrapperProps()}>
           {startContent}
           <input {...getInputProps()} onMouseDown={onBlur} />
-        <Link
-
-         href="/auth/register"
-      className="bg-gray-900 text-white p-3 rounded-lg shadow-lg break-keep	whitespace-nowrap	">
-        Get Started
-      </Link>
+          <Link
+            href="/auth/register"
+            className="bg-gray-900 text-white p-3 rounded-lg shadow-lg break-keep	whitespace-nowrap	"
+          >
+            Get Started
+          </Link>
           {end}
         </div>
       );
@@ -109,9 +118,9 @@ const Search = forwardRef((props:any, ref:any) => {
 
     return <input {...getInputProps()} />;
   }, [startContent, end, getInputProps, getInnerWrapperProps]);
-
-  return (
-    <section className="core-search mt-10">
+  const El = () => {
+    return (
+      <section className="core-search mt-10">
       {/* <div className="w-[340px] h-[300px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"> */}
 
       <Component {...getBaseProps()}>
@@ -135,11 +144,22 @@ const Search = forwardRef((props:any, ref:any) => {
           {innerWrapper}
         </div>
         {description && <div {...getDescriptionProps()}>{description}</div>}
-        {errorMessage && <div {...getErrorMessageProps()}>{errorMessage}</div>}
+        {errorMessage && (
+          <div {...getErrorMessageProps()}>{errorMessage}</div>
+        )}
       </Component>
       {/* </div> */}
-     
     </section>
+    );
+  }
+
+  // if(!auth.isAuthenticated) {
+  //   return <El />
+  // }
+  return (
+    // <DropWrapper>
+      <El />
+    // </DropWrapper>
   );
 });
 

@@ -13,6 +13,12 @@ const excludedPaths = [
   '[',
   '(',
   '_',
+  'loading',
+  '404',
+  'not-found',
+  'global-error',
+  'facebook',
+  'google',
 ];
 
 const transformFilePaths = (filePaths) => {

@@ -4,6 +4,7 @@ export default function GlobalError({
   error,
   reset,
 }:any) {
+
   return (
     <div 
     className='flex flex-col items-center justify-center h-[calc(100vh-5rem)] min-h-screen w-full bg-blue-400'

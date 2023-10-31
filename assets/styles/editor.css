@@ -1,0 +1,43 @@
+
+
+.quill.editor {
+    display: flex;
+    flex-direction: column;
+  }
+   
+  .ql-toolbar {
+    z-index: 1;;
+  }
+  
+  .ql-toolbar span {
+    color: black;
+  }
+  
+  .ql-container {
+    flex: 1;
+    overflow-y: auto;
+  }
+  
+  .quill {
+    padding-left: 0;
+  }
+  
+  .quill:hover {
+    background-color: rgb(210, 210, 210) !important;
+    color: black !important;
+  }
+  
+
+
+
+.quill {
+    @apply shadow-xl h-[500px] rounded-lg bg-input flex flex-col;
+  }
+  .ql-container {
+    @apply h-full overflow-y-auto;
+  }
+  .ql-toolbar {
+    @apply bg-input shadow-lg rounded-t-lg brightness-100;
+  }
+  
+  

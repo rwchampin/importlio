@@ -11,17 +11,15 @@ import { generatePageStructuredMarkup } from "@/lib/functions";
 import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
 import GA from "@/components/utils/GA";
-import Provider from '@/components/utils/provider';
+import Provider from "@/redux/provider";
 
 import Setup from "@/components/utils/Setup";
 
-import Header from "@/components/common/Header";
-import Footer from "@/components/common/Footer";
-import Cursor from "@/components/common/Cursor";
+import Navigation from "@/components/common/Navigation";
+// import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
-import Modal from "@/components/common/Modal";
-import EmailForm from "@/components/forms/EmailForm";
 
+// import Mouse from "@/app/components/Mouse"
 const montserrat = localFont({
   src: "../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",
   variable: "--font-montserrat",
@@ -45,13 +43,13 @@ const apercu = localFont({
   display: "swap",
   preload: true,
 });
-const title =  "Amazon Dropshipping Bulk Product Importer App for Shopify"
-const description = "Fill your Shopify store with products from the best dropshipping suppliers around the world. Bulk import Amazon dropshipping products into Shopify with Importlio."
+const title = "Amazon Dropshipping Bulk Product Importer App for Shopify";
+const description =
+  "Fill your Shopify store with products from the best dropshipping suppliers around the world. Bulk import Amazon dropshipping products into Shopify with Importlio.";
 
 export const metadata: Metadata = {
   title: title,
   description: description,
-  referrer: "origin",
   keywords: [
     "Amazon dropshipping",
     "Product importer",
@@ -85,11 +83,8 @@ export const metadata: Metadata = {
     "Product sourcing",
   ],
   colorScheme: "dark",
- 
+
   metadataBase: new URL("https://www.importlio.com"),
-  alternates: {
-    canonical: "/",
-  },
   openGraph: {
     title: title,
     description: description,
@@ -99,53 +94,41 @@ export const metadata: Metadata = {
   },
 };
 
-
-
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
-
   return (
-   
     <html
-      lang="en"
+      lang="en-US"
       className={`${apercu.variable} ${montserrat.variable}`}
       suppressHydrationWarning
     >
-       <GA GA_MEASUREMENT_ID={'G-V8X4P8V5SZ'} />
-      <body suppressHydrationWarning>
-      <Provider>
+      <GA GA_MEASUREMENT_ID={"G-V8X4P8V5SZ"} />
+      <body>
+        <Provider>
+          <Setup />
+          <Navigation />
 
-       
-        <Setup />
-           <Scroller>
-            <Header />
-            {children}
-            
+          <Scroller>{children}</Scroller>
+          {/* <Cursor /> */}
+         
+          
 
-            <Footer />
-          </Scroller>
-          <Cursor />
-          <CookieBanner />
-          <NextTopLoader
+         
+           <CookieBanner />
+           <NextTopLoader
             color="#000"
             height={4}
             // showSpinner={true}
           />
-         
-         <Modal>
-    <EmailForm />
-  </Modal>
-      </Provider>
-      <JsonLd
-        json={generatePageStructuredMarkup({
-          description
-        })}
-      />
+           <JsonLd
+            json={generatePageStructuredMarkup({
+              description,
+            })}
+          />
+        </Provider>
+       
       </body>
     </html>
-   
   );
 };
 
 export default RootLayout;
-
-

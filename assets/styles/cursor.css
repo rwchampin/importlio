@@ -116,3 +116,25 @@
   }
 
   
+.RETICOOL {
+  position:fixed;
+  z-index: 9999999999;
+  height: 40px;
+  width: 40px;
+}
+
+.RETICOOL__circle {
+  border: 3px solid red;
+  border-radius: 50%;
+  height: 40px;
+  width: 40px;
+}
+ 
+[data-morph="true"]:hover .mf-cursor {
+  opacity: 0 !important;
+}
+
+.mf-cursor.hidden {
+  opacity: 0 !important;
+  transform: scale(0) !important;
+}

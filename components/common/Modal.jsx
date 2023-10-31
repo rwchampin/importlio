@@ -27,7 +27,7 @@ export default function Modal({ children }) {
           onOpenChange={onOpenChange}
           closeOnEsc={true}
           closeOnClickOutside={true}
-          
+          size="lg"
         >
           <ModalContent>
             {(onClose) => (

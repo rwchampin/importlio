@@ -1,12 +1,10 @@
 'use client';
 // import Spinner from '@/app/components/Spinner';
 import { useAppSelector } from '@/redux/hooks';
-
 import { useEffect, useState } from 'react';
 export default function Page() {
-	const [ useracount , setUseracount ] = useState(null)
-	const { user } = useAppSelector((state) => state.auth);
 
+	// const [ useracount , setUseracount ] = useState(null);
 	// useEffect(() => {
 	// 	if (!useracount && user) {
 	// 		setUseracount(user)
@@ -32,9 +30,9 @@ export default function Page() {
                     </p>
                 </div>
 
-			{useracount && (<div className='px-4 py-6 sm:px-0'>
+			{/* {useracount && (<div className='px-4 py-6 sm:px-0'>
 				<h1>{useracount.name}</h1>
-			</div>)}
+			</div>)} */}
 			</main>
 		 
 	);

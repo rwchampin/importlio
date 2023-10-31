@@ -27,9 +27,9 @@ export default function TopFeatures() {
     
     return (
 <Section>
-        <div className="flex flex-col gap-5 md:flex-row md:items-center justify-center shrink-0">
+        <div className="flex flex-col gap-5 md:flex-row md:items-center justify-center">
         {data.map((item, idx) => (
-            <div data-enter key={idx} className="flex flex-col flex-1 h-auto gap-1 rounded-lg shrink-0 bg-gray-3 p-3 border-2 border-gray-7 drop-shadow-xl">
+            <div key={idx} className="flex flex-col flex-1 h-auto gap-1 rounded-lg shrink-0 bg-gray-3 p-3 border-2 border-gray-7 drop-shadow-xl">
                 <h2 className="heading-4 uppercase smallcaps font-bold">{item.title}</h2>
                 <h3 className="heading-6 text-gray-11">{item.subtitle}</h3>
                 <p className="text-xxs">{item.description}</p>

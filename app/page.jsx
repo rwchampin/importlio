@@ -8,11 +8,15 @@ import LazyLoad from "@/components/utils/LazyLoad";
 
 
 import Section from '@/app/components/Section';
-import NameAndEmailForm from "@/components/forms/NameAndEmailForm";
 import Search from "@/app/components/Search";
 
 
- 
+
+
+import { Fragment, useState } from 'react'
+import { Transition } from '@headlessui/react'
+import { CheckCircleIcon } from '@heroicons/react/24/outline'
+import { XMarkIcon } from '@heroicons/react/20/solid'
 const Prereg = () => {
 
   return (
@@ -29,8 +33,9 @@ const Prereg = () => {
 
   )
 }
-export default function Page() {
-  
+
+function Page( ) {
+  // showNotification("Welcome to Importlio!", "success");
   return (
 
     <BasePage
@@ -42,6 +47,7 @@ export default function Page() {
       // customComponent={<Search />}
       customComponent={<Prereg />}
       showSidebar={false}
+      
     >
       <>
       <LazyLoad
@@ -66,7 +72,6 @@ export default function Page() {
             <li>&bull; Amazon Product ASIN</li>
             <li>&bull; Amazon Product URL</li>
             </ul>`}
-          cta={<NameAndEmailForm />}
         />
       </Section>
       <Section full>
@@ -78,3 +83,5 @@ export default function Page() {
 
   );
 }
+
+export default Page;

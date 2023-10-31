@@ -1,26 +1,17 @@
-"use client";
+ 
 import LogoBlack from "@/components/common/LogoBlack";
 import SocialIcons from "@/app/components/SocialIcons";
-
-import Debug from "@/components/Debug";
 // import dynamic from "next/dynamic";
 
-import { useAppSelector } from "@/redux/hooks";
-import { usePathname } from "next/navigation";
-// const RecentBlogPosts:any = dynamic(() => import("@/app/components/RecentBlogPosts"));
+// const RecentBlogPosts: any = dynamic(() => import("@/app/components/RecentBlogPosts"));
 
 
-
-export default function Footer() {
-  const { debugMode } = useAppSelector((state) => state.debug);
-  const pathname = usePathname();
- let showRecentPosts = true;
-  showRecentPosts = pathname === "/ecommerce-tutorials" || pathname === "/ecommerce-tutorials/" || pathname.indexOf('dashboard') > -1 ? false : true;
+export default function Footer({
+  showPosts = true,
+}) {
   return (
-    <>
-     {/* {showRecentPosts && <Suspense fallback={<Spinner />}>
-        <RecentBlogPosts />
-      </Suspense>} */}
+      <>
+        {/* {showPosts && <RecentBlogPosts />} */}
       <footer className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">
@@ -128,7 +119,6 @@ export default function Footer() {
           &copy; Importlio 2023 All rights reserved
         </p>
       </footer>
-     {debugMode && <Debug />}
     </>
   );
 }

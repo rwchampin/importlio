@@ -1,10 +1,10 @@
 "use client";
 
-import Icon from "@/components/Icon";
+import { useAppSelector } from "@/redux/hooks";
 import SidebarLink from "./SidebarLink";
 
 export default function Sidebar() {
-
+  const { user } = useAppSelector((state) => state.auth);
   const size = 25;
   const sidebarLinks = [
     {
@@ -41,12 +41,7 @@ export default function Sidebar() {
       name: "Products",
       href: "/dashboard/products",
       icon: 'cart'
-    },
-    {
-      name: "Profile",
-      href: "/dashboard/profile",
-      icon: 'profile'
-    },
+    } ,
     {
       name: "Lists",
       href: "/dashboard/lists",
@@ -63,6 +58,9 @@ export default function Sidebar() {
   return (
     <div className="p-5 rounded-xl bg-gray-dark-3 h-auto flex items-center justify-between md:justify-start gap-5 md:flex-col">
       {sidebarLinks.map((link) => {
+
+        if(link.protected && (!user || !user.is_staff)) return null;
+
         return (
          <SidebarLink
             key={link.name}

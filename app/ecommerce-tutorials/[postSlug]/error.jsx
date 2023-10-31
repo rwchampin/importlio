@@ -1,5 +1,6 @@
 'use client' // Error components must be Client Components
 
+import ParticleText from '@/app/components/typography/ParticleText'
 import {useEffect} from 'react'
 
 export default function Error({error, reset}) {
@@ -12,6 +13,10 @@ export default function Error({error, reset}) {
 		<div 
 			className='flex flex-col items-center justify-center h-full bg-blue-400'
 		>
+			{/* <ParticleText
+				desktop='Error'
+				mobile="Error"
+			/> */}
 			<div className='text-heading-1'>Something went wrong!</div>
 			<p>ERRORL:{error.error}</p>
 

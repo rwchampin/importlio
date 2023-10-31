@@ -20,7 +20,7 @@ function transformColorsToObject(inputObject) {
   return transformedObject;
 }
  const colors = {
-  input: "#d2d2d2",
+  input: "#f0f1fa",
   "input-hover": "#222222",
   "input-focus": "#323232",
   "input-dropdown": "#222222",
@@ -29,6 +29,9 @@ function transformColorsToObject(inputObject) {
   offwhite: "#f8f8f8",
   offgray: "#1f2029",
   backdrop: "rgba(0, 0, 0, 0.7)",
+  "default": "#222222",
+  "primary": "#222222",
+  "secondary": "#222222",
   
   // Radix Colors
   ...transformColorsToObject(F)

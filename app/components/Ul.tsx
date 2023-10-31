@@ -3,7 +3,7 @@ import { AiOutlineCheckCircle } from 'react-icons/ai'
  
 export default function Ul({
      title, 
-     titleStyles="text-[1.25rem] font-bold pb-2",
+     titleStyles="text-[2rem] font-bold pb-2",
      listItems 
     }: any) {
 
@@ -16,7 +16,7 @@ export default function Ul({
             {listItems.map((item:any, index:number) => (
                 <li
                     role='listitem'
-                    className="flex items-center gap-2 text-sm"
+                    className="flex items-center gap-2 text-lg"
                  key={index}
                  >
                     <AiOutlineCheckCircle className="text-green-500" />

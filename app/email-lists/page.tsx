@@ -1,10 +1,17 @@
-"use client";
+// "use client";
 import BasePage from "@/app/components/BasePage";
 import ListGrid from "@/app/components/email-lists/ListGrid";
-import dynamic from "next/dynamic";
+import type { Metadata } from "next";
+
 
 import { Suspense } from "react";
 
+
+export const metadata: Metadata = {
+  title: "Reach more clients with Importlio's curated email lists",
+  description: "Reach more clients with Importlio's curated email lists",
+  
+}
 
 // const ListGrid:any = dynamic(() => import("@/app/components/email-lists/ListGrid"))
 export default function Page() {

@@ -1,49 +1,51 @@
 "use client";
-
+import { useEffect, useState } from "react";
 import dynamic from "next/dynamic";
-import { usePathname } from "next/navigation";
+import { BiLockAlt } from "react-icons/bi";
+import Link from "next/link";
 
-import Button from "@/app/components/buttons/Button";
+import { Divider } from "@nextui-org/react";
+import { useAppSelector } from "@/redux/hooks";
 
-
-
-import {  useAppSelector } from "@/redux/hooks";
+// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
 export default function LoginOrAvatar() {
-  const { user } = useAppSelector((state) => state.auth);
-  // const [userAccount, setUserAccount] = useState<any>(null);
+  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+  // const [userAccount, setUserAccount] = useState<any>(null); // [user, setUser
+  // const { data: user } = useRetrieveUserQuery();
 
-  // const dispatch = useAppDispatch();
-  const pathname = usePathname();
+  const btnStyle =
+    "flex items-center justify-center gap-1 md:flex lg:rounded-xl lg:h-input lg:w-[120px] xl:w-[150px] lg:hover:shadow-lg";
 
-  // useEffect(() => {
-  //   if (user && userAccount === null) {
-  //     setUserAccount(user);
-  //   }
-  // }, [user]);
-
- 
-
-  
-
-  if (user) {
-    return <Avatar user={user}  />;
+  if (isAuthenticated && user) {
+    return <Avatar user={user} />;
   }
 
   return (
     <>
-      {pathname !== "/auth/login" && (
-        <Button href="/auth/login" variant="solid" className="md:text-xs lg:text-sm">
-          Login
-        </Button>
-      )}
-      {pathname !== "/auth/register" && (
-        <Button href="/auth/register" target="_blank" variant="bordered" className="md:text-xs lg:text-sm">
-          Try for free
-        </Button>
-      )}
+      <Link
+        href="/auth/login"
+        
+        className={`${btnStyle} lg:bg-button lg:text-offwhite`}
+      >
+        <BiLockAlt className="text-xl" />
+        Login
+      </Link>
+
+      <Divider
+        orientation="vertical"
+        className="hidden md:inline h-4 w-[2px] bg-black/30 lg:hidden"
+      />
+
+      <Link
+        href="/auth/register"
+        
+        className={`hidden ${btnStyle} lg:border-2 lg:border-button `}
+      >
+        Try for free
+      </Link>
     </>
   );
 }

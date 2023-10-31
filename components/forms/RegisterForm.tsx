@@ -6,33 +6,19 @@ import Form from '@/components/forms/Form';
 
 export default function RegisterForm() {
 	const {
-		first_name,
-		last_name,
-		email,
-		password,
-		avatar,
-		re_password,
+		formData,
 		isLoading,
 		onChange,
 		onSubmit,
 	}:any = useRegister();
 
 	const config = [
-		{
-			label: 'Avatar',
-			name: 'avatar',
-			type: 'file',
-			value: avatar,
-			required: true,
-			placeholder: 'Upload a profile picture',
-			description: 'Upload a profile picture',
-			beforeContent: <CgProfile className='h-20 w-20 font-thin mx-auto' />,
-		},
+		
 		{
 			label: 'First name',
 			name: 'first_name',
 			type: 'text',
-			value: first_name,
+			value: formData.first_name,
 			required: true,
 			placeholder: 'John',
 			errorMessage: 'First name is required',
@@ -41,7 +27,7 @@ export default function RegisterForm() {
 			label: 'Last name',
 			name: 'last_name',
 			type: 'text',
-			value: last_name,
+			value: formData.last_name,
 			placeholder: 'Smith',
 			required: true,
 		},
@@ -49,7 +35,7 @@ export default function RegisterForm() {
 			label: 'Email address',
 			name: 'email',
 			type: 'email',
-			value: email,
+			value: formData.email,
 			required: true,
 			errorMessage: 'Email is required',
 		},
@@ -57,14 +43,14 @@ export default function RegisterForm() {
 			label: 'Password',
 			name: 'password',
 			type: 'password',
-			value: password,
+			value: formData.password,
 			required: true,
 		},
 		{
 			label: 'Confirm password',
 			name: 're_password',
 			type: 'password',
-			value: re_password,
+			value: formData.re_password,
 			required: true,
 		},
 	];

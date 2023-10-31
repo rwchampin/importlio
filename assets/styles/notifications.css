@@ -1,0 +1,37 @@
+
+.notification {
+    @apply rounded-lg shadow-xl p-5 fixed top-10 -right-10 z-50 opacity-0 ; 
+  }
+  .notification .title {
+    @apply font-bold text-sm;
+  }
+  .notification .message {
+    @apply text-xs;
+  }
+  .notification .close {
+    @apply text-xs;
+  }
+  .notification .close:hover {
+    @apply text-red-500;
+  }
+  
+  .notification .close svg path {
+    stroke: var(--color-primary);
+  }
+  
+  .notification.info {
+    @apply bg-blue-5 text-blue-9 border-2 border-blue-9;
+  }
+  
+  .notification.success {
+    @apply bg-green-5 text-green-9 border-2 border-green-9;
+  }
+  
+  .notification.warning {
+    @apply bg-yellow-5 text-yellow-9 border-2 border-yellow-9;
+  }
+  
+  .notification.error {
+    @apply bg-red-5 text-red-9 border-2 border-red-9;
+  }
+  
