@@ -32,16 +32,12 @@ const Search = forwardRef((props: any, ref: any) => {
   const onBlur = (e: any) => {
     e.preventDefault();
     console.log(user)
-    // if(!user) {
-    //    router.push("/auth/login");
-    //   return false;
-    // }
+    if(!user) {
+       router.push("/auth/login");
+      return false;
+    }
     
-    // const isCurrentUser = validateUser();
-
-    // if (isCurrentUser) {
-    //   return;
-    // }
+   
    
   };
 

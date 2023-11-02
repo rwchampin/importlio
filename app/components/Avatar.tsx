@@ -7,6 +7,10 @@ import {
   NavbarContent,
   Avatar as AA,
 } from "@nextui-org/react";
+import { logout as setLogout } from '@/redux/features/authSlice';
+import { useLogoutMutation } from '@/redux/features/authApiSlice';
+
+import { HiOutlineMail } from 'react-icons/hi'
 import {
     BsPersonCircle,
 } from 'react-icons/bs'
@@ -15,18 +19,34 @@ import {
     BiLogOutCircle
 } from 'react-icons/bi'
 import { useAppDispatch } from "@/redux/hooks";
+import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 export default function Avatar({ user }: any) {
+  const router = useRouter();
   const dispatch = useAppDispatch();
+	const [logout] = useLogoutMutation();
 
   const handleLogout = () => {
-    dispatch(logout());
-  };
+		logout(undefined)
+			.unwrap()
+			.then(() => {
+				dispatch(setLogout());
+        router.push("/");
+        toast.success("Logged out");
+			});
+	};
   const links:any = [
     {
       key: "profile",
       label: "Profile",
       href: "/account/profile",
       icon: () => <BsPersonCircle />
+    },
+    {
+      key: 'notifications',
+      label: 'Notifications',
+      href: '#',
+      icon: () => <HiOutlineMail />
     },
     {
       key: "settings",
@@ -37,7 +57,7 @@ export default function Avatar({ user }: any) {
   ];
   const itemStyle = 'flex items-center gap-2'
   return (
-    <NavbarContent as="div" justify="end">
+    <NavbarContent as="div" justify="center">
       <Dropdown placement="bottom-end">
         <DropdownTrigger>
           <AA

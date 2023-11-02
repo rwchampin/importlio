@@ -7,19 +7,19 @@ import Link from "next/link";
 import { Divider } from "@nextui-org/react";
 import { useAppSelector } from "@/redux/hooks";
 
-// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
-export default function LoginOrAvatar() {
-  const { isAuthenticated, user } = useAppSelector((state) => state.auth);
+export default function LoginOrAvatar({ user }:any) {
+  // const { isAuthenticated } = useAppSelector((state) => state.auth);
   // const [userAccount, setUserAccount] = useState<any>(null); // [user, setUser
   // const { data: user } = useRetrieveUserQuery();
-
+  debugger
   const btnStyle =
     "flex items-center justify-center gap-1 md:flex lg:rounded-xl lg:h-input lg:w-[120px] xl:w-[150px] lg:hover:shadow-lg";
 
-  if (isAuthenticated && user) {
+  if (user !== 'undefined' && user) {
     return <Avatar user={user} />;
   }
 

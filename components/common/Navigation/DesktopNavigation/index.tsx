@@ -1,20 +1,45 @@
- 
+import { useEffect, useRef, useState } from "react";
 import DesktopNavigationItem from "./DesktopNavigationItem";
 import DesktopNavigationItemDropdown from "./DesktopNavigationItemDropdown";
+import { usePathname } from "next/navigation";
 
-export default function DesktopNavigation({
-  links,
-}: {
-  links: any;
-}) {
+export default function DesktopNavigation({ links }: { links: any }) {
+  const pathname = usePathname();
+  const [dimensions, setDimensions] = useState<any>(null);
+  const activeItem = useRef<any>(null);
+
+  useEffect(() => {
+    const item = activeItem;
+
+    const activeItemWidth = item?.current?.offsetWidth;
+    const activeItemLeft = item?.current?.offsetLeft;
+
+    setDimensions({
+      width: activeItemWidth,
+      left: activeItemLeft,
+    });
+  }, [pathname]);
   return (
     <>
+      <div
+        className="h-[3px] fixed top-[0px] bg-black"
+        style={{
+          width: dimensions?.width,
+          left: dimensions?.left,
+        }}
+      />
       {links.map((link: any, i: any) => {
-        if(link.type === 'mobile') {
-          return null
+        if (link.type === "mobile") {
+          return null;
         }
         if (link.dropdown !== null) {
-          return <DesktopNavigationItemDropdown key={i} link={link} />;
+          return (
+            <DesktopNavigationItemDropdown
+              ref={activeItem}
+              key={i}
+              link={link}
+            />
+          );
           // return (
           //   <Dropdown key={i}>
           //     <NavbarItem>
@@ -54,7 +79,7 @@ export default function DesktopNavigation({
           //   </Dropdown>
           // );
         }
-        return <DesktopNavigationItem key={i} link={link} />;
+        return <DesktopNavigationItem ref={activeItem} key={i} link={link} />;
         // return (
         //   <NavbarItem key={i}>
         //     <Link color="foreground" href={link.href}>
@@ -66,5 +91,3 @@ export default function DesktopNavigation({
     </>
   );
 }
-
-

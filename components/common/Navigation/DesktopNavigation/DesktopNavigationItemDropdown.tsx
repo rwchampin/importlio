@@ -11,17 +11,17 @@ import {
   Dropdown,
   DropdownMenu,
 } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useEffect, useState, forwardRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
 import { usePathname } from "next/navigation";
-export default function DesktopNavigationItemDropdown({ link }: any) {
+const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
   const [dropdownContent, setDropdownContent] = useState<any>([]);
   const pathname = usePathname();
-  const isActive = pathname === link.href;
+  const isActive = pathname === props.link.href;
 
   useEffect(() => {
     const getDropdownContent = async () => {
-      const posts = await link.dropdown();
+      const posts = await props.link.dropdown();
       setDropdownContent(posts);
     };
 
@@ -37,7 +37,7 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
       {dropdownContent.map((item: any, i: any) => {
         const Title = () => {
           return (
-            <Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
+            <props.Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
               <div className="flex justify-between mb-1">
                 <div className="text-gray-400 text-xxs uppercase">
             {item.post_type.name}
@@ -50,7 +50,7 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
                 <h5 className="text-black">{item.title}</h5>
                 <h6 className="text-gray-400 text-xs line-clamp-1">{item.subtitle}</h6>
               </div>
-            </Link>
+            </props.Link>
           );
         };
         return (
@@ -65,9 +65,12 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
     </>
     )
   }
-  const show = link.pretty === 'ecommerce tutorials';
-  return (
-    <Dropdown>
+  // const show = props.link.pretty === 'ecommerce tutorials';
+
+  const DD = () => {
+
+    return (
+      <Dropdown>
       <NavbarItem>
         <DropdownTrigger>
           <Button
@@ -77,12 +80,12 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
             radius="sm"
             variant="light"
           >
-            {link.pretty}
+            {props.link.pretty}
           </Button>
         </DropdownTrigger>
       </NavbarItem>
       <DropdownMenu
-        aria-label={link.pretty}
+        aria-label={props.link.pretty}
         className="w-full md:w-[340px] gap-4"
         itemClasses={{
           base: "bg-gray-100 shadow-lg line-clamp-2 gap-2 whitespace-wrap break-words whitespace-break-spaces text-ellipsis",
@@ -93,7 +96,7 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
 
           const Title = () => {
             return (
-              <Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
+              <props.Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
                 <div className="flex justify-between mb-1">
                   <div className="text-gray-400 text-xxs uppercase">
               {item.post_type.name}
@@ -106,7 +109,7 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
                   <h5 className="text-black">{item.title}</h5>
                   <h6 className="text-gray-400 text-xs line-clamp-1">{item.subtitle}</h6>
                 </div>
-              </Link>
+              </props.Link>
             );
           };
           return (
@@ -121,5 +124,18 @@ export default function DesktopNavigationItemDropdown({ link }: any) {
         )}
       </DropdownMenu>
     </Dropdown>
+    )
+  }
+
+  if(isActive === false) {
+    return <DD />
+  }
+
+  return (
+    <div ref={ref}>
+      <DD />
+    </div>
   );
-}
+});
+
+export default DesktopNavigationItemDropdown;

@@ -11,20 +11,21 @@ import LogoBlack from "@/components/common/LogoBlack";
 import { RxHamburgerMenu } from "react-icons/rx";
 import SocialIcons from "@/app/components/SocialIcons";
 
-import React from "react";
+import { useRef, useState } from "react";
 import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileMenu from "./MobileMenu";
 
 // import RecentPostsDropdown from "./RecentPostsDropdown";
-// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import "@/assets/styles/nav.css";
 import { getRecentPosts } from "@/lib/api";
 export default function Navigation() {
-  // const { data: user } = useRetrieveUserQuery();
-  const [recentPosts, setRecentPosts] = React.useState<any>([]);
-  const [isMenuOpen, setIsMenuOpen] = React.useState(false);
+  const { data: user } = useRetrieveUserQuery();
+  const active = useRef<any>(null);
+  const [recentPosts, setRecentPosts] = useState<any>([]);
+  const [isMenuOpen, setIsMenuOpen] = useState<any>(false);
 
   const links: any = [
     {
@@ -88,8 +89,8 @@ export default function Navigation() {
         <DesktopNavigation links={links} />
       </NavbarContent>
 
-      <NavbarContent justify="end" className="gap-2">
-        <LoginOrAvatar />
+      <NavbarContent justify="end" className="gap-5">
+        <LoginOrAvatar user={user} />
         <div className="hidden xl:flex">
           <SocialIcons />
         </div>

@@ -12,7 +12,7 @@ export default function Footer({
   return (
       <>
         {/* {showPosts && <RecentBlogPosts />} */}
-      <footer className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50">
+      <footer className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 mt-10">
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">
             <div className="px-5 text-center flex items-center flex-col justify-center md:block md:text-left">
