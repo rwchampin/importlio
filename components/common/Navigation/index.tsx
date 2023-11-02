@@ -17,12 +17,12 @@ import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 import DesktopNavigation from "./DesktopNavigation";
 import MobileMenu from "./MobileMenu";
 
+// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 // import RecentPostsDropdown from "./RecentPostsDropdown";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import "@/assets/styles/nav.css";
 import { getRecentPosts } from "@/lib/api";
 export default function Navigation() {
-  const { data: user } = useRetrieveUserQuery();
+  // const { data: user } = useRetrieveUserQuery();
   const active = useRef<any>(null);
   const [recentPosts, setRecentPosts] = useState<any>([]);
   const [isMenuOpen, setIsMenuOpen] = useState<any>(false);
@@ -90,7 +90,7 @@ export default function Navigation() {
       </NavbarContent>
 
       <NavbarContent justify="end" className="gap-5">
-        <LoginOrAvatar user={user} />
+        <LoginOrAvatar   />
         <div className="hidden xl:flex">
           <SocialIcons />
         </div>

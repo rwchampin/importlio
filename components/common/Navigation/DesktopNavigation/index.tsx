@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import DesktopNavigationItem from "./DesktopNavigationItem";
 import DesktopNavigationItemDropdown from "./DesktopNavigationItemDropdown";
 import { usePathname } from "next/navigation";
+// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
 export default function DesktopNavigation({ links }: { links: any }) {
+  // const { data: user } = useRetrieveUserQuery();
   const pathname = usePathname();
   const [dimensions, setDimensions] = useState<any>(null);
   const activeItem = useRef<any>(null);

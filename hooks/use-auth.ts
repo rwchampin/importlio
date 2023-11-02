@@ -5,10 +5,10 @@ export default function useAuth() {
     const { isAuthenticated } = useAppSelector(state => state.auth);
     const { data: user, isLoading } = useRetrieveUserQuery();
 
-    if(isAuthenticated) {
-        return {
-            user
-        }
+    
+    return {
+        isAuthenticated,
+        user,
+        isLoading
     }
-    return false;
 }

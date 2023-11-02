@@ -7,8 +7,7 @@ import { CloseFilledIcon } from "./CloseFilledIcon";
 import { useRouter } from "next/navigation";
 import Link from "next/link";
 import DropWrapper from "./DropWrapper";
-
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import useAuth from "@/hooks/use-auth";
 
 const styles = {
   label: "text-black/50 dark:text-white/90 hidden",
@@ -25,14 +24,14 @@ const styles = {
 
 const Search = forwardRef((props: any, ref: any) => {
   const router = useRouter();
-  const { data: user } = useRetrieveUserQuery();
+  const { user, isAuthenticated } = useAuth();
   // const { isAuthen } = useAppSelector((state) => state.auth);
   // const dispatch = useAppDispatch();
   const s = 'bg-button text-sm text-white rounded-md flex flex-1 items-center justify-center h-input'
   const onBlur = (e: any) => {
     e.preventDefault();
-    console.log(user)
-    if(!user) {
+   
+    if(!user || !isAuthenticated) {
        router.push("/auth/login");
       return false;
     }

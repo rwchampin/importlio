@@ -1,8 +1,4 @@
 "use client";
-
-import React from "react";
-import Link from "next/link";
-
 import {
   NavbarItem,
   Button,
@@ -13,8 +9,9 @@ import {
 } from "@nextui-org/react";
 import { useEffect, useState, forwardRef } from "react";
 import { BiChevronDown } from "react-icons/bi";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
+  const router = useRouter();
   const [dropdownContent, setDropdownContent] = useState<any>([]);
   const pathname = usePathname();
   const isActive = pathname === props.link.href;
@@ -62,7 +59,7 @@ const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
 
           const Title = () => {
             return (
-              <Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
+                <>
                 <div className="flex justify-between mb-1">
                   <div className="text-gray-400 text-xxs uppercase">
               {item.post_type.name}
@@ -75,15 +72,17 @@ const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
                   <h5 className="text-black">{item.title}</h5>
                   <h6 className="text-gray-400 text-xs line-clamp-1">{item.subtitle}</h6>
                 </div>
-              </Link>
+                </>
             );
           };
           return (
             <DropdownItem
+              onClick={() => {
+                router.push(`/ecommerce-tutorials/${item.slug}`);
+              }}
               key={i}
               title={<Title />}
               description={item.excerpt}
-              href={`/ecommerce-tutorials/${item.slug}`}
             />
           );
           }

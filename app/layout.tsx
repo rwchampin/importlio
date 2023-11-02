@@ -15,7 +15,7 @@ import Provider from "@/redux/provider";
 
 import Setup from "@/components/utils/Setup";
 
-import Navigation from "@/components/common/Navigation";
+
 // import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
 
@@ -106,7 +106,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body>
         <Provider>
           <Setup />
-          <Navigation />
+          
 
           <Scroller>{children}</Scroller>
           {/* <Cursor /> */}
