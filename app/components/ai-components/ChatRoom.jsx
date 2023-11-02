@@ -22,7 +22,8 @@ import {
 
 
 
-const api = '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';
+const api = "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"
+// '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';
 
 const ChatRoom = () => {
   const aiName = 'assistant';

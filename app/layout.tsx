@@ -83,7 +83,7 @@ export const metadata: Metadata = {
     "Profit margins",
     "Product sourcing",
   ],
-  colorScheme: "dark",
+  // colorScheme: "dark",
 
   metadataBase: new URL("https://www.importlio.com"),
   openGraph: {
