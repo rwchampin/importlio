@@ -1,111 +1,168 @@
+import { CheckIcon } from '@heroicons/react/24/outline'
+
+const hobbyFeatures = [
+    '1 FREE Email List Download',
+    'Create 10 FREE Products',
+    'UNLIMITED Product Imports',
+]
+const scaleFeatures = [
+    'UNLIMITED Email List Downloads',
+    'Create UNLIMITED Products',
+    'Access to more Product Data',
+    'UNLIMITED Product Imports',
+    'Custom Email List Creation',
+]
+const growthFeatures = [
+    'UNLIMITED Email List Downloads',
+    'Create UNLIMITED Products',
+    'Access to more Product Data',
+    'UNLIMITED Product Imports',
+    'Custom Email List Creation',
+]
+
 export default function Prices() {
-    const plans = [
-        {
-            name: 'Essential',
-            price: 3,
-            features: [
-                'All limited links',
-                'Own analytics platform',
-                'Chat support',
-                'Optimize hashtags',
-                'Mobile app',
-                'Unlimited users',
-            ],
-        },
-        {
-            name: 'Premium',
-            price: 6,
-            features: [
-                'All limited links',
-                'Own analytics platform',
-                'Chat support',
-                'Optimize hashtags',
-                'Mobile app',
-                'Unlimited users',
-            ],
-        },
-        {
-            name: 'Business',
-            price: 9,
-            features: [
-                'All limited links',
-                'Own analytics platform',
-                'Chat support',
-                'Optimize hashtags',
-                'Mobile app',
-                'Unlimited users',
-            ],
-        },
-    ]
-    return (
-        <div className="prose-2xl text-black dark:bg-gray-300 rounded-lg">
-    <div className="container px-6 py-8 mx-auto">
-        <div className="flex flex-col items-center justify-center xl:items-center xl:-mx-8 xl:flex">
-            
-            <div className="prose text-black text-center flex flex-col justify-center items-center xl:items-start xl:mx-8">
-                <h1>Importlio Shopify App Subscription Prices</h1>
-
-                 
-
-                <p className="mt-4 font-medium text-gray-500 dark:text-gray-300">
-                    You can get All Access by selecting your plan!
-                </p>
-
-                 
-            </div>
-            <div className="flex xl:mx-8">
-            {plans.map((plan, idx) => {
-                return (
-            <div key={idx} className="flex-1 xl:mx-8">
-                <div className="mt-8 space-y-8 md:-mx-4 md:flex md:items-center md:justify-center md:space-y-0 xl:mt-0">
-                    <div className="max-w-sm mx-auto border rounded-lg md:mx-4 dark:border-gray-700">
-                        <div className="p-6">
-                            <h2 className="text-xl font-medium text-gray-700 capitalize lg:text-2xl dark:text-black">{plan.name}</h2>
-                            <div className="font-apercu-bold text-2xl text-gray-700 dark:text-black">
-                                {plan.price}
-                            </div>
-                            {plan.features.map((feature, idx) => {
-                                return (
-                                    <div key={idx} className="flex items-center mt-4 text-black dark:text-black">
-                                        <svg xmlns="http://www.w3.org/2000/svg" className="w-5 h-5 text-blue-500" viewBox="0 0 20 20" fill="currentColor">
-                                        <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
-                                    </svg>
-                                        <span className="mx-4 text-black dark:text-black">{feature}</span>
-                                    </div>
-                                )
-
-                            })
+  return (
+    
+      
 
 
-                            }
-
-                            
-
-                            <button className="w-full px-4 py-2 mt-6 tracking-wide text-white capitalize transition-colors duration-300 transform bg-blue-600 rounded-md hover:bg-blue-500 focus:outline-none focus:bg-blue-500 focus:ring focus:ring-blue-300 focus:ring-opacity-80">
-                                Start Now
-                            </button>
+        <div className="relative z-0 mb-20">
+          {/* <div className="absolute inset-0 h-5/6 bg-gray-900 lg:h-2/3" /> */}
+          <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div className="relative lg:grid lg:grid-cols-7">
+              <div className="mx-auto max-w-md lg:col-start-1 lg:col-end-3 lg:row-start-2 lg:row-end-3 lg:mx-0 lg:max-w-none">
+                <div className="flex h-full flex-col overflow-hidden rounded-lg shadow-lg lg:rounded-none lg:rounded-l-lg">
+                  <div className="flex flex-1 flex-col">
+                    <div className="bg-white px-6 py-10">
+                      <div>
+                        <h3 className="text-center text-2xl font-medium text-gray-900" id="tier-hobby">
+                          Hobby
+                        </h3>
+                        <div className="mt-4 flex items-center justify-center">
+                          <span className="flex items-start px-3 text-6xl tracking-tight text-gray-900">
+                            <span className="font-black font-montserrat">FREE</span>
+                          </span>
                         </div>
-
-                        
-                            
-                                
-
-
+                      </div>
                     </div>
+                    <div className="flex flex-1 flex-col justify-between border-t-2 border-gray-100 bg-gray-50 p-6 sm:p-10 lg:p-6 xl:p-10">
+                      <ul role="list" className="space-y-4">
+                        {hobbyFeatures.map((feature) => (
+                          <li key={feature} className="flex items-start">
+                            <div className="flex-shrink-0">
+                              <CheckIcon className="h-6 w-6 flex-shrink-0 text-green-500" aria-hidden="true" />
+                            </div>
+                            <p className="ml-3 text-base font-medium text-gray-500">{feature}</p>
+                          </li>
+                        ))}
+                      </ul>
+                      <div className="mt-8">
+                        <div className="rounded-lg shadow-md">
+                          <a
+                            href="#"
+                            className="block w-full rounded-lg border border-transparent bg-white px-6 py-3 text-center text-base font-medium text-gray-600 hover:bg-gray-50"
+                            aria-describedby="tier-hobby"
+                          >
+                            Start your trial
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-            </div>          
-
-                                 
-
-                    
-                
-            )
-            })}
+              </div>
+              <div className="mx-auto mt-10 max-w-lg lg:col-start-3 lg:col-end-6 lg:row-start-1 lg:row-end-4 lg:mx-0 lg:mt-0 lg:max-w-none">
+                <div className="relative z-10 rounded-lg shadow-xl">
+                  <div
+                    className="pointer-events-none absolute inset-0 rounded-lg border-2 border-gray-600"
+                    aria-hidden="true"
+                  />
+                  <div className="absolute inset-x-0 top-0 translate-y-px transform">
+                    <div className="flex -translate-y-1/2 transform justify-center">
+                      <span className="inline-flex rounded-full bg-gray-600 px-4 py-1 text-base font-semibold text-white">
+                        Most popular
+                      </span>
+                    </div>
+                  </div>
+                  <div className="rounded-t-lg bg-white px-6 pt-12 pb-10">
+                    <div>
+                      <h3
+                        className="text-center text-3xl font-semibold tracking-tight text-gray-900 sm:-mx-6"
+                        id="tier-growth"
+                      >
+                        Start Up
+                      </h3>
+                      <div className="mt-4 flex items-center justify-center">
+                        <span className="flex items-start px-3 text-6xl tracking-tight text-gray-900 sm:text-6xl">
+                          <span className="mt-2 mr-2 text-4xl font-medium tracking-tight">$</span>
+                          <span className="font-black font-montserrat">15</span>
+                        </span>
+                        <span className="text-2xl font-medium text-gray-500">/month</span>
+                      </div>
+                    </div>
+                  </div>
+                  <div className="rounded-b-lg border-t-2 border-gray-100 bg-gray-50 px-6 pt-10 pb-8 sm:px-10 sm:py-10">
+                    <ul role="list" className="space-y-4">
+                      {growthFeatures.map((feature) => (
+                        <li key={feature} className="flex items-start">
+                          <div className="flex-shrink-0">
+                            <CheckIcon className="h-6 w-6 flex-shrink-0 text-green-500" aria-hidden="true" />
+                          </div>
+                          <p className="ml-3 text-base font-medium text-gray-500">{feature}</p>
+                        </li>
+                      ))}
+                    </ul>
+                    <div className="mt-10">
+                      <div className="rounded-lg shadow-md">
+                        <a
+                          href="#"
+                          className="block w-full rounded-lg border border-transparent bg-gray-600 px-6 py-4 text-center text-xl font-medium leading-6 text-white hover:bg-gray-700"
+                          aria-describedby="tier-growth"
+                        >
+                            Get started
+                        </a>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div className="mx-auto mt-10 max-w-md lg:col-start-6 lg:col-end-8 lg:row-start-2 lg:row-end-3 lg:m-0 lg:max-w-none">
+                <div className="flex h-full flex-col overflow-hidden rounded-lg shadow-lg lg:rounded-none lg:rounded-r-lg">
+                  <div className="flex flex-1 flex-col">
+                    <div className="bg-white px-6 py-10">
+                      <div>
+                        <h3 className="text-center text-2xl font-medium text-gray-900" id="tier-scale">
+                          Enterprise
+                        </h3>
+                        <div className="mt-4 flex items-center justify-center">
+                          <span className="flex items-start px-3 text-6xl tracking-tight text-gray-900">
+                            <span className="mt-2 mr-2 text-4xl font-medium tracking-tight">$</span>
+                            <span className="font-black font-montserrat">99</span>
+                          </span>
+                          <span className="text-xl font-medium text-gray-500">/month</span>
+                        </div>
+                      </div>
+                    </div>
+                    <div className="flex flex-1 flex-col justify-between border-t-2 border-gray-100 bg-gray-50 p-6 sm:p-10 lg:p-6 xl:p-10">
+                       <div className='text-heading-4 text-center'>Call to schedule a demo!</div>
+                      <div className="mt-8">
+                        <div className="rounded-lg shadow-md">
+                          <a
+                            href="#"
+                            className="block w-full rounded-lg border border-transparent bg-white px-6 py-3 text-center text-base font-medium text-gray-600 hover:bg-gray-50"
+                            aria-describedby="tier-scale"
+                          >
+                            Register Now
+                          </a>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
             </div>
+          </div>
         </div>
-    </div>
-</div>
-
-        )
-
+    
+  )
 }

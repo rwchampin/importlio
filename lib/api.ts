@@ -48,7 +48,7 @@ export const getRecentPosts = async () => {
     if (results === null) {
       throw new Error('Post not found!')
     }
-
+    debugger
     return results
     
   } catch (error) {

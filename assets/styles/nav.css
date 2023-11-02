@@ -13,6 +13,10 @@ header {
     @apply whitespace-nowrap
   }
 
-  nav ul {
-    /* flex-grow: unset !important; */
+   [data-active="false"] {
+    @apply text-gray-400 !important;
+  }
+
+  [data-active="true"] {
+    @apply text-black !important;
   }

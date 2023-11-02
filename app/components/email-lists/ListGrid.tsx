@@ -1,7 +1,7 @@
 // "use client";
 // import { useState } from "react"
 import EmailList from './EmailList'
-export default async function ListGrid() {
+export default async function ListGrid(): Promise<JSX.Element> {
   // const [results, setResults] = useState([])
     let res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/list-previews/`, {
         method: "GET",
@@ -11,6 +11,9 @@ export default async function ListGrid() {
       })
     const {results} = await res.json()
 
+    if(!results) {
+      return <div>Loading...</div>
+    }
   return (
     <section className="bg-gray-200 rounded-lg p-5 shadow-lg gap-3 flex flex-wrap">
         {results.map((list: any) => (

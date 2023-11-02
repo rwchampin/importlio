@@ -1,9 +1,8 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
 
-import * as THREE from "three";
+// import * as THREE from "three";
 import { Canvas } from "@react-three/fiber";
-import { OrbitControls, Backdrop } from "@react-three/drei";
+import { OrbitControls } from "@react-three/drei";
 export default function CustomCanvas({ children }: any) {
   return (
     <div className="ui-canvas">

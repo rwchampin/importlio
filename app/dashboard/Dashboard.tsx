@@ -25,10 +25,10 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
     },
     exit: {
       opacity: 0,
-      x: 100,
+      x: -100,
       transition: {
         duration: 0.5,
-        when: "afterChildren",
+        when: "beforeChildren",
         staggerChildren: 0.5,
         type: "spring",
         bounce: 0.25,

@@ -6,6 +6,7 @@ import Footer from "@/components/common/Footer";
 // import CustomCursor from "@/app/components/CustomCursor";
 // import CustomCanvas from "@/app/components/CustomCanvas";
 export default function BasePage({
+  size,
   theme,
   bg,
   title,
@@ -34,6 +35,7 @@ export default function BasePage({
         {topRightPageComponent}
       </Section>
       <Hero
+        size={size}
         theme={theme}
         bg={bg}
         title={title}

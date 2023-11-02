@@ -97,6 +97,7 @@ export interface PopOverProps {
 
 
 export interface BasePageProps {
+    size?: 'sm' | 'md' | 'lg' | 'xl' | '2xl';
     theme?: 'light' | 'dark';
     bg?: string | null | undefined;
     title: string | React.ReactNode;

@@ -13,24 +13,21 @@ const DropWrapper = forwardRef(({ ref, props }:any) => {
         const parsedUrls = results.data
           .flat()
           .filter(Boolean)
-          .map((url) => ({ url }));
+          .map((url:any) => ({ url }));
         setUrls(parsedUrls);
       },
       header: false,
     });
   };
 
-  const { getRootProps, getInputProps, isDragActive }: any = useDropzone<any>({
-    accept: ".csv",
-    onDrop: handleFileDrop,
-  });
+  const { getRootProps, getInputProps, isDragActive }: any = useDropzone();
 
   return (
     <div
       {...getRootProps()}
       className={`dropzone ${isDragActive ? "active" : ""}`}
     >
-      {children}
+      {props.children}
       {urls.map((url: any) => {
         return (
           <div>

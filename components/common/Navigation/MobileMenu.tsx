@@ -68,6 +68,7 @@ export default function MobileMenu({
         return null
     }
   }
+  
   return (
     <NavbarMenu
       className="top-0 bottom-0 bg-gray-300 h-full min-h-screen flex flex-col justify-center px-3"

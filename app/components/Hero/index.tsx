@@ -5,9 +5,10 @@ import ShadowText from "@/app/components/typography/ShadowText";
 
 import Picture from "@/app/components/Picture";
 import HeroHeader from "@/app/components/Hero/HeroHeader";
-import Image from "next/image";
+// import Image from "next/image";
 
 interface Props {
+  size?: string;
   bg?: string | null | undefined;
   title: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
@@ -21,6 +22,7 @@ interface Props {
 }
 export default function ({
   bg,
+  size = 'lg', // 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
   title,
   subtitle,
   belowSubtitle,
@@ -36,11 +38,23 @@ export default function ({
   const subtitleColor = theme === "light" ? "text-gray-900" : "text-black";
   const headlineColor = theme === "light" ? "text-gray-400" : "text-gray-400";
 
- 
+  const getSize = () => {
+    // switch to set the height of the hero either screen or 500px
+    switch (size) {
+      case "sm":
+        return "h-[300px]";
+      case "md":
+        return "h-[500px]";
+      case "lg":
+        return "h-screen";
+      default:
+        return "h-screen";
+    }
+  };
   return (
     <>
       <section
-        className={`py-10 mx-auto h-screen w-screen relative flex flex-col items-center justify-center`}
+        className={`py-10 mx-auto ${getSize()} w-screen relative flex flex-col items-center justify-center`}
       >
         <HeroHeader />
        <div className="absolute top-0 left-0 w-full h-full">

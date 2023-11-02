@@ -1,17 +1,8 @@
 "use client";
 import {
-  NavbarMenu,
-  NavbarMenuItem,
   Navbar,
   NavbarBrand,
   NavbarContent,
-  NavbarItem,
-  Link,
-  Button,
-  DropdownItem,
-  DropdownTrigger,
-  Dropdown,
-  DropdownMenu,
   NavbarMenuToggle,
 } from "@nextui-org/react";
 
@@ -22,13 +13,17 @@ import SocialIcons from "@/app/components/SocialIcons";
 
 import React from "react";
 import LoginOrAvatar from "@/components/common/LoginOrAvatar";
-import "@/assets/styles/nav.css";
+
 import DesktopNavigation from "./DesktopNavigation";
 import MobileMenu from "./MobileMenu";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
+// import RecentPostsDropdown from "./RecentPostsDropdown";
+// import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import "@/assets/styles/nav.css";
+import { getRecentPosts } from "@/lib/api";
 export default function Navigation() {
   // const { data: user } = useRetrieveUserQuery();
+  const [recentPosts, setRecentPosts] = React.useState<any>([]);
   const [isMenuOpen, setIsMenuOpen] = React.useState(false);
 
   const links: any = [
@@ -61,13 +56,13 @@ export default function Navigation() {
     {
       pretty: "Ecommerce Tutorials",
       href: "/ecommerce-tutorials",
-      dropdown: null,
+      dropdown: getRecentPosts,
     },
     {
       pretty: "Contact",
       href: "/contact",
       dropdown: null,
-    } 
+    },
   ];
 
   return (

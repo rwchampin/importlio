@@ -19,6 +19,7 @@ import Navigation from "@/components/common/Navigation";
 // import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
 
+
 // import Mouse from "@/app/components/Mouse"
 const montserrat = localFont({
   src: "../assets/fonts/Montserrat/Montserrat-VariableFont_wght.ttf",

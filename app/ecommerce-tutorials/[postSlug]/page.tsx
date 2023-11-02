@@ -1,5 +1,6 @@
 import ClientContent from "./client-content";
 
+import Spinner from "@/app/components/Spinner";
 
 export async function generateMetadata({ params }:any) {
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/${params.postSlug}`, {
@@ -14,14 +15,14 @@ export async function generateMetadata({ params }:any) {
   return {
     title: post.title,
     description: post.excerpt,
-    image: post.mobile_image,
+    image: post.mobile_image || post.featured_image,
     alternates: {
       canonical: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      image: post.mobile_image,
+      image: post.mobile_image || post.featured_image
     },
   }
 }
@@ -50,6 +51,9 @@ export default async function Page({
     console.log(error);
   }
 
+  if(!post) {
+    return <Spinner lg />
+  }
 
   return <ClientContent post={post} />;
  

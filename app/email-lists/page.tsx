@@ -35,6 +35,7 @@ export default function Page() {
       </p>
 
     <Suspense fallback={<div>Loading...</div>}>
+      {/* @ts-expect-error Async Server Component */}
       <ListGrid />
     </Suspense>
       
