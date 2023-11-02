@@ -1,10 +1,5 @@
 "use client"
-import { unSlugify } from "@/lib/functions";
-import { useSearchParams } from 'next/navigation'
 import Card from '@/app/components/Card';
-import { Suspense, useEffect, useState } from "react";
-import PostCardSkeleton from "@/app/components/skeletons/PostCardSkeleton";
-
 
 // const findBlogPostsByPropertyAndName = (blogPosts:any, type:any=null, name:any=null) => {
 //     if (!type || !name) {

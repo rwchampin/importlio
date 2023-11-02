@@ -8,7 +8,7 @@ import type { Metadata } from "next";
 // import JsonLd from "@/app/components/JsonLd";
 // import {ScrollShadow} from "@nextui-org/react";
 
-import Sidebar from "@/app/components/BlogSidebar/Sidebar";
+// import Sidebar from "@/app/components/BlogSidebar/Sidebar";
 import BlogPageClientContent from '../components/BlogPageClientContent';
 // import Spinner from "@/app/components/Spinner";
 interface Post {
@@ -73,7 +73,7 @@ export default async function Page() {
         shadowText={"Amazon Dropshipping Tutorials"}
         // contentStyles="flex flex-col md:flex-row flex-wrap gap-5 px-5"
         // contentParentStyles="flex flex-col md:flex-row flex-wrap gap-5"
-        showSidebar={true}
+        // showSidebar={true}
         showPostsInFooter={false}
       >
 

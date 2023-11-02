@@ -18,6 +18,7 @@ import Setup from "@/components/utils/Setup";
 
 // import Cursor from "@/components/common/Cursor";
 import NextTopLoader from "nextjs-toploader";
+import { Suspense } from "react";
 
 
 // import Mouse from "@/app/components/Mouse"
@@ -102,7 +103,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       className={`${apercu.variable} ${montserrat.variable}`}
       suppressHydrationWarning
     >
+      <Suspense fallback={<div>Loading...</div>}>
       <GA GA_MEASUREMENT_ID={"G-V8X4P8V5SZ"} />
+      </Suspense>
       <body>
         <Provider>
           <Setup />
