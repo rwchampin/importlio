@@ -3,6 +3,7 @@ import BasePage from '@/app/components/BasePage';
 // import { useAppDispatch, useAppSelector } from "@/redux/hooks";
 // import { setShowRecentPostsInFooter } from "@/redux/features/core/coreSlice";
 // import Section from "@/app/components/Section";
+import type { Metadata } from "next";
 
 // import JsonLd from "@/app/components/JsonLd";
 // import {ScrollShadow} from "@nextui-org/react";
@@ -23,18 +24,17 @@ interface Post {
 
  
 
-const json = {
-  "@context": "http://schema.org",
-  "@type": "Blog",
-  "name": "Importlio Ecommerce Tutorials",
-  "description": "Amazon dropshipping & shopify ecommerce articles, tutorials, and guides.",
-  "url": "https://www.importlio.com/ecommerce-tutorials",
-  "inLanguage": "en-US",
-  "isPartOf": {
-    "@type": "WebSite",
-    "name": "Importlio - Amazon Dropshipping Bulk Product Importer & Management App",
-    "url": "https://www.importlio.com"
-  }
+export const metadata: Metadata = {
+  title: "Ecommerce Dropshipping Tutorials",
+  description: "The Official Amazon Dropshipping Handbook & Product Importer App Tutorials",
+  keywords: [
+    "Amazon dropshipping",
+    "Product importer",
+    "Shopify store integration",
+    "Amazon affiliates",
+    "Amazon associates",
+    "Dropshipping automation",
+  ],
 }
 
  

@@ -3,6 +3,7 @@ import Hero from "@/app/components/Hero";
 import { BasePageProps } from "@/lib/constants";
 import Section from "@/app/components/Section";
 import Footer from "@/components/common/Footer";
+import { Suspense } from "react";
 // import CustomCursor from "@/app/components/CustomCursor";
 // import CustomCanvas from "@/app/components/CustomCanvas";
 export default function BasePage({
@@ -21,7 +22,7 @@ export default function BasePage({
   topRightPageComponent,
   contentStyles,
   contentParentStyles,
-  images,
+  // images,
   showSidebar=true,
   showPostsInFooter=true
 }: BasePageProps) {
@@ -45,7 +46,7 @@ export default function BasePage({
         shadowText={shadowText}
         customComponent={customComponent}
         shadowTextPosition={shadowTextPosition}
-        images={images}
+        // images={images}
       />
       {/* this must be 100% width, no margin, no padding for the full width sections */}
 
@@ -53,7 +54,9 @@ export default function BasePage({
           {children}
          
       </section>
+      <Suspense fallback={<div>Loading...</div>}>
       <Footer showPosts={showPostsInFooter} />
+      </Suspense>
     </>
   );
 }

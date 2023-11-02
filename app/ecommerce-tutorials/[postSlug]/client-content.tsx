@@ -26,13 +26,7 @@ export default function ClientContent({
 
 if(!post) return <Spinner />
 
- const images = {
-  mobile_image: post.mobile_image,
-  tablet_image: post.tablet_image,
-  desktop_image: post.desktop_image,
-    alt: post.image_alt_text
- }
- debugger
+ 
   return (
     <BasePage
       theme={post.theme}
@@ -41,7 +35,7 @@ if(!post) return <Spinner />
       headline={post.headline}
       shadowText={post.title}
       bg={post.featured_image}
-      images={images}
+      // images={images}
     >
       <div className="flex flex-col p-5">
         {/* {post.post_type.name} */}

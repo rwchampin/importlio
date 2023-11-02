@@ -31,7 +31,7 @@ export default function ({
   customComponent,
   shadowTextPosition,
   theme,
-  images,
+  // images,
 }: Props) {
 
   const titleColor = theme === "light" ? "text-gray-900" : "text-black";
@@ -58,7 +58,7 @@ export default function ({
       >
         <HeroHeader />
        <div className="absolute top-0 left-0 w-full h-full">
-       {images && <Picture images={images} /> }
+       {/* {images && <Picture images={images} /> } */}
         </div>
         <div className="relative flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
           <Headline 

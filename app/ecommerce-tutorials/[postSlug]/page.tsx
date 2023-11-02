@@ -15,14 +15,14 @@ export async function generateMetadata({ params }:any) {
   return {
     title: post.title,
     description: post.excerpt,
-    image: post.mobile_image || post.featured_image,
+    // image: post.mobile_image || post.featured_image,
     alternates: {
       canonical: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
-      image: post.mobile_image || post.featured_image
+      // image: post.mobile_image || post.featured_image
     },
   }
 }

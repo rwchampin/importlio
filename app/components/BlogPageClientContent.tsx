@@ -37,9 +37,9 @@ export default function BlogPageClientContent({ posts }:any) {
         <div className="flex flex-col w-full max-w-[90vw] mx-auto gap-3">
         {posts.map((post:any, idx:number) => {
             return (
-                  <Suspense fallback={<PostCardSkeleton />}>
+
                    <Card key={idx} post={post} />
-                  </Suspense>
+
             )
         })}
         </div>
