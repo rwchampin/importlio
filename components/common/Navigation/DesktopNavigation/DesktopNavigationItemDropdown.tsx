@@ -30,41 +30,7 @@ const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
     }
   }, []);
 
-  const RecentPostsDropdown:any = ({ content }: any) => {
-
-    return (
-      <>
-      {dropdownContent.map((item: any, i: any) => {
-        const Title = () => {
-          return (
-            <props.Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
-              <div className="flex justify-between mb-1">
-                <div className="text-gray-400 text-xxs uppercase">
-            {item.post_type.name}
-                </div>
-                <time 
-                  dateTime={item.published}
-                className="text-xxs text-gray-400">{item.published_pretty}</time>
-              </div>
-              <div className="flex flex-col gap-1">
-                <h5 className="text-black">{item.title}</h5>
-                <h6 className="text-gray-400 text-xs line-clamp-1">{item.subtitle}</h6>
-              </div>
-            </props.Link>
-          );
-        };
-        return (
-          <DropdownItem
-            key={i}
-            title={<Title />}
-            description={item.excerpt}
-          />
-        );
-        })
-      }
-    </>
-    )
-  }
+ 
   // const show = props.link.pretty === 'ecommerce tutorials';
 
   const DD = () => {
@@ -92,11 +58,11 @@ const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
           title: "line-clamp-1 text-ellipsis",
         }}
       >
-        {dropdownContent.length > 0 && dropdownContent.map((item: any, i: any) => {
+        {dropdownContent.map((item: any, i: any) => {
 
           const Title = () => {
             return (
-              <props.Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
+              <Link href={`/ecommerce-tutorials/${item.slug}`} className="flex flex-col">
                 <div className="flex justify-between mb-1">
                   <div className="text-gray-400 text-xxs uppercase">
               {item.post_type.name}
@@ -109,7 +75,7 @@ const DesktopNavigationItemDropdown = forwardRef((props: any, ref: any) => {
                   <h5 className="text-black">{item.title}</h5>
                   <h6 className="text-gray-400 text-xs line-clamp-1">{item.subtitle}</h6>
                 </div>
-              </props.Link>
+              </Link>
             );
           };
           return (
