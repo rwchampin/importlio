@@ -14,7 +14,7 @@ export default function useLogin() {
 
 	const [formData, setFormData] = useState({
 		email: 'rwchampin@gmail.com',
-		password: 'Fuckumom1!',
+		password: '1',
 	});
 
 	const { email, password } = formData;
@@ -27,7 +27,7 @@ export default function useLogin() {
 
 	const onSubmit = (event: FormEvent<HTMLFormElement>) => {
 		event.preventDefault();
-		login({ 'email':'rwchampin@gmail.com', 'password':'Fuckumom1!' })
+		login(formData)
 			.unwrap()
 			.then((res):any => {
 				dispatch(setAuth());
