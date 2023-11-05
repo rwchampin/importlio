@@ -35,6 +35,7 @@ if(!post) return <Spinner />
       headline={post.headline}
       shadowText={post.title}
       bg={post.featured_image}
+      showBreadcrumbs={true}
       // images={images}
     >
       <div className="flex flex-col p-5">

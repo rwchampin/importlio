@@ -41,7 +41,7 @@ export default function LoginOrAvatar( ) {
         
         className={`hidden ${btnStyle} lg:border-2 lg:border-button `}
       >
-        Try for free
+        FREE TRIAL
       </Link>
     </>
   );

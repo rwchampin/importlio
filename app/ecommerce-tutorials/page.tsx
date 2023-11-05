@@ -25,8 +25,8 @@ interface Post {
  
 
 export const metadata: Metadata = {
-  title: "Ecommerce Dropshipping Tutorials",
-  description: "The Official Amazon Dropshipping Handbook & Product Importer App Tutorials",
+  title: "Shopify Dropshipping Tutorials",
+  description: "Learn how to dropship from Amazon to Shopify with Importlio",
   keywords: [
     "Amazon dropshipping",
     "Product importer",
@@ -34,6 +34,9 @@ export const metadata: Metadata = {
     "Amazon affiliates",
     "Amazon associates",
     "Dropshipping automation",
+    "Shopify dropshipping",
+    "Shopify tutorials",
+    "Shopify dropshipping tutorials",
   ],
 }
 
@@ -76,14 +79,14 @@ export default async function Page() {
         // showSidebar={true}
         showPostsInFooter={false}
       >
-
+         
         <BlogPageClientContent posts={posts} />
           
 
 
-        {/* <JsonLd
+         {/* <JsonLd
           json={json}
-          /> */}
+          />  */}
       </BasePage>
     </>
   );

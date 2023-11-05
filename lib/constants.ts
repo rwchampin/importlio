@@ -115,6 +115,7 @@ export interface BasePageProps {
     showSidebar?: boolean
     showPostsInFooter?: boolean
     images?: any
+    showBreadcrumbs?: boolean
 } 
 
 export interface ShadowTextProps {

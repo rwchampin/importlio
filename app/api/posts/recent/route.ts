@@ -1,10 +1,8 @@
 import { NextRequest, NextResponse } from "next/server"
 
 export async function GET(req:NextRequest) {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
-    })
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`)
     const {results} = await res.json()
     
-    return NextResponse.json({results})
+    return NextResponse.json({posts: results})
   }

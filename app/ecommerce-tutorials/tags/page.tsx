@@ -1,3 +1,17 @@
+import type { Metadata } from "next";
+
+export const metadata: Metadata = {
+  title: "Ecommerce Dropshipping Tags",
+  description: "A list of all the tags used in our Amazon dropshipping tutorials",
+  keywords: [
+    "Amazon dropshipping",
+    "Product importer",
+    "Shopify store integration",
+    "Amazon affiliates",
+    "Amazon associates",
+    "Dropshipping automation",
+  ],
+}
 
 export default async function Page() {
   
@@ -13,7 +27,7 @@ export default async function Page() {
     return (
       <>
           <h1>
-        tags
+        Dropshipping Tags
           </h1>
           <ul>
               {results.map((post:any) => (

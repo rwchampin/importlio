@@ -1,18 +1,22 @@
- 
 import LogoBlack from "@/components/common/LogoBlack";
 import SocialIcons from "@/app/components/SocialIcons";
-// import dynamic from "next/dynamic";
+import dynamic from "next/dynamic";
+const RecentBlogPosts: any = dynamic(
+  ():any => import("@/app/components/RecentBlogPosts"),
+  {
+    ssr: false,
+  }
+);
 
-// const RecentBlogPosts: any = dynamic(() => import("@/app/components/RecentBlogPosts"));
-
-
-export default function Footer({
-  showPosts = true,
-}) {
+export default function Footer({ showPosts = true }) {
   return (
-      <>
-        {/* {showPosts && <RecentBlogPosts />} */}
-      <footer className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 mt-10">
+    <>
+      {showPosts && <RecentBlogPosts />}
+      <footer
+        className={`relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 ${
+          showPosts ? "mt-0" : "mt-10"
+        }`}
+      >
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">
             <div className="px-5 text-center flex items-center flex-col justify-center md:block md:text-left">
@@ -113,7 +117,10 @@ export default function Footer({
           </div>
         </div>
 
-        <hr className="h-[1px] my-6 bg-black border-none dark:bg-black" aria-hidden="true" />
+        <hr
+          className="h-[1px] my-6 bg-black border-none dark:bg-black"
+          aria-hidden="true"
+        />
 
         <p className="text-center text-xs text-black dark:text-black font-bold">
           &copy; Importlio 2023 All rights reserved

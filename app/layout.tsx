@@ -1,7 +1,7 @@
 import "@/assets/styles/cursor.css";
 import "@/assets/styles/typography.css";
 
-import "@/assets/styles/globals.css";
+import "./globals.css";
 
 import CookieBanner from "@/components/utils/CookieBanner";
 import localFont from "next/font/local";
@@ -97,6 +97,7 @@ export const metadata: Metadata = {
 };
 
 const RootLayout = async ({ children }: { children: React.ReactNode }) => {
+  
   return (
     <html
       lang="en-US"

@@ -1,35 +1,48 @@
-import React from "react";
-import { Pagination as PP } from "@nextui-org/react";
+"use client";
+import React, { useState, useEffect } from 'react';
 
-const getPaginatedPosts = async (page:any) => {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?page=${page}`, {
-        method: "GET",
-        headers: {
-            "Content-Type": "application/json",
-        },
-    });
+const Pagination = ({ next, previous, onPageChange, totalPages, currentPage }:any) => {
+  const [pageNumbers, setPageNumbers] = useState<any>([]);
 
-    const data = await res.json();
+  useEffect(() => {
+    generatePageNumbers();
+  }, [totalPages, currentPage]);
 
-    if(data.results) {
-        return data.results;
+  const generatePageNumbers = () => {
+    const pages:any = [];
+    for (let i = 1; i <= totalPages; i++) {
+      pages.push(i);
     }
+    setPageNumbers(pages);
+  };
 
-    return data;
-}
-
-export default function Pagination({ data }:any) {
-    const [currentPage, setCurrentPage] = React.useState(1);
-
-  const total_pages = Math.ceil(data.count / data.results.length); // Assuming 10 items per page
+  const handlePageChange = (newPage:any) => {
+    onPageChange(newPage);
+  };
 
   return (
-  
-      <PP
-        total={total_pages}
-        initialPage={currentPage}
-        onChange={getPaginatedPosts}
-      />
-
+    <div>
+      <button onClick={() => handlePageChange(currentPage - 1)} disabled={!previous}>
+        Previous
+      </button>
+      {pageNumbers.length > 1 && (
+        <div className="page-numbers">
+          {pageNumbers.map((page:any) => (
+            <button
+              key={page}
+              onClick={() => handlePageChange(page)}
+              className={currentPage === page ? 'active' : ''}
+            >
+              {page}
+            </button>
+          ))}
+        </div>
+      )}
+      <button onClick={() => handlePageChange(currentPage + 1)} disabled={!next}>
+        Next
+      </button>
+    </div>
   );
-}
+};
+
+export default Pagination;

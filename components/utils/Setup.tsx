@@ -1,7 +1,9 @@
 "use client";
 
+// import ScrapingManager from "@/ScrapingManager";
 // import { useEffect } from 'react'
 import { useVerify } from "@/hooks";
+import { useEffect } from "react";
 
 import { Toaster } from "react-hot-toast";
 // import { useAppDispatch } from "@/redux/hooks";
@@ -10,6 +12,9 @@ import { Toaster } from "react-hot-toast";
 function Setup() {
   // const dispatch = useAppDispatch();
   useVerify();
+  
+
+
 
   // useEffect(() => {
   //   const getData = async () => {

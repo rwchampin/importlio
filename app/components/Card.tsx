@@ -1,6 +1,5 @@
 "use client";
 
-
 import Image from "next/image";
 import TagCloud from "./TagCloud";
 import Link from "next/link";
@@ -8,10 +7,10 @@ import ShadowText from "./typography/ShadowText";
 
 const CardHeader = ({ post }: any) => {
   return (
-    <div className="flex gap-2">
+    <div className="w-fill flex gap-2">
       <time dateTime={post.updated}>{post.updated_pretty}</time>
       <span className="font-[50px]">&bull;</span>
-      {post.post_type && <div>{post.post_type.name}</div>}
+      {post.post_type && <Link href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`}>{post.post_type.name}</Link>}
 
       {!post.post_type && "Blog Post"}
     </div>
@@ -20,53 +19,55 @@ const CardHeader = ({ post }: any) => {
 
 const CardMainContent = ({ post }: any) => {
   return (
-    <>
-      <h3 className="text-heading-4">{post.title}</h3>
+    <Link href={`/ecommerce-tutorials/${post.slug}`}>
+      <h3 className="text-heading-4 whitespace-break-spaces break-words">{post.title}</h3>
       <h4 className="text-heading-5 text-gray-500">{post.subtitle}</h4>
       <div className="h-[1px] w-full max-w-[500px] bg-black my-3" />
       <p>{post.excerpt}</p>
-    </>
+    </Link>
   );
 };
 
 const CardImage = ({ post }: any) => {
   return (
-    <div className="bg-red-400 w-auto h-full relative z-[9999999] min-h-[200px] min-w-[200px]">
+    <Link
+      href={`/ecommerce-tutorials/${post.slug}`}
+     className="bg-red-400 w-[100%] block h-auto relative">
       <Image
-        src={post.featured_image}
+        src={post.mobile_image || post.featured_image}
         className="object-cover w-full h-full"
         // placeholder="blur"
-        quality={100}
+        quality={80}
         fill
         alt={post.title}
       />
-    </div>
-
+    </Link>
   );
 };
 
 const CardFooter = ({ post }: any) => {
   return (
-    <div className="flex flex-row gap-1 overflow-x-auto  relative z-[9999999]">
+    <>
       <TagCloud data={post.tags} type="tags" />
       <TagCloud data={post.categories} type="categories" />
-    </div>
+      </>
   );
 };
 export default function Card({ post }: any) {
   return (
-    <Link href={`/ecommerce-tutorials/${post.slug}`}>
-      <article className="relative w-full shadow-xl rounded-xl overflow-hidden bg-offwhite p-3 flex ">
+   
+      <article className="relative w-full shadow-xl rounded-xl overflow-hidden bg-offwhite p-3 flex">
         <ShadowText type="card" theme={post.shadow_text_theme}>
           {post.shadowText}
         </ShadowText>
-        <CardImage post={post} />
-        <div className="p-3">
-          <CardHeader post={post} />
-          <CardMainContent post={post} />
-          <CardFooter post={post} />
+        <div className="flex flex-col gap-2">
+          <CardImage post={post} />
+           <div className="relative z-100">
+            <CardHeader post={post} />
+            <CardMainContent post={post} />
+            <CardFooter post={post} />
+          </div> 
         </div>
-
         {/* <div
         className={` ${
           !post.featured_image ? "text-black" : "text-white"
@@ -113,6 +114,6 @@ export default function Card({ post }: any) {
           Read full article
         </Link> */}
       </article>
-    </Link>
+
   );
 }

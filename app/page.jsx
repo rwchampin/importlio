@@ -9,6 +9,7 @@ import LazyLoad from "@/components/utils/LazyLoad";
 
 import Section from '@/app/components/Section';
 import Search from "@/app/components/Search";
+import Link from "next/link";
 
 
 
@@ -36,12 +37,12 @@ function Page( ) {
 
     <BasePage
     theme="dark"
-      headline="The Official"
-      title="Amazon Dropshipping Bulk Product Importer App for Shopify"
-      subtitle={`Import Amazon Products to Shopify in Bulk with Amazon Result Pages, Category Pages, Keywords, ASINs, and more!`}
+      headline="The first Amazon Dropshipping App for Shopify"
+      title="Import Amazon Dropshipping Products to Shopify in one click!"
+      subtitle={`Fill your Shopify Store with top-selling Amazon products in seconds!`}
       shadowText={`Amazon Dropshipping Products`}
       // customComponent={<Search />}
-      customComponent={<Prereg />}
+      customComponent={<Link className="w-full max-w-2xl bg-button text-offwhite flex items-center justify-center rounded-lg h-input mt-2" href="/auth/register/">Start your FREE Trial</Link>}
       showSidebar={false}
       
     >

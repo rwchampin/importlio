@@ -1,26 +1,42 @@
-
+// "use client";
 // import { useAppDispatch } from '@/redux/hooks';
 import Card from '@/app/components/Card';
 
+// import {  useState, useEffect } from 'react';
+
+
 export default async function RecentBlogPosts() {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent`, {
-        method: 'GET',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-    });
+    const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`)
+    const { results } = await res.json()
+    const posts = results
+    // const [posts, setPosts] = useState(null)
 
-    const { results } = await res.json();
-    const posts = results;
-    // const { posts } = useAppDispatch(state => state.blog);
+    // try {
+    //     fetch(`/api/posts/recent/`)
+    //         .then(res => res.json())
+    //         .then(({posts}) => {
+    //             setPosts(posts)
+    //         })
 
+    // } catch (error) {
+    //     console.log(error)
+    // }
     
-
- 
+     
     return (
+        
+            <div className="bg-gray-300 w-full  flex flex-col gap-5 py-10 px-5">
+               
+                {posts && posts.length && posts.map((post, idx) => {
 
-            <div className="flex-wrap w-full  flex flex-col gap-5 md:flex-row items-stretch justify-center py-10 ">
-                {posts && posts.map((post, idx) => <Card key={idx} post={post} />)}
+                    return (
+                        <Card
+                            key={idx}
+                            post={post}
+                        />
+                    )
+                })}
+              
             </div>
 
     );

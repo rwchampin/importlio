@@ -7,8 +7,8 @@ class ScrapingManager {
     private page: any;
     private url: string;
 
-    constructor(url: string) {
-        this.url = url;
+    constructor(url: any) {
+        this.url = 'https://www.google.com/search?q=+%22fitness+instructor%22%20AND%20%22%40gmail.com%22%20-intitle:%22profiles%22%20-inurl:%22dir/+%22+site:www.linkedin.com/in/+OR+site:www.linkedin.com/pub/';
         this.browser = null;
         this.page = null;
 
@@ -57,6 +57,14 @@ class ScrapingManager {
 
     public async close() {
         await this.browser.close();
+    }
+
+    public async searchGoogleQuery(query: string) {
+
+        // scroll to bottom of page and click the next button
+        await this.page.evaluate(() => {
+          window.scrollTo(0, document.body.scrollHeight);
+        });
     }
 }
 

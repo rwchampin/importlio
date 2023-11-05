@@ -9,5 +9,5 @@ export async function GET(req:NextRequest) {
     })
     const { results } = await res.json()
     
-    return NextResponse.json({ results })
+    return NextResponse.json({ posts:results })
   }

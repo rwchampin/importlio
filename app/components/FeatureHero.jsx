@@ -45,7 +45,7 @@ export default function FeatureHero() {
     const size = "text-2xl mx-auto mb-5 bg-gray-7 rounded-lg p-3 text-black h-12 w-12 flex-shrink-0 aspect-square text-center shadow-xl"
     const features = [
         {
-            title: "Import Dropshipping Products in Bulk",
+            title: "Import Amazon Dropshipping Products in Bulk into Shopify",
             Icon:() => <LiaMailBulkSolid className={`${size} `} />,
             description: `Quickly populate your Shopify store with a diverse selection of products. Our app allows you to import Amazon products to Shopify in bulk, saving you time and effort.`
         }, {
@@ -65,13 +65,21 @@ export default function FeatureHero() {
             Icon:() => <GrDocumentCsv className={`${size} `} />,
             description: `Seamlessly manage your product data with our CSV Import/Export functionality. Effortlessly transfer information between platforms, ensuring your inventory remains accurate and up to date.`
         }, {
-            title: "Import Products by Amazon Product ASIN",
+            title: "Create Shopify Products from Amazon Product ASIN",
             Icon:() => <BiBarcode className={`${size} `} />,
             description: `Precision meets convenience as you import products using Amazon's unique ASIN identifiers. Ensure accuracy and enhance your offerings by directly incorporating products your customers already love.`
         }, {
-            title: "Import Products by Amazon Product Keyword",
+            title: "Make Shopify Dropshipping Products from Amazon Product Keyword",
             Icon:() =><MdOutlineWebAsset className={`${size} `} />,
             description: `Tailor your product selection to customer intent by importing items based on Amazon product keywords. Effortlessly match your inventory with popular search terms, boosting your store's visibility.`
+        },{
+            title: "Search Amazon Dropshipping Products by keyword & directly import to Shopify",
+            Icon:() =><MdOutlineWebAsset className={`${size} `} />,
+            description: `Search products by keyword or title and directly import to Shopify`
+        },{
+            title: "Get Amazon Product Reviews & Ratings",
+            Icon:() =><MdOutlineWebAsset className={`${size} `} />,
+            description: `Import Amazon product reviews and ratings to your Shopify store`
         }
     ]
 

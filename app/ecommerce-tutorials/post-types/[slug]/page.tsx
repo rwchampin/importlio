@@ -13,10 +13,10 @@ export default async function Page({ params }: any) {
 
   return (
     <BasePage
-      title='Tags'
-      subtitle='Browse ecommerce tutorials by tag.'
-      headline='Tags'
-      shadowText='Tags'
+      title={`Dropshipping Tutorial's by ${slug}`}
+      subtitle={`Browse ecommerce tutorials by the post type '${slug}'`}
+      headline='Post Types'
+      shadowText={`Articles by ${slug}`}
     >
         <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center py-10 ">
 

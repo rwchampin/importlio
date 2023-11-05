@@ -1,4 +1,5 @@
-"use client"; import { useState, useEffect, useLayoutEffect, useRef } from 'react';
+"use client"; 
+import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
 import Icon from '@/app/components/Icon';
 import { toast } from 'react-hot-toast';
