@@ -7,6 +7,7 @@ const excludedPaths = [
   'page',
   'auth',
   'dashboard',
+  'template',
   'components',
   'layout',
   'api',

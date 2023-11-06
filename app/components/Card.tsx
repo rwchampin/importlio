@@ -61,7 +61,7 @@ export default function Card({ post }: any) {
           {post.shadowText}
         </ShadowText>
         <div className="flex flex-col gap-2">
-          <CardImage post={post} />
+          {/* <CardImage post={post} /> */}
            <div className="relative z-100">
             <CardHeader post={post} />
             <CardMainContent post={post} />

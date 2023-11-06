@@ -66,7 +66,9 @@ export default function BasePage({
          
       </section>  
       
+      <Suspense fallback={<div>Loading...</div>}>
       <Footer showPosts={showPostsInFooter} />
+      </Suspense>
     </>
   );
 }

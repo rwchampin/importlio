@@ -7,7 +7,7 @@ class ScrapingManager {
     private page: any;
     private url: string;
 
-    constructor(url: any) {
+    constructor() {
         this.url = 'https://www.google.com/search?q=+%22fitness+instructor%22%20AND%20%22%40gmail.com%22%20-intitle:%22profiles%22%20-inurl:%22dir/+%22+site:www.linkedin.com/in/+OR+site:www.linkedin.com/pub/';
         this.browser = null;
         this.page = null;
@@ -18,7 +18,7 @@ class ScrapingManager {
     public async init() {
       toast.loading('Scraper initializing')
         this.browser = await puppeteer.launch({
-            headless: true,
+            headless: false,
             args: [
                 '--no-sandbox',
                 '--disable-setuid-sandbox',

@@ -42,7 +42,7 @@ function Page( ) {
       subtitle={`Fill your Shopify Store with top-selling Amazon products in seconds!`}
       shadowText={`Amazon Dropshipping Products`}
       // customComponent={<Search />}
-      customComponent={<Link className="w-full max-w-2xl bg-button text-offwhite flex items-center justify-center rounded-lg h-input mt-2" href="/auth/register/">Start your FREE Trial</Link>}
+      customComponent={<Link className="w-full max-w-2xl bg-button text-offwhite flex items-center justify-center rounded-lg h-input mt-2" href="/auth/register/?free=true">Start your FREE Trial</Link>}
       showSidebar={false}
       
     >
