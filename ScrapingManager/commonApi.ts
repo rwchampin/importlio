@@ -1,4 +1,26 @@
 
+import puppeteer from 'puppeteer';
+
+async function findElementsWithText(url:any, searchString:any) {
+    const browser = await puppeteer.launch();
+    const page = await browser.newPage();
+    await page.goto(url);
+  
+    const elementsWithText = await page.evaluate((searchString:any) => {
+      const elements = Array.from(document.querySelectorAll('*'));
+      const matchingElements = elements.filter((element:any) => {
+        if (element.textContent.toLowerCase().includes(searchString.toLowerCase())) {
+          return true;
+        }
+        return false;
+      });
+      return matchingElements.map((element:any) => element.textContent);
+    }, searchString);
+  
+    // await browser.close();
+  
+    return elementsWithText;
+  }
 
 export const getPrice = async (page:any) => {
     // for each element try to retrieve the price

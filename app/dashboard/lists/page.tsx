@@ -16,17 +16,17 @@ export default function Page() {
   const [lists, setLists] = useState<any>([]);
 
   useEffect(() => {
-    const getData = async () => {
-      const res = await fetch(
-        `${process.env.NEXT_PUBLIC_HOST}/api/marketing/list-previews`
-      );
-      const { results } = await res.json();
-      setLists(results);
-    };
+    // const getData = async () => {
+    //   const res = await fetch(
+    //     `${process.env.NEXT_PUBLIC_HOST}/api/marketing/list-previews`
+    //   );
+    //   const { results } = await res.json();
+    //   setLists(results);
+    // };
 
-    if (!lists.length) {
-      getData();
-    }
+    // if (!lists.length) {
+    //   getData();
+    // }
   }, []);
 
   useLayoutEffect(() => {
@@ -90,6 +90,8 @@ export default function Page() {
   // Call the function to scrape the Google search page
 
   // const niches:any = []
+ 
+
   return (
     <Dashboard>
       <div className="px-4 sm:px-6 lg:px-8">
@@ -232,12 +234,12 @@ export default function Page() {
                             {list.role}
                           </td>
                           <td className="whitespace-nowrap py-4 pl-3 pr-4 text-right text-sm font-medium sm:pr-6">
-                            <a
+                            {/* <a
                               href="#"
                               className="text-indigo-600 hover:text-indigo-900"
                             >
                               Edit<span className="sr-only">, {list.name}</span>
-                            </a>
+                            </a> */}
                           </td>
                         </tr>
                       ))}

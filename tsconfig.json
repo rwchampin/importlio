@@ -1,11 +1,7 @@
 {
   "compilerOptions": {
     "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
+    "lib": ["dom", "dom.iterable", "esnext"],
     "allowJs": true,
     "skipLibCheck": true,
     "strict": true,
@@ -18,21 +14,14 @@
     "isolatedModules": true,
     "jsx": "preserve",
     "incremental": true,
-    "types": [
-      "next",
-      "@types/node",
-    ],
+    "types": ["next", "@types/node"],
     "plugins": [
       {
         "name": "next"
       }
     ],
     "paths": {
-      "@/*": [
-        "./*",
-        "./app/*",
-      ],
-      
+      "@/*": ["./*", "./app/*"]
     }
   },
   "include": [
@@ -41,8 +30,9 @@
     "next-env.d.ts",
     "**/*.tsx",
     "**/*.js",
-    "**/*.jsx"
-, "app/components/CustomTable"  ],
+    "**/*.jsx",
+    "app/components/CustomTable"
+  ],
   "exclude": [
     "node_modules",
     "email-templates",
@@ -55,6 +45,6 @@
     "./.history",
     "./certs",
     "certs",
-
+    "ScrapingManager",
   ]
 }

@@ -13,7 +13,8 @@ import {
   BsEnvelopeFill,
 } from 'react-icons/bs'
  
-const PasswordIcon:any = dynamic(() => import("@/components/forms/input/PasswordIcon"), {
+ 
+const PasswordIcon: any = dynamic(() => import("@/components/forms/input/PasswordIcon"), {
   ssr: false,
 });
 
@@ -29,10 +30,7 @@ const MultiSelect: any = dynamic(() => import("@/components/forms/MultiSelect"),
   ssr: false,
 });
 
-const PasswordInput:any = dynamic(() => import("@/components/forms/input/PasswordInput"), {
-  ssr: false,
-});
-
+ 
  
  
  
@@ -41,10 +39,6 @@ const FileField: any = dynamic(() => import("@/components/forms/FileField"), {
   ssr: false,
 });
 
- 
-const Icon:any = dynamic(() => import("@/components/Icon"), {
-  ssr: false,
-});
  
 
 const Input = ({

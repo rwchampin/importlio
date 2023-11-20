@@ -20,6 +20,7 @@ const excludedPaths = [
   'global-error',
   'facebook',
   'google',
+  '_experiments',
 ];
 
 const transformFilePaths = (filePaths) => {

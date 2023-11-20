@@ -1,11 +1,10 @@
 "use client"; 
 import { useState, useEffect, useLayoutEffect, useRef } from 'react';
 import { Configuration, OpenAIApi } from 'openai';
-import Icon from '@/app/components/Icon';
+
 import { toast } from 'react-hot-toast';
 import ChatMessage from '@/app/components/ai-components/ChatMessage';
 import Spinner from '@/app/components/Spinner'; // Import a spinner component
-import Sidebar from '@/app/components/ai-components/Sidebar';
 import Action from './Action';
 
 import { createPost } from '@/lib/api'
@@ -20,11 +19,7 @@ import {
   createPostExcerpt
 } from './prompts'
 
-
-
-
-const api = "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"
-// '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';
+ 
 
 const ChatRoom = () => {
   const aiName = 'assistant';
@@ -43,7 +38,7 @@ const ChatRoom = () => {
     const createConnection = async () => {
       const configuration = new Configuration({
         organizationId: 'org-cZs70lWtkVYO7TnN1HJcmICg',
-        apiKey: api,
+        // apiKey: process.env.OPENAI_API_KEY,
       });
       setOpenAI(new OpenAIApi(configuration));
     };
@@ -193,7 +188,7 @@ const ChatRoom = () => {
               className="px-4 py-2 ml-2 rounded-lg bg-gray-dark-8 text-white hover:text-green-dark-8"
               onClick={handleSendMessage}
             >
-              <Icon type="send" className="inline-block w-6 h-6 align-middle" />
+              {/* <Icon type="send" className="inline-block w-6 h-6 align-middle" /> */}
             </button>
           </div>
           <div className="flex flex-row justify-between gap-2 overflow-scroll w-full">

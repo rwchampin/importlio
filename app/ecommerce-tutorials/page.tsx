@@ -46,9 +46,7 @@ export const metadata: Metadata = {
 const getFilterPosts =async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
     method: "GET",
-    next: {
-      revalidate: 50
-    },
+    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
     },

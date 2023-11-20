@@ -2,47 +2,57 @@
 // import { use, useEffect, useState } from "react";
 import dynamic from "next/dynamic";
 import { BiLockAlt } from "react-icons/bi";
-import Link from "next/link";
 
 import { Divider } from "@nextui-org/react";
+import { useEffect, useState } from "react";
 
-import useAuth from "@/hooks/use-auth";
+import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import CustomLink from "./CustomLink";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
-export default function LoginOrAvatar( ) {
-  const { user, isAuthenticated } = useAuth();
-// alert(`user: ${JSON.stringify(user)}`)
-  const btnStyle =
-    "flex items-center justify-center gap-1 md:flex lg:rounded-xl lg:h-input lg:w-[120px] xl:w-[150px] lg:hover:shadow-lg";
+export default function LoginOrAvatar() {
+  const { data: user, isLoading } = useRetrieveUserQuery();
 
-  if (isAuthenticated && user) {
-    return <Avatar user={user} />;
+  // const { getUser, isLoading, isAuthenticated } = auth;
+  const [useri, setUser] = useState<any>(null);
+
+  useEffect(() => {
+    if (!user && !isLoading) {
+      setUser(user);
+    }
+  }, [isLoading])
+
+// alert(`user: ${JSON.stringify(user)}`)
+ 
+
+  if (useri && !isLoading) {
+    return <Avatar user={useri} />;
   }
 
   return (
     <>
-      <Link
+      <CustomLink
         href="/auth/login"
-        
-        className={`${btnStyle} lg:bg-button lg:text-offwhite`}
+        variant="solid"
+        size="sm"
       >
         <BiLockAlt className="text-xl" />
         Login
-      </Link>
+      </CustomLink>
 
       <Divider
         orientation="vertical"
         className="hidden md:inline h-4 w-[2px] bg-black/30 lg:hidden"
       />
 
-      <Link
+      <CustomLink
         href="/auth/register"
-        
-        className={`hidden ${btnStyle} lg:border-2 lg:border-button `}
+        variant="outline"
+        size="sm"
       >
         FREE TRIAL
-      </Link>
+      </CustomLink>
     </>
   );
 }

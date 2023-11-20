@@ -1,8 +1,8 @@
 "use client";
 import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-// import { ScrollSmoother } from 'gsap/ScrollSmoother';
-// import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollSmoother } from 'gsap/ScrollSmoother';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 // import Debug from '@/components/Debug';
 export default function Scroller({ children }) {
@@ -11,10 +11,10 @@ export default function Scroller({ children }) {
   const scrollTrackRef = useRef(null);
   const scrollBarRef = useRef(null);
 
-
+  
 
   useLayoutEffect(() => {
-    // gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
     const track = scrollTrackRef.current;
     const bar = scrollBarRef.current;
     const trackHeight = track.clientHeight;
@@ -47,10 +47,11 @@ export default function Scroller({ children }) {
 
 
     // Example usage inside a window.scroll event listener
-    window.addEventListener('scroll', () => {
+    window.addEventListener('scroll', setScrollBar);
 
-      setScrollBar()
-    });
+    return () => {
+      window.removeEventListener('scroll', setScrollBar);
+    }
 
   }, []);
 
@@ -62,12 +63,12 @@ export default function Scroller({ children }) {
 
 
     <>
-      {/* <div id="smooth-wrapper" className='h-screen'>
-        <div id="smooth-content" className='min-h-screen flex flex-col overflow-hidden'> */}
+      {/* <div id="smooth-wrapper" className='h-screen overflow-hidden'>
+        <div id="smooth-content" className='min-h-screen flex flex-col overflow-x-hidden'>  */}
 
           {children}
-        {/* </div>
-      </div> */}
+        {/* </div> */}
+      {/* </div> */}
 
       <div
         // role="scrollbar"
@@ -81,7 +82,7 @@ export default function Scroller({ children }) {
         <div className="scroll-bar will-change-transform absolute -top-[100%] bg-black w-full h-full" ref={scrollBarRef}></div>
       </div>
       {/* {debugMode && <Debug />} */}
-    </ >
+    </>
 
 
 

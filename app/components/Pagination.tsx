@@ -1,33 +1,60 @@
 "use client";
 import React, { useState, useEffect } from 'react';
 
-const Pagination = ({ next, previous, onPageChange, totalPages, currentPage }:any) => {
-  const [pageNumbers, setPageNumbers] = useState<any>([]);
+const Pagination = ({ json }:any) => {
+  const { count, next, previous } = json;
+
+  const amountPerPage = 5;  // Adjust based on your actual amount per page
+  const [totalPages, setTotalPages] = useState(Math.ceil(count / amountPerPage));
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageNumbers, setPageNumbers] = useState([]);
 
   useEffect(() => {
+    setTotalPages(Math.ceil(count / amountPerPage));
     generatePageNumbers();
-  }, [totalPages, currentPage]);
+  }, [count, currentPage]);
 
   const generatePageNumbers = () => {
-    const pages:any = [];
-    for (let i = 1; i <= totalPages; i++) {
+    let pages = [];
+    let startPage, endPage;
+
+    if (totalPages <= 5) {
+      // less than 5 total pages so show all
+      startPage = 1;
+      endPage = totalPages;
+    } else {
+      // more than 5 total pages so calculate start and end pages
+      if (currentPage <= 3) {
+        startPage = 1;
+        endPage = 5;
+      } else if (currentPage + 2 >= totalPages) {
+        startPage = totalPages - 4;
+        endPage = totalPages;
+      } else {
+        startPage = currentPage - 2;
+        endPage = currentPage + 2;
+      }
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    setPageNumbers(pages);
+    // setPageNumbers(pages);
   };
 
-  const handlePageChange = (newPage:any) => {
-    onPageChange(newPage);
+  const handlePageChange = (newPage : any) => {
+    setCurrentPage(newPage);
+    // Add your logic here to fetch new data based on the new page
   };
 
   return (
     <div>
-      <button onClick={() => handlePageChange(currentPage - 1)} disabled={!previous}>
+      <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
         Previous
       </button>
       {pageNumbers.length > 1 && (
         <div className="page-numbers">
-          {pageNumbers.map((page:any) => (
+          {pageNumbers.map((page) => (
             <button
               key={page}
               onClick={() => handlePageChange(page)}
@@ -38,7 +65,7 @@ const Pagination = ({ next, previous, onPageChange, totalPages, currentPage }:an
           ))}
         </div>
       )}
-      <button onClick={() => handlePageChange(currentPage + 1)} disabled={!next}>
+      <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
         Next
       </button>
     </div>

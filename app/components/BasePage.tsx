@@ -4,9 +4,10 @@ import { BasePageProps } from "@/lib/constants";
 import Section from "@/app/components/Section";
 import Footer from "@/components/common/Footer";
 import { Suspense } from "react";
+// import dynamic from "next/dynamic";
 import BreadCrumbs from "./BreadCrumbs";
-// import CustomCursor from "@/app/components/CustomCursor";
-// import CustomCanvas from "@/app/components/CustomCanvas";
+import RecentBlogPosts from "./RecentBlogPosts";
+
 export default function BasePage({
   size,
   theme,
@@ -24,28 +25,26 @@ export default function BasePage({
   contentStyles,
   contentParentStyles,
   // images,
-  showSidebar=true,
-  showPostsInFooter=true,
-  showBreadcrumbs=false,
+  showSidebar = true,
+  showPostsInFooter = true,
+  showBreadcrumbs = false,
 }: BasePageProps) {
-
   const getHeadline = () => {
-    if(showBreadcrumbs) {
-      return <BreadCrumbs />
+    if (showBreadcrumbs) {
+      return <BreadCrumbs />;
     } else {
       return headline;
     }
-  }
+  };
   return (
     <>
-     {/* <CustomCanvas>
+      {/* <CustomCanvas>
         <CustomCursor />
       </CustomCanvas> */}
-       <Section className="flex justify-between items-center">
-      
+      <Section className="flex justify-between items-center">
         {topLeftPageComponent}
         {topRightPageComponent}
-      </Section>  
+      </Section>
       <Hero
         size={size}
         theme={theme}
@@ -61,14 +60,16 @@ export default function BasePage({
       />
       {/* this must be 100% width, no margin, no padding for the full width sections */}
 
-        <section className={`flex flex-col   w-full relative`}>
-          {children}
-         
-      </section>  
-      
-      <Suspense fallback={<div>Loading...</div>}>
-      <Footer showPosts={showPostsInFooter} />
-      </Suspense>
+      <section className={`flex flex-col   w-full relative`}>
+        {children}
+      </section>
+
+
+
+          {/* <RecentBlogPosts /> */}
+
+     
+      {/* <Footer /> */}
     </>
   );
 }

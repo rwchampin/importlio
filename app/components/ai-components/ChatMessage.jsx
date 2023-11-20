@@ -1,5 +1,4 @@
-import Icon from '@/app/components/Icon';
-
+ 
 
 const ChatMessage = ({ message }) => {
   const isUser = message.role === 'user'; // Check the 'role' property

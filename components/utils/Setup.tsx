@@ -1,13 +1,6 @@
 "use client";
-
-// import ScrapingManager from "@/ScrapingManager";
-// import { useEffect } from 'react'
 import { useVerify } from "@/hooks";
-import { useEffect } from "react";
-
-import { Toaster } from "react-hot-toast";
-// import { useAppDispatch } from "@/redux/hooks";
-// import { setPosts } from "@/redux/features/blog/blogSlice";
+import Notification from "@/components/Notifications";
 
 function Setup() {
   // const dispatch = useAppDispatch();
@@ -32,7 +25,7 @@ function Setup() {
   //   getData()
   // }, [])
 
-  return <Toaster />;
+  return <Notification />;
 }
 
 export default Setup;

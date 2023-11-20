@@ -1,7 +1,6 @@
 import { useEffect } from 'react';
 import { 
 	useAppDispatch,
-	useAppSelector
  } from '@/redux/hooks';
 
 
@@ -10,22 +9,20 @@ import { useVerifyMutation } from '@/redux/features/authApiSlice';
 
 export default function useVerify() {
 	const dispatch = useAppDispatch();
-	const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
+	// const isAuthenticated = useAppSelector(state => state.auth.isAuthenticated);
 	const [verify] = useVerifyMutation();
 
 	useEffect(() => {
-		if (isAuthenticated) {
+
 			verify(undefined)
 				.unwrap()
-				.then(() => {
+				.then((res) => {
 					dispatch(setAuth());
 				})
 				.finally(() => {
 					dispatch(finishInitialLoad());
 				});
-		} else {
-			dispatch(finishInitialLoad());
-		}
+
 	}, []);
 
 }

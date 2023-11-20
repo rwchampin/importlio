@@ -36,6 +36,48 @@ const nextConfig = {
         destination: "https://www.importlio.com/:path*",
         permanent: true,
       },
+      {
+        source: "/en-US",
+        destination: "/",
+        permanent: true,
+      },
+      {
+        source: "/template",
+        destination: "/",
+        permanent: true,
+      },{
+        source: "/loading",
+        destination: "/",
+        permanent: true,
+      },{
+        source: "/dropshipping-suppliers-secrets",
+        destination: "/ecommerce-tutorials/dropshipping-suppliers-secrets",
+        permanent: true,
+      }, {
+        source: "/online-general-store-5-products-from-a-successful-entrepreneur",
+        destination: "/ecommerce-tutorials",
+        permanent: true,
+      },{
+        source: "/50-effective-strategies-to-boost-sales-with-dropshipping",
+        destination: "/ecommerce-tutorials/50-effective-strategies-to-boost-sales-with-dropshipping",
+        permanent: true,
+      }, {
+        source: "/not-found",
+        destination: "/",
+        permanent: true,
+      },{
+        source: "/ecommerce-tutorials/www.instagram.com/importlio",
+        destination: "https://www.instagram.com/importlio",
+        permanent: true,
+      },{
+        source: "/www.instagram.com",
+        destination: "https://www.instagram.com/importlio",
+        permanent: true,
+      },{
+        source: "/auth/www.instagram.com",
+        destination: "https://www.instagram.com/importlio",
+        permanent: true,
+      }
     ];
   },
   webpack: (config, options) => {

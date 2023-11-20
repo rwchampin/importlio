@@ -1,15 +1,16 @@
 "use client";
 // import Image from "next/image";
-import { useEffect, useRef } from "react";
-import { gsap, ScrollTrigger } from "gsap/all"; 
+import { useEffect, useRef,useS } from "react";
+import gsap, { ScrollTrigger } from "gsap/all"; 
 
-gsap.registerPlugin(ScrollTrigger);
+
 
 
 const LazyLoad = ({ src, dataSrc, type = "img", ...props }) => {
   const elementRef = useRef(null);
   const loadedRef = useRef(false);
   useEffect(() => {
+    gsap.registerPlugin(ScrollTrigger);
   ScrollTrigger.config({ limitCallbacks: true });
 
     const element = elementRef.current;
@@ -86,6 +87,9 @@ const LazyLoad = ({ src, dataSrc, type = "img", ...props }) => {
       onEnter: loadImage,
       // markers: true,
       onEnterBack: loadImage, // make sure it works in either direction
+      onUpdate: (self) => {
+       
+      },
     });
 
     return () => {

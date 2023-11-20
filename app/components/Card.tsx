@@ -29,18 +29,25 @@ const CardMainContent = ({ post }: any) => {
 };
 
 const CardImage = ({ post }: any) => {
+  if (!post.featured_image) {
+    return <h2>Error</h2>
+  }
+
   return (
     <Link
       href={`/ecommerce-tutorials/${post.slug}`}
-     className="bg-red-400 w-[100%] block h-auto relative">
-      <Image
-        src={post.mobile_image || post.featured_image}
-        className="object-cover w-full h-full"
-        // placeholder="blur"
+     className="h-[300px] w-auto lg:w-1/4 lg:h-auto bg-red-400  block  relative shadow-xl rounded-lg overflow-hidden">
+       <Image
+        src={post.featured_image}
+        // className="object-cover relative"
         quality={80}
+        sizes="100vw"
+      style={{
+        objectFit: 'cover',
+      }}
         fill
         alt={post.title}
-      />
+      /> 
     </Link>
   );
 };
@@ -60,9 +67,8 @@ export default function Card({ post }: any) {
         <ShadowText type="card" theme={post.shadow_text_theme}>
           {post.shadowText}
         </ShadowText>
-        <div className="flex flex-col gap-2">
-          {/* <CardImage post={post} /> */}
-           <div className="relative z-100">
+        <div className="flex flex-col gap-2 lg:flex-row">
+           <div className="relative z-100 w-3/4">
             <CardHeader post={post} />
             <CardMainContent post={post} />
             <CardFooter post={post} />

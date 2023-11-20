@@ -8,7 +8,6 @@ interface AuthState {
 const initialState = {
 	isAuthenticated: false,
 	isLoading: true,
-	user: null
 } as any;
 
 const authSlice = createSlice({
@@ -18,12 +17,8 @@ const authSlice = createSlice({
 		setAuth: (state) => {
 			state.isAuthenticated = true;
 		},
-		setUser: (state, action) => {
-			state.user = action.payload.user;
-		},
 		logout: state => {
 			state.isAuthenticated = false;
-			state.user = null;
 		},
 		finishInitialLoad: state => {
 			state.isLoading = false;
@@ -31,5 +26,5 @@ const authSlice = createSlice({
 	},
 });
 
-export const { setAuth,setUser, logout, finishInitialLoad } = authSlice.actions;
+export const { setAuth, logout, finishInitialLoad } = authSlice.actions;
 export default authSlice.reducer;

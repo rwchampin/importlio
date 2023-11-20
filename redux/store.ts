@@ -6,20 +6,18 @@ import {apiSlice}  from '@/redux/services/api';
 
 import authReducer from './features/authSlice';
 import coreSlice from './features/core/coreSlice';
-import blogSlice from './features/blog/blogSlice';
-import modalSlice from './features/modal/modalSlice';
 import debugSlice from './features/debug/debugSlice';
-
-
+import notificationsSlice from './features/notifications/notificationsSlice';
+import productSlice from './features/products/productSlice';
 
 export const store = configureStore({
 	reducer: {
 		[apiSlice.reducerPath]: apiSlice.reducer,
 		auth: authReducer,
 		core: coreSlice,
-		blog: blogSlice,
-		modal: modalSlice,
 		debug: debugSlice,
+		notifications: notificationsSlice,
+		product: productSlice,
 
 	},
 	middleware: getDefaultMiddleware =>

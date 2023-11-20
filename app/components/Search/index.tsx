@@ -1,46 +1,97 @@
 "use client";
 import React, { forwardRef } from "react";
 import { useInput } from "@nextui-org/react";
-import { SearchIcon } from "./SearchIcon";
+
 import { CloseFilledIcon } from "./CloseFilledIcon";
+import { shopifyExport } from "./shopifyExport";
+import { FaSearch } from "react-icons/fa";
+
 
 import { useRouter } from "next/navigation";
-import Link from "next/link";
-import DropWrapper from "./DropWrapper";
-import useAuth from "@/hooks/use-auth";
 
+import CustomLink from "@/components/common/CustomLink";
+import CustomButton from "@/components/common/CustomButton";
+import DropWrapper from "./DropWrapper";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
+
+import { setProducts, setSelectedProducts } from "@/redux/features/products/productSlice";
 const styles = {
-  label: "text-black/50 dark:text-white/90 hidden",
+  label: "text-black/50 dark:text-white/90 hidden p-5.5",
   input: [
     "h-input p-2 ring-0 border-none outline-none",
     "focus:bg-transparent focus:border-none focus:outline-none focus:ring-0",
     "placeholder:text-gray-400",
-    "group-hover:placeholder:text-gray-500",
     // "h-input",
   ],
-  innerWrapper: ["flex gap-2 justify-around rounded-lg p-1"],
-  inputWrapper: ["main-inner-wrapper bg-input", "mt-10"],
+  innerWrapper: ["inner-wrapper flex gap-2 justify-around rounded-md p-1 items-center"],
+  inputWrapper: ["main-inner-wrapper bg-input rounded-md p-0.5", "mt-10"],
 };
 
 const Search = forwardRef((props: any, ref: any) => {
   const router = useRouter();
-  const { user, isAuthenticated } = useAuth();
-  // const { isAuthen } = useAppSelector((state) => state.auth);
-  // const dispatch = useAppDispatch();
-  const s = 'bg-button text-sm text-white rounded-md flex flex-1 items-center justify-center h-input'
-  const onBlur = (e: any) => {
-    e.preventDefault();
-   
-    if(!user || !isAuthenticated) {
-       router.push("/auth/login");
-      return false;
+  const dispatch = useAppDispatch();
+  const { products, selectedProducts } = useAppSelector((state:any) => state.product);
+  const [query, setQuery] = React.useState<any>("");
+  
+  const getProducts = async (value: any) => {
+    const res = await fetch(`/api/products/search/?q=${value}`);
+
+    const { products } = await res.json();
+
+    dispatch(setProducts(products));
+  }
+
+
+  const handleChange = (e: any) => {
+    setQuery(e)
+    if(e && e.length > 3) {
+      getProducts(e)
+    }else{
+      dispatch(setProducts([]));
     }
+  }
+
+  const handleAdd = (e:any) => {
+    e.preventDefault()
+    const exportedProducts = products.filter((item:any) => selectedProducts.includes(item.id))
+    const status = shopifyExport(exportedProducts)
+
+    if(status) {
+      dispatch(setSelectedProducts([]))
+      dispatch(setProducts([]))
+      setQuery("")
+    }
+  }
+
+   
+
+  const ButtonRow = () => {
+
     
-   
-   
-  };
+    if(!products.length) {
+      return <CustomLink classNames="h-[100%]" variant="solid" size="sm" href="/auth/register/">REGISTER FREE</CustomLink>
+    }
+
+    return (
+      <div className="flex gap-2 w-1/4">
+      <CustomButton
+       onClick={handleAdd}
+       variant="solid"
+        size="sm"
+       >DOWNLOAD CSV</CustomButton>
+
+        <CustomButton
+        onClick={handleAdd}
+        variant="solid"
+        size="sm"
+        >IMPORT TO SHOPIFY</CustomButton>
+
+      </div>
+    )
+  }
 
   const {
+    value,
     Component,
     label,
     domRef,
@@ -62,17 +113,18 @@ const Search = forwardRef((props: any, ref: any) => {
   }: any = useInput<any>({
     ...props,
     ref,
+    value: query,
     // this is just for the example, the props bellow should be passed by the parent component
     label: "Search",
     type: "search",
-    placeholder: "Enter product sources",
-
+    placeholder: "Search for products by title and/or ASIN",
+    onValueChange: handleChange,
     isClearable: true,
     isRequired: true,
     size: "lg",
     variant: "bordered",
     startContent: (
-      <SearchIcon className="text-black/70  pointer-events-none flex-shrink-0 h-5 w-5" />
+      <FaSearch className="text-black/70  pointer-events-none flex-shrink-0 text-2xl" />
     ),
     // custom styles
     classNames: {
@@ -99,13 +151,8 @@ const Search = forwardRef((props: any, ref: any) => {
       return (
         <div {...getInnerWrapperProps()}>
           {startContent}
-          <input {...getInputProps()} onMouseDown={onBlur} />
-          <Link
-            href="/auth/register"
-            className="bg-gray-900 text-white p-3 rounded-lg shadow-lg break-keep	whitespace-nowrap	"
-          >
-            Get Started
-          </Link>
+          <input {...getInputProps()} />
+          <ButtonRow />
           {end}
         </div>
       );
@@ -113,48 +160,52 @@ const Search = forwardRef((props: any, ref: any) => {
 
     return <input {...getInputProps()} />;
   }, [startContent, end, getInputProps, getInnerWrapperProps]);
-  const El = () => {
-    return (
-      <section className="core-search mt-10">
-      {/* <div className="w-[340px] h-[300px] px-8 rounded-2xl flex justify-center items-center bg-gradient-to-tr from-pink-500 to-yellow-500 text-white shadow-lg"> */}
-
-      <Component {...getBaseProps()}>
-        {shouldLabelBeOutside ? labelContent : null}
-        <h6>
-          Enter any{" "}
-          <Link href="https://www.amazon.com/gp/product/B07XJ8C8F3/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1">
-            amazon
-          </Link>{" "}
-          product link or product results page link to enter them into your{" "}
-          <Link href="https://www.shopify.com">Shopify Store</Link>.
-        </h6>
-        <div
-          {...getInputWrapperProps()}
-          role="button"
-          onClick={() => {
-            domRef.current?.focus();
-          }}
-        >
-          {shouldLabelBeInside ? labelContent : null}
-          {innerWrapper}
-        </div>
-        {description && <div {...getDescriptionProps()}>{description}</div>}
-        {errorMessage && (
-          <div {...getErrorMessageProps()}>{errorMessage}</div>
-        )}
-      </Component>
-      {/* </div> */}
-    </section>
-    );
-  }
+ 
 
   // if(!auth.isAuthenticated) {
   //   return <El />
   // }
   return (
-    // <DropWrapper>
-      <El />
-    // </DropWrapper>
+    <section className="core-search mt-10">
+    <Component {...getBaseProps()}>
+      {shouldLabelBeOutside ? labelContent : null}
+      <h3 className="text-2xl font-bold font-montserrat uppercase">
+        Try our Product Search Tool
+      </h3>
+      <p>
+        Search our current product catalog! Be sure to check frequently, this provides real-time access to the full, up-to-date & exclusive list of Amazon dropshipping products available for import to your Shopify store.
+      </p>
+      {/* <h6>
+        Enter any{" "}
+        <CustomLink
+          variant="text"
+          size="sm"
+          target="_blank"
+          rel="noopener noreferrer"
+         href="https://www.amazon.com/gp/product/B07XJ8C8F3/ref=ppx_yo_dt_b_asin_title_o00_s00?ie=UTF8&psc=1"
+         >
+          amazon
+        </CustomLink>{" "}
+        product link or product results page link to enter them into your{" "}
+        <CustomLink href="https://www.shopify.com" variant="text" target="_blank">Shopify Store</CustomLink>.
+      </h6> */}
+      <div
+        {...getInputWrapperProps()}
+        role="button"
+        // onClick={() => {
+        //   domRef.current?.focus();
+        // }}
+      >
+        {shouldLabelBeInside ? labelContent : null}
+        {innerWrapper}
+      </div>
+      {description && <div {...getDescriptionProps()}>{description}</div>}
+      {errorMessage && (
+        <div {...getErrorMessageProps()}>{errorMessage}</div>
+      )}
+    </Component>
+        <DropWrapper />
+  </section>
   );
 });
 

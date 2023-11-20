@@ -1,8 +1,17 @@
 
 
-import Link from "next/link";
+
 // import Back from "@/app/components/buttons/Back";
 import BasePage from "@/app/components/BasePage";
+import { Metadata } from "next";
+
+import Link from "next/link";
+
+
+export const metadata:Metadata = {
+  'robots': 'noindex, nofollow',
+  'title': 'Page not found',
+}
 export default function NotFound() {
   const CustomComponent:any = () => (
     <>
@@ -23,6 +32,7 @@ export default function NotFound() {
       shadowText="404"
       customComponent={<CustomComponent />}
     >
+
       <p>
         Sorry, we couldn&apos;t find the page you&apos;re looking for.
       </p>

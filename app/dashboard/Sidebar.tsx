@@ -36,8 +36,8 @@ export default function Sidebar() {
       protected: true,
     },
     {
-      name: "Web Scraper",
-      href: "/scraper",
+      name: "Product Scraper",
+      href: "/scrape-products",
       icon: TbDatabaseSearch,
     },
     {

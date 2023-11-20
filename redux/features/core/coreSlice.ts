@@ -1,27 +1,25 @@
 // src/features/core/coreSlice.js
 import { createSlice } from '@reduxjs/toolkit';
-
-interface UsersState {
-    showRecentPostsInFooter: boolean;
-  }
   
 const coreSlice = createSlice({
   name: 'core',
   initialState: {
-    showRecentPostsInFooter: true,
- 
+    banner: {
+      title: '',
+      message: '',
+      location: null
+    }
   },
   reducers: {
-    setShowRecentPostsInFooter: (state, action) => {
-      state.showRecentPostsInFooter = action.payload;
-    },
- 
+    setBanner: (state:any, action:any) => {
+      state.banner = action.payload;
+    }
   },
 });
 
 
 export const { 
-  setShowRecentPostsInFooter,
+  setBanner
  
 } = coreSlice.actions;
 export default coreSlice.reducer;

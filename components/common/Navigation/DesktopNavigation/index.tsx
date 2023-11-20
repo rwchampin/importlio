@@ -1,10 +1,13 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import DesktopNavigationItem from "./DesktopNavigationItem";
 import DesktopNavigationItemDropdown from "./DesktopNavigationItemDropdown";
 import { usePathname } from "next/navigation";
+import Spinner from "@/app/components/Spinner";
+
 // import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 
-export default function DesktopNavigation({ links }: { links: any }) {
+export default function DesktopNavigation({ links , user, isLoading }: any) {
   // const { data: user } = useRetrieveUserQuery();
   const pathname = usePathname();
   const [dimensions, setDimensions] = useState<any>(null);
@@ -34,6 +37,7 @@ export default function DesktopNavigation({ links }: { links: any }) {
         if (link.type === "mobile") {
           return null;
         }
+         
         // if (link.dropdown !== null) {
         //   return (
         //     <DesktopNavigationItemDropdown
@@ -81,7 +85,7 @@ export default function DesktopNavigation({ links }: { links: any }) {
         //   //   </Dropdown>
         //   // );
         // }
-        return <DesktopNavigationItem ref={activeItem} key={i} link={link} />;
+        return <DesktopNavigationItem ref={activeItem} key={i} link={link} user={user} isLoading={isLoading} />;
         // return (
         //   <NavbarItem key={i}>
         //     <Link color="foreground" href={link.href}>

@@ -1,57 +1,45 @@
-import { useState, forwardRef } from "react";
-import { useDropzone } from "react-dropzone";
+import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 
-import Papa from "papaparse";
+import { setSelectedProducts } from "@/redux/features/products/productSlice";
 
-const DropWrapper = forwardRef(({ ref, props }:any) => {
-  const [urls, setUrls] = useState([]);
+const DropWrapper = () => {
+  const dispatch = useAppDispatch();
+  const { products, selectedProducts } = useAppSelector((state:any) => state.product);
 
-  const handleFileDrop = (acceptedFiles: any) => {
-    const file = acceptedFiles[0];
-    Papa.parse(file, {
-      complete: (results: any) => {
-        const parsedUrls = results.data
-          .flat()
-          .filter(Boolean)
-          .map((url:any) => ({ url }));
-        setUrls(parsedUrls);
-      },
-      header: false,
-    });
-  };
+   
 
-  const { getRootProps, getInputProps, isDragActive }: any = useDropzone();
+ 
+
+  if(!products.length) return null
 
   return (
     <div
-      {...getRootProps()}
-      className={`dropzone ${isDragActive ? "active" : ""}`}
+
+    className="bg-white p-3 rounded-lg shadow-lg"
     >
-      {props.children}
-      {urls.map((url: any) => {
+      <p className="text-xl uppercase font-bold font-montserrat">Select the products you want to import.</p>
+      {products.map((item: any) => {
         return (
-          <div>
-            <label
-              htmlFor="email"
-              className="block text-sm font-medium text-gray-700"
-            >
-              {url.url}
-            </label>
-            <div className="mt-1">
-              <input
-                type="email"
-                name="email"
-                id="email"
-                className="block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm"
-                placeholder="you@example.com"
+         <p className="py-2 hover:bg-gray-400 flex gap-2 p-2 rounded-lg">
+            <input
+             type="checkbox" 
+             value={item.id} 
+             onChange={(e:any) => {
+                if(e.target.checked) {
+                  const r = [...selectedProducts, item.id]
+                  dispatch(setSelectedProducts(r))
+                }else{
+                  dispatch(setSelectedProducts(selectedProducts.filter((p:any) => p !== item.id)))
+                }
+             }}
               />
-            </div>
-          </div>
+              {item.title}
+         </p>
         );
       })}
     </div>
   );
-});
+};
 
 
 export default DropWrapper;

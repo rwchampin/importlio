@@ -1,16 +1,12 @@
 import LogoBlack from "@/components/common/LogoBlack";
 import SocialIcons from "@/app/components/SocialIcons";
-// import dynamic from "next/dynamic";
-// import RecentBlogPosts from "@/app/components/RecentBlogPosts";
-
-export default function Footer({ showPosts = true }) {
+import RecentBlogPosts from "@/app/components/RecentBlogPosts";
+export default function Footer() {
   return (
     <>
-      {/* {showPosts && <RecentBlogPosts />} */}
+      <RecentBlogPosts />
       <footer
-        className={`relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 ${
-          showPosts ? "mt-0" : "mt-10"
-        }`}
+        className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 mt-10"
       >
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">

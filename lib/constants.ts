@@ -276,3 +276,11 @@ export interface LinkProps {
     dropdownData: any;
     name?: string;
   }
+
+
+  export interface NotificationProps {
+    id: string | number;
+    type: "success" | "error" | "info" | "warning";
+    title: string;
+    message: string
+  }

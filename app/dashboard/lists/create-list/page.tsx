@@ -1,91 +1,48 @@
 "use client";
-import { Input, Textarea, Select,SelectItem } from "@nextui-org/react";
-import { Chip } from "@nextui-org/react";
+import { Input, Textarea, Select, SelectItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-
+import puppeteer from "puppeteer";
 // import { scrapeGoogleSearch } from "@/lib/functions";
 export default function Page() {
-    const [listName, setListName] = useState<any>("Untitled List");
-    const [listDescription, setListDescription] = useState<any>("A blank list description.");
+  const [listName, setListName] = useState<any>("Untitled List");
+  const [listDescription, setListDescription] = useState<any>(
+    "A blank list description."
+  );
+  const [lists, setLists] = useState<any>([]);
+    const [selectedList, setSelectedList] = useState<any>("");
+  const [keywords, setKeywords] = useState<any>("");
+  const [emails, setEmails] = useState<any>("");
+  useEffect(() => {
+    getLists();
+  }, []);
 
-    const [listSize, setListSize] = useState<any>(500);
-    const [listKeywords, setListKeywords] = useState<any>("");
-  const listSizes:any = [
-    100,
-    250,
-    500,
-    1000,
-    2500,
-    5000,
-    10000,
-  ]
+  const handleSubmit = () => {
+    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/lists/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ name: listName, description: listDescription }),
+    })
+      .then((res: any) => res.json())
+      .then((data: any) => {
+        getLists();
+      });
+  };
 
-  const emailTargets:any = [
-    "@gmail.com",
-    "@yahoo.com",
-    "@hotmail.com",
-    "@aol.com",
-    "@icloud.com",
-    "@outlook.com",
-    "@msn.com",
-    "@live.com",
-    "@yandex.com",
-    "@mail.com",
-    "@zoho.com",
-  ]
+  const getLists = () => {
+    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/lists/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((res: any) => res.json())
+      .then((data: any) => {
+        setLists(data.results);
+      });
+  };
 
-  const contactInformationTypes = [
-    "Email",
-    "Phone Number",
-    "Address",
-    "Social Media",
-    "Website",
-    "Name",
-  ]
-
-    // const browser = await puppeteer.launch();
-    // const page = await browser.newPage();
-    // await page.goto('https://developer.chrome.com/');
-    // const data = await page.evaluate(() => document.querySelector('*').outerHTML);
-
-    // console.log(data);
-
-    // await browser.close();
-//   const listSizes = [
-//     100,
-//     250,
-//     500,
-//     1000,
-//     2500,
-//     5000,
-//     10000,
-//   ]
-
-//   const emailTargets = [
-//     "@gmail.com",
-//     "@yahoo.com",
-//     "@hotmail.com",
-//     "@aol.com",
-//     "@icloud.com",
-//     "@outlook.com",
-//     "@msn.com",
-//     "@live.com",
-//     "@yandex.com",
-//     "@mail.com",
-//     "@zoho.com",
-//   ]
-
-//   const contactInformationTypes = [
-//     "Email",
-//     "Phone Number",
-//     "Address",
-//     "Social Media",
-//     "Website",
-//     "Name",
-//   ]
-//   const [value, setValue] = useState<any>("");
-//   const [chips, setChips] = useState<any>([]);
-  
   const getData = () => {
     // Perform the fetch call here with 'chips' array
     const res = fetch(
@@ -95,115 +52,148 @@ export default function Page() {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ listSize, listKeywords }),
+        // body: JSON.stringify({ listKeywords }),
       }
     )
-      .then((res:any) => res.json())
-      .then((data:any) => {
-        debugger;
+      .then((res: any) => res.json())
+      .then((data: any) => {
+        getLists();
       });
   };
-  
-  const handleSubmit = () => {
 
-  }
+  const saveEmails = (e: any) => {
+    e.preventDefault();
+
+    fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/save-emails/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ 
+        emails: keywords.split("\n"),
+        list: selectedList,
+      }),
+    })
+      .then((res: any) => res.json())
+      .then((data: any) => {
+        debugger
+      });
+  };
  
-  // Call the function to scrape the Google search page
- 
-  
-  const niches:any = []
+
   return (
-    <>
-      <form onSubmit={handleSubmit} className="h-full w-full flex flex-col md:flex-row items-start justify-center gap-3">
+    <div className="flex flex-col">
+      <form
+        onSubmit={handleSubmit}
+        className="h-full w-full flex flex-col md:flex-row items-start justify-center gap-3"
+      >
         <div className="bg-gray-200 flex-1 shadow-sm rounded-lg p-5 border-2 border-black/10 gap-2 flex flex-col">
-        <Input
-          label="Name"
-          placeholder="Name of List"
-          value={listName}
-          size="lg"
-          type="text"
-          variant="bordered"
-          isClearable={true}
-          onValueChange={(newValue) => setListName(newValue)}
-          classNames={{
-            label: "text-black/50 dark:text-white/90",
-            input: [
-              "bg-transparent",
-              "text-black/90 dark:text-white/90",
-              "placeholder:text-black",
-              "border-0 shadow-none ring-0 outline-none",
-            ],
-            innerWrapper: "bg-transparent",
-            inputWrapper: [
-              "shadow-xl",
-              "bg-input text-black",
-              "backdrop-blur-xl",
-              "!cursor-text",
-            ],
-          }}
-        />
-         <Input
-          label="Description"
-          placeholder="Description of List"
-          value={listDescription}
-          size="lg"
-          type="text"
-          variant="bordered"
-          isClearable={true}
-          onValueChange={(newValue) => setListDescription(newValue)}
-          classNames={{
-            label: "text-black/50 dark:text-white/90",
-            input: [
-              "bg-transparent",
-              "text-black/90 dark:text-white/90",
-              "placeholder:text-black",
-              "border-0 shadow-none ring-0 outline-none",
-            ],
-            innerWrapper: "bg-transparent",
-            inputWrapper: [
-              "shadow-xl",
-              "bg-input text-black",
-              "backdrop-blur-xl",
-              "!cursor-text",
-            ],
-          }}
-        />
-        <select className="bg-transparent text-black/90 dark:text-white/90 placeholder:text-black border-0 shadow-none ring-0 outline-none">
-          <option>Choose a List Size</option>
-          {listSizes.map((size:any) => (
-            <option key={size} value={size}>{size}</option>
-          ))}
-        </select>
-        <Input
-          label="Keywords"
-          placeholder="Enter keywords to generate your list"
-          value={listKeywords}
-          size="lg"
-          type="text"
-          variant="bordered"
-          isClearable={true}
-          onValueChange={(newValue) => setListKeywords(newValue)}
-          classNames={{
-            label: "text-black/50 dark:text-white/90",
-            input: [
-              "bg-transparent",
-              "text-black/90 dark:text-white/90",
-              "placeholder:text-black",
-              "border-0 shadow-none ring-0 outline-none",
-            ],
-            innerWrapper: "bg-transparent",
-            inputWrapper: [
-              "shadow-xl",
-              "bg-input text-black",
-              "backdrop-blur-xl",
-              "!cursor-text",
-            ],
-          }}
-        />
-        <input type="submit" value="Submit" className="bg-button h-input text-white p-2 rounded-lg" />
-      </div>
+          <Input
+            label="Name"
+            placeholder="Name of List"
+            value={listName}
+            size="lg"
+            type="text"
+            variant="bordered"
+            isClearable={true}
+            onValueChange={(newValue) => setListName(newValue)}
+            classNames={{
+              label: "text-black/50 dark:text-white/90",
+              input: [
+                "bg-transparent",
+                "text-black/90 dark:text-white/90",
+                "placeholder:text-black",
+                "border-0 shadow-none ring-0 outline-none",
+              ],
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-xl",
+                "bg-input text-black",
+                "backdrop-blur-xl",
+                "!cursor-text",
+              ],
+            }}
+          />
+          <Input
+            label="Description"
+            placeholder="Description of List"
+            value={listDescription}
+            size="lg"
+            type="text"
+            variant="bordered"
+            isClearable={true}
+            onValueChange={(newValue) => setListDescription(newValue)}
+            classNames={{
+              label: "text-black/50 dark:text-white/90",
+              input: [
+                "bg-transparent",
+                "text-black/90 dark:text-white/90",
+                "placeholder:text-black",
+                "border-0 shadow-none ring-0 outline-none",
+              ],
+              innerWrapper: "bg-transparent",
+              inputWrapper: [
+                "shadow-xl",
+                "bg-input text-black",
+                "backdrop-blur-xl",
+                "!cursor-text",
+              ],
+            }}
+          />
 
-     </form>
-    </>
+          <input
+            type="submit"
+            value="Submit"
+            className="bg-button h-input text-white p-2 rounded-lg"
+          />
+        </div>
+      </form>
+
+      <hr />
+
+      <form
+        onSubmit={saveEmails}
+        className="h-full w-full flex flex-col items-start justify-center gap-3 bg-gray-300 rounded-xl"
+      >
+      <Select 
+        label="Select an List" 
+        className="max-w-xs" 
+        onChange={(e) => setSelectedList(e.target.value)}
+      >
+         <SelectItem  key="-1" value={'-----------'}>
+            -----------
+          </SelectItem>
+        {lists.length && lists.map((list:any) => (
+          <SelectItem key={list.id} value={list.id}>
+            {list.name}
+          </SelectItem>
+        ))}
+      </Select>
+      <Textarea
+      value={keywords}
+      onValueChange={(e:any) => {
+        setKeywords(e);
+      }}
+      />
+      <input
+            type="submit"
+            value="Submit"
+            className="bg-button h-input text-white p-2 rounded-lg w-full"
+          />
+      </form>
+
+      <hr />
+
+      <form onSubmit={saveEmails}>
+        <Textarea
+          type="text"
+          value={emails}
+          onValueChange={(e) => {
+            setEmails(e);
+          }}
+        />
+        <input type="submit" value="Submit" />
+      </form>
+    </div>
   );
 }

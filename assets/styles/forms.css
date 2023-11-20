@@ -12,12 +12,10 @@ form {
   input[type="number"],
   input[type="tel"],
   input[type="url"] {
-    /* border:  none !important;
-    outline: none !important; */
     border-radius: 8px; 
     font-family: var(--font-apercu);
     color: var(--input-color);
-    /* filter: brightness(90%); */
+
     height: var(--sf-height);
     width: 100%;
     background: #f0f1fa;
@@ -47,12 +45,9 @@ form {
 form {
     position: relative;
 } 
-  /* :not(.tox) form path:not(.tox-icon svg path) {
-    stroke: var(--color-primary);
-  }
-   
   
-    */
+  
+   
     ::placeholder {
       opacity: .4 !important;
     }

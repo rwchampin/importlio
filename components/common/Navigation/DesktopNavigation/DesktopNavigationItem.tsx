@@ -3,12 +3,22 @@ import React, { forwardRef } from "react";
 import { NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 const DesktopNavigationItem = forwardRef((props: any, ref: any) => {
-  const { link } = props;
+  const { link, user, isLoading } = props;
+
   const pathname = usePathname();
 
   const isActive = pathname === link.href;
+
+  if(link.protected && isLoading) {
+    return null
+  }
+
+  if(link.protected && isLoading && !user) {
+    return null
+  }
 
   if(!isActive) {
     return (

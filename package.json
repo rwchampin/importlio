@@ -2,6 +2,9 @@
 	"name": "importlio",
 	"version": "0.0.1",
 	"private": true,
+	"cacheDirectories": [
+		".next/cache"
+	],
 	"engines": {
 		"node": ">=18.0.0"
 	},
@@ -36,13 +39,13 @@
 		"glslify": "^7.1.1",
 		"glslify-loader": "^2.0.0",
 		"gsap": "./assets/js/gsap.tgz",
-		"next": "^14.0.1",
+		"next": "^14.0.2",
 		"nextjs-toploader": "^1.4.2",
 		"openai": "^3.3.0",
 		"papaparse": "^5.4.1",
 		"postcss": "8.4.23",
 		"postprocessing": "^6.33.2",
-		"puppeteer": "^21.4.1",
+		"puppeteer": "^21.5.0",
 		"raw-loader": "^4.0.2",
 		"react": "^18.2.0",
 		"react-dom": "^18.2.0",

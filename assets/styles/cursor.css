@@ -6,7 +6,7 @@
     direction: ltr;
     contain: layout style size;
     pointer-events: none;
-    /* transition: opacity 0.3s, color 0.4s; */
+
     isolation: isolate;
   }
   .mf-cursor::before {
@@ -20,7 +20,7 @@
     transform: scale(0.2);
     background: currentColor;
     border-radius: 50%;
-    /* transition: transform 0.25s ease-in-out, opacity 0.1s; */
+
   }
   .mf-cursor.-inverse::before {
     color: white;

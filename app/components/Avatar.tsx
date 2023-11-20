@@ -77,7 +77,7 @@ export default function Avatar({ user }: any) {
                 {user?.email}
             </p>
           </DropdownItem>
-          {links.map((link:any):any => {
+           {links.map((link:any):any => {
             const { key, label, href } = link;
             return (
               <DropdownItem
@@ -90,7 +90,7 @@ export default function Avatar({ user }: any) {
                 </div>
               </DropdownItem>
             );
-          })}
+          })}  
 
           <DropdownItem key="logout" color="danger" 
             onClick={handleLogout}
