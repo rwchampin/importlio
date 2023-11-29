@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BasePage from "@/app/components/BasePage";
 
 export const metadata: Metadata = {
   title: "Ecommerce Dropshipping Categories",
@@ -24,7 +25,12 @@ export default async function Page() {
   const { results } = await res.json()
 
   return (
-    <>
+    <BasePage
+      title="Shopify Dropshipping Categories"
+      subtitle="A list of all the categories used in our Amazon dropshipping tutorials"
+      headline="Dropshipping Categories"
+      shadowText="Posts by Category"
+    >
         <h1>
         Dropshipping Categories
         </h1>
@@ -35,6 +41,6 @@ export default async function Page() {
             ))}
 
         </ul>
-    </>
+    </BasePage>
   )
 }

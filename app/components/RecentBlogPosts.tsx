@@ -14,8 +14,9 @@ export default function RecentBlogPosts(){
     const [posts, setPosts] = useState<any>([])
 
    useEffect(() => {
-    if(pathname === '/ecommerce-tutorials/' || pathname === '/ecommerce-tutorials') {
-        return
+    // if pathname contains ecommerce-tutorials, return
+    if(pathname.includes('ecommerce-tutorials')){
+        return 
     }
 
     // if(posts) return
