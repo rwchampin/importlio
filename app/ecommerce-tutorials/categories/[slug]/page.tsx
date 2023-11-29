@@ -29,8 +29,7 @@ export async function generateMetadata({ params }: any) {
 }
 export default async function Page({ params }: any) {
   const { slug } = params;
-  let results = [];
-  try {
+   
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_HOST}/api/posts/categories/${slug}`,
       {
@@ -42,13 +41,9 @@ export default async function Page({ params }: any) {
     );
 
     const r = await res.json();
-    results = r.results;
+    const results = r.results;
 
-  } catch (error) {
-    console.log(error);
-
-    return <h5>Something went wrong.</h5>;
-  }
+   
 
   return (
     <BasePage
