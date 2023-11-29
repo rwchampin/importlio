@@ -69,7 +69,7 @@ export default function Sidebar() {
         {sidebarLinks.map((link: any, index: any) => {
           return (
             
-              <Skeleton className="flex rounded-full w-6 h-6" />
+              <Skeleton className="flex rounded-full w-6 h-6" key={index} />
             
           );
         })}

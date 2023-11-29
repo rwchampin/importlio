@@ -1,9 +1,6 @@
 "use client"
-import { 
-    createBlankPost,
-    getPosts
-} from '@/lib/api';
-import { BiPlusCircle, BiPencil, BiTrash } from 'react-icons/bi';
+ 
+import { BiPlusCircle } from 'react-icons/bi';
 
 import { useRouter } from 'next/navigation';
 
@@ -20,9 +17,10 @@ export default function Page() {
 
     useEffect(() => {
         async function fetchData() {
-          const res = await getPosts();
-          debugger
-            setPosts(res);
+          const res = await fetch('/api/posts/all');
+            const {posts} = await res.json();
+           
+            setPosts(posts.results);
         }
         if (posts.length === 0 || !posts || posts === null) {
             fetchData();

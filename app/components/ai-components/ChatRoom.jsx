@@ -178,6 +178,7 @@ const ChatRoom = () => {
 
           <div className="flex w-full mb-2">
             <input
+              id="message"
               type="text"
               className="flex-1 p-2 rounded-lg bg-white border w-full"
               placeholder="Type your message..."

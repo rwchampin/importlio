@@ -17,7 +17,7 @@ export default function SidebarLink({ link }: any) {
       className={`flex items-center text-xs justify-center gap-2  hover:cursor-pointer duration-200 ease-in-out hover:scale-110 overflow-visible`}
     >
       
-        <link.icon className={`${isActive ? "text-gray-300": "text-gray-500"} hover:text-white h-6 w-6`} type={link.icon} size={24} />
+        <link.icon className={`${isActive ? "text-gray-300": "text-gray-500"} hover:text-white h-6 w-6`}   size={24} />
     </Link>
     </Tooltip>
   );
