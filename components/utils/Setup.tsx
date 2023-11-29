@@ -26,7 +26,7 @@ function Setup() {
   //   getData()
   // }, [])
 
-  return <><GA GA_MEASUREMENT_ID={"G-V8X4P8V5SZ"} /><Notification /></>;
+  return <><Notification /></>;
 }
 
 export default Setup;

@@ -18,9 +18,9 @@ export default function GA({
   useEffect(() => {
 
     // check if development or localhost
-    if (process.env.NODE_ENV !== "production" || window.location.hostname.includes("localhost")) {
-      return;
-    }
+    // if (process.env.NODE_ENV !== "production" || window.location.hostname.includes("localhost")) {
+    //   return;
+    // } 
 
 
     const url = pathname + searchParams.toString();
