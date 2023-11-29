@@ -5,7 +5,7 @@ import gsap from 'gsap'
 import { DrawSVGPlugin } from 'gsap/DrawSVGPlugin';
 import { useEffect } from 'react';
 
-gsap.registerPlugin(DrawSVGPlugin);
+
 
 const SVGCircle = ({ size, fill, stroke, strokeWidth }) => {
 	const radius = size / 2;
@@ -16,7 +16,7 @@ const SVGCircle = ({ size, fill, stroke, strokeWidth }) => {
 	
 
 	useEffect(() => {
-
+		gsap.registerPlugin(DrawSVGPlugin);
 		gsap.fromTo('circle', {
 			drawSVG: '0% 0%'
 		}, {

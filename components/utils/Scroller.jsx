@@ -14,7 +14,7 @@ export default function Scroller({ children }) {
   
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    // gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
     const track = scrollTrackRef.current;
     const bar = scrollBarRef.current;
     const trackHeight = track.clientHeight;

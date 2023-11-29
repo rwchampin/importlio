@@ -24,7 +24,6 @@ export default function RecentBlogPosts(){
         fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`)
             .then((res) => res.json())
             .then(({ results }) => {
-                debugger
                 if(!results) return
                 setPosts(results)
             })

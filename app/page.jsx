@@ -54,13 +54,23 @@ function Page() {
         ctaText="Start your FREE Trial"
         />
       <>
-      <LazyLoad
+      {/* <LazyLoad
         type="video"
         dataSrc={`https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4`}
         src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video-low-res.mp4"
         width={"100%"}
         height={"100%"}
-      />
+      /> */}
+
+      <video
+        muted={true}
+        playsInline={true}
+        autoPlay={true}
+        loop={true}
+        controls={false}
+        className="w-full h-full">
+        <source src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4" type="video/mp4" />
+        </video>
       </>
       <Section>
         <FeatureHero />
