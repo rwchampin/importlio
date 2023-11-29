@@ -11,7 +11,7 @@ import Navigation from "@/components/common/Navigation";
 import { generatePageStructuredMarkup } from "@/lib/functions";
 import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
-import GA from "@/components/utils/GA";
+
 import Provider from "@/redux/provider";
 
 import Setup from "@/components/utils/Setup";
@@ -104,9 +104,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       className={`${apercu.variable} ${montserrat.variable}`}
       suppressHydrationWarning={true}
     >
-      <Suspense fallback={<div>Loading...</div>}>
-        <GA GA_MEASUREMENT_ID={"G-V8X4P8V5SZ"} />
-      </Suspense>
+     
+        
+      
       <body>
         <Provider>
         <Navigation />

@@ -17,13 +17,18 @@ export default function GA({
   const searchParams = useSearchParams();
   useEffect(() => {
 
+    // check if development or localhost
+    if (process.env.NODE_ENV !== "production" || window.location.hostname.includes("localhost")) {
+      return;
+    }
+
 
     const url = pathname + searchParams.toString();
 
     pageview(GA_MEASUREMENT_ID, url);
   }, [pathname, searchParams, GA_MEASUREMENT_ID]);
 
-  if(process.env.NODE_ENV === "development") return null;
+
   return (
     <>
       <Script

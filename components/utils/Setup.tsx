@@ -1,6 +1,7 @@
 "use client";
 import { useVerify } from "@/hooks";
 import Notification from "@/components/Notifications";
+import GA from "@/components/utils/GA";
 
 function Setup() {
   // const dispatch = useAppDispatch();
@@ -25,7 +26,7 @@ function Setup() {
   //   getData()
   // }, [])
 
-  return <Notification />;
+  return <><GA GA_MEASUREMENT_ID={"G-V8X4P8V5SZ"} /><Notification /></>;
 }
 
 export default Setup;
