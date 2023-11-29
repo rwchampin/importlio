@@ -1,7 +1,7 @@
 "use client";
 import { Input, Textarea, Select, SelectItem } from "@nextui-org/react";
 import { useEffect, useState } from "react";
-import puppeteer from "puppeteer";
+
 // import { scrapeGoogleSearch } from "@/lib/functions";
 export default function Page() {
   const [listName, setListName] = useState<any>("Untitled List");

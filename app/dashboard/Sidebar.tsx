@@ -3,7 +3,7 @@ import { Skeleton } from "@nextui-org/skeleton";
 import { TbPackages, TbDatabaseSearch } from "react-icons/tb";
 import { SiOpenai } from "react-icons/si";
 import { AiOutlineSetting, AiOutlineDashboard } from "react-icons/ai";
-import { CgProfile } from "react-icons/cg";
+// import { CgProfile } from "react-icons/cg";
 import { FaBook } from "react-icons/fa";
 import { GrEdit } from "react-icons/gr";
 import { PiShoppingCartDuotone } from "react-icons/pi";

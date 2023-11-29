@@ -1,9 +1,7 @@
-""
-import React from 'react'
-import Dashboard from '@/app/dashboard/Dashboard'
 
 import puppeteer from 'puppeteer'
-export default function Page() {
+
+export const scrapeInstagram = async (url: string) => {
 
   (async () => {
     const browser = await puppeteer.launch({
@@ -49,11 +47,4 @@ export default function Page() {
     await page.waitForNetworkIdle()
   }
   )()
-  return (
-    <Dashboard>
-        <h3>
-            Scraper
-        </h3>
-    </Dashboard>
-  )
 }
