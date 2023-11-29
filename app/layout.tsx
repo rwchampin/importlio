@@ -3,7 +3,7 @@ import "@/assets/styles/typography.css";
 
 import "./globals.css";
 
-import CookieBanner from "@/components/utils/CookieBanner";
+
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Navigation from "@/components/common/Navigation";
@@ -117,7 +117,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           </Scroller>
           {/* <Cursor /> */}
 
-          <CookieBanner />
+         
           <NextTopLoader
             color="#000"
             height={4}
