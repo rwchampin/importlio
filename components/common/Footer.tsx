@@ -6,7 +6,7 @@ export default function Footer() {
     <>
       <RecentBlogPosts />
       <footer
-        className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50 mt-10"
+        className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50"
       >
         <div className="flex flex-col md:flex-row">
           <div className="w-full md:-mx-6 md: lg:w-2/5">

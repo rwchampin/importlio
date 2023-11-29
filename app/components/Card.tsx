@@ -7,10 +7,10 @@ import ShadowText from "./typography/ShadowText";
 
 const CardHeader = ({ post }: any) => {
   return (
-    <div className="w-fill flex gap-2">
+    <div className="w-fill flex gap-2 items-center mb-2 text-xxs">
       <time dateTime={post.updated}>{post.updated_pretty}</time>
       <span className="font-[50px]">&bull;</span>
-      {post.post_type && <Link href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`}>{post.post_type.name}</Link>}
+      {post.post_type && <Link href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`} className="border-2 border-gray-500 bg-gray-300 text-gray-800 rounded-full text-xxs px-2 py-1">{post.post_type.name}</Link>}
 
       {!post.post_type && "Blog Post"}
     </div>
@@ -54,21 +54,22 @@ const CardImage = ({ post }: any) => {
 
 const CardFooter = ({ post }: any) => {
   return (
-    <>
+    <div className="w-full mx-auto mt-5 mb-2 gap-1 flex items-center justify-start overflow-scroll">
       <TagCloud data={post.tags} type="tags" />
       <TagCloud data={post.categories} type="categories" />
-      </>
+      </div>
   );
 };
 export default function Card({ post }: any) {
+
   return (
    
-      <article className="relative w-full shadow-xl rounded-xl overflow-hidden bg-offwhite p-3 flex">
+      <article className="relative w-full overflow-hidden shadow-lg rounded-xl bg-gray-200 p-3 flex border-5 border-black/10">
         <ShadowText type="card" theme={post.shadow_text_theme}>
           {post.shadowText}
         </ShadowText>
-        <div className="flex flex-col gap-2 lg:flex-row">
-           <div className="relative z-100 w-3/4">
+        <div className="flex flex-col gap-2 lg:flex-row w-full">
+           <div className="relative z-100">
             <CardHeader post={post} />
             <CardMainContent post={post} />
             <CardFooter post={post} />

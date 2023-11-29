@@ -5,6 +5,7 @@ import BasePage from '@/app/components/BasePage';
 // import Section from "@/app/components/Section";
 import type { Metadata } from "next";
 
+import Card from "@/app/components/Card";
 // import JsonLd from "@/app/components/JsonLd";
 // import {ScrollShadow} from "@nextui-org/react";
 
@@ -46,7 +47,6 @@ export const metadata: Metadata = {
 const getFilterPosts =async () => {
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
     method: "GET",
-    cache: "no-cache",
     headers: {
       "Content-Type": "application/json",
     },
@@ -61,9 +61,16 @@ export default async function Page() {
   // let { posts } = useAppSelector((state) => state.blog);
   // const dispatch = useAppDispatch()
   // dispatch(setShowRecentPostsInFooter(false))
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`, {
+    method: "GET",
+    headers: {
+      "Content-Type": "application/json",
+    },
+  });
 
+  const { results } = await res.json();
 
-  const posts = await getFilterPosts()
+  const posts = results;
   
   // if(name && type) {
   //   posts = findBlogPostsByPropertyAndName(posts, type, name);
@@ -81,10 +88,10 @@ export default async function Page() {
         showPostsInFooter={false}
       >
          
-        <BlogPageClientContent posts={posts} />
-          
-
-
+        {/* <BlogPageClientContent posts={posts} /> */}
+          <div className='flex flex-col md:flex-row flex-wrap gap-5 px-5 items-center'>
+      {posts && posts.length && posts.map((post: Post) => <Card post={post} key={post.slug} />)}
+      </div>
          {/* <JsonLd
           json={json}
           />  */}

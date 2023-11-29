@@ -16,7 +16,7 @@ const DesktopNavigationItem = forwardRef((props: any, ref: any) => {
     return null
   }
 
-  if(link.protected && isLoading && !user) {
+  if(link.protected && !user) {
     return null
   }
 

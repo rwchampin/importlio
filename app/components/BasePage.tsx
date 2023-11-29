@@ -60,7 +60,7 @@ export default function BasePage({
       />
       {/* this must be 100% width, no margin, no padding for the full width sections */}
 
-      <section className={`flex flex-col   w-full relative`}>
+      <section className={`flex flex-col   w-full relative mb-10`}>
         {children}
       </section>
 

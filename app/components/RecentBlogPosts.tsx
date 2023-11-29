@@ -11,19 +11,21 @@ export default function RecentBlogPosts(){
     // const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/recent/`)
     // const { results } = await res.json()
     // const posts = results
-    const [posts, setPosts] = useState<any>(null)
+    const [posts, setPosts] = useState<any>([])
 
    useEffect(() => {
     if(pathname === '/ecommerce-tutorials/' || pathname === '/ecommerce-tutorials') {
         return
     }
 
-    if(posts) return
+    // if(posts) return
     try {
-        fetch(`/api/posts/recent/`)
-            .then(res => res.json())
-            .then(({posts}) => {
-                setPosts(posts)
+        fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`)
+            .then((res) => res.json())
+            .then(({ results }) => {
+                debugger
+                if(!results) return
+                setPosts(results)
             })
     } catch (error) {
         console.log(error)
@@ -31,14 +33,14 @@ export default function RecentBlogPosts(){
     }, [])
 
 
-
+    if(posts.length === 0) return null
  
      
     return (
         
-            <div className="bg-gray-300 w-full  flex flex-col gap-5 py-10 px-5">
-               
-                {posts && posts.length && posts.map((post:any, idx:any) => {
+            <div className="w-full  flex flex-col gap-5 py-10 px-5">
+
+                {posts.length > 0 && posts.map((post:any, idx:any) => {
 
                     return (
                         <Card
@@ -47,7 +49,7 @@ export default function RecentBlogPosts(){
                         />
                     )
                 })}
-              
+
             </div>
 
     );
