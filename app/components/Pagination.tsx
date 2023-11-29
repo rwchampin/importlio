@@ -1,14 +1,16 @@
 "use client";
 import React, { useState, useEffect } from 'react';
-
-const Pagination = ({ json }:any) => {
-  const { count, next, previous } = json;
+import { Pagination as PP } from '@nextui-org/react';
+import Spinner from './Spinner';
+const Pagination = ({ json, handleChange }:any) => {
+  const { count, next, previous, results } = json;
 
   const amountPerPage = 5;  // Adjust based on your actual amount per page
-  const [totalPages, setTotalPages] = useState(Math.ceil(count / amountPerPage));
-  const [currentPage, setCurrentPage] = useState(1);
-  const [pageNumbers, setPageNumbers] = useState([]);
 
+  const [totalPages, setTotalPages] = useState<any>(Math.ceil(count / amountPerPage));
+  const [currentPage, setCurrentPage] = useState<any>(1);
+  const [pageNumbers, setPageNumbers] = useState<any>([]);
+  const [isLoading, setIsLoading] = useState<boolean>(true);
   useEffect(() => {
     setTotalPages(Math.ceil(count / amountPerPage));
     generatePageNumbers();
@@ -39,36 +41,29 @@ const Pagination = ({ json }:any) => {
     for (let i = startPage; i <= endPage; i++) {
       pages.push(i);
     }
-    // setPageNumbers(pages);
+    setPageNumbers(pages);
   };
 
-  const handlePageChange = (newPage : any) => {
-    setCurrentPage(newPage);
-    // Add your logic here to fetch new data based on the new page
-  };
+
+  
+ 
+   
 
   return (
-    <div>
-      <button onClick={() => handlePageChange(currentPage - 1)} disabled={currentPage === 1}>
-        Previous
-      </button>
-      {pageNumbers.length > 1 && (
-        <div className="page-numbers">
-          {pageNumbers.map((page) => (
-            <button
-              key={page}
-              onClick={() => handlePageChange(page)}
-              className={currentPage === page ? 'active' : ''}
-            >
-              {page}
-            </button>
-          ))}
-        </div>
-      )}
-      <button onClick={() => handlePageChange(currentPage + 1)} disabled={currentPage === totalPages}>
-        Next
-      </button>
-    </div>
+    
+    <PP 
+      loop
+      showControls
+      total={totalPages}
+      initialPage={currentPage}
+      classNames={{
+        wrapper: 'w-full bg-red-500 mx-auto',
+      }}
+      onChange={(newPage) => {
+        handleChange(newPage);
+      }}
+    />
+ 
   );
 };
 

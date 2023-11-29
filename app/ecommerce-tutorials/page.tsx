@@ -11,6 +11,7 @@ import Card from "@/app/components/Card";
 
 // import Sidebar from "@/app/components/BlogSidebar/Sidebar";
 import BlogPageClientContent from '../components/BlogPageClientContent';
+import Pagination from '../components/Pagination';
 // import Spinner from "@/app/components/Spinner";
 interface Post {
   title: string;
@@ -61,20 +62,21 @@ export default async function Page() {
   // let { posts } = useAppSelector((state) => state.blog);
   // const dispatch = useAppDispatch()
   // dispatch(setShowRecentPostsInFooter(false))
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
     },
   });
 
-  const { results } = await res.json();
+  const posts = await res.json();
 
-  const posts = results;
+
   
   // if(name && type) {
   //   posts = findBlogPostsByPropertyAndName(posts, type, name);
   // }
+  
   return (
     <>
       <BasePage
@@ -90,8 +92,10 @@ export default async function Page() {
          
         {/* <BlogPageClientContent posts={posts} /> */}
           <div className='flex flex-col md:flex-row flex-wrap gap-5 px-5 items-center'>
-      {posts && posts.length && posts.map((post: Post) => <Card post={post} key={post.slug} />)}
+      {posts && posts.results.length && posts.results.map((post: Post) => <Card post={post} key={post.slug} />)}
       </div>
+
+      {/* {posts.results.length > 0 && <Pagination json={posts} paginationChange={handleChange} />} */}
          {/* <JsonLd
           json={json}
           />  */}
