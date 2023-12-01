@@ -2,6 +2,9 @@ import Badge from '@/app/components/Badge'
 
 export default function TagCloud({ data, type }) {
 
+	if (!data || data.length === 0) {
+		return null
+	}
 	return (
 		
 

@@ -15,11 +15,14 @@ export default function RecentBlogPosts(){
 
    useEffect(() => {
     // if pathname contains ecommerce-tutorials, return
-    if(pathname.includes('ecommerce-tutorials')){
+    if(
+        pathname.includes('ecommerce-tutorials') ||
+        pathname.includes('search')
+        ){
         return 
     }
 
-    // if(posts) return
+    if(posts.length) return
     try {
         fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`)
             .then((res) => res.json())

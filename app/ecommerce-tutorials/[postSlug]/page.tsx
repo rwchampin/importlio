@@ -32,8 +32,9 @@ export default async function Page({
 }: {
   params: { postSlug: string };
 }) {
-  let post:any = false;
-  try {
+
+
+  // try {
     const res = await fetch(
       `${process.env.NEXT_PUBLIC_HOST}/api/posts/${params.postSlug}`,
       {
@@ -44,12 +45,12 @@ export default async function Page({
       }
     );
 
-     post = await res.json();
-
+    const post = await res.json();
+      debugger
     
-  } catch (error) {
-    console.log(error);
-  }
+  // } catch (error) {
+  //   console.log(error);
+  // }
 
   if(!post) {
     return <Spinner lg />

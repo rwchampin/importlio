@@ -3,7 +3,6 @@ import React, { forwardRef } from "react";
 import { NavbarItem } from "@nextui-org/react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { is } from "@react-three/fiber/dist/declarations/src/core/utils";
 
 const DesktopNavigationItem = forwardRef((props: any, ref: any) => {
   const { link, user, isLoading } = props;

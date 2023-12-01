@@ -32,7 +32,10 @@ function transformColorsToObject(inputObject) {
   "default": "#222222",
   "primary": "#222222",
   "secondary": "#222222",
-  
+  "ai": {
+    "dark-gray": "#343541",
+    "light-gray": "#444B59",
+  },
   // Radix Colors
   ...transformColorsToObject(F)
 

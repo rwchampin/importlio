@@ -1,4 +1,5 @@
- 
+import { RiOpenaiFill } from "react-icons/ri";
+
 
 const ChatMessage = ({ message }) => {
   const isUser = message.role === 'user'; // Check the 'role' property
@@ -6,8 +7,7 @@ const ChatMessage = ({ message }) => {
   return (
     <div className={`message mb-4 items-center inline-flex ${isUser ? 'justify-end' : 'justify-start'}`}>
       {!isUser && (
-        <Icon
-          type="openai"
+        <RiOpenaiFill
           className="h-12 w-12 mr-2 rounded-full stroke-black bg-gray-300"
         />
       )}

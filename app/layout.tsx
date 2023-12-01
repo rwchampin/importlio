@@ -3,7 +3,6 @@ import "@/assets/styles/typography.css";
 
 import "./globals.css";
 
-
 import localFont from "next/font/local";
 import type { Metadata } from "next";
 import Navigation from "@/components/common/Navigation";
@@ -104,25 +103,21 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       className={`${apercu.variable} ${montserrat.variable}`}
       suppressHydrationWarning={true}
     >
-     
-        
-      
       <body>
         <Provider>
-        <Navigation />
+          <Navigation />
           <Scroller>
-            
             {children}
             <Footer />
           </Scroller>
           {/* <Cursor /> */}
 
-         
-          <NextTopLoader
+          {/* <NextTopLoader
+            showSpinner={false}
             color="#000"
             height={4}
             // showSpinner={true}
-          />
+          /> */}
           <JsonLd
             json={generatePageStructuredMarkup({
               description,

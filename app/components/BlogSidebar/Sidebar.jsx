@@ -1,20 +1,20 @@
  
 "use client";
-import {
-  getRecentPosts,
-  getTags,
-  getCategories,
-} from '@/lib/api'
+ 
 import { Suspense } from "react";
-import PostFeed from "./PostFeed";
-import TagFeed from "./TagFeed";
-import CategoryFeed from "./CategoryFeed";
+
 // import RecentPostsSkeleton from "@/app/components/skeletons/RecentPostsSkeleton";
+
 
 // import TagCloud from '@/app/components/TagCloud';
 // import SidebarCard from './SidebarCard';
 // import { usePathname } from 'next/navigation';
-// import { Suspense } from 'react';
+import dynamic from "next/dynamic";
+
+const PostFeed = dynamic(() => import("./PostFeed"), {
+  loading: () => <div>Loading...</div>,
+  ssr: false,
+});
  
 export default function Sidebar() {
 
@@ -38,7 +38,7 @@ export default function Sidebar() {
   //   return null;
   // }
   return (
-    <div className="sidebar w-full bg-gray-2 p-3 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
+    <div className="sidebar w-full bg-gray-2 overflow-y-scroll shadow-xl rounded-lg h-[calc(100vh-6rem)] flex flex-col sticky top-[5rem]">
       {/* <PostSearchBar /> */}
       <div className="flex-auto flex flex-col gap-3">
 
@@ -46,10 +46,10 @@ export default function Sidebar() {
           <PostFeed   />
         </Suspense>  
         <Suspense fallback={<div>Loading...</div>}>
-          <TagFeed   />
+          {/* <TagFeed   /> */}
         </Suspense>
         <Suspense fallback={<div>Loading...</div>}>
-          <CategoryFeed  />
+          {/* <CategoryFeed  /> */}
         </Suspense>
 
       </div>

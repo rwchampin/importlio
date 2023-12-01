@@ -17,6 +17,7 @@ export default async function Page({ params }: any) {
       subtitle={`Browse ecommerce tutorials by the post type '${slug}'`}
       headline='Post Types'
       shadowText={`Articles by ${slug}`}
+      size='md'
     >
         <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center py-10 ">
 

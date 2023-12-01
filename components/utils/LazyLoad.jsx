@@ -1,7 +1,7 @@
 "use client";
 // import Image from "next/image";
 import { useEffect, useRef } from "react";
-import gsap, { ScrollTrigger } from "gsap/all"; 
+import gsap, { ScrollTrigger, ScrollSmoother } from "gsap/all"; 
 
 
 
@@ -10,7 +10,9 @@ const LazyLoad = ({ src, dataSrc, type = "img", ...props }) => {
   const elementRef = useRef(null);
   const loadedRef = useRef(false);
   useEffect(() => {
-    gsap.registerPlugin(ScrollTrigger);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    const g = ScrollSmoother.get();
+    debugger;
   ScrollTrigger.config({ limitCallbacks: true });
 
     const element = elementRef.current;

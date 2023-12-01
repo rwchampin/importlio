@@ -2,7 +2,15 @@
 const businessInfo = " My business is an Ecommerce Product management app - so utilize keywords for that niche"
 const seoRules = "It should be no less than 2500 words long.  It should also be written with SEO in mind, try to limit the use of filler words.  Additionally, YOU MUST use at least 1-3 keywords per 100 words of copy."
 const linkRules = " There must also be links used as frequently as possible without over doing it.  Use at least one link per 1-2 paragraphs.  You may link to outside content directly related to the post, or to other blog posts or pages within the site.  Links MUST contain at least ONE keyword, preferrably used as the first word of the link"
-export const createBlogPost = (topic:any) => `write me a blog post on ${topic}. ${seoRules} ${businessInfo} ${linkRules}`  
+
+export const rephrase = (text:string) => `rephrase the folloing string. It has a mix of html and text. rerite and rephrase the text INSIDE the html only. do not change the html structure. return what i give so it has the same html, but all the inner text is different.  return the same html structure with unique rephrased inner text, your response should contain the same html tags with new different innertext: ${text}`
+const ex = [
+    "an outline item",
+    "another outline item",
+    "yet another outline item",
+]
+export const outline = `We will first write a blog post outline, which is a list of 10-20 sections that will be used to structure the blog post.  Each outline section should have an overall parent topic with multiple children bullet points about the topic.  Each child should be a sentence or two long. The children should be in a logical order, and should be related to each other.  provide this outline to me in a json stringified array of objects.  Again, you will return me a stringified json representation  of the outline.`;
+export const createBlogPost = (topic:any) => `write me a blog post on ${topic}. ${seoRules} ${businessInfo}  ${outline}`
             
 
 export const createShadowText = () => `write a 2-3 word sentence which is related to the post, <TOPIC> that will be displayed sideways on the left side of the screen - its mainly a visual aid for the site - but also a useful additional title for seo purposes. Try to use at least one of the keywords from the post in the shadow text.`

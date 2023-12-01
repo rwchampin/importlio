@@ -14,7 +14,7 @@ export default function Scroller({ children }) {
   
 
   useLayoutEffect(() => {
-    // gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
     const track = scrollTrackRef.current;
     const bar = scrollBarRef.current;
     const trackHeight = track.clientHeight;
@@ -76,7 +76,7 @@ export default function Scroller({ children }) {
         // aria-valuenow={scrollProgress}
         // aria-valuemin="0"
         // aria-valuemax="100"
-        className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999] overflow-hidden"
+        className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999] overflow-hidden top-1/2 transform -translate-y-1/2"
         ref={scrollTrackRef}
       >
         <div className="scroll-bar will-change-transform absolute -top-[100%] bg-black w-full h-full" ref={scrollBarRef}></div>

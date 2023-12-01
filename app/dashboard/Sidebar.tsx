@@ -21,19 +21,19 @@ export default function Sidebar() {
       name: "AI",
       href: "/ai",
       icon: SiOpenai,
-      protected: true,
+      protected: false,
     },
     {
       name: "Posts List",
       href: "/posts",
       icon: FaBook,
-      protected: true,
+      protected: false,
     },
     {
       name: "Create Posts",
       href: "/posts/create",
       icon: GrEdit,
-      protected: true,
+      protected: false,
     },
     {
       name: "Product Scraper",

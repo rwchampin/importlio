@@ -51,6 +51,7 @@ export default async function Page({ params }: any) {
       subtitle={`Browse dropshipping tutorials by ${unslugify(slug)}.`}
       headline="categories"
       shadowText="categories"
+      size="md"
     >
       <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:max-w-[90vw] mx-auto">
         {results.length > 0 && results.map((tag: any) => {

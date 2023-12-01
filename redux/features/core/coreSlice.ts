@@ -8,7 +8,7 @@ const coreSlice = createSlice({
       title: '',
       message: '',
       location: null
-    }
+    },
   },
   reducers: {
     setBanner: (state:any, action:any) => {

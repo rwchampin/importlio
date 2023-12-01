@@ -64,7 +64,7 @@ export default function Card({ post }: any) {
 
   return (
    
-      <article className="relative w-full overflow-hidden shadow-lg rounded-xl bg-gray-200 p-3 flex border-5 border-black/10">
+      <article className="relative w-full   overflow-hidden shadow-lg rounded-xl bg-gray-200 p-3 flex border-5 border-black/10">
         <ShadowText type="card" theme={post.shadow_text_theme}>
           {post.shadowText}
         </ShadowText>

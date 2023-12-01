@@ -1,0 +1,33 @@
+header {
+  z-index: 999999999 !important;;
+}
+
+.nav-btn {
+  min-width: 150px !important;
+  flex-shrink: 0 !important;
+  text-align: center;
+}
+
+nav a {
+  @apply whitespace-nowrap;
+}
+
+ 
+
+nav .desktop-nav {
+  button {
+    padding: 0 !important;
+
+    svg {
+      font-size: x-large;
+    }
+  
+  }
+  a,
+  button,
+  .btn,
+  li,
+  svg {
+    @apply text-sm text-gray-500 font-semibold bg-transparent hover:text-black;
+  }
+}

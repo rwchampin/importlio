@@ -50,6 +50,7 @@ export default async function Page({ params }: any) {
       subtitle={`Browse dropshipping tutorials by ${prettySlug}.`}
       headline='Tags'
       shadowText='Tags'
+      size='md'
     >
         <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:flex-row items-stretch justify-center py-10 ">
 

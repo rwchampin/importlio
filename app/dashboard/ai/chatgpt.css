@@ -1,21 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Inter', sans-serif;
-}
 
 :root {
-    --dark-gray: #343541;
-    --light-gray: #444B59;
-
-    --primary-bg: var(--light-gray);
-    --primary-text: #ffffff;
-    --user-message-bg: var(--dark-gray);
-    --user-message-color: var(--light-gray);
-    --accent: #01BAC3;
 
     --wrapper: 700px;
     --primary-padding: 2rem 1rem;
