@@ -78,6 +78,18 @@ const nextConfig = {
         source: "/auth/www.instagram.com",
         destination: "https://www.instagram.com/importlio",
         permanent: true,
+      },{
+        source: "/experiments",
+        destination: "/",
+        permanent: true,
+      } ,{
+        source: "/month",
+        destination: "/",
+        permanent: true,
+      },{
+        source: "/free-email-lists/ClientContent",
+        destination: "/email-lists",
+        permanent: true,
       }
     ];
   },

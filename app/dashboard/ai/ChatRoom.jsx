@@ -1,36 +1,38 @@
 "use client"
 
-import React, { useState, useEffect, useLayoutEffect, useRef, use } from 'react';
-import { Configuration, OpenAIApi } from 'openai';
-import { toast } from 'react-hot-toast';
-import ChatMessage from '@/app/dashboard/ai/ChatMessage';
 import Spinner from '@/app/components/Spinner';
 import Action from '@/app/dashboard/ai/Action';
-
+import ChatMessage from '@/app/dashboard/ai/ChatMessage';
+import { useLoopContent } from '@/app/dashboard/ai/useLoopContent';
+import { Configuration, OpenAIApi } from 'openai';
+import { useEffect, useLayoutEffect, useRef, useState } from 'react';
+import { toast } from 'react-hot-toast';
 
 import {
-  createBlogPost,
-  createShadowText,
-  createSeoTitle,
-  createSeoDescription,
-  createPostHeadline,
-  createPostSubHeadline,
-  createPostTitle,
-  createPostExcerpt,
-  rephrase,
+  createBlogPost
 } from './prompts';
+
 
 const ChatRoom = () => {
   const aiName = 'assistant';
   const [messages, setMessages] = useState([]);
-  
+  const [aiIsResponding, setAiIsResponding] = useState(false); // Flag to indicate AI response
+  const [responseError, setResponseError] = useState(null); // Flag to indicate AI response
   const [inputText, setInputText] = useState('');
-  const [openai, setOpenAI] = useState(null);
+  const openai = useRef(null);
   const post = useRef({});
   const postAttribute = useRef(null);
-  const isUser = useRef(true);
-  const rephraseCount = useRef(-1);
-  const rephraseElements = useRef([]);
+  const {
+    setInitialHtmlString,
+    sections,
+    sectionIndex,
+    setSectionIndex,
+  } = useLoopContent();
+
+  const createPrompt = (text) => {
+    return `rephrase the following string while keeping the html elements and changing only the html elements inner text, return a full updated string of html and their new content: ${text}`;
+  };
+
   const validatePost = () => {
     return Object.keys(post.current).length === actions.length;
   };
@@ -38,61 +40,74 @@ const ChatRoom = () => {
   useLayoutEffect(() => {
     const createConnection = async () => {
       const configuration = new Configuration({
-        organizationId: process.env.NEXT_PUBLIC_OPENAI_ORG_ID,
-        apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+        organizationId: 'org-cZs70lWtkVYO7TnN1HJcmICg',
+        apiKey: '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'
       });
-      setOpenAI(new OpenAIApi(configuration));
+      openai.current = new OpenAIApi(configuration);
     };
 
     createConnection();
   }, []);
 
   const handleSendMessage = async (str) => {
-    isUser.current = true;
     if (str.trim() !== '') {
       const newMessage = { content: str, role: 'user' };
-      const tempResponse = { content: <Spinner md />, role: aiName };
-      setMessages([...messages, newMessage, tempResponse]);
+      setMessages([...messages, newMessage]);
       setInputText('');
-      isUser.current = false;
+      setAiIsResponding(true);
       return;
     }
 
     toast.error('Please enter a message before sending');
   };
 
+   useEffect(() => {
+    // if sections eists, then we are looping through the sections
+    if (sections && sections.length > 0) {
+      const section = sections[sectionIndex];
+      const prompt = createPrompt(section.text);
+      handleSendMessage(prompt);
+      setSectionIndex(sectionIndex + 1);
+    }
+   }, [sections]);
+
   useEffect(() => {
+    if (!aiIsResponding) { 
+      return;
+    }
+    
     const fetchData = async () => {
-      if (openai) {
+        
         const request = messages.map((message) => ({
           role: message.role,
           content: message.content.toString(),
         }));
-        const response = await openai.createChatCompletion({
+        const response = await openai.current.createChatCompletion({
           model: 'gpt-3.5-turbo',
           messages: request,
           temperature: 0,
-          max_tokens: 2048,
+          max_tokens: MAX_TOKENS,
         });
 
+        if(response.status !== 200) {
+          const errMessage = response.data.error.message;
+          setResponseError(`Error ${response.status}: ${errMessage}`); // `Error: ${errMessage}
+          setAiIsResponding(false);
+          return;
+        }
+
         const gptResponse = response.data.choices[0].message.content;
+        setAiIsResponding(false);
         setMessages([...messages, { content: gptResponse, role: aiName }]);
         post.current[postAttribute.current] = gptResponse;
 
-
-        if (validatePost()) {
-          console.log('create post');
-          // createPost(post.current);
-        }
+ 
+ 
       }
 
-      isUser.current = true;
-    };
 
-    if (!isUser.current) {
       fetchData();
-    }
-  }, [messages]);
+  }, [ aiIsResponding ]);
 
   // useEffect(() => {
 
@@ -109,16 +124,7 @@ const ChatRoom = () => {
 
   // }, [messages, isUser.current]);
 
-  const calculateTokens = (text) => {
-    const chars = text.split('');
-    return chars.length / 3;
-  };
-
-  const getParentElements = (html) => {
-    const temp = document.createElement('div');
-    temp.innerHTML = html;
-    return Array.from(temp.children);
-  };
+ 
 
  
 
@@ -126,25 +132,18 @@ const ChatRoom = () => {
     {
       name: 'Rephrase',
       callback: () => {
-        const html = getParentElements(inputText);
-        const good = [];
-        for (let i = 0; i < html.length; i++) {
-          const l = html[i].outerHTML.length;
-          const d = 4;
-          debugger
-          const tokens = calculateTokens(html[i].outerHTML);
-          debugger
-          if (tokens <= 2000) {
-            good.push(html[i].outerHTML);
-          }
+
+        const html = inputText;
+        if (html.length === 0) {
+          toast.error('Please enter a valid html string');
+          return;
         }
 
-        rephraseElements.current = good;
-        const element = good[0];
-        const text = element.outerHTML;
-        debugger
-        const prompt = `rephrase the following string while keeping the html elements and changing only the html elements inner text, return a full updated string of html and their new content: ${text}`;
-        handleSendMessage(prompt);
+        setInitialHtmlString(html);
+         
+
+
+        // handleSendMessage(prompt);
       },
     },
     {
@@ -168,6 +167,23 @@ const ChatRoom = () => {
         {messages.map((message, index) => (
           <ChatMessage key={index} message={message} />
         ))}
+
+        {aiIsResponding && (
+          <ChatMessage
+            message={{ content: <Spinner md />, role: aiName }}
+          />
+        )}
+
+{responseError && (
+          <ChatMessage
+            message={{
+              error: true, 
+              content: responseError,
+              role: aiName 
+            }}
+          />
+        )}
+
       </div>
       <div className="p-4 w-full">
         <div className="flex w-full mb-2">

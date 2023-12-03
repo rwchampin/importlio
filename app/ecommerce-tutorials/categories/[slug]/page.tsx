@@ -47,10 +47,10 @@ export default async function Page({ params }: any) {
 
   return (
     <BasePage
-      title={`Dropshipping Tutorial posts by ${unslugify(slug)}`}
-      subtitle={`Browse dropshipping tutorials by ${unslugify(slug)}.`}
+      title={`Dropshipping Tutorials by ${unslugify(slug)}`}
+      subtitle={`Browse dropshipping lessons & posts by ${unslugify(slug)}.`}
       headline="categories"
-      shadowText="categories"
+      shadowText="Dropshipping Categories"
       size="md"
     >
       <div className="flex-wrap w-full mb-10 flex flex-col gap-5 md:max-w-[90vw] mx-auto">
