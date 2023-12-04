@@ -1,7 +1,6 @@
 'use client' // Error components must be Client Components
  
-import { useEffect } from 'react'
-import ShadowText from './components/typography/ShadowText'
+
 import BasePage from './components/BasePage'
 
 export default function Error({
@@ -11,17 +10,13 @@ export default function Error({
   error: Error & { digest?: string }
   reset: () => void
 }) {
-  useEffect(() => {
-    // Log the error to an error reporting service
-    console.error(error)
-  }, [error])
   debugger
   return (
     <BasePage
-      title={`Error: ${error.statusCode}`}
-      subtitle={error.message}
+      title={`Error: ${error.message}`}
+      subtitle={'An error occurred while rendering the page'}
       headline={`Error`}
-      shadowText={error.statusCode}
+      shadowText={`Error`}
       size="md"
     >
       <button
