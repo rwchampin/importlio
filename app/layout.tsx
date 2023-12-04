@@ -3,22 +3,19 @@ import "@/assets/styles/typography.css";
 
 import "./globals.css";
 
-import localFont from "next/font/local";
-import type { Metadata } from "next";
 import Navigation from "@/components/common/Navigation";
+import type { Metadata } from "next";
+import localFont from "next/font/local";
 
-import { generatePageStructuredMarkup } from "@/lib/functions";
 import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
+import { generatePageStructuredMarkup } from "@/lib/functions";
 
 import Provider from "@/redux/provider";
 
 import Setup from "@/components/utils/Setup";
 
 // import Cursor from "@/components/common/Cursor";
-import NextTopLoader from "nextjs-toploader";
-import { Suspense } from "react";
-import Debug from "@/components/Debug";
 import Footer from "@/components/common/Footer";
 
 // import Mouse from "@/app/components/Mouse"
@@ -106,10 +103,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
       <body>
         <Provider>
           <Navigation />
-          <Scroller>
+          
             {children}
             <Footer />
-          </Scroller>
+
           {/* <Cursor /> */}
 
           {/* <NextTopLoader
@@ -127,6 +124,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
           <Setup />
           {/* <Debug /> */}
         </Provider>
+        <Scroller />
       </body>
     </html>
   );

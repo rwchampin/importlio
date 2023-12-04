@@ -35,11 +35,11 @@ export default function Navigation() {
   const [isMenuOpen, setIsMenuOpen] = useState<any>(false);
 
   useEffect(() => {
-    if(!userInfo && user) {
-      debugger
-      setUserInfo(user)
+    if (!userInfo && user) {
+      debugger;
+      setUserInfo(user);
     }
-  }, [user])
+  }, [user]);
 
   const links: any = [
     {
@@ -69,16 +69,40 @@ export default function Navigation() {
         ],
       },
     },
-
     {
-      pretty: "Email Lists",
-      href: "/email-lists",
-      dropdown: null,
+      pretty: "Dropshipping Resources",
+      href: "/dropshipping-resources",
       protected: false,
+      dropdown: {
+        ariaLabel: "Dropshipping Resources",
+        items: [
+          {
+            pretty: "Getting Started",
+            description: "Learn how to get started with dropshipping",
+            href: "/dropshipping-resources/getting-started",
+            dropdown: null,
+            protected: false,
+          },
+          {
+            pretty: "Tools",
+            description: "Tools to help your ecommerce business grow",
+            href: "/dropshipping-resources/tools",
+            dropdown: null,
+            protected: false,
+          },
+          {
+            pretty: "Email Lists",
+            description: "Email lists to help your ecommerce business grow",
+            href: "/email-lists",
+            dropdown: null,
+            protected: false,
+          },
+        ],
+      },
     },
-
     {
       pretty: "Ecommerce Tutorials",
+      description: "Ecommerce tutorials to help your business grow",
       href: "/ecommerce-tutorials",
       dropdown: null,
       protected: false,
@@ -93,44 +117,45 @@ export default function Navigation() {
       pretty: "Dashboard",
       href: "/dashboard",
       dropdown: null,
-      protected: false,
+      protected: true,
     },
   ];
 
   return (
-
-      <Navbar
-        onMenuOpenChange={setIsMenuOpen}
-        // shouldHideOnScroll={true}
-        maxWidth="full"
-        // isBlurred={true}
-        //  isBordered={true}
-        className={`backdrop-blur-sm bg-transparent z-50 fixed top-0`}
+    <Navbar
+      onMenuOpenChange={setIsMenuOpen}
+      // shouldHideOnScroll={true}
+      maxWidth="full"
+      // isBlurred={true}
+      //  isBordered={true}
+      className={`backdrop-blur-sm bg-transparent z-50 fixed top-0`}
+    >
+      {/* <NavbarContent justify="start" className="flex-none grow-0"> */}
+      <NavbarMenuToggle
+        className="flex-1 justify-start lg:hidden"
+        icon={<RxHamburgerMenu className="text-black h-10 w-10" />}
+      />
+      <NavbarBrand className="grow-0 justify-start items-center">
+        <LogoBlack />
+      </NavbarBrand>
+      {/* </NavbarContent> */}
+      <NavbarContent
+        justify="start"
+        className="hidden lg:flex gap-4 desktop-nav"
       >
-        {/* <NavbarContent justify="start" className="flex-none grow-0"> */}
-        <NavbarMenuToggle
-          className="flex-1 justify-start lg:hidden"
-          icon={<RxHamburgerMenu className="text-black h-10 w-10" />}
-        />
-        <NavbarBrand className="grow-0 justify-start items-center">
-          <LogoBlack />
-        </NavbarBrand>
-        {/* </NavbarContent> */}
-        <NavbarContent justify="start" className="hidden lg:flex gap-4 desktop-nav">
-          <DesktopNavigation links={links} user={user} isLoading={isLoading} />
-        </NavbarContent>
+        <DesktopNavigation links={links} user={user} isLoading={isLoading} />
+      </NavbarContent>
 
-        <NavbarContent justify="end" className="gap-5 nav-buttons nav-icons">
-          <div className="hidden xl:flex">
-            <SearchModal />
-          </div>
-          <LoginOrAvatar />
-          <div className="hidden xl:flex">
-            <SocialIcons />
-          </div>
-        </NavbarContent>
-        <MobileMenu links={links} />
-      </Navbar>
-
+      <NavbarContent justify="end" className="gap-5 nav-buttons nav-icons">
+        <div className="hidden xl:flex">
+          <SearchModal />
+        </div>
+        <LoginOrAvatar />
+        <div className="hidden xl:flex">
+          <SocialIcons />
+        </div>
+      </NavbarContent>
+      <MobileMenu links={links} />
+    </Navbar>
   );
 }

@@ -1,32 +1,12 @@
 "use client";
-import { useVerify } from "@/hooks";
-import Notification from "@/components/Notifications";
 import GA from "@/components/utils/GA";
+import Notification from "@/components/Notifications";
+import { useVerify } from "@/hooks";
 
 function Setup() {
-  // const dispatch = useAppDispatch();
   useVerify();
-  
 
-
-
-  // useEffect(() => {
-  //   const getData = async () => {
-  //     const res = await fetch('/api/posts/all', {
-  //       method: 'GET',
-  //       headers: {
-  //         'Content-Type': 'application/json'
-  //       }
-  //     })
-  //     const { results} = await res.json()
-
-  //     dispatch(setPosts(results))
-  //   }
-
-  //   getData()
-  // }, [])
-
-  return <><Notification /></>;
+  return <><GA /><Notification /></>;
 }
 
 export default Setup;

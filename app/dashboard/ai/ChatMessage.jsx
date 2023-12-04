@@ -1,8 +1,9 @@
+"use client"
 import { RiOpenaiFill } from "react-icons/ri";
 import cs from 'classnames';
 
 const ChatMessage = ({ message }) => {
-  const isUser = message.role === 'user'; // Check the 'role' property
+  const isUser = message.content_type.model === 'useraccount';
 
   const classes = cs(
     `px-4 py-2 w-auto rounded-lg`,
@@ -22,7 +23,7 @@ const ChatMessage = ({ message }) => {
       <div
         className={classes}
       >
-        {message.content} {/* Use 'content' instead of 'text' */}
+        {message.message} {/* Use 'content' instead of 'text' */}
       </div>
 
       {isUser && (

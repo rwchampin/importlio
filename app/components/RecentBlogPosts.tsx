@@ -17,14 +17,15 @@ export default function RecentBlogPosts(){
     // if pathname contains ecommerce-tutorials, return
     if(
         pathname.includes('ecommerce-tutorials') ||
-        pathname.includes('search')
+        pathname.includes('search') ||
+        pathname.includes('dashboard')
         ){
         return 
     }
 
     if(posts.length) return
     try {
-        fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?limit=3`)
+        fetch(`/api/posts/?limit=3`)
             .then((res) => res.json())
             .then(({ results }) => {
                 if(!results) return

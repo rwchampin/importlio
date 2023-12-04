@@ -46,6 +46,7 @@ const DesktopNavigationItemDropdown = ({ link }: any) => {
         {(item: any) => (
           <DropdownItem
             startContent={
+              item.icon &&
               <item.icon className="text-2xl text-black group-hover:text-gray-400" />
             }
             showDivider={true}

@@ -13,7 +13,9 @@ import {
 } from './prompts';
 
 
-const ChatRoom = () => {
+const ChatRoom = ({
+  chat,
+}) => {
   const aiName = 'assistant';
   const [messages, setMessages] = useState([]);
   const [aiIsResponding, setAiIsResponding] = useState(false); // Flag to indicate AI response
@@ -49,9 +51,27 @@ const ChatRoom = () => {
     createConnection();
   }, []);
 
-  const handleSendMessage = async (str) => {
-    if (str.trim() !== '') {
-      const newMessage = { content: str, role: 'user' };
+  const handleSendMessage = async () => {
+
+    if (inputText !== '') {
+      const res = await fetch('/api/ai/chat-message', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          message: inputText,
+          object_id: 1,
+          content_type: {
+            id: 1,
+            model: 'useraccount',
+            app_label: 'users',
+          }
+        }),
+      });
+
+
+      const newMessage = { content: inputText, role: 'user' };
       setMessages([...messages, newMessage]);
       setInputText('');
       setAiIsResponding(true);
@@ -162,9 +182,9 @@ const ChatRoom = () => {
   ];
 
   return (
-    <div className="flex flex-col h-full bg-gray-100 justify-between">
+    <div className="w-4/5 flex flex-col h-full bg-gray-100 justify-between">
       <div className="flex-1 overflow-y-auto p-4 flex flex-col">
-        {messages.map((message, index) => (
+        {chat.messages.map((message, index) => (
           <ChatMessage key={index} message={message} />
         ))}
 

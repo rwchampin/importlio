@@ -49,10 +49,10 @@ export default function SearchModal() {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <div className="fixed h-screen w-screen inset-0 bg-gray-500 bg-opacity-25 transition-opacity" />
+              <div className="fixed h-screen w-screen inset-0 bg-gray-800 bg-opacity-75 transition-opacity z-[99]" />
             </Transition.Child>
 
-            <div className="fixed inset-0 z-10 overflow-y-auto p-4 sm:p-6 md:p-20 w-screen h-screen flex items-center justify-center">
+            <div className="fixed inset-0 z-[999] overflow-y-auto p-4 sm:p-6 md:p-20 w-screen h-screen flex items-center justify-center">
               <Transition.Child
                 as={Fragment}
                 enter="ease-out duration-300"

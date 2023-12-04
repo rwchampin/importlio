@@ -7,11 +7,8 @@ import { usePathname, useSearchParams } from "next/navigation";
 import { useEffect } from "react";
 import { pageview } from "./GtagHelper";
 
-export default function GA({
-  GA_MEASUREMENT_ID,
-}: {
-  GA_MEASUREMENT_ID: any;
-}) {
+const GA_MEASUREMENT_ID = 'G-V8X4P8V5SZ';
+export default function GA() {
 
   const pathname = usePathname();
   const searchParams = useSearchParams();

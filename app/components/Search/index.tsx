@@ -166,7 +166,7 @@ const Search = forwardRef((props: any, ref: any) => {
   //   return <El />
   // }
   return (
-    <section className="core-search mt-10">
+    <section className="core-search static mt-10">
     <Component {...getBaseProps()}>
       {shouldLabelBeOutside ? labelContent : null}
       <h3 className="text-2xl font-bold font-montserrat uppercase">

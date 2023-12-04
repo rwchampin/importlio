@@ -117,8 +117,32 @@ const authApiSlice = apiSlice.injectEndpoints({
 			}),
 
 		}),
-		 
-		 
+		 createRoom: builder.mutation({
+			query: ({ 
+				name,
+				description,
+				is_active,
+				user,
+				assistant,
+			 }) => ({
+				url: '/ai/chat-rooms/',
+				method: 'POST',
+				body: {
+					name,
+					description,
+					is_active,
+					user,
+					assistant,
+				},
+			}),
+		 }),
+		 createChatMessage: builder.mutation({
+			query: ({ message }) => ({
+				url: '/ai/chat-messages/',
+				method: 'POST',
+				body: message,
+			}),
+		 }),
 	}),
 });
 
@@ -133,4 +157,6 @@ export const {
 	useResetPasswordMutation,
 	useResetPasswordConfirmMutation,
 	useUpdatePostMutation,
+	useCreateRoomMutation,
+	useCreateChatMessageMutation,
 } = authApiSlice;

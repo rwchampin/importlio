@@ -1,11 +1,9 @@
 "use client";
-import { useLayoutEffect, useRef, useState } from 'react';
 import gsap from 'gsap';
-import { ScrollSmoother } from 'gsap/ScrollSmoother';
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { useLayoutEffect, useRef, useState } from 'react';
 
 // import Debug from '@/components/Debug';
-export default function Scroller({ children }) {
+export default function Scroller() {
   const [scrollProgress, setScrollProgress] = useState(0);
  
   const scrollTrackRef = useRef(null);
@@ -14,7 +12,7 @@ export default function Scroller({ children }) {
   
 
   useLayoutEffect(() => {
-    gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
+    // gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
     const track = scrollTrackRef.current;
     const bar = scrollBarRef.current;
     const trackHeight = track.clientHeight;
@@ -62,27 +60,19 @@ export default function Scroller({ children }) {
   return (
 
 
-    <>
-      {/* <div id="smooth-wrapper" className='h-screen overflow-hidden'>
-        <div id="smooth-content" className='min-h-screen flex flex-col overflow-x-hidden'>  */}
-
-          {children}
-        {/* </div> */}
-      {/* </div> */}
-
+ 
       <div
-        // role="scrollbar"
-        // aria-orientation="vertical"
-        // aria-valuenow={scrollProgress}
-        // aria-valuemin="0"
-        // aria-valuemax="100"
+        role="scrollbar"
+        aria-orientation="vertical"
+        aria-valuenow={scrollProgress}
+        aria-valuemin="0"
+        aria-valuemax="100"
         className="scroll-track fixed w-[2px] bg-gray-8 right-[5px] h-[90vh] z-[99999] overflow-hidden top-1/2 transform -translate-y-1/2"
         ref={scrollTrackRef}
       >
         <div className="scroll-bar will-change-transform absolute -top-[100%] bg-black w-full h-full" ref={scrollBarRef}></div>
       </div>
-      {/* {debugMode && <Debug />} */}
-    </>
+
 
 
 
