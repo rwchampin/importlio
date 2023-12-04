@@ -25,7 +25,19 @@ const authApiSlice = apiSlice.injectEndpoints({
 	endpoints: builder => ({
 		
 		retrieveUser: builder.query<User, void>({
-			query: () => '/users/me/',
+			query: (isAuthenticated:any) => {
+				if (isAuthenticated) {
+					return {
+						url: '/users/me/',
+						method: 'GET',
+					};
+				} else {
+					return {
+						url: '/users/me/',
+						method: 'GET',
+					};
+				}
+			}
 		}),
 		socialAuthenticate: builder.mutation<
 			CreateUserResponse,
@@ -83,10 +95,12 @@ const authApiSlice = apiSlice.injectEndpoints({
 			}),
 		}),
 		logout: builder.mutation({
-			query: () => ({
-				url: '/logout/',
-				method: 'POST',
-			}),
+			query: () => {
+				return {
+					url: '/logout/',
+					method: 'POST',
+				};
+			}
 		}),
 		activation: builder.mutation({
 			query: ({ uid, token }) => ({

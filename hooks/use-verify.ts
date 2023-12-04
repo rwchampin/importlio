@@ -16,7 +16,7 @@ export default function useVerify() {
 
 			verify(undefined)
 				.unwrap()
-				.then((res) => {
+				.then((res) => {debugger
 					dispatch(setAuth());
 				})
 				.finally(() => {

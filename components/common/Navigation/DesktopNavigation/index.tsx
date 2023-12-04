@@ -1,13 +1,13 @@
 "use client";
-import { useEffect, useRef, useState } from "react";
+import { use, useEffect, useRef, useState } from "react";
 import DesktopNavigationItem from "./DesktopNavigationItem";
 import DesktopNavigationItemDropdown from "./DesktopNavigationItemDropdown";
 import { usePathname } from "next/navigation";
 import Spinner from "@/app/components/Spinner";
 
 
-export default function DesktopNavigation({ links , user, isLoading }: any) {
-
+export default function DesktopNavigation({ links , auth }: any) {
+  const { user, isLoading, isAuthenticated } = auth;
   const pathname = usePathname();
   const [dimensions, setDimensions] = useState<any>(null);
   const activeItem = useRef<any>(null);
@@ -33,6 +33,8 @@ export default function DesktopNavigation({ links , user, isLoading }: any) {
         }}
       />
       {links.map((link: any, i: any) => {
+
+        if(link.protected && ( !isAuthenticated)) return null
         if (link.type === "mobile") {
           return null;
         }
@@ -84,7 +86,7 @@ export default function DesktopNavigation({ links , user, isLoading }: any) {
         //   //   </Dropdown>
         //   // );
         // }
-        return <DesktopNavigationItem ref={activeItem} key={i} link={link} user={user} isLoading={isLoading} />;
+        return <DesktopNavigationItem ref={activeItem} key={i} link={link}  />;
         // return (
         //   <NavbarItem key={i}>
         //     <Link color="foreground" href={link.href}>

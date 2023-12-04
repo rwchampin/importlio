@@ -20,26 +20,18 @@ import LoginOrAvatar from "@/components/common/LoginOrAvatar";
 
 import DesktopNavigation from "./DesktopNavigation";
 import MobileMenu from "./MobileMenu";
-import Banner from "@/app/components/Banner";
 
-import { useAppSelector } from "@/redux/hooks";
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
+import useAuth from "@/hooks/use-auth";
+
 import "@/assets/styles/nav.scss";
 
 export default function Navigation() {
-  const { data: user, isLoading } = useRetrieveUserQuery();
-
-  const { banner } = useAppSelector((state: any) => state.core);
-  const showBanner = banner && banner.length ? true : false;
-  const [userInfo, setUserInfo] = useState<any>(null);
+  const auth = useAuth();
   const [isMenuOpen, setIsMenuOpen] = useState<any>(false);
 
-  useEffect(() => {
-    if (!userInfo && user) {
-      debugger;
-      setUserInfo(user);
-    }
-  }, [user]);
+  // useEffect(() => {
+  //   if(user)
+  // }, [isAuthenticated, user]);
 
   const links: any = [
     {
@@ -143,14 +135,14 @@ export default function Navigation() {
         justify="start"
         className="hidden lg:flex gap-4 desktop-nav"
       >
-        <DesktopNavigation links={links} user={user} isLoading={isLoading} />
+        <DesktopNavigation links={links} auth={auth} />
       </NavbarContent>
 
       <NavbarContent justify="end" className="gap-5 nav-buttons nav-icons">
         <div className="hidden xl:flex">
           <SearchModal />
         </div>
-        <LoginOrAvatar />
+        <LoginOrAvatar auth={auth} />
         <div className="hidden xl:flex">
           <SocialIcons />
         </div>

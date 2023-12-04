@@ -11,6 +11,7 @@ import {
 
 import { BiChevronDown } from "react-icons/bi";
 import "@/assets/styles/nav.scss";
+import Link from "next/link";
 const DesktopNavigationItemDropdown = ({ link }: any) => {
   return (
     <Dropdown
@@ -22,7 +23,7 @@ const DesktopNavigationItemDropdown = ({ link }: any) => {
         <DropdownTrigger>
           <Button
             disableRipple
-            className="gap-1"
+            className="gap-1 cursor-pointer hover:cursor-pointer"
           >
             {link.pretty}
             <BiChevronDown
@@ -51,10 +52,11 @@ const DesktopNavigationItemDropdown = ({ link }: any) => {
             }
             showDivider={true}
             key={item.pretty}
-            title={item.pretty}
-            description={item.description}
-            href={item.href}
-          />
+            >
+              <Link href={item.href}>
+              {item.pretty}
+              </Link>
+            </DropdownItem>
         )}
       </DropdownMenu>
     </Dropdown>

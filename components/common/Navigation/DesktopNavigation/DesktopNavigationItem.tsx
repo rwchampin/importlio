@@ -5,19 +5,14 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 
 const DesktopNavigationItem = forwardRef((props: any, ref: any) => {
-  const { link, user, isLoading } = props;
+  const { link } = props;
 
   const pathname = usePathname();
 
   const isActive = pathname === link.href;
 
-  if(link.protected && isLoading) {
-    return null
-  }
-
-  if(link.protected && !user) {
-    return null
-  }
+ 
+ 
 
   if(!isActive) {
     return (

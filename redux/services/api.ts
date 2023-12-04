@@ -19,7 +19,7 @@ const baseQueryWithReauth: BaseQueryFn<
 > = async (args, api, extraOptions) => {
 	await mutex.waitForUnlock();
 	let result = await baseQuery(args, api, extraOptions);
-
+	
 	if (result.error && result.error.status === 401) {
 		if (!mutex.isLocked()) {
 			const release = await mutex.acquire();
@@ -36,7 +36,7 @@ const baseQueryWithReauth: BaseQueryFn<
 					api.dispatch(setAuth());
 
 					result = await baseQuery(args, api, extraOptions);
-				} else {
+				} else {debugger
 					api.dispatch(logout());
 				}
 			} finally {

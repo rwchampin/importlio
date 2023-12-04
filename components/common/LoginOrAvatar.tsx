@@ -4,30 +4,26 @@ import dynamic from "next/dynamic";
 import { BiLockAlt } from "react-icons/bi";
 
 import { Divider } from "@nextui-org/react";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 
-import { useRetrieveUserQuery } from "@/redux/features/authApiSlice";
 import CustomLink from "./CustomLink";
 
 const Avatar: any = dynamic(() => import("@/app/components/Avatar"));
 
-export default function LoginOrAvatar() {
-  const { data: user, isLoading } = useRetrieveUserQuery();
+export default function LoginOrAvatar({
+  auth
+}:any) {
 
-  // const { getUser, isLoading, isAuthenticated } = auth;
-  const [useri, setUser] = useState<any>(null);
-
-  useEffect(() => {
-    if (!user && !isLoading) {
-      setUser(user);
-    }
-  }, [isLoading])
-
+const {
+  user,
+  isAuthenticated,
+  isLoading,
+} = auth;
 // alert(`user: ${JSON.stringify(user)}`)
  
 
-  if (useri && !isLoading) {
-    return <Avatar user={useri} />;
+  if (isAuthenticated) {
+    return <Avatar user={user} />;
   }
 
   return (

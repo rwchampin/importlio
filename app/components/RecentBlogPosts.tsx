@@ -25,7 +25,7 @@ export default function RecentBlogPosts(){
 
     if(posts.length) return
     try {
-        fetch(`/api/posts/?limit=3`)
+        fetch(`/api/posts/recent/`)
             .then((res) => res.json())
             .then(({ results }) => {
                 if(!results) return

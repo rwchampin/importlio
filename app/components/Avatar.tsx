@@ -29,19 +29,19 @@ export default function Avatar({ user }: any) {
   const handleLogout = () => {
 		logout(undefined)
 			.unwrap()
-			.then(() => {
+			.then(() => {debugger
 				dispatch(setLogout());
-        router.push("/");
+        // router.push("/");
         toast.success("Logged out");
 			});
 	};
   const links:any = [
-    {
-      key: "profile",
-      label: "Profile",
-      href: "/account/profile",
-      icon: () => <BsPersonCircle />
-    },
+    // {
+    //   key: "profile",
+    //   label: "Profile",
+    //   href: "/account/profile",
+    //   icon: () => <BsPersonCircle />
+    // },
     {
       key: 'notifications',
       label: 'Notifications',
