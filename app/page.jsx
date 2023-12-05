@@ -69,7 +69,9 @@ function Page() {
         loop={true}
         controls={false}
         className="w-full h-full">
-        <source src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4" type="video/mp4" />
+        <source
+         src="https://importlio-bucket.nyc3.cdn.digitaloceanspaces.com/assets/vids/shopify-importer-app-video.mp4"
+         type="video/mp4" />
         </video>
       </>
       <Section>
