@@ -27,9 +27,9 @@ export default function Page() {
   return (
     <BasePage
       title="Business Name Generator"
-      subtitle="Generate a business name for your dropshipping store."
-      headline="Business Name Generator"
-      shadowText="Business Name Generator"
+      subtitle="Generate a catchy business name for your Shopify dropshipping store."
+      headline="Dropshipping Resources"
+      shadowText="Dropsipping Tools"
       size="md"
     >
       <NameGenerator />

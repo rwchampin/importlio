@@ -93,6 +93,13 @@ export default function Navigation() {
       },
     },
     {
+      pretty: "Business Name Generator",
+      description: "Generate a business name for your dropshipping store",
+      href: "/dropshipping-resources/business-name-generator",
+      dropdown: null,
+      protected: false,
+    },
+    {
       pretty: "Ecommerce Tutorials",
       description: "Ecommerce tutorials to help your business grow",
       href: "/ecommerce-tutorials",

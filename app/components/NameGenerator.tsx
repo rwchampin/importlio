@@ -13,8 +13,7 @@ export default function NameGenerator() {
 
   useLayoutEffect(() => {
     const createConnection: any = async () => {
-      const configuration = new Configuration({
-        organizationId: "org-cZs70lWtkVYO7TnN1HJcmICg",
+      const configuration:any = new Configuration({
         apiKey: "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",
       });
       openai.current = new OpenAIApi(configuration);

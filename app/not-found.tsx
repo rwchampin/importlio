@@ -15,10 +15,7 @@ export const metadata:Metadata = {
 export default function NotFound() {
   const CustomComponent:any = () => (
     <>
-      <p className="mt-6 text-base leading-7 text-black">
-        Sorry, we couldn&apos;t find the page you&apos;re looking for.
-      </p>
-      <Link className="max-w-lg bg-button w-full rounded-lg flex items-center justify-center" href="/">
+      <Link className="max-w-lg mt-3 bg-button h-input text-offwhite w-full rounded-lg flex items-center justify-center" href="/">
         Home
       </Link>
     </>
@@ -33,9 +30,7 @@ export default function NotFound() {
       customComponent={<CustomComponent />}
     >
 
-      <p>
-        Sorry, we couldn&apos;t find the page you&apos;re looking for.
-      </p>
+     
     </BasePage>
   );
 }

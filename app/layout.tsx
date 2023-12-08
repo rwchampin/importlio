@@ -17,6 +17,7 @@ import Setup from "@/components/utils/Setup";
 
 // import Cursor from "@/components/common/Cursor";
 import Footer from "@/components/common/Footer";
+import { Suspense } from "react";
 
 // import Mouse from "@/app/components/Mouse"
 const montserrat = localFont({
@@ -121,7 +122,9 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
             })}
           />
 
+          <Suspense>
           <Setup />
+          </Suspense>
           {/* <Debug /> */}
         </Provider>
         <Scroller />

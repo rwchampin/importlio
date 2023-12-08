@@ -48,7 +48,7 @@ export const getRecentPosts = async () => {
     if (results === null) {
       throw new Error('Post not found!')
     }
-    debugger
+
     return results
     
   } catch (error) {
@@ -487,7 +487,7 @@ export const getUserInfo = async (email: string) => {
     if (!response.ok) {
       throw new Error(response.statusText)
     }
-    debugger
+
     const data = await response.json()
     if (data === null) {
       throw new Error('Post not found!')
