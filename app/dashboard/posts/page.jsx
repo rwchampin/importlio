@@ -28,10 +28,22 @@ export default function Page() {
       }, []);
 
  const handleClick = async () => {
+    // get post count
     try {
-      const post = await createBlankPost();
+      const res = await fetch('/api/posts/create', {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+            post_status: 'new',
+        })
+    });
+
+    const { post } = await res.json();
+
       if (post && post.slug) {
-        router.push(`/dashboard/posts/${post.id}`);
+        router.push(`/dashboard/posts/${post.slug}`);
       }
     } catch (error) {
       throw new Error(

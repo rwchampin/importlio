@@ -26,7 +26,7 @@ export const metadata = {
 export default function Page() {
   return (
     <BasePage
-      title="Business Name Generator"
+      title="Free AI Business Name Generator"
       subtitle="Generate a catchy business name for your Shopify dropshipping store."
       headline="Dropshipping Resources"
       shadowText="Dropsipping Tools"

@@ -11,7 +11,7 @@ interface Props {
 
 export default function RequireAuth({ children }: Props) {
 	const { isAuthenticated, isLoading } = useAuth();
-
+	debugger
 	if (isLoading) {
 		return (
 			<div className='flex justify-center my-8'>

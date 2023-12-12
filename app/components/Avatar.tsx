@@ -63,7 +63,7 @@ export default function Avatar({ user }: any) {
           <AA
             isBordered
             as="button"
-            className="transition-transform"
+            className="transition-transform hover:cursor-pointer"
             color="secondary"
             name={user?.first_name + " " + user?.last_name || user?.email}
             size="sm"

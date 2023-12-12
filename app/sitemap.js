@@ -62,6 +62,9 @@ const getEmailLists = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/marketing/lists`, {
       method: 'GET',
+      next: {
+        revalidate: 0
+      },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -80,6 +83,7 @@ const getPosts = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts`, {
       method: 'GET',
+     cache: 'no-store',
       headers: {
         'Content-Type': 'application/json',
       },
@@ -98,6 +102,9 @@ const getTags = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/tags/`, {
       method: 'GET',
+      next: {
+        revalidate: 0
+      },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -118,6 +125,9 @@ const getCategories = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/categories/`, {
       method: 'GET',
+      next: {
+        revalidate: 0
+      },
       headers: {
         'Content-Type': 'application/json',
       },
@@ -137,6 +147,9 @@ const getPostTypes = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/post-types/`, {
       method: 'GET',
+      next: {
+        revalidate: 0
+      },
       headers: {
         'Content-Type': 'application/json',
       },

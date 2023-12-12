@@ -92,7 +92,17 @@ export default async function Page() {
          
         {/* <BlogPageClientContent posts={posts} /> */}
           <div className='flex flex-col md:flex-row flex-wrap gap-5 px-5 items-center'>
-      {posts && posts.results.length && posts.results.map((post: Post) => <Card post={post} key={post.slug} />)}
+      {posts && posts.results.length && posts.results.map((post: any) => {
+        if(post.post_status === 'draft') return null
+
+        return (
+          <Card
+            post={post}
+            key={post.slug}
+          />
+        )
+      }
+      )}
       </div>
 
       {/* {posts.results.length > 0 && <Pagination json={posts} paginationChange={handleChange} />} */}

@@ -2,7 +2,7 @@
 import GA from "@/components/utils/GA";
 import Notification from "@/components/Notifications";
 import { useVerify } from "@/hooks";
-
+import { Toaster } from "react-hot-toast";
 function Setup() {
   useVerify();
 
@@ -10,7 +10,7 @@ function Setup() {
     <>
 
         <GA />
-
+        <Toaster />
       <Notification />
     </>
   );
