@@ -83,7 +83,9 @@ const getPosts = async () => {
   try {
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts`, {
       method: 'GET',
-     cache: 'no-store',
+      next: {
+        revalidate: 0
+      },
       headers: {
         'Content-Type': 'application/json',
       },
