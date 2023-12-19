@@ -22,7 +22,7 @@ const excludedPaths = [
   'google',
   '_experiments',
   'experiments',
-  'client-content',
+  'ClientContent',
 ];
 
 const transformFilePaths = (filePaths) => {
