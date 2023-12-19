@@ -157,6 +157,18 @@ const authApiSlice = apiSlice.injectEndpoints({
 				body: message,
 			}),
 		 }),
+		 sendContact: builder.mutation({
+			query: ({ name, email, subj,message }) => ({
+				url: '/contact-messages/',
+				method: 'POST',
+				body: {
+					name,
+					email,
+					subj,
+					message,
+				},
+			}),
+		 }),
 	}),
 });
 
@@ -173,4 +185,5 @@ export const {
 	useUpdatePostMutation,
 	useCreateRoomMutation,
 	useCreateChatMessageMutation,
+	useSendContactMutation,
 } = authApiSlice;

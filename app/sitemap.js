@@ -21,6 +21,8 @@ const excludedPaths = [
   'facebook',
   'google',
   '_experiments',
+  'experiments',
+  'client-content',
 ];
 
 const transformFilePaths = (filePaths) => {
@@ -211,4 +213,4 @@ export default async function sitemap(req, res) {
   const urls = await generateURLs();
 
  return urls
-} 
+}  

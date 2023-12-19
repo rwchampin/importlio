@@ -22,6 +22,7 @@ export async function generateMetadata({ params }:any) {
     openGraph: {
       title: post.title,
       description: post.excerpt,
+      type: 'article',
       // image: post.mobile_image || post.featured_image
     },
   }

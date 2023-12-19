@@ -14,10 +14,10 @@ const authSlice = createSlice({
 	name: 'auth',
 	initialState,
 	reducers: {
-		setAuth: (state) => {debugger
+		setAuth: (state) => {
 			state.isAuthenticated = true;
 		},
-		logout: state => {debugger
+		logout: state => {
 			state.isAuthenticated = false;
 		},
 		finishInitialLoad: state => {

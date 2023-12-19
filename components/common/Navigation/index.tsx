@@ -100,6 +100,13 @@ export default function Navigation() {
       protected: false,
     },
     {
+      pretty: "Social Media",
+      description: "Social media to help your ecommerce business grow",
+      href: "/social-media",
+      dropdown: null,
+      protected: false,
+    },
+    {
       pretty: "Ecommerce Tutorials",
       description: "Ecommerce tutorials to help your business grow",
       href: "/ecommerce-tutorials",

@@ -1,10 +1,9 @@
 import LogoBlack from "@/components/common/LogoBlack";
 import SocialIcons from "@/app/components/SocialIcons";
-import RecentBlogPosts from "@/app/components/RecentBlogPosts";
+
 export default function Footer() {
   return (
-    <>
-      <RecentBlogPosts />
+
       <footer
         className="relative shadow-xl p-5 bg-gray-1 shadow-top dark:bg-offgray text-black z-50"
       >
@@ -117,6 +116,5 @@ export default function Footer() {
           &copy; Importlio 2023 All rights reserved
         </p>
       </footer>
-    </>
   );
 }

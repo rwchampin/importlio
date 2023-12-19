@@ -1,15 +1,15 @@
 "use client";
-import BasePage from "@/app/components/BasePage"
-import ImageCta from "@/app/components/ImageCta";
+import BasePage from "@/app/components/BasePage";
 import FeatureHero from "@/app/components/FeatureHero";
+import ImageCta from "@/app/components/ImageCta";
 
 import FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
-import LazyLoad from "@/components/utils/LazyLoad";
 
 
-import Section from '@/app/components/Section';
 import Search from "@/app/components/Search";
-import Link from "next/link";
+import Section from '@/app/components/Section';
+
+import RecentBlogPosts from "@/app/components/RecentBlogPosts";
 import SplitWithImage from "@/components/heros/SplitWithImage";
 
 
@@ -93,8 +93,9 @@ function Page() {
       <Section full>
         <FadingBackgroundCta />
       </Section>
-      
-    
+      <Section>
+       <RecentBlogPosts />
+      </Section>
     </BasePage>
 
   );

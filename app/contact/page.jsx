@@ -1,8 +1,7 @@
 "use client";
 
 import BasePage from "@/app/components/BasePage"
-import RegisterForm from "@/components/forms/RegisterForm";
-
+import ContactForm from "@/components/forms/ContactForm"
 export default function Page() {
  
   
@@ -25,7 +24,7 @@ export default function Page() {
       <div className="text-heading-4 mb-5">
         Find out how Importlio can help you <h3>fill your Shopify store with products in bulk from Amazon</h3>
         </div>
-      <RegisterForm />
+      <ContactForm />
       </div>
       </div>
      </div>

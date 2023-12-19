@@ -36,10 +36,10 @@ const CardImage = ({ post }: any) => {
   return (
     <Link
       href={`/ecommerce-tutorials/${post.slug}`}
-     className="h-[300px] w-auto lg:w-1/4 lg:h-auto bg-red-400  block  relative shadow-xl rounded-lg overflow-hidden">
+     className="relative w-[200px] h-[200px] overflow-hidden rounded-xl shadow-lg"
+    >
        <Image
         src={post.featured_image}
-        // className="object-cover relative"
         quality={80}
         sizes="100vw"
       style={{
@@ -69,6 +69,7 @@ export default function Card({ post }: any) {
           {post.shadowText}
         </ShadowText>
         <div className="flex flex-col gap-2 lg:flex-row w-full">
+          <CardImage post={post} />
            <div className="relative z-100">
             <CardHeader post={post} />
             <CardMainContent post={post} />
