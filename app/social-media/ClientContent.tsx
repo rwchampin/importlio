@@ -4,7 +4,11 @@ import {
     Accordion,
     AccordionItem,
 } from "@nextui-org/react";
+
+
 export default function ClientContent() {
+  const [showCompact, setShowCompact] = React.useState(false);
+ 
     const features = [
         {
           title: "Add Followers",
@@ -57,13 +61,18 @@ export default function ClientContent() {
       ];
   return (
     <section className="p-5 rounded-lg bg-gray-200 shadow-lg">
-    <h3 className="text-3xl font-bold mb-4">Features</h3>
-    <Accordion>
+
+    <Accordion
+      isCompact={true}
+      className="w-full"
+      onChange={() => setShowCompact(!showCompact)}
+    >
       {features.map((feature, index) => (
         <AccordionItem
           key={index}
           aria-label={`Accordion ${index}`}
           title={feature.title}
+          isCompact={showCompact}
         >
           {feature.description}
         </AccordionItem>

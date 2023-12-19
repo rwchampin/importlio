@@ -1,7 +1,6 @@
 'use client';
 
 import { useRegister } from '@/hooks';
-import { CgProfile } from 'react-icons/cg';
 import Form from '@/components/forms/Form';
 
 export default function RegisterForm() {
