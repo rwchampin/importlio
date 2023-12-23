@@ -117,6 +117,7 @@ export interface BasePageProps {
     showPostsInFooter?: boolean
     images?: any
     showBreadcrumbs?: boolean
+    image_alt_text?: string | null | undefined;
 } 
 
 export interface ShadowTextProps {

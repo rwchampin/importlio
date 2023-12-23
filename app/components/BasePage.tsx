@@ -1,12 +1,9 @@
 "use client";
 import Hero from "@/app/components/Hero";
-import { BasePageProps } from "@/lib/constants";
 import Section from "@/app/components/Section";
-import Footer from "@/components/common/Footer";
-import { Suspense } from "react";
+import { BasePageProps } from "@/lib/constants";
 // import dynamic from "next/dynamic";
 import BreadCrumbs from "./BreadCrumbs";
-import RecentBlogPosts from "./RecentBlogPosts";
 
 export default function BasePage({
   size,
@@ -50,7 +47,7 @@ export default function BasePage({
         size={size}
         theme={theme}
         bg={bg}
-        bgAltText={image_alt_text}
+        image_alt_text={image_alt_text}
         title={title}
         subtitle={subtitle}
         belowSubtitle={belowSubtitle}
