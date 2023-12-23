@@ -1,0 +1,16 @@
+.post h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+
+.post h3 {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+}
+
+.post p {
+    margin-bottom: 1rem;
+    font-family: 'Apercu', sans-serif;
+    font-weight: 400;
+}
+

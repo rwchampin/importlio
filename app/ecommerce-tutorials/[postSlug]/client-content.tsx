@@ -10,7 +10,7 @@ import Sidebar from "@/app/components/BlogSidebar/Sidebar";
 import JsonLd from "@/app/components/JsonLd";
 import Spinner from "@/app/components/Spinner";
 // import AdminBar from "@/app/components/AdminBar";
-
+import './blog-post.css';
 export default function ClientContent({ post }: any) {
   const router = useRouter();
   if (!post) {
@@ -37,7 +37,7 @@ export default function ClientContent({ post }: any) {
       showBreadcrumbs={true}
       // images={images}
     >
-      <div className="flex flex-col lg:flex-row">
+      <div className="post flex flex-col lg:flex-row">
         <div className="w-full p-5">
           <div className="flex flex-row gap-1">
             {post.read_time} min read
@@ -56,9 +56,9 @@ export default function ClientContent({ post }: any) {
             dangerouslySetInnerHTML={{ __html: post.content }}
           />
         </div>
-        {/* <aside className="w-full lg:w-1/4">
+        <aside className="w-full lg:w-1/4 sticky top-5">
             <Sidebar />
-          </aside> */}
+          </aside>
       </div>
       <JsonLd json={json} />
     </BasePage>

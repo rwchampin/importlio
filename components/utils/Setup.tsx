@@ -14,8 +14,9 @@ function Setup() {
           toastOptions={{
             success: {
               style: {
-                background: "#fca5a5",
-
+                background: "#a5f3a5",
+                color: '#0a450a',
+                border: '1px solid #1cb91c'
               },
             },
             error: {

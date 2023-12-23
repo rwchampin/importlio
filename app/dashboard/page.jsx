@@ -1,7 +1,5 @@
-'use client';
-// import Spinner from '@/app/components/Spinner';
-import { useAppSelector } from '@/redux/hooks';
-import { useEffect, useState } from 'react';
+
+import React, { Suspense } from 'react';
 import UserAccountWidget from './widgets/UserAccountWidget';
 import BlogPostWidget from './widgets/BlogPostWidget';
 import ProductWidget from './widgets/ProductWidget';
@@ -38,13 +36,9 @@ export default function Page() {
 		 
 			<main className='mx-auto max-w-7xl py-6 my-8 sm:px-6 lg:px-8'>
 				<div className='px-4 py-6 sm:px-0'>
-
-						{widgets.map((widget, index) => {
-							const WidgetComponent = widget.component;
-							return (
-								<WidgetComponent key={index} />
-							)
-						})}
+					<Suspense fallback={<div>Loading...</div>}>
+						ff<UserAccountWidget />ff
+					</Suspense>
 					</div>
 
 			</main>

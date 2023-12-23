@@ -102,7 +102,7 @@ export default function Navigation() {
     {
       pretty: "Social Media",
       description: "Social media to help your ecommerce business grow",
-      href: "/social-media",
+      href: "/social-media/post-generator",
       dropdown: null,
       protected: false,
     },

@@ -11,8 +11,8 @@ interface Props {
 
 export default function RequireAuth({ children }: Props) {
 	const { isAuthenticated, isLoading } = useAuth();
-	debugger
-	if (isLoading) {
+
+	if (isLoading === true) {
 		return (
 			<div className='flex justify-center my-8'>
 				<Spinner lg />
@@ -20,9 +20,9 @@ export default function RequireAuth({ children }: Props) {
 		);
 	}
 
-	if (!isAuthenticated) {
-		redirect('/auth/login');
-	}
+	// if (!isAuthenticated && !isLoading) {
+	// 	redirect('/auth/login');
+	// }
 
 	return <>{children}</>;
 }
