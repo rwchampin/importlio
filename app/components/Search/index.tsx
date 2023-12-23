@@ -6,7 +6,6 @@ import { CloseFilledIcon } from "./CloseFilledIcon";
 import { shopifyExport } from "./shopifyExport";
 import { FaSearch } from "react-icons/fa";
 
-
 import { useRouter } from "next/navigation";
 
 import CustomLink from "@/components/common/CustomLink";
@@ -14,7 +13,12 @@ import CustomButton from "@/components/common/CustomButton";
 import DropWrapper from "./DropWrapper";
 import { useAppSelector, useAppDispatch } from "@/redux/hooks";
 
-import { setProducts, setSelectedProducts } from "@/redux/features/products/productSlice";
+import toast from "react-hot-toast";
+import useAuth from "@/hooks/use-auth";
+import {
+  setProducts,
+  setSelectedProducts,
+} from "@/redux/features/products/productSlice";
 const styles = {
   label: "text-black/50 dark:text-white/90 hidden p-5.5",
   input: [
@@ -23,72 +27,78 @@ const styles = {
     "placeholder:text-gray-400",
     // "h-input",
   ],
-  innerWrapper: ["inner-wrapper flex gap-2 justify-around rounded-md p-1 items-center"],
+  innerWrapper: [
+    "inner-wrapper flex gap-2 justify-around rounded-md p-1 items-center",
+  ],
   inputWrapper: ["main-inner-wrapper bg-input rounded-md p-0.5", "mt-10"],
 };
 
 const Search = forwardRef((props: any, ref: any) => {
+  const auth = useAuth();
   const router = useRouter();
   const dispatch = useAppDispatch();
-  const { products, selectedProducts } = useAppSelector((state:any) => state.product);
+  const { products, selectedProducts } = useAppSelector(
+    (state: any) => state.product
+  );
   const [query, setQuery] = React.useState<any>("");
-  
+
   const getProducts = async (value: any) => {
     const res = await fetch(`/api/products/search/?q=${value}`);
 
     const { products } = await res.json();
 
     dispatch(setProducts(products));
-  }
-
+  };
 
   const handleChange = (e: any) => {
-    setQuery(e)
-    if(e && e.length > 3) {
-      getProducts(e)
-    }else{
+    setQuery(e);
+    if (e && e.length > 3) {
+      getProducts(e);
+    } else {
       dispatch(setProducts([]));
     }
-  }
+  };
 
-  const handleAdd = (e:any) => {
-    e.preventDefault()
-    const exportedProducts = products.filter((item:any) => selectedProducts.includes(item.id))
-    const status = shopifyExport(exportedProducts)
+  const handleAdd = (e: any) => {
+    e.preventDefault();
+    const exportedProducts = products.filter((item: any) =>
+      selectedProducts.includes(item.id)
+    );
+    const status = shopifyExport(exportedProducts);
 
-    if(status) {
-      dispatch(setSelectedProducts([]))
-      dispatch(setProducts([]))
-      setQuery("")
+    if (status) {
+      dispatch(setSelectedProducts([]));
+      dispatch(setProducts([]));
+      setQuery("");
     }
-  }
-
-   
+  };
 
   const ButtonRow = () => {
-
-    
-    if(!products.length) {
-      return <CustomLink classNames="h-[100%]" variant="solid" size="sm" href="/auth/register/">REGISTER FREE</CustomLink>
+    if (!products.length) {
+      return (
+        <CustomLink
+          classNames="h-[100%]"
+          variant="solid"
+          size="sm"
+          href="/auth/register/"
+        >
+          REGISTER FREE
+        </CustomLink>
+      );
     }
 
     return (
       <div className="flex gap-2 w-1/4">
-      <CustomButton
-       onClick={handleAdd}
-       variant="solid"
-        size="sm"
-       >DOWNLOAD CSV</CustomButton>
+        <CustomButton onClick={handleAdd} variant="solid" size="sm">
+          DOWNLOAD CSV
+        </CustomButton>
 
-        <CustomButton
-        onClick={handleAdd}
-        variant="solid"
-        size="sm"
-        >IMPORT TO SHOPIFY</CustomButton>
-
+        <CustomButton onClick={handleAdd} variant="solid" size="sm">
+          IMPORT TO SHOPIFY
+        </CustomButton>
       </div>
-    )
-  }
+    );
+  };
 
   const {
     value,
@@ -123,6 +133,7 @@ const Search = forwardRef((props: any, ref: any) => {
     isRequired: true,
     size: "lg",
     variant: "bordered",
+    isDisabled: auth.isAuthenticated === false,
     startContent: (
       <FaSearch className="text-black/70  pointer-events-none flex-shrink-0 text-2xl" />
     ),
@@ -160,22 +171,34 @@ const Search = forwardRef((props: any, ref: any) => {
 
     return <input {...getInputProps()} />;
   }, [startContent, end, getInputProps, getInnerWrapperProps]);
- 
 
+  const handleFocus = (e: any) => {
+    if(auth.isAuthenticated === false) {
+      toast.error("You must be logged in to use this tool!", {
+        duration: 10000
+      });
+      toast.error("Please login or register for a free account", {
+        duration: 10000
+      });
+    }
+  }
   // if(!auth.isAuthenticated) {
   //   return <El />
   // }
   return (
-    <section className="core-search static mt-10">
-    <Component {...getBaseProps()}>
-      {shouldLabelBeOutside ? labelContent : null}
-      <h3 className="text-2xl font-bold font-montserrat uppercase">
-        Try our Product Search Tool
-      </h3>
-      <p>
-        Search our current product catalog! Be sure to check frequently, this provides real-time access to the full, up-to-date & exclusive list of Amazon dropshipping products available for import to your Shopify store.
-      </p>
-      {/* <h6>
+    <section className="core-search static mt-10" onClick={handleFocus}>
+      <Component {...getBaseProps()}>
+        {shouldLabelBeOutside ? labelContent : null}
+        <h3 className="text-2xl font-bold font-montserrat uppercase">
+          Try our Product Search Tool
+        </h3>
+        <p>
+          Search our current product catalog! Be sure to check frequently, this
+          provides real-time access to the full, up-to-date & exclusive list of
+          Amazon dropshipping products available for import to your Shopify
+          store.
+        </p>
+        {/* <h6>
         Enter any{" "}
         <CustomLink
           variant="text"
@@ -189,23 +212,22 @@ const Search = forwardRef((props: any, ref: any) => {
         product link or product results page link to enter them into your{" "}
         <CustomLink href="https://www.shopify.com" variant="text" target="_blank">Shopify Store</CustomLink>.
       </h6> */}
-      <div
-        {...getInputWrapperProps()}
-        role="button"
-        // onClick={() => {
-        //   domRef.current?.focus();
-        // }}
-      >
-        {shouldLabelBeInside ? labelContent : null}
-        {innerWrapper}
-      </div>
-      {description && <div {...getDescriptionProps()}>{description}</div>}
-      {errorMessage && (
-        <div {...getErrorMessageProps()}>{errorMessage}</div>
-      )}
-    </Component>
-        <DropWrapper />
-  </section>
+        <div
+          onClick={() => {alert("Please login or register for a free account to use this tool")}}
+          {...getInputWrapperProps()}
+          role="button"
+          // onClick={() => {
+          //   domRef.current?.focus();
+          // }}
+        >
+          {shouldLabelBeInside ? labelContent : null}
+          {innerWrapper}
+        </div>
+        {description && <div {...getDescriptionProps()}>{description}</div>}
+        {errorMessage && <div {...getErrorMessageProps()}>{errorMessage}</div>}
+      </Component>
+      <DropWrapper />
+    </section>
   );
 });
 

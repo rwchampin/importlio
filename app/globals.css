@@ -187,7 +187,7 @@ input[type="text"] {
 
 
 .card:after {
-  content: '';
+  content: ;
   position: absolute;
   bottom: 0;
   left: 0;
@@ -195,4 +195,14 @@ input[type="text"] {
   height: 100%;
   background: linear-gradient(180deg, transparent, white);
   z-index: 99;
+}
+
+:disabled {
+  cursor: not-allowed;
+  opacity: 0.8;
+}
+
+.opacity-disabled {
+  opacity: 0.8;
+  cursor: not-allowed;
 }

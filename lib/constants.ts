@@ -40,6 +40,7 @@ export interface FormProps {
     onSuccess?: () => void;
     onError?: () => void;
     errors?: any;
+    formType?: string;
 }
 export interface InputProps {
     onFocus?: () => void

@@ -3,9 +3,11 @@ import "@/assets/styles/typography.css";
 
 import "./globals.css";
 
+
 import Navigation from "@/components/common/Navigation";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
+
 
 import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
@@ -129,6 +131,7 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
         </Provider>
         <Scroller />
       </body>
+      
     </html>
   );
 };

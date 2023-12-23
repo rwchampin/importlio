@@ -1,6 +1,6 @@
 
 import  Input  from '@/components/forms/input/Input';
-
+import ReactGA from "react-ga4";
 import {Button} from '@nextui-org/react'
 
 import {
@@ -17,10 +17,20 @@ export default function Form({
 	onSubmit,
   preFormText,
 	postFormText,
-  errors
+  errors,
+  formType
 }: FormProps) {
 
- 
+  
+  const handleSubmit = (e: any) => {
+    e.preventDefault();
+    ReactGA.event({ 
+      category: 'Form',
+      action: 'Form Submission',
+      label: formType
+    });
+    onSubmit(e);
+  };
 	return (
 
     <form
@@ -28,7 +38,7 @@ export default function Form({
       autoCorrect="on"
       method="POST"
       className={`flex flex-col space-y-6`}
-      onSubmit={onSubmit}
+      onSubmit={handleSubmit}
     >
         {preFormText}
       {/* <input name="sub-input-info" value="" /> */}

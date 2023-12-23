@@ -38,20 +38,20 @@ export default function Features() {
 
       
   return (
-    <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+    <section className="grid gap-4 md:grid-cols-2 lg:grid-cols-3 mb-5">
       {info.map((item, index) => (
-        <Card key={index} className="max-w-[400px]">
+        <Card key={index} className="w-full lg:max-w-[400px]">
           <CardHeader className="flex gap-3">
             <div className="flex items-center justify-center w-10 h-10 bg-primary-100 rounded-full">
               {item.icon}
             </div>
             <div className="flex flex-col">
-              <p className="text-md">{item.title}</p>
+              <div className="text-md">{item.title}</div>
             </div>
           </CardHeader>
           <Divider />
           <CardBody>
-            <p className="text-sm">{item.description}</p>
+            <div className="text-sm">{item.description}</div>
           </CardBody>
           {/* <Divider />
           <CardFooter>

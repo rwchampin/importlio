@@ -3,9 +3,9 @@ import Title from "@/app/components/typography/Title";
 import Subtitle from "@/app/components/typography/Subtitle";
 import ShadowText from "@/app/components/typography/ShadowText";
 
-import Picture from "@/app/components/Picture";
+// import Picture from "@/app/components/Picture";
 import HeroHeader from "@/app/components/Hero/HeroHeader";
-// import Image from "next/image";
+import Image from "next/image";
 
 interface Props {
   size?: string;
@@ -19,10 +19,12 @@ interface Props {
   customComponent?: React.ReactNode | null | undefined;
   theme?: "light" | "dark";
   images?: any;
+  image_alt_text?: string | null | undefined;
 }
 export default function ({
   bg,
-  size = 'lg', // 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
+  image_alt_text,
+  size = "lg", // 'sm' | 'md' | 'lg' | 'xl' | '2xl' | '3xl' | '4xl'
   title,
   subtitle,
   belowSubtitle,
@@ -31,9 +33,8 @@ export default function ({
   customComponent,
   shadowTextPosition,
   theme,
-  // images,
-}: Props) {
-
+}: // images,
+Props) {
   const titleColor = theme === "light" ? "text-gray-900" : "text-black";
   const subtitleColor = theme === "light" ? "text-gray-900" : "text-black";
   const headlineColor = theme === "light" ? "text-gray-400" : "text-gray-400";
@@ -57,48 +58,29 @@ export default function ({
         className={`py-10 mx-auto ${getSize()} w-screen relative flex flex-col items-center justify-center`}
       >
         <HeroHeader />
-       <div className="absolute top-0 left-0 w-full h-full">
-       {/* {images && <Picture images={images} /> } */}
+        <div className="absolute top-0 left-0 w-full h-full">
+          {bg && (
+            <Image
+              src={bg}
+              alt={image_alt_text || "background image"}
+              fill
+              className="w-full h-full object-cover"
+            />
+          )}
         </div>
         <div className="relative flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
-          <Headline 
-            className={headlineColor}
-          >
-            {headline}
-          </Headline>
+          <Headline className={headlineColor}>{headline}</Headline>
           {/* <Spacer size={.5} /> */}
-          <Title
-            className={`${titleColor}`}
-          >
-            {title}
-          </Title>
+          <Title className={`${titleColor}`}>{title}</Title>
 
-          <Subtitle
-            className={subtitleColor}
-          >
-            {subtitle}
-          </Subtitle>
+          <Subtitle className={subtitleColor}>{subtitle}</Subtitle>
 
-
-          {belowSubtitle && (
-            <>
-              {belowSubtitle}
-            </>
-          )}
-   
+          {belowSubtitle && <>{belowSubtitle}</>}
 
           {customComponent}
         </div>
-
-
       </section>
-      <ShadowText
-        position={shadowTextPosition}
-      >
-        {shadowText}
-        </ShadowText>
-
-        
+      <ShadowText position={shadowTextPosition}>{shadowText}</ShadowText>
     </>
   );
 }

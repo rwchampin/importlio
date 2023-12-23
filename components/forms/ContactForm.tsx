@@ -1,6 +1,7 @@
 'use client';
 
 
+
 import useContact from '@/hooks/use-contact';
 
 import Form from '@/components/forms/Form';
@@ -50,6 +51,7 @@ export default function ContactForm() {
 			btnText='Submit'
 			onChange={onChange}
 			onSubmit={onSubmit}
+			formType='contact'
 		/>
 	);
 }

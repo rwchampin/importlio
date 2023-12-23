@@ -61,6 +61,7 @@ export default function RegisterForm() {
 			btnText='Sign up'
 			onChange={onChange}
 			onSubmit={onSubmit}
+			formType='register'
 		/>
 	);
 }

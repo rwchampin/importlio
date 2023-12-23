@@ -29,7 +29,7 @@ export default function Avatar({ user }: any) {
   const handleLogout = () => {
 		logout(undefined)
 			.unwrap()
-			.then(() => {debugger
+			.then(() => { 
 				dispatch(setLogout());
         // router.push("/");
         toast.success("Logged out");

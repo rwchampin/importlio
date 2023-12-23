@@ -12,6 +12,7 @@ export default function BasePage({
   size,
   theme,
   bg,
+  image_alt_text,
   title,
   subtitle,
   belowSubtitle,
@@ -49,6 +50,7 @@ export default function BasePage({
         size={size}
         theme={theme}
         bg={bg}
+        bgAltText={image_alt_text}
         title={title}
         subtitle={subtitle}
         belowSubtitle={belowSubtitle}

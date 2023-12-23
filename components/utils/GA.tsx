@@ -1,50 +1,35 @@
 // components/GoogleAnalytics.tsx
 "use client";
 
-import Script from "next/script";
-
+import ReactGA from "react-ga4";
 import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { pageview } from "./GtagHelper";
+import { useEffect, useLayoutEffect, useState } from "react";
 
 const GA_MEASUREMENT_ID = 'G-V8X4P8V5SZ';
 export default function GA() {
-
+  const [url, setUrl] = useState("");
   const pathname = usePathname();
   const searchParams = useSearchParams();
   useEffect(() => {
 
-    // check if development or localhost
-    if (process.env.NODE_ENV !== "production" || window.location.hostname.includes("localhost")) {
-      return;
-    } 
+
+    
+
+    window.addEventListener("popstate", () => {
+      ReactGA.send({ hitType: "pageview", page: pathname });
+    });
+
+    ReactGA.initialize(GA_MEASUREMENT_ID);
 
 
-    const url = pathname + searchParams.toString();
+  }, []);
 
-    pageview('G-V8X4P8V5SZ', url);
-  }, [pathname, searchParams, GA_MEASUREMENT_ID]);
+  // useEffect(() => {alert("GA.tsx");
+  //   ReactGA.send({ hitType: "pageview", page: pathname });
+  // }, []);
 
 
   return (
-    <>
-      <Script
-        strategy="afterInteractive"
-        src={`https://www.googletagmanager.com/gtag/js?id=G-V8X4P8V5SZ`}
-      />
-      <Script
-        id="google-analytics"
-        strategy="afterInteractive"
-        dangerouslySetInnerHTML={{
-          __html: `
-          window.dataLayer = window.dataLayer || [];
-          function gtag(){dataLayer.push(arguments);}
-          gtag('js', new Date());
-        
-          gtag('config', 'G-V8X4P8V5SZ');
-                `,
-        }}
-      />
-    </>
+    <></>
   );
 }

@@ -37,6 +37,7 @@ export default function LoginForm() {
 			btnText='Sign in'
 			onChange={onChange}
 			onSubmit={onSubmit}
+			formType='login'
 		/>
 	);
 }
