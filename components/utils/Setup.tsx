@@ -3,8 +3,20 @@ import GA from "@/components/utils/GA";
 import Notification from "@/components/Notifications";
 import { useVerify } from "@/hooks";
 import { Toaster } from "react-hot-toast";
+import Hotjar from '@hotjar/browser';
+import { useEffect } from "react";
+
+const siteId = 3711939;
+const hotjarVersion = 6;
+
+
 function Setup() {
   useVerify();
+  
+  useEffect(() => {
+    Hotjar.init(siteId, hotjarVersion);
+  }, []);
+  
 
   return (
     <>

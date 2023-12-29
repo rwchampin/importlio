@@ -18,6 +18,7 @@
 	"dependencies": {
 		"@headlessui/react": "^1.7.14",
 		"@heroicons/react": "^2.0.18",
+		"@hotjar/browser": "^1.0.9",
 		"@next/third-parties": "^14.0.4",
 		"@nextui-org/react": "^2.1.7",
 		"@radix-ui/colors": "^1.0.1",
