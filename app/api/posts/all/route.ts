@@ -13,7 +13,7 @@ export async function GET(request:NextRequest) {
   }
 
     const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/?page=${page}`, {
-      next: { revalidate: 60 }, // Revalidate every 60 seconds
+      next: { revalidate: 0 }, // Revalidate every 60 seconds
     })
     const posts = await res.json()
     

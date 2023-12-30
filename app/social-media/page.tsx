@@ -62,6 +62,7 @@ export const metadata: Metadata = {
   openGraph: {
     title,
     description,
+    images: "https://www.importlio.com/threads.jpg",
   },
 };
 

@@ -45,7 +45,7 @@ const apercu = localFont({
   display: "swap",
   preload: true,
 });
-const title = "Amazon Product Importer App for Shopify";
+const title = "Shopify Dropshipping Products App";
 const description =
   "Fill your Shopify store with dropshipping products from Amazon.  Bulk import Amazon dropshipping products into Shopify with Importlio.";
 

@@ -42,8 +42,7 @@ const ChatRoom = ({
   useLayoutEffect(() => {
     const createConnection = async () => {
       const configuration = new Configuration({
-        organizationId: 'org-cZs70lWtkVYO7TnN1HJcmICg',
-        apiKey: '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'
+        apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
       });
       openai.current = new OpenAIApi(configuration);
     };

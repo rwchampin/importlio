@@ -37,14 +37,16 @@ export default function ClientContent({ post }: any) {
       showBreadcrumbs={true}
       // images={images}
     >
-      <div className="post flex flex-col lg:flex-row">
-        <div className="w-full p-5">
+      <div className="post flex flex-col lg:flex-row gap-4 mt-5 w-full max-w-[90vw] mx-auto">
+        <div className="w-full mb-5">
           <div className="flex flex-row gap-1">
             {post.read_time} min read
             <span className="mx-1">|</span>
             <time dateTime={post.updated}>{post.updated_pretty}</time>
           </div>
+          <a href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`}>
           {post.post_type.name}
+          </a>
           <div className="flex flex-row gap-1">
             <TagCloud data={post.tags} type="tags" />
 

@@ -14,3 +14,8 @@
     font-weight: 400;
 }
 
+.post img {
+    max-width: 100%;
+    margin-bottom: 1rem;
+    border-radius: 0.5rem;
+}
