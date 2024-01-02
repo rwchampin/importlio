@@ -15,15 +15,15 @@ export async function generateMetadata({ params }:any) {
   return {
     title: post.title,
     description: post.excerpt,
-    // image: post.mobile_image || post.featured_image,
+    image: post.featured_image,
     alternates: {
-      canonical: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+      // canonical: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
     },
     openGraph: {
       title: post.title,
       description: post.excerpt,
       type: 'article',
-      // image: post.mobile_image || post.featured_image
+      image: post.featured_image
     },
   }
 }
@@ -47,7 +47,6 @@ export default async function Page({
     );
 
     const post = await res.json();
-      debugger
     
   // } catch (error) {
   //   console.log(error);

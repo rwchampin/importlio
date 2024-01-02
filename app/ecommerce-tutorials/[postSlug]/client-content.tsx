@@ -23,7 +23,7 @@ export default function ClientContent({ post }: any) {
 
   const json = generateBlogStructuredMarkup(post);
 
-  debugger;
+
   if (!post) return <Spinner />;
 
   return (
@@ -59,7 +59,7 @@ export default function ClientContent({ post }: any) {
           />
         </div>
         <aside className="w-full lg:w-1/4 sticky top-5">
-            <Sidebar />
+            <Sidebar post={post} />
           </aside>
       </div>
       <JsonLd json={json} />

@@ -5,9 +5,9 @@ import TagCloud from "./TagCloud";
 import Link from "next/link";
 import ShadowText from "./typography/ShadowText";
 
-const CardHeader = ({ post }: any) => {
+const CardHeader = ({ variant, post }: any) => {
   return (
-    <div className="w-fill flex gap-2 items-center mb-2 text-xxs">
+    <div className="w-fill flex gap-1 items-center mb-2 text-xxs">
       <time dateTime={post.updated}>{post.updated_pretty}</time>
       <span className="font-[50px]">&bull;</span>
       {post.post_type && <Link href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`} className="border-2 border-gray-500 bg-gray-300 text-gray-800 rounded-full text-xxs px-2 py-1">{post.post_type.name}</Link>}
@@ -17,7 +17,21 @@ const CardHeader = ({ post }: any) => {
   );
 };
 
-const CardMainContent = ({ post }: any) => {
+const CardMainContent = ({ variant, post }: any) => {
+
+  if(variant === 'sidebar') {
+    return (
+      <div className="flex flex-col">
+        <Link href={`/ecommerce-tutorials/${post.slug}`}>
+          <h3 className="text-sm whitespace-break-spaces break-words mb-0 line-clamp-1 truncate ..."
+          >{post.title}</h3>
+          <h4 className="text-xxs text-gray-500">{post.subtitle}</h4>
+        </Link>
+        <div className="h-[1px] w-full max-w-[500px] bg-black my-2" />
+        <p className="text-xxxs">{post.excerpt}</p>
+      </div>
+    )
+  }
   return (
     <Link href={`/ecommerce-tutorials/${post.slug}`}>
       <h3 className="text-heading-4 whitespace-break-spaces break-words">{post.title}</h3>
@@ -28,9 +42,24 @@ const CardMainContent = ({ post }: any) => {
   );
 };
 
-const CardImage = ({ post }: any) => {
-  if (!post.featured_image) {
-    return <h2>Error</h2>
+const CardImage = ({ variant, post }: any) => {
+
+  if(variant === 'sidebar') {
+    return (
+      <Link
+      href={`/ecommerce-tutorials/${post.slug}`}
+     className="relative w-[100px] h-[100px] overflow-hidden rounded-xl shadow-lg"
+    >
+       <Image
+        src={post.featured_image}
+      style={{
+        objectFit: 'cover',
+      }}
+        fill
+        alt={post.image_alt_text}
+      /> 
+    </Link>
+    )
   }
 
   return (
@@ -46,7 +75,7 @@ const CardImage = ({ post }: any) => {
         objectFit: 'cover',
       }}
         fill
-        alt={post.title}
+        alt={post.image_alt_text}
       /> 
     </Link>
   );
@@ -54,26 +83,28 @@ const CardImage = ({ post }: any) => {
 
 const CardFooter = ({ post }: any) => {
   return (
-    <div className="w-full mx-auto mt-5 mb-2 gap-1 flex items-center justify-start overflow-scroll">
+    <div className="w-full mx-auto mt-1 mb-2 gap-1 flex items-center justify-start overflow-scroll">
       <TagCloud data={post.tags} type="tags" />
       <TagCloud data={post.categories} type="categories" />
       </div>
   );
 };
-export default function Card({ post }: any) {
+export default function Card({ variant="lg", post }: any) {
 
+  let postData:any = post;
+  postData.featured_image = postData.featured_image || false;
   return (
    
-      <article className="relative w-full   overflow-hidden shadow-lg rounded-xl bg-gray-200 p-3 flex border-5 border-black/10">
-        <ShadowText type="card" theme={post.shadow_text_theme}>
-          {post.shadowText}
+      <article className="card relative w-full   overflow-hidden shadow-lg rounded-xl bg-gray-200 p-1 flex border-5 border-black/10">
+        <ShadowText>
+          {postData.shadow_text}
         </ShadowText>
-        <div className="flex flex-col gap-2 lg:flex-row w-full">
-          <CardImage post={post} />
+        <div className="flex flex-col gap-1 lg:flex-row">
+          {postData.featured_image && <CardImage post={postData} variant={variant} />}
            <div className="relative z-100">
-            <CardHeader post={post} />
-            <CardMainContent post={post} />
-            <CardFooter post={post} />
+            <CardHeader post={post} variant={variant} />
+            <CardMainContent post={post} variant={variant} />
+            <CardFooter post={post} variant={variant} />
           </div> 
         </div>
         {/* <div

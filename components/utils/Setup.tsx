@@ -1,10 +1,10 @@
 "use client";
-import GA from "@/components/utils/GA";
 import Notification from "@/components/Notifications";
+import GA from "@/components/utils/GA";
 import { useVerify } from "@/hooks";
-import { Toaster } from "react-hot-toast";
 import Hotjar from '@hotjar/browser';
 import { useEffect } from "react";
+import { Toaster } from "react-hot-toast";
 
 const siteId = 3711939;
 const hotjarVersion = 6;
@@ -15,6 +15,8 @@ function Setup() {
   
   useEffect(() => {
     Hotjar.init(siteId, hotjarVersion);
+
+    
   }, []);
   
 

@@ -11,7 +11,7 @@
 
 const nextConfig = {
   // i18n,
-  // reactStrictMode: process.env.NODE_ENV !== "production",
+  reactStrictMode: false,
   // trailingSlash: true,
   images: {
     remotePatterns: [

@@ -19,3 +19,8 @@
     margin-bottom: 1rem;
     border-radius: 0.5rem;
 }
+
+.sidebar .card h3, .sidebar .card h4 {
+    margin-bottom: 0;
+    text-align: left;;
+}

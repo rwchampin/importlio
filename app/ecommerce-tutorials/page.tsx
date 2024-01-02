@@ -6,13 +6,7 @@ import BasePage from '@/app/components/BasePage';
 import type { Metadata } from "next";
 
 import Card from "@/app/components/Card";
-// import JsonLd from "@/app/components/JsonLd";
-// import {ScrollShadow} from "@nextui-org/react";
 
-// import Sidebar from "@/app/components/BlogSidebar/Sidebar";
-import BlogPageClientContent from '../components/BlogPageClientContent';
-import Pagination from '../components/Pagination';
-// import Spinner from "@/app/components/Spinner";
 interface Post {
   title: string;
   slug: string;
@@ -42,35 +36,25 @@ export const metadata: Metadata = {
   ],
 }
 
+
+// const json = generatePageStructuredMarkup(metadata);
  
- 
-
-const getFilterPosts =async () => {
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
-  });
-
-  const { results } = await res.json();
-
-  return results;
-}
 
 export default async function Page() {
   // let { posts } = useAppSelector((state) => state.blog);
   // const dispatch = useAppDispatch()
   // dispatch(setShowRecentPostsInFooter(false))
   const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts-preview`, {
-    method: "GET",
-    headers: {
-      "Content-Type": "application/json",
-    },
+    next: {
+      revalidate: 10
+    }
   });
 
-  const posts = await res.json();
+  const {
+    results
+  } = await res.json();
 
+  const posts = results;
 
   
   // if(name && type) {
@@ -90,25 +74,21 @@ export default async function Page() {
         showPostsInFooter={false}
       >
          
-        {/* <BlogPageClientContent posts={posts} /> */}
           <div className='flex flex-col md:flex-row flex-wrap gap-5 px-5 items-center'>
-      {posts && posts.results.length && posts.results.map((post: any) => {
+      {posts && posts.length && posts.map((post: any) => {
         if(post.post_status === 'draft') return null
 
         return (
           <Card
             post={post}
             key={post.slug}
+            variant="lg"
           />
         )
       }
       )}
       </div>
 
-      {/* {posts.results.length > 0 && <Pagination json={posts} paginationChange={handleChange} />} */}
-         {/* <JsonLd
-          json={json}
-          />  */}
       </BasePage>
     </>
   );

@@ -83,6 +83,7 @@ export function generateImageStructuredMarkup({ }: any) {
   }
 }
 
+
 export function generatePageStructuredMarkup({
   description,
 }: any) {
