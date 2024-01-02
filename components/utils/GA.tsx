@@ -1,18 +1,17 @@
 // components/GoogleAnalytics.tsx
 "use client";
 
+import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import ReactGA from "react-ga4";
-import { usePathname, useSearchParams } from "next/navigation";
-import { useEffect, useLayoutEffect, useState } from "react";
 
 const GA_MEASUREMENT_ID = 'G-V8X4P8V5SZ';
 export default function GA() {
-  const [url, setUrl] = useState("");
+
   const pathname = usePathname();
-  const searchParams = useSearchParams();
+
   useEffect(() => {
-
-
+    if(pathname.includes("localhost")) return;
     
 
     window.addEventListener("popstate", () => {
@@ -21,6 +20,11 @@ export default function GA() {
 
     ReactGA.initialize(GA_MEASUREMENT_ID);
 
+    return () => {
+      window.removeEventListener("popstate", () => {
+        ReactGA.send({ hitType: "pageview", page: pathname });
+      });
+    }
 
   }, []);
 
