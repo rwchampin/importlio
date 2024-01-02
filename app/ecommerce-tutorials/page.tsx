@@ -62,7 +62,7 @@ export default async function Page() {
   // let { posts } = useAppSelector((state) => state.blog);
   // const dispatch = useAppDispatch()
   // dispatch(setShowRecentPostsInFooter(false))
-  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts/`, {
+  const res = await fetch(`${process.env.NEXT_PUBLIC_HOST}/api/posts-preview`, {
     method: "GET",
     headers: {
       "Content-Type": "application/json",
