@@ -4,6 +4,8 @@ import { TbPackages, TbDatabaseSearch } from "react-icons/tb";
 import { SiOpenai } from "react-icons/si";
 import { AiOutlineSetting, AiOutlineDashboard } from "react-icons/ai";
 // import { CgProfile } from "react-icons/cg";
+import { IoIosPeople } from "react-icons/io";
+
 import { FaBook } from "react-icons/fa";
 import { GrEdit } from "react-icons/gr";
 import { PiShoppingCartDuotone } from "react-icons/pi";
@@ -21,6 +23,12 @@ export default function Sidebar() {
       name: "AI",
       href: "/ai",
       icon: SiOpenai,
+      protected: false,
+    },
+    {
+      name: "Social Media",
+      href: "/social-media",
+      icon: IoIosPeople,
       protected: false,
     },
     {

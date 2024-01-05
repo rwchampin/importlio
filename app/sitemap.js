@@ -184,19 +184,19 @@ const generateURLs = async () => {
   const urlList = [
       ...transformFilePaths(pages),
       ...postTypes.map((postType) => ({
-        url: `https://www.importlio.com/ecommerce-tutorials/post-types/${postType.slug}`,
+        url: `https://www.importlio.com/dropshipping/post-types/${postType.slug}`,
         lastModified: currentDate,
     })),
       ...tags.map((tag) => ({
-        url: `https://www.importlio.com/ecommerce-tutorials/tags/${tag.slug}`,
+        url: `https://www.importlio.com/dropshipping/tags/${tag.slug}`,
         lastModified: currentDate,
     })),
     ...categories.map((cat) => ({
-      url: `https://www.importlio.com/ecommerce-tutorials/categories/${cat.slug}`,
+      url: `https://www.importlio.com/dropshipping/categories/${cat.slug}`,
       lastModified: currentDate,
   })),
       ...posts.map((post) => ({
-          url: `https://www.importlio.com/ecommerce-tutorials/${post.slug}`,
+          url: `https://www.importlio.com/dropshipping/${post.slug}`,
           lastModified: post.updated,
       })),
       ...emailLists.map((emailList) => ({

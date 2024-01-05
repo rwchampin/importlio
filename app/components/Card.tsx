@@ -10,7 +10,7 @@ const CardHeader = ({ variant, post }: any) => {
     <div className="w-fill flex gap-1 items-center mb-2 text-xxs">
       <time dateTime={post.updated}>{post.updated_pretty}</time>
       <span className="font-[50px]">&bull;</span>
-      {post.post_type && <Link href={`/ecommerce-tutorials/post-types/${post.post_type.slug}`} className="border-2 border-gray-500 bg-gray-300 text-gray-800 rounded-full text-xxs px-2 py-1">{post.post_type.name}</Link>}
+      {post.post_type && <Link href={`/dropshipping/post-types/${post.post_type.slug}`} className="border-2 border-gray-500 bg-gray-300 text-gray-800 rounded-full text-xxs px-2 py-1">{post.post_type.name}</Link>}
 
       {!post.post_type && "Blog Post"}
     </div>
@@ -22,7 +22,7 @@ const CardMainContent = ({ variant, post }: any) => {
   if(variant === 'sidebar') {
     return (
       <div className="flex flex-col">
-        <Link href={`/ecommerce-tutorials/${post.slug}`}>
+        <Link href={`/dropshipping/${post.slug}`}>
           <h3 className="text-sm whitespace-break-spaces break-words mb-0 line-clamp-1 truncate ..."
           >{post.title}</h3>
           <h4 className="text-xxs text-gray-500">{post.subtitle}</h4>
@@ -33,7 +33,7 @@ const CardMainContent = ({ variant, post }: any) => {
     )
   }
   return (
-    <Link href={`/ecommerce-tutorials/${post.slug}`}>
+    <Link href={`/dropshipping/${post.slug}`}>
       <h3 className="text-heading-4 whitespace-break-spaces break-words">{post.title}</h3>
       <h4 className="text-heading-5 text-gray-500">{post.subtitle}</h4>
       <div className="h-[1px] w-full max-w-[500px] bg-black my-3" />
@@ -47,7 +47,7 @@ const CardImage = ({ variant, post }: any) => {
   if(variant === 'sidebar') {
     return (
       <Link
-      href={`/ecommerce-tutorials/${post.slug}`}
+      href={`/dropshipping/${post.slug}`}
      className="relative w-[100px] h-[100px] overflow-hidden rounded-xl shadow-lg"
     >
        <Image
@@ -64,7 +64,7 @@ const CardImage = ({ variant, post }: any) => {
 
   return (
     <Link
-      href={`/ecommerce-tutorials/${post.slug}`}
+      href={`/dropshipping/${post.slug}`}
      className="relative w-full h-[200px] overflow-hidden rounded-xl shadow-lg"
     >
        <Image
@@ -119,7 +119,7 @@ Card({ variant="lg", post }: any) {
           {" "}
           <time dateTime={post.updated}>{post.updated_pretty}</time>
         </small>
-        <Link href={`/ecommerce-tutorials/${post.slug}`}>
+        <Link href={`/dropshipping/${post.slug}`}>
           <h3
             className={`text-heading-4 ${
               post.title_text_theme === "light" ? "text-white" : "text-black"
@@ -147,7 +147,7 @@ Card({ variant="lg", post }: any) {
         {/* <Link
           className="w-full text-center bg-button text-offwhite rounded-xl h-input flex items-center justify-center"
           color="primary"
-          href={`/ecommerce-tutorials/${post.slug}`}
+          href={`/dropshipping/${post.slug}`}
         >
           Read full article
         </Link> */}
