@@ -10,6 +10,14 @@ export const screens = {
     'xl':"1280",
 }
 
+export const titles = {
+    "HOME": "Dropshipping Automation & Marketing App",
+}
+
+export const descriptions = {
+    "HOME": "Our Dropshipping tools import products, generate new leads, market & build relationships with existing clients and show you how to get social media followers!",
+}
+
 export const badgeTypes = {
     CATEGORY: 'category',
     TAG: 'tag',
@@ -104,7 +112,7 @@ export interface BasePageProps {
     title: string | React.ReactNode;
     subtitle: string | React.ReactNode;
     belowSubtitle?: any;
-    headline: string | React.ReactNode;
+    headline: string | null | React.ReactNode;
     shadowText: string | React.ReactNode;
     customComponent?: React.ReactNode | null | undefined;
     children?: React.ReactNode | null | undefined;
@@ -287,4 +295,11 @@ export interface LinkProps {
     message: string
   }
 
-  
+  export const routing = {
+    "POSTS": "/dropshipping/",
+    "TAGS": "/dropshipping/tags/",
+    "CATEGORIES": "/dropshipping/categories/",
+    "POSTS_TYPE": "/dropshipping/post-types/",
+  }
+
+

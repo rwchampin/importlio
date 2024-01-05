@@ -2,6 +2,7 @@
 import BasePage from "@/app/components/BasePage";
 import FeatureHero from "@/app/components/FeatureHero";
 import ImageCta from "@/app/components/ImageCta";
+import * as info from '@/lib/constants'
 
 import FadingBackgroundCta from '@/components/heros/FadingBackgroundCta';
 
@@ -13,7 +14,9 @@ import RecentBlogPosts from "@/app/components/RecentBlogPosts";
 import SplitWithImage from "@/components/heros/SplitWithImage";
 
 
-
+const title = info.titles.HOME;
+const description = info.descriptions.HOME;
+  
  
 
 function Page() {
@@ -23,9 +26,8 @@ function Page() {
 
     <BasePage
     theme="dark"
-      headline="The #1 AI powered"
-      title="Shopify Dropshipping Product Importer"
-      subtitle="Gain access to millions of top-selling Amazon products, the power to import products from Amazon search results pages, category pages, keywords, and more!"
+      title={title}
+      subtitle={description}
       shadowText={`Amazon Dropshipping Products`}
       customComponent={<Search />}
       // customComponent={<Link className="w-full max-w-2xl bg-button text-offwhite flex items-center justify-center rounded-lg h-input mt-2" href="/auth/register/?free=true">Start your FREE Trial</Link>}

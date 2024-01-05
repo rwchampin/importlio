@@ -79,11 +79,13 @@ export default async function Page() {
         if(post.post_status === 'draft') return null
 
         return (
+          <div className='w-full md:w-1/3'>
           <Card
             post={post}
             key={post.slug}
             variant="lg"
           />
+          </div>
         )
       }
       )}

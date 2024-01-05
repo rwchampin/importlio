@@ -1,11 +1,11 @@
 import BasePage from "@/app/components/BasePage";
 import Section from "@/app/components/Section";
-import ClientContent from "./get-social-media-followers/ClientContent";
+import ClientContent from "./ClientContent";
 import type { Metadata } from "next";
-import Features from "./get-social-media-followers/Features";
-import AddFollowers from "./get-social-media-followers/AddFollowers";
-const title = "Social Media";
-const description = "Social media to help your ecommerce business grow";
+import Features from "./Features";
+import AddFollowers from "./AddFollowers";
+const title = "Social Media Marketing Tools";
+const description = "Social Media Marketing Tools to help your business grow";
 
 export const metadata: Metadata = {
   title,

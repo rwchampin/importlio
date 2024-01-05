@@ -4,7 +4,7 @@ import Image from "next/image";
 import TagCloud from "./TagCloud";
 import Link from "next/link";
 import ShadowText from "./typography/ShadowText";
-
+import Heart from "./Heart";
 const CardHeader = ({ variant, post }: any) => {
   return (
     <div className="w-fill flex gap-1 items-center mb-2 text-xxs">
@@ -37,7 +37,7 @@ const CardMainContent = ({ variant, post }: any) => {
       <h3 className="text-heading-4 whitespace-break-spaces break-words">{post.title}</h3>
       <h4 className="text-heading-5 text-gray-500">{post.subtitle}</h4>
       <div className="h-[1px] w-full max-w-[500px] bg-black my-3" />
-      <p>{post.excerpt}</p>
+        <div><p>{post.excerpt}</p></div>
     </Link>
   );
 };
@@ -65,7 +65,7 @@ const CardImage = ({ variant, post }: any) => {
   return (
     <Link
       href={`/ecommerce-tutorials/${post.slug}`}
-     className="relative w-[200px] h-[200px] overflow-hidden rounded-xl shadow-lg"
+     className="relative w-full h-[200px] overflow-hidden rounded-xl shadow-lg"
     >
        <Image
         src={post.featured_image}
@@ -89,16 +89,15 @@ const CardFooter = ({ post }: any) => {
       </div>
   );
 };
-export default function Card({ variant="lg", post }: any) {
+export default function 
+Card({ variant="lg", post }: any) {
 
   let postData:any = post;
   postData.featured_image = postData.featured_image || false;
   return (
    
       <article className="card relative w-full   overflow-hidden shadow-lg rounded-xl bg-gray-200 p-1 flex border-5 border-black/10">
-        <ShadowText>
-          {postData.shadow_text}
-        </ShadowText>
+      
         <div className="flex flex-col gap-1 lg:flex-row">
           {postData.featured_image && <CardImage post={postData} variant={variant} />}
            <div className="relative z-100">
@@ -152,6 +151,9 @@ export default function Card({ variant="lg", post }: any) {
         >
           Read full article
         </Link> */}
+          <ShadowText>
+          {postData.shadow_text}
+        </ShadowText>
       </article>
 
   );

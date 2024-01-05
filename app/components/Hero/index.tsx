@@ -1,9 +1,7 @@
 import Headline from "@/app/components/typography/Headline";
-import Title from "@/app/components/typography/Title";
-import Subtitle from "@/app/components/typography/Subtitle";
 import ShadowText from "@/app/components/typography/ShadowText";
-
-// import Picture from "@/app/components/Picture";
+import Subtitle from "@/app/components/typography/Subtitle";
+import Title from "@/app/components/typography/Title";
 import HeroHeader from "@/app/components/Hero/HeroHeader";
 import Image from "next/image";
 
@@ -13,7 +11,7 @@ interface Props {
   title: string | React.ReactNode;
   subtitle?: string | React.ReactNode;
   belowSubtitle?: string | null | undefined;
-  headline?: string | React.ReactNode;
+  headline?: string | null| React.ReactNode;
   shadowText?: string | React.ReactNode;
   shadowTextPosition?: "top" | "center";
   customComponent?: React.ReactNode | null | undefined;
@@ -69,8 +67,8 @@ Props) {
           )}
         </div>
         <div className="relative flex-1 z-10 md:p-0 flex flex-col text-left justify-center w-full max-w-[90vw] z-200">
-          <Headline className={headlineColor}>{headline}</Headline>
-          {/* <Spacer size={.5} /> */}
+          {headline && <Headline className={headlineColor}>{headline}</Headline>}
+
           <Title className={`${titleColor}`}>{title}</Title>
 
           <Subtitle className={subtitleColor}>{subtitle}</Subtitle>

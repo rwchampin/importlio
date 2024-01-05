@@ -109,7 +109,7 @@ export default function Navigation() {
     {
       pretty: "Ecommerce Tutorials",
       description: "Ecommerce tutorials to help your business grow",
-      href: "/ecommerce-tutorials",
+      href: "/dropshipping",
       dropdown: null,
       protected: false,
     },

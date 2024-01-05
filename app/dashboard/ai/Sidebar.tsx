@@ -5,10 +5,7 @@ import { FiPlusCircle } from "react-icons/fi";
 import Link from "next/link";
 import Button from "@/app/components/buttons/Button";
 
-export default function Sidebar({
-    activeChat,
-    setActiveChat,
-}: any) {
+export default function Sidebar({ activeChat, setActiveChat }: any) {
   const [rooms, setRooms] = useState<any>([]);
   const [search, setSearch] = useState<any>("");
   const [isLoading, setIsLoading] = useState<any>(true);
@@ -19,15 +16,14 @@ export default function Sidebar({
       const { rooms } = await res.json();
 
       const activeRoom = rooms.find((room: any) => room.is_active === true);
-        if (activeRoom) {
-            setActiveChat(activeRoom);
-        }
+      if (activeRoom) {
+        setActiveChat(activeRoom);
+      }
       setRooms(rooms);
       setIsLoading(false);
     };
 
-      fetchRooms();
-
+    fetchRooms();
   }, []);
 
   return (
@@ -37,8 +33,8 @@ export default function Sidebar({
         className="flex items-center justify-center bg-button text-white rounded-md w-full h-input"
       >
         <>
-        <FiPlusCircle className="text-2xl" />
-        New Chat
+          <FiPlusCircle className="text-2xl" />
+          New Chat
         </>
       </Link>
       <input
@@ -54,7 +50,7 @@ export default function Sidebar({
           rooms.map((room: any, idx: any) => {
             return (
               <Button
-                // onClick={() => 
+                // onClick={() =>
                 key={idx}
                 className={`flex flex-col gap-2 p-2 bg-gray-400 rounded-md cursor-pointer ${
                   activeChat.id === room.id && "bg-red-500"

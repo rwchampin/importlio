@@ -8,7 +8,7 @@ import Navigation from "@/components/common/Navigation";
 import type { Metadata } from "next";
 import localFont from "next/font/local";
 
-
+import * as info from '@/lib/constants'
 import JsonLd from "@/app/components/JsonLd";
 import Scroller from "@/components/utils/Scroller";
 import { generatePageStructuredMarkup } from "@/lib/functions";
@@ -45,9 +45,9 @@ const apercu = localFont({
   display: "swap",
   preload: true,
 });
-const title = "Shopify Dropshipping Products App";
-const description =
-  "Fill your Shopify store with dropshipping products from Amazon.  Bulk import Amazon dropshipping products into Shopify with Importlio.";
+const title = info.titles.HOME;
+const description = info.descriptions.HOME;
+  
 
 export const metadata: Metadata = {
   title: title,
@@ -105,9 +105,10 @@ const RootLayout = async ({ children }: { children: React.ReactNode }) => {
     >
       <body>
         <Provider>
-          <Navigation />
+         
           
             {children}
+            <Navigation />
             <Footer />
 
           {/* <Cursor /> */}
